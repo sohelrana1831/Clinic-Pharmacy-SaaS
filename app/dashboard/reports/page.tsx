@@ -167,7 +167,7 @@ export default function ReportsPage() {
               data={dailySalesData}
             />
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">���াম্প্রতিক বিক্রয়</h4>
+              <h4 className="font-semibold text-gray-800">সাম্প্রতিক বিক্রয়</h4>
               <div className="space-y-2 max-h-48 overflow-y-auto">
                 {dailySalesData.map((day, index) => (
                   <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
@@ -194,7 +194,7 @@ export default function ReportsPage() {
               <TrendingUp className="h-5 w-5 text-blue-600" />
               মাসিক আয়ের গ্রাফ
             </CardTitle>
-            <p className="text-sm text-gray-600 mt-1">গত ৬ মাসের আয় এবং বৃদ্ধির হা���</p>
+            <p className="text-sm text-gray-600 mt-1">গত ৬ মাসের আয় এবং বৃদ্ধির হার</p>
           </div>
           <ExportButtons
             onExportCSV={() => exportToCSV(monthlyRevenueData, 'monthly-revenue', csvHeaders.monthlyRevenue)}
@@ -213,7 +213,7 @@ export default function ReportsPage() {
               />
             </div>
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">মাসিক পারফরম্যান্স</h4>
+              <h4 className="font-semibold text-gray-800">মাসিক পারফ��ম্যান্স</h4>
               <div className="space-y-2">
                 {monthlyRevenueData.slice(-3).map((month, index) => (
                   <div key={index} className="p-3 bg-gray-50 rounded-lg">
@@ -291,24 +291,10 @@ export default function ReportsPage() {
             </CardTitle>
             <p className="text-sm text-gray-600 mt-1">নতুন রোগী নিবন্ধন এবং ধরে রাখার হার</p>
           </div>
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => exportToCSV(patientGrowthData, 'patient-growth', ['month', 'newPatients', 'totalPatients', 'retention'])}
-            >
-              <Download className="h-4 w-4 mr-2" />
-              CSV
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => exportToPDF('রোগী বৃদ্ধির রিপোর্ট')}
-            >
-              <FileText className="h-4 w-4 mr-2" />
-              PDF
-            </Button>
-          </div>
+          <ExportButtons
+            onExportCSV={() => exportToCSV(patientGrowthData, 'patient-growth', csvHeaders.patientGrowth)}
+            onExportPDF={() => exportToPDF('রোগী বৃদ্ধির রিপোর্ট', patientGrowthData)}
+          />
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
