@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Calendar, FileText, Pill, MessageSquare, Check, Star, Phone, Mail, Facebook, Twitter, Linkedin } from 'lucide-react'
@@ -14,17 +15,17 @@ export default function Home() {
                 বাংলাদেশের #১ ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সিস্টেম
               </h1>
               <p className="text-xl text-gray-600 mb-4">
-                আধুনিক প্রযুক্তি দিয়ে আপনার ক্লিনিক ও ফার্মেসি পরিচালনা করুন।
+                আধুনিক প্রযুক্তি দিয়ে আপনার ক্লিনিক ও ফার্মেসি পরিচালনা ক���ুন।
               </p>
               <p className="text-lg text-gray-600 mb-8">
                 রোগীর তথ্য, অ্যাপয়েন্টমেন্ট, প্রেসক্রিপশন এবং স্টক ম্যানেজমেন্ট - সব একসাথে।
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
-                  ফ্রি ট্রায়াল শুরু করুন
+                <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
+                  <Link href="/auth/signup">ফ্রি ট্রায়াল শুরু করুন</Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3">
-                  ডেমো দেখুন
+                <Button asChild size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3">
+                  <Link href="/auth/login">ডেমো দেখুন</Link>
                 </Button>
               </div>
             </div>
@@ -58,7 +59,7 @@ export default function Home() {
                 <CardTitle className="text-xl text-gray-900">অ্যাপয়েন্টমেন্ট</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">অনলাইন বুকিং এবং স্বয়ংক্রিয় SMS রিমাইন্ডার সিস্টেম।</p>
+                <p className="text-gray-600">অনলাইন বুকিং এবং স্বয়ংক্রিয় SMS রিমাইন্ডার সিস��টেম।</p>
               </CardContent>
             </Card>
 
@@ -257,7 +258,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              প্রায়শই জিজ্ঞাসিত প্রশ্ন
+              প্রা��়শই জিজ্ঞাসিত প্রশ্ন
             </h2>
           </div>
 
@@ -265,7 +266,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card className="p-6">
                 <h3 className="font-semibold text-lg text-gray-900 mb-3">পেমেন্ট কিভাবে করব?</h3>
-                <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্য���ংক ট্রান্সফার এবং অনলাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
+                <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যাংক ট্রান্সফার এবং অনলাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
               </Card>
 
               <Card className="p-6">
@@ -292,7 +293,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">ক্লিনিক ম্যানেজমেন্ট সিস্টেম</h3>
+              <h3 className="text-xl font-bold mb-4">ক��লিনিক ম্যানেজমেন্ট সিস্টেম</h3>
               <p className="text-gray-400 mb-4">
                 বাংলাদেশের সবচেয়ে ভালো ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার।
               </p>
@@ -339,7 +340,7 @@ export default function Home() {
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center">
             <p className="text-gray-400">
-              © ২০২৪ ক্লিনিক ম্যানেজমেন্ট সিস্টেম। সর্বস্বত্ব সংরক্ষিত।
+              © ২০২৪ ক্লিনিক ম্যানেজমেন্ট সিস্টেম। সর্বস্বত্ব সংর��্ষিত।
             </p>
           </div>
         </div>
