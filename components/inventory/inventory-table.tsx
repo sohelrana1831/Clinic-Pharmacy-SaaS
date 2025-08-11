@@ -56,7 +56,7 @@ export function InventoryTable({ inventory, onEditItem, onAddStock, onAddNew }: 
     return null
   }
 
-  const categories = [...new Set(inventory.map(item => item.category))]
+  const categories = Array.from(new Set(inventory.map(item => item.category)))
 
   return (
     <div className="space-y-6">
