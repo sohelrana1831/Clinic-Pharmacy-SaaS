@@ -167,7 +167,7 @@ export default function ReportsPage() {
               data={dailySalesData}
             />
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">সাম্প্রতিক বিক্রয়</h4>
+              <h4 className="font-semibold text-gray-800">���াম্প্রতিক বিক্রয়</h4>
               <div className="space-y-2 max-h-48 overflow-y-auto">
                 {dailySalesData.map((day, index) => (
                   <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
@@ -194,7 +194,7 @@ export default function ReportsPage() {
               <TrendingUp className="h-5 w-5 text-blue-600" />
               মাসিক আয়ের গ্রাফ
             </CardTitle>
-            <p className="text-sm text-gray-600 mt-1">গত ৬ মাসের আয় এবং বৃদ্ধির হার</p>
+            <p className="text-sm text-gray-600 mt-1">গত ৬ মাসের আয় এবং বৃদ্ধির হা���</p>
           </div>
           <ExportButtons
             onExportCSV={() => exportToCSV(monthlyRevenueData, 'monthly-revenue', csvHeaders.monthlyRevenue)}
@@ -213,7 +213,7 @@ export default function ReportsPage() {
               />
             </div>
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">মাসিক পারফরম���যান্স</h4>
+              <h4 className="font-semibold text-gray-800">মাসিক পারফরম্যান্স</h4>
               <div className="space-y-2">
                 {monthlyRevenueData.slice(-3).map((month, index) => (
                   <div key={index} className="p-3 bg-gray-50 rounded-lg">
@@ -240,7 +240,7 @@ export default function ReportsPage() {
               <Pill className="h-5 w-5 text-purple-600" />
               সর্বাধিক বিক্রিত ওষুধ
             </CardTitle>
-            <p className="text-sm text-gray-600 mt-1">বেস্ট সেলিং মেড��সিন এবং আয়</p>
+            <p className="text-sm text-gray-600 mt-1">বেস্ট সেলিং মেডিসিন এবং আয়</p>
           </div>
           <ExportButtons
             onExportCSV={() => exportToCSV(topMedicinesData, 'top-medicines', csvHeaders.topMedicines)}
@@ -249,11 +249,12 @@ export default function ReportsPage() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <ChartPlaceholder title="টপ মেডিসিন চার্ট">
-              <div className="mt-4 text-xs text-blue-500">
-                Horizontal bar chart showing top selling medicines
-              </div>
-            </ChartPlaceholder>
+            <ChartPlaceholder
+              title="টপ মেডিসিন চার্ট"
+              type="bar"
+              description="সর্বাধিক বিক্রিত ওষুধের তালিকা"
+              data={topMedicinesData}
+            />
             <div className="space-y-3">
               <h4 className="font-semibold text-gray-800">বিস্তারিত তালিকা</h4>
               <div className="space-y-2 max-h-64 overflow-y-auto">
