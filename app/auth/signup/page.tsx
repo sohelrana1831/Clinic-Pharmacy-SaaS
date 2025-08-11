@@ -26,7 +26,7 @@ export default function SignUpPage() {
   const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   const planOptions = [
-    { value: 'basic', label: 'বেসিক প্ল্যান - ৳২,৫০০/মাস' },
+    { value: 'basic', label: 'বেস���ক প্ল্যান - ৳২,৫০০/মাস' },
     { value: 'pro', label: 'প্রো প্ল্যান - ৳৪,৫০০/মাস' },
     { value: 'enterprise', label: 'এন্টারপ্রাইজ প্ল্যান - ৳৮,০০০/মাস' }
   ]
@@ -84,7 +84,7 @@ export default function SignUpPage() {
             সফল! অ্যাকাউন্ট তৈরি হয়েছে
           </h2>
           <p className="text-gray-600 mb-6">
-            আপনার ইমেইলে একটি নিশ্চিতকরণ লিংক পাঠানো হয়েছে। লিংকে ক্লিক করে অ্যাকাউন্ট সক্��িয় করুন।
+            আপনার ইমেইলে একটি নিশ্চিতকরণ লিংক পাঠানো হয়েছে। লিংকে ক্লিক করে অ্যাকাউন্ট সক্রিয় করুন।
           </p>
           <div className="space-y-3">
             <Button asChild className="w-full">
@@ -105,66 +105,112 @@ export default function SignUpPage() {
       subtitle="আপনার ক্লিনিক ম্যানেজমেন্ট শুরু করুন"
     >
       <form onSubmit={handleSubmit} className="space-y-4">
-        <FormField
-          label="ইমেইল ঠিকানা"
-          type="email"
-          placeholder="your@email.com"
-          required
-          value={formData.email}
-          onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-          error={errors.email}
-        />
+        <div className="space-y-2">
+          <Label htmlFor="email" className="text-gray-700">
+            ইমেইল ঠিকানা <span className="text-red-500">*</span>
+          </Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="your@email.com"
+            required
+            value={formData.email}
+            onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+            className={errors.email ? 'border-red-500' : ''}
+          />
+          {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
+        </div>
 
-        <FormField
-          label="পাসওয়ার্ড"
-          type="password"
-          placeholder="কমপক্ষে ৬ অক্ষর"
-          required
-          value={formData.password}
-          onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-          error={errors.password}
-        />
+        <div className="space-y-2">
+          <Label htmlFor="password" className="text-gray-700">
+            পাসওয়ার্ড <span className="text-red-500">*</span>
+          </Label>
+          <Input
+            id="password"
+            type="password"
+            placeholder="কমপক্ষে ৬ অক্ষর"
+            required
+            value={formData.password}
+            onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
+            className={errors.password ? 'border-red-500' : ''}
+          />
+          {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
+        </div>
 
-        <FormField
-          label="পাসওয়ার্ড নিশ্চিত করুন"
-          type="password"
-          placeholder="পাসওয়ার্ড পুনরায় লিখুন"
-          required
-          value={formData.confirmPassword}
-          onChange={(e) => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
-          error={errors.confirmPassword}
-        />
+        <div className="space-y-2">
+          <Label htmlFor="confirmPassword" className="text-gray-700">
+            পাসওয়ার্�� নিশ্চিত করুন <span className="text-red-500">*</span>
+          </Label>
+          <Input
+            id="confirmPassword"
+            type="password"
+            placeholder="পাসওয়ার্ড পুনরায় লিখুন"
+            required
+            value={formData.confirmPassword}
+            onChange={(e) => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
+            className={errors.confirmPassword ? 'border-red-500' : ''}
+          />
+          {errors.confirmPassword && <p className="text-sm text-red-500">{errors.confirmPassword}</p>}
+        </div>
 
-        <FormField
-          label="ক্লিনিকের নাম"
-          type="text"
-          placeholder="আপনার ক্লিনিকের নাম"
-          required
-          value={formData.clinicName}
-          onChange={(e) => setFormData(prev => ({ ...prev, clinicName: e.target.value }))}
-          error={errors.clinicName}
-        />
+        <div className="space-y-2">
+          <Label htmlFor="clinicName" className="text-gray-700">
+            ক্লিনিকের নাম <span className="text-red-500">*</span>
+          </Label>
+          <Input
+            id="clinicName"
+            type="text"
+            placeholder="আপনার ক্লিনিকের নাম"
+            required
+            value={formData.clinicName}
+            onChange={(e) => setFormData(prev => ({ ...prev, clinicName: e.target.value }))}
+            className={errors.clinicName ? 'border-red-500' : ''}
+          />
+          {errors.clinicName && <p className="text-sm text-red-500">{errors.clinicName}</p>}
+        </div>
 
-        <FormField
-          label="ডাক্তারের সংখ্যা"
-          type="select"
-          required
-          value={formData.numberOfDoctors}
-          onChange={(e) => setFormData(prev => ({ ...prev, numberOfDoctors: e.target.value }))}
-          options={doctorOptions}
-          error={errors.numberOfDoctors}
-        />
+        <div className="space-y-2">
+          <Label htmlFor="numberOfDoctors" className="text-gray-700">
+            ডাক্তারের সং��্যা <span className="text-red-500">*</span>
+          </Label>
+          <Select
+            id="numberOfDoctors"
+            required
+            value={formData.numberOfDoctors}
+            onChange={(e) => setFormData(prev => ({ ...prev, numberOfDoctors: e.target.value }))}
+            className={errors.numberOfDoctors ? 'border-red-500' : ''}
+          >
+            <option value="">নির্বাচন করুন</option>
+            {doctorOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
+          {errors.numberOfDoctors && <p className="text-sm text-red-500">{errors.numberOfDoctors}</p>}
+        </div>
 
-        <FormField
-          label="প্ল্যান নির্বাচন করুন"
-          type="select"
-          required
-          value={formData.plan}
-          onChange={(e) => setFormData(prev => ({ ...prev, plan: e.target.value }))}
-          options={planOptions}
-          error={errors.plan}
-          helper="প্রথম ৭ দিন ফ্রি ট্রায়াল"
-        />
+        <div className="space-y-2">
+          <Label htmlFor="plan" className="text-gray-700">
+            প্ল্যান নির্বাচন করুন <span className="text-red-500">*</span>
+          </Label>
+          <Select
+            id="plan"
+            required
+            value={formData.plan}
+            onChange={(e) => setFormData(prev => ({ ...prev, plan: e.target.value }))}
+            className={errors.plan ? 'border-red-500' : ''}
+          >
+            <option value="">নির্বা��ন করুন</option>
+            {planOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
+          <p className="text-sm text-gray-500">প্রথম ৭ দিন ফ্রি ট্রায়াল</p>
+          {errors.plan && <p className="text-sm text-red-500">{errors.plan}</p>}
+        </div>
 
         <div className="space-y-2">
           <div className="flex items-start space-x-2">
