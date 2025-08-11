@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { Sidebar } from '@/components/dashboard/sidebar'
+import { Topbar } from '@/components/dashboard/topbar'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Modal } from '@/components/modals/modal'
@@ -67,7 +69,18 @@ export default function BillingPage() {
   }
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        {/* Top Navigation */}
+        <Topbar />
+
+        {/* Page Content */}
+        <main className="flex-1 p-6">
+          <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -239,7 +252,7 @@ export default function BillingPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Clock className="h-5 w-5 text-purple-600" />
-              ব্যবহারের সময়
+              ব্য���হারের সময়
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -269,7 +282,7 @@ export default function BillingPage() {
                 <tr className="border-b border-gray-200">
                   <th className="text-left py-3 px-4 font-medium text-gray-600">ইনভয়েস নম্বর</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-600">তারিখ</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">পরিমাণ</th>
+                  <th className="text-left py-3 px-4 font-medium text-gray-600">পরি��াণ</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-600">অবস্থা</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-600">অ্যাকশন</th>
                 </tr>
@@ -398,7 +411,7 @@ export default function BillingPage() {
         <Modal
           isOpen={true}
           onClose={() => setShowCancelModal(false)}
-          title="সাবস্ক্রিপশন বাতিল করুন"
+          title="সাবস��ক্রিপশন বাতিল করুন"
         >
           <div className="space-y-4">
             <div className="bg-red-50 border border-red-200 rounded-lg p-4">
@@ -439,6 +452,9 @@ export default function BillingPage() {
           </div>
         </Modal>
       )}
+          </div>
+        </main>
+      </div>
     </div>
   )
 }
