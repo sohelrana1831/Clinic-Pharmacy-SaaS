@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -210,7 +211,7 @@ export default function PaymentSuccessPage() {
             <p className="text-blue-800">
               {countdown > 0 ? (
                 <>
-                  আপনি স্বয়ংক্রিয়ভাবে ড্যাশবোর্ডে চলে যাবেন <span className="font-bold">{countdown}</span> সেকেন্ডে
+                  আপনি স্বয়ংক্রিয়ভাবে ড্যাশবোর্ডে চলে যাবেন <span className="font-bold">{countdown}</span> স��কেন্ডে
                 </>
               ) : (
                 'Redirecting to dashboard...'
