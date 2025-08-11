@@ -28,8 +28,8 @@ const failureData = {
   paymentMethod: 'SSLCommerz',
   errorCode: 'CARD_DECLINED',
   errorMessage: 'আপনার কার্ড প্রত্যাখ্যান করা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।',
-  transactionId: 'TXN_FAILED_' + Date.now(),
-  timestamp: new Date().toLocaleString('bn-BD')
+  transactionId: 'TXN_FAILED_1704932847',
+  timestamp: '১৫ জানুয়ারি, ২০২৪, ১০:৩০ AM'
 }
 
 const commonIssues = [
@@ -41,7 +41,7 @@ const commonIssues = [
   },
   {
     icon: Shield,
-    title: 'নিরাপত্তা যাচাইকরণ',
+    title: 'নিরাপত্তা যাচাই��রণ',
     description: 'ব্যাংক বা কার্ড কোম্পানি অতিরিক্ত যাচাইকরণ চায়',
     solutions: ['ব্যাংকের সাথে যোগাযোগ করুন', '3D Secure কোড দিন', 'কার্ড আনলক করুন']
   },
@@ -234,7 +234,7 @@ export default function PaymentFailurePage() {
                 <h4 className="font-medium mb-2">মোবাইল ব্যাংকিং</h4>
                 <p className="text-sm text-gray-600 mb-3">বিকাশ, নগদ, রকেট দিয়ে পেমেন্ট করুন</p>
                 <Button size="sm" variant="outline" className="w-full">
-                  মোবাইল ব্যাংকিং
+                  মোবা���ল ব্যাংকিং
                 </Button>
               </div>
               <div className="bg-white rounded-lg p-4">
