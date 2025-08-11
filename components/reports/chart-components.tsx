@@ -57,13 +57,17 @@ export function ChartPlaceholder({
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="grid grid-cols-8 h-full gap-1 p-4">
-          {Array.from({ length: 32 }).map((_, i) => (
-            <div 
-              key={i} 
-              className="bg-gray-400 rounded"
-              style={{ height: `${Math.random() * 60 + 20}%` }}
-            />
-          ))}
+          {Array.from({ length: 32 }).map((_, i) => {
+            // Use consistent heights based on index to avoid hydration mismatch
+            const heights = [25, 45, 65, 35, 55, 75, 40, 60, 30, 50, 70, 35, 45, 55, 40, 65, 25, 35, 60, 45, 55, 75, 30, 50, 40, 65, 35, 55, 45, 60, 30, 70]
+            return (
+              <div
+                key={i}
+                className="bg-gray-400 rounded"
+                style={{ height: `${heights[i]}%` }}
+              />
+            )
+          })}
         </div>
       </div>
 
