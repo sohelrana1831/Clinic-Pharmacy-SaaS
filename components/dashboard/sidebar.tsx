@@ -1,32 +1,41 @@
 'use client'
 
 import { useState } from 'react'
-import { 
-  LayoutDashboard, 
-  Users, 
-  Calendar, 
-  FileText, 
-  Pill, 
-  BarChart3, 
-  CreditCard, 
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import {
+  LayoutDashboard,
+  Users,
+  Calendar,
+  FileText,
+  Pill,
+  BarChart3,
+  CreditCard,
   Settings,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Package,
+  UserCheck,
+  DollarSign
 } from 'lucide-react'
 
 const menuItems = [
-  { icon: LayoutDashboard, label: 'ড্যাশবোর্ড', href: '/dashboard', active: true },
+  { icon: LayoutDashboard, label: 'ড্যাশবোর্ড', href: '/dashboard' },
   { icon: Users, label: 'রোগীগণ', href: '/dashboard/patients' },
   { icon: Calendar, label: 'অ্যাপয়েন্টমেন্ট', href: '/dashboard/appointments' },
-  { icon: FileText, label: 'প্রেসক্রিপশন', href: '/dashboard/prescriptions' },
-  { icon: Pill, label: 'ফার্মেসি', href: '/dashboard/pharmacy' },
+  { icon: FileText, label: 'প্রেসক্রিপশন', href: '/prescriptions/editor' },
+  { icon: Package, label: 'ইনভেন্টরি', href: '/dashboard/inventory' },
+  { icon: Pill, label: 'POS', href: '/dashboard/pos' },
   { icon: BarChart3, label: 'রিপোর্ট', href: '/dashboard/reports' },
   { icon: CreditCard, label: 'বিলিং', href: '/dashboard/billing' },
+  { icon: UserCheck, label: 'সাবস্ক্রিপশন', href: '/admin/subscriptions' },
+  { icon: DollarSign, label: 'প্রাইসিং', href: '/pricing' },
   { icon: Settings, label: 'সেটিংস', href: '/dashboard/settings' },
 ]
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false)
+  const pathname = usePathname()
 
   return (
     <div className={`
@@ -56,23 +65,26 @@ export function Sidebar() {
       {/* Navigation Menu */}
       <nav className="flex-1 p-2">
         <ul className="space-y-1">
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              <a
-                href={item.href}
-                className={`
-                  flex items-center px-3 py-3 rounded-lg text-sm font-medium transition-colors
-                  ${item.active 
-                    ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600' 
-                    : 'text-gray-700 hover:bg-gray-50'
-                  }
-                `}
-              >
-                <item.icon className="h-5 w-5 mr-3 flex-shrink-0" />
-                {!collapsed && <span>{item.label}</span>}
-              </a>
-            </li>
-          ))}
+          {menuItems.map((item, index) => {
+            const isActive = pathname === item.href
+            return (
+              <li key={index}>
+                <Link
+                  href={item.href}
+                  className={`
+                    flex items-center px-3 py-3 rounded-lg text-sm font-medium transition-colors
+                    ${isActive
+                      ? 'bg-blue-50 text-blue-600 border-r-2 border-blue-600'
+                      : 'text-gray-700 hover:bg-gray-50'
+                    }
+                  `}
+                >
+                  <item.icon className="h-5 w-5 mr-3 flex-shrink-0" />
+                  {!collapsed && <span>{item.label}</span>}
+                </Link>
+              </li>
+            )
+          })}
         </ul>
       </nav>
 
