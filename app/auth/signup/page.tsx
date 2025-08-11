@@ -1,0 +1,202 @@
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+import { AuthLayout } from '@/components/auth/auth-layout'
+import { FormField } from '@/components/auth/form-field'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Checkbox } from '@/components/ui/checkbox'
+import { CheckCircle } from 'lucide-react'
+
+export default function SignUpPage() {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+    clinicName: '',
+    numberOfDoctors: '',
+    plan: '',
+    acceptTerms: false
+  })
+  
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
+
+  const planOptions = [
+    { value: 'basic', label: 'বেসিক প্ল্যান - ৳২,৫০০/মাস' },
+    { value: 'pro', label: 'প্রো প্ল্যান - ৳৪,৫০০/মাস' },
+    { value: 'enterprise', label: 'এন্টারপ্রাইজ প্ল্যান - ৳৮,০০০/মাস' }
+  ]
+
+  const doctorOptions = [
+    { value: '1', label: '১ জন ডাক্তার' },
+    { value: '2-5', label: '২-৫ জন ডাক্তার' },
+    { value: '6-10', label: '৬-১০ জন ডাক্তার' },
+    { value: '10+', label: '১০+ জন ডাক্তার' }
+  ]
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+    }))
+  }
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+
+    if (!formData.email) newErrors.email = 'ইমেইল প্রয়োজন'
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'বৈধ ইমেইল দিন'
+
+    if (!formData.password) newErrors.password = 'পাসওয়ার্ড প্রয়োজন'
+    else if (formData.password.length < 6) newErrors.password = 'কমপক্ষে ৬ অক্ষরের পাসওয়ার্ড দিন'
+
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'পাসওয়ার্ড মিলছে না'
+    }
+
+    if (!formData.clinicName) newErrors.clinicName = 'ক্লিনিকের নাম প্রয়োজন'
+    if (!formData.numberOfDoctors) newErrors.numberOfDoctors = 'ডাক্তারের সংখ্যা নির্বাচন করুন'
+    if (!formData.plan) newErrors.plan = 'প্ল্যান নির্বাচন করুন'
+    if (!formData.acceptTerms) newErrors.acceptTerms = 'শর্তাবলী গ্রহণ করুন'
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (validateForm()) {
+      setShowSuccessModal(true)
+    }
+  }
+
+  if (showSuccessModal) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-emerald-50 flex items-center justify-center px-4">
+        <Card className="p-8 text-center max-w-md mx-auto">
+          <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            সফল! অ্যাকাউন্ট তৈরি হয়েছে
+          </h2>
+          <p className="text-gray-600 mb-6">
+            আপনার ইমেইলে একটি নিশ্চিতকরণ লিংক পাঠানো হয়েছে। লিংকে ক্লিক করে অ্যাকাউন্ট সক্রিয় করুন।
+          </p>
+          <div className="space-y-3">
+            <Button asChild className="w-full">
+              <Link href="/auth/onboarding">সেটআপ শুরু করুন</Link>
+            </Button>
+            <Button variant="outline" asChild className="w-full">
+              <Link href="/auth/login">লগইন পেজে যান</Link>
+            </Button>
+          </div>
+        </Card>
+      </div>
+    )
+  }
+
+  return (
+    <AuthLayout 
+      title="নতুন অ্যাকাউন্ট তৈরি করুন"
+      subtitle="আপনার ক্লিনিক ম্যানেজমেন্ট শুরু করুন"
+    >
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <FormField
+          label="ইমেইল ঠিকানা"
+          type="email"
+          placeholder="your@email.com"
+          required
+          value={formData.email}
+          onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+          error={errors.email}
+        />
+
+        <FormField
+          label="পাসওয়ার্ড"
+          type="password"
+          placeholder="কমপক্ষে ৬ অক্ষর"
+          required
+          value={formData.password}
+          onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
+          error={errors.password}
+        />
+
+        <FormField
+          label="পাসওয়ার্ড নিশ্চিত করুন"
+          type="password"
+          placeholder="পাসওয়ার্ড পুনরায় লিখুন"
+          required
+          value={formData.confirmPassword}
+          onChange={(e) => setFormData(prev => ({ ...prev, confirmPassword: e.target.value }))}
+          error={errors.confirmPassword}
+        />
+
+        <FormField
+          label="ক্লিনিকের নাম"
+          type="text"
+          placeholder="আপনার ক্লিনিকের নাম"
+          required
+          value={formData.clinicName}
+          onChange={(e) => setFormData(prev => ({ ...prev, clinicName: e.target.value }))}
+          error={errors.clinicName}
+        />
+
+        <FormField
+          label="ডাক্তারের সংখ্যা"
+          type="select"
+          required
+          value={formData.numberOfDoctors}
+          onChange={(e) => setFormData(prev => ({ ...prev, numberOfDoctors: e.target.value }))}
+          options={doctorOptions}
+          error={errors.numberOfDoctors}
+        />
+
+        <FormField
+          label="প্ল্যান নির্বাচন করুন"
+          type="select"
+          required
+          value={formData.plan}
+          onChange={(e) => setFormData(prev => ({ ...prev, plan: e.target.value }))}
+          options={planOptions}
+          error={errors.plan}
+          helper="প্রথম ৭ দিন ফ্রি ট্রায়াল"
+        />
+
+        <div className="space-y-2">
+          <div className="flex items-start space-x-2">
+            <Checkbox
+              id="acceptTerms"
+              checked={formData.acceptTerms}
+              onChange={(e) => setFormData(prev => ({ ...prev, acceptTerms: e.target.checked }))}
+            />
+            <label htmlFor="acceptTerms" className="text-sm text-gray-700 cursor-pointer">
+              আমি{' '}
+              <Link href="/terms" className="text-blue-600 hover:underline">
+                শর্তাবলী
+              </Link>
+              {' '}ও{' '}
+              <Link href="/privacy" className="text-blue-600 hover:underline">
+                গোপনীয়তা নীতি
+              </Link>
+              {' '}সম্মত আছি
+            </label>
+          </div>
+          {errors.acceptTerms && <p className="text-sm text-red-500">{errors.acceptTerms}</p>}
+        </div>
+
+        <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+          অ্যাকাউন্ট তৈরি করুন
+        </Button>
+
+        <div className="text-center text-sm">
+          <span className="text-gray-600">ইতিমধ্যে অ্যাকাউন্ট আছে? </span>
+          <Link href="/auth/login" className="text-blue-600 hover:underline font-medium">
+            লগইন করুন
+          </Link>
+        </div>
+      </form>
+    </AuthLayout>
+  )
+}
