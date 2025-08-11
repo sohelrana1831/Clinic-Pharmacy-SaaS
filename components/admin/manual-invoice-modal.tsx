@@ -25,9 +25,9 @@ interface InvoiceItem {
 export function ManualInvoiceModal({ clinicId, onClose }: ManualInvoiceModalProps) {
   const clinic = adminClinicData.find(c => c.id === clinicId)
   const [invoiceData, setInvoiceData] = useState({
-    invoiceNumber: `INV-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`,
-    issueDate: new Date().toISOString().split('T')[0],
-    dueDate: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    invoiceNumber: 'INV-2024-001',
+    issueDate: '2024-01-15',
+    dueDate: '2024-01-30',
     currency: 'BDT',
     notes: '',
     paymentTerms: '15 দিন'
@@ -137,7 +137,7 @@ export function ManualInvoiceModal({ clinicId, onClose }: ManualInvoiceModalProp
     }
 
     console.log('Creating invoice:', invoicePayload)
-    alert(`ইনভয়েস ${invoiceData.invoiceNumber} সফলভাবে তৈরি হয়েছে!`)
+    alert(`ইনভয়েস ${invoiceData.invoiceNumber} সফ��ভাবে তৈরি হয়েছে!`)
     onClose()
   }
 
@@ -389,7 +389,7 @@ export function ManualInvoiceModal({ clinicId, onClose }: ManualInvoiceModalProp
           </Button>
           <Button onClick={handleCreateInvoice} className="flex-1 bg-blue-600 hover:bg-blue-700">
             <FileText className="h-4 w-4 mr-2" />
-            ইনভয়েস তৈরি করুন
+            ইনভয়েস তৈরি কর���ন
           </Button>
         </div>
       </div>
