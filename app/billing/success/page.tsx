@@ -31,13 +31,14 @@ const paymentData = {
 
 export default function PaymentSuccessPage() {
   const [countdown, setCountdown] = useState(10)
+  const router = useRouter()
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(timer)
-          window.location.href = '/dashboard'
+          router.push('/dashboard')
           return 0
         }
         return prev - 1
@@ -45,7 +46,7 @@ export default function PaymentSuccessPage() {
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [])
+  }, [router])
 
   const handleDownloadReceipt = () => {
     // In real app, this would download the actual receipt
@@ -211,7 +212,7 @@ export default function PaymentSuccessPage() {
             <p className="text-blue-800">
               {countdown > 0 ? (
                 <>
-                  আপনি স্বয়ংক্রিয়ভাবে ড্যাশবোর্ডে চলে যাবেন <span className="font-bold">{countdown}</span> স��কেন্ডে
+                  আপনি স্বয়ংক্রিয়ভাবে ড্যাশবোর্ডে চলে যাবেন <span className="font-bold">{countdown}</span> সেকেন্ডে
                 </>
               ) : (
                 'Redirecting to dashboard...'
@@ -230,7 +231,7 @@ export default function PaymentSuccessPage() {
           </Link>
           <Link href="/dashboard/billing">
             <Button variant="outline">
-              বিলিং দেখুন
+              বিলিং দেখু���
             </Button>
           </Link>
         </div>
