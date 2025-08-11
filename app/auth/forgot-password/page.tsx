@@ -52,12 +52,13 @@ export default function ForgotPasswordPage() {
           </p>
           
           <div className="space-y-3">
-            <Button asChild className="w-full">
-              <Link href="/auth/login">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                লগইন পেজে ফিরে যান
-              </Link>
-            </Button>
+            <Link
+              href="/auth/login"
+              className="w-full inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              লগইন পেজে ফিরে যান
+            </Link>
             
             <Button 
               variant="outline" 
@@ -110,7 +111,7 @@ export default function ForgotPasswordPage() {
           className="w-full bg-blue-600 hover:bg-blue-700"
           disabled={isLoading}
         >
-          {isLoading ? 'পাঠানো হচ্ছে...' : 'রিসেট লিংক পাঠান'}
+          {isLoading ? 'পাঠানো হচ্ছে...' : 'রিসে�� লিংক পাঠান'}
         </Button>
 
         <div className="text-center">

@@ -4,45 +4,68 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Calendar, FileText, Pill, MessageSquare, Check, Star, Phone, Mail, Facebook, Twitter, Linkedin } from 'lucide-react'
+import { ariaPatterns, focusStyles } from '@/lib/accessibility-utils'
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
+      {/* Skip to content link for screen readers */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50"
+        aria-label="মূ�� কন্টেন্টে যান"
+      >
+        মূল কন্টেন্টে যান
+      </a>
+
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-emerald-50 pt-20 pb-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+      <section
+        className="bg-gradient-to-br from-blue-50 to-emerald-50 pt-20 pb-16"
+        role="banner"
+        aria-label="প্রধান ব্যানার"
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 বাংলাদেশের #১ ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সিস্টেম
               </h1>
-              <p className="text-xl text-gray-600 mb-4">
+              <p className="text-lg sm:text-xl text-gray-700 mb-4">
                 আধুনিক প্রযুক্তি দিয়ে আপনার ক্লিনিক ও ফার্মেসি পরিচালনা করুন।
               </p>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="text-base sm:text-lg text-gray-600 mb-8">
                 রোগীর তথ্য, অ্যাপয়েন্টমেন্ট, প্রেসক্রিপশন এবং স্টক ম্যানেজমেন্ট - সব একসাথে।
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
-                  onClick={() => window.location.href = '/auth/signup'}
-                >
-                  ফ্রি ট্রায়াল শুরু করুন
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
-                  onClick={() => window.location.href = '/auth/login'}
-                >
-                  ডেমো দেখুন
-                </Button>
+              <div className="flex flex-col sm:flex-row gap-4" role="group" aria-label="প্রধান কর্মক্ষেত্র">
+                <Link href="/auth/signup" className="w-full sm:w-auto">
+                  <Button
+                    size="lg"
+                    className={`w-full sm:w-auto bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 text-white px-8 py-3 ${focusStyles.ring}`}
+                    aria-label="১৪ দিনের ফ্রি ট্রায়াল শুরু করুন, কোন ক্রেডিট কার্ড প্রয়োজন নেই"
+                  >
+                    ফ্রি ট্রায়াল শুরু করুন
+                  </Button>
+                </Link>
+                <Link href="/auth/login" className="w-full sm:w-auto">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className={`w-full sm:w-auto border-blue-600 text-blue-600 hover:bg-blue-50 focus:bg-blue-50 px-8 py-3 ${focusStyles.ring}`}
+                    aria-label="লাইভ ডেমো দেখুন, কোন রেজিস্ট্রেশন ��্রয়োজন নেই"
+                  >
+                    ডেমো দেখুন
+                  </Button>
+                </Link>
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow-xl p-8">
-              <div className="w-full h-64 bg-gradient-to-br from-blue-100 to-emerald-100 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500 text-sm">Clinic Management Dashboard Screenshot</span>
+            <div className="order-1 lg:order-2">
+              <div className="bg-white rounded-lg shadow-xl p-4 sm:p-8">
+                <img
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDQwMCAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjU2IiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIyMTYiIGZpbGw9IndoaXRlIiBzdHJva2U9IiNFNUU3RUIiLz4KPHN2ZyB4PSI2MCIgeT0iNjAiIHdpZHRoPSIyODAiIGhlaWdodD0iMTM2IiBmaWxsPSJub25lIj4KICA8cmVjdCB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM2IiBmaWxsPSIjMzM4MUY2Ii8+CiAgPHJlY3QgeT0iNTIiIHdpZHRoPSIxMzAiIGhlaWdodD0iMjAiIGZpbGw9IiNFNUU3RUIiLz4KICA8cmVjdCB5PSI4NCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0Y5RkFGQiIvPgogIDxyZWN0IHk9IjExNiIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0Y5RkFGQiIvPgo8L3N2Zz4KPC9zdmc+"
+                  alt="ক্লিনিক ম্যানেজমেন্ট ড্যাশবোর্ডের স্ক্রিনশট - রোগীর তালিকা, অ্যাপয়েন্টমেন্ট এবং রিপ���র্ট দেখাচ্ছে"
+                  className="w-full h-64 object-cover rounded-lg"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -50,63 +73,99 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+      <section
+        id="main-content"
+        className="py-16 sm:py-20 bg-white"
+        aria-label="প্রধান ফিচার সমূহ"
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               শক্তিশালী ফিচার সমূহ
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
               বাংলা ও English দুটো ভাষা supported এবং SSLCommerz ও Stripe-ready
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="text-center hover:shadow-lg transition-shadow border-green-100">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8" role="list">
+            <Card
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              role="listitem"
+              tabIndex={0}
+              aria-label="অ্যাপয়েন্টমেন্ট ম্যানেজমেন্ট ফিচার"
+            >
               <CardHeader>
-                <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <div
+                  className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4"
+                  aria-hidden="true"
+                >
                   <Calendar className="h-8 w-8 text-blue-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">অ্যাপয়েন্টমেন্ট</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900">অ্যাপয়েন্টমেন্ট</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">অনলাইন বুকিং এবং স্বয়ংক্রিয় SMS রিমাইন্ডার সিস্টেম।</p>
+                <p className="text-gray-700 text-sm sm:text-base">অনলাইন বুকিং এবং স্বয়ংক্রিয় SMS রিমাইন্ডার সিস্টেম।</p>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow border-green-100">
+            <Card
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              role="listitem"
+              tabIndex={0}
+              aria-label="প্রেসক্রিপশন ম্যানেজমেন্ট ফিচার"
+            >
               <CardHeader>
-                <div className="mx-auto w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
+                <div
+                  className="mx-auto w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-4"
+                  aria-hidden="true"
+                >
                   <FileText className="h-8 w-8 text-emerald-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">প্রেসক্রিপশন</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900">প্রেসক্রিপশন</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">ডিজিটাল প্রেসক্রিপশন তৈরি করুন এবং PDF প্রিন্ট করুন।</p>
+                <p className="text-gray-700 text-sm sm:text-base">ডিজিটাল প্রেসক্রিপশন তৈরি করুন এবং PDF প্রিন্ট করুন।</p>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow border-green-100">
+            <Card
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              role="listitem"
+              tabIndex={0}
+              aria-label="ফার্মেসি স্টক ম্যানেজমেন্ট ফিচার"
+            >
               <CardHeader>
-                <div className="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                <div
+                  className="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4"
+                  aria-hidden="true"
+                >
                   <Pill className="h-8 w-8 text-purple-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">ফার্মেসি স্টক</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900">ফার্মেসি স্টক</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">ইনভেন্টরি ম্যানেজমেন্ট এবং এক্সপায়ারি ডেট ট্র্যাকিং।</p>
+                <p className="text-gray-700 text-sm sm:text-base">ইনভেন্টরি ম্যানেজমেন্ট এবং এক্সপায়ারি ডেট ট্র্যাকিং।</p>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow border-green-100">
+            <Card
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              role="listitem"
+              tabIndex={0}
+              aria-label="SMS রিমাইন্ডার ফিচার"
+            >
               <CardHeader>
-                <div className="mx-auto w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
+                <div
+                  className="mx-auto w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4"
+                  aria-hidden="true"
+                >
                   <MessageSquare className="h-8 w-8 text-orange-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">SMS রিমাইন্ডার</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900">SMS রিমাইন্ডার</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">স্বয়ংক্রিয় SMS এবং ইমেইল নোটিফিকেশন সিস্টেম।</p>
+                <p className="text-gray-700 text-sm sm:text-base">স্বয়ংক্রিয় SMS এবং ইমেইল নোটিফিকেশন সিস্টেম।</p>
               </CardContent>
             </Card>
           </div>
@@ -149,7 +208,7 @@ export default function Home() {
                 <ul className="space-y-3">
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
-                    <span>১০০ রোগীর রেকর্ড</span>
+                    <span>১০০ র���গীর রেকর্ড</span>
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
@@ -238,7 +297,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "এই সফটওয়্যার ব্যবহার করে আমাদের ক্লিনিকের কাজের গতি অনেক বেড়েছে। রোগীদের তথ্য সংরক্ষণ এবং অ্যাপয়েন্টমেন্ট ব্যবস্থাপনা এখন অনেক সহজ।"
+                "এই সফটওয়্যার ব্যবহার করে আ���াদের ক্লিনিকের কাজের গতি অনেক বেড়েছে। রোগীদের তথ্য সংরক্ষণ এবং অ্যাপয়েন্টমেন্ট ব্যবস্থাপনা এখন অনেক সহজ।"
               </p>
               <div>
                 <p className="font-semibold text-gray-900">ডা. রহিম উদ্দিন</p>
@@ -253,7 +312,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "ফার্মেসি ইনভেন্টরি ম্যানেজমেন্ট ফিচারটি অসাধা���ণ। এখন আর ওষুধের স্টক নিয়ে চিন্তা করতে হয় না।"
+                "ফার্মেসি ইনভেন্টরি ম্যানেজমেন্��� ফিচারটি অসাধা���ণ। এখন আর ওষুধের স্টক নিয়ে চিন্তা করতে হয় না।"
               </p>
               <div>
                 <p className="font-semibold text-gray-900">নাসির আহমেদ</p>
@@ -277,7 +336,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card className="p-6">
                 <h3 className="font-semibold text-lg text-gray-900 mb-3">পেমেন্ট কিভাবে করব?</h3>
-                <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যাংক ট্রান্সফার এবং অ���লাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
+                <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যাং�� ট্রান্সফার এবং অ���লাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
               </Card>
 
               <Card className="p-6">
@@ -300,49 +359,107 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <footer
+        className="bg-gray-900 text-white py-12"
+        role="contentinfo"
+        aria-label="সাইট ফুটার"
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">ক্লিনিক ম্যানেজমেন্ট সিস্টেম</h3>
-              <p className="text-gray-400 mb-4">
+              <h3 className="text-lg sm:text-xl font-bold mb-4">ক্লিনিক ম্যানেজমেন্ট সিস্টেম</h3>
+              <p className="text-gray-300 mb-4 text-sm sm:text-base">
                 বাংলাদেশের সবচেয়ে ভালো ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার।
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">যোগাযোগ</h4>
-              <div className="space-y-2">
+              <h4 className="font-semibold mb-4 text-white">যোগাযোগ</h4>
+              <address className="space-y-2 not-italic">
                 <div className="flex items-center">
-                  <Phone className="h-4 w-4 mr-2 text-blue-400" />
-                  <span className="text-gray-400">+৮৮০ ১৭০০ ০০০০০০</span>
+                  <Phone className="h-4 w-4 mr-2 text-blue-400" aria-hidden="true" />
+                  <a
+                    href="tel:+8801700000000"
+                    className={`text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                    aria-label="ফোন করুন +৮৮০ ১৭০০ ০০০০০০"
+                  >
+                    +৮৮০ ১৭০০ ০০০০০০
+                  </a>
                 </div>
                 <div className="flex items-center">
-                  <Mail className="h-4 w-4 mr-2 text-blue-400" />
-                  <span className="text-gray-400">support@clinicms.com</span>
+                  <Mail className="h-4 w-4 mr-2 text-blue-400" aria-hidden="true" />
+                  <a
+                    href="mailto:support@clinicms.com"
+                    className={`text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                    aria-label="ইমেইল পাঠান support@clinicms.com"
+                  >
+                    support@clinicms.com
+                  </a>
                 </div>
-              </div>
+              </address>
             </div>
 
-            <div>
-              <h4 className="font-semibold mb-4">দ্রুত লিংক</h4>
-              <div className="space-y-2">
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">প্রাইভেসি পলিসি</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">টার্মস অফ সার্ভিস</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">সাপোর্ট</a>
-              </div>
-            </div>
+            <nav aria-label="ফুটার নেভিগেশন">
+              <h4 className="font-semibold mb-4 text-white">দ্রুত লিংক</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="/privacy"
+                    className={`block text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                    aria-label="প্রাইভেসি পলিসি পড়ুন"
+                  >
+                    প্রাইভেসি পলিসি
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/terms"
+                    className={`block text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                    aria-label="টার্মস অফ সার্ভিস পড়ুন"
+                  >
+                    টার্মস অফ সার্ভিস
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/support"
+                    className={`block text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                    aria-label="সাপোর্ট পেজে যান"
+                  >
+                    সাপোর্ট
+                  </a>
+                </li>
+              </ul>
+            </nav>
 
             <div>
-              <h4 className="font-semibold mb-4">সোশ্যাল মিডিয়া</h4>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <h4 className="font-semibold mb-4 text-white">সোশ্যাল মিডিয়া</h4>
+              <div className="flex space-x-4" role="list">
+                <a
+                  href="https://facebook.com/clinicms"
+                  className={`text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                  aria-label="ফেসবুকে আমাদের ফলো করুন"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Facebook className="h-6 w-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a
+                  href="https://twitter.com/clinicms"
+                  className={`text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                  aria-label="টুইটারে আমাদের ফলো করুন"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Twitter className="h-6 w-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a
+                  href="https://linkedin.com/company/clinicms"
+                  className={`text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                  aria-label="লিংকডইনে আমাদের ফলো করুন"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Linkedin className="h-6 w-6" />
                 </a>
               </div>

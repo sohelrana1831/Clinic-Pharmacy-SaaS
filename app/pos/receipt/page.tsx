@@ -11,8 +11,8 @@ export default function ReceiptPage() {
     // For demo, using sample data
     const sampleReceipt = {
       id: 'INV-001',
-      date: new Date().toISOString(),
-      time: new Date().toLocaleTimeString('bn-BD'),
+      date: '2024-01-15T10:30:00.000Z',
+      time: '১০:৩০:০০ AM',
       cashier: 'রিসেপশনিস্ট',
       customerName: 'আবদুর রহমান',
       customerPhone: '০১৭১২৩৪৫৬৭৮',
