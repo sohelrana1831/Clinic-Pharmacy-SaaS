@@ -93,7 +93,7 @@ export default function ReportsPage() {
               </Select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">শাখা নির্বাচন</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">��াখা নির্বাচন</label>
               <Select
                 value={selectedBranch}
                 onValueChange={setSelectedBranch}
@@ -163,7 +163,7 @@ export default function ReportsPage() {
             <ChartPlaceholder
               title="দৈনিক বিক্রয় চার্ট"
               type="bar"
-              description="গত ৭ দিনের বিক্রয় পরিমাণ"
+              description="গত ৭ দিনে�� বিক্রয় পরিমাণ"
               data={dailySalesData}
             />
             <div className="space-y-3">
@@ -192,7 +192,7 @@ export default function ReportsPage() {
           <div>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-blue-600" />
-              মাসিক আয়ের গ্রাফ
+              ম���সিক আয়ের গ্রাফ
             </CardTitle>
             <p className="text-sm text-gray-600 mt-1">গত ৬ মাসের আয় এবং বৃদ্ধির হার</p>
           </div>
@@ -204,11 +204,13 @@ export default function ReportsPage() {
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
-              <ChartPlaceholder title="মাসিক আয়ের ট্রেন্ড">
-                <div className="mt-4 text-xs text-blue-500">
-                  Line/Area chart showing monthly revenue trends
-                </div>
-              </ChartPlaceholder>
+              <ChartPlaceholder
+                title="মাসিক আয়ের ট্রেন্ড"
+                type="area"
+                description="গত ৬ মাসের আয় এবং বৃদ্ধির প্রবণতা"
+                data={monthlyRevenueData}
+                height={280}
+              />
             </div>
             <div className="space-y-3">
               <h4 className="font-semibold text-gray-800">মাসিক পারফরম্যান্স</h4>
@@ -298,7 +300,7 @@ export default function ReportsPage() {
           <div>
             <CardTitle className="flex items-center gap-2">
               <Users className="h-5 w-5 text-emerald-600" />
-              রোগী বৃদ্ধির পরিসং��্যান
+              রোগী বৃদ্ধির পরিসংখ্যান
             </CardTitle>
             <p className="text-sm text-gray-600 mt-1">নতুন রোগী নিবন্ধন এবং ধরে রাখার হার</p>
           </div>
@@ -358,7 +360,7 @@ export default function ReportsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <FileText className="h-5 w-5 text-gray-600" />
-            CSV রপ্তানি কলাম হেডার
+            CSV রপ��তানি কলাম হেডার
           </CardTitle>
         </CardHeader>
         <CardContent>
