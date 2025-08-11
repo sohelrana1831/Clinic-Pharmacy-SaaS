@@ -153,24 +153,10 @@ export default function ReportsPage() {
             </CardTitle>
             <p className="text-sm text-gray-600 mt-1">গত ৭ দিনের বিক্রয় পরিসংখ্যান</p>
           </div>
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => exportToCSV(dailySalesData, 'daily-sales', ['date', 'sales', 'transactions'])}
-            >
-              <Download className="h-4 w-4 mr-2" />
-              CSV
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => exportToPDF('দৈনিক বিক্রয় রিপোর্ট')}
-            >
-              <FileText className="h-4 w-4 mr-2" />
-              PDF
-            </Button>
-          </div>
+          <ExportButtons
+            onExportCSV={() => exportToCSV(dailySalesData, 'daily-sales', csvHeaders.dailySales)}
+            onExportPDF={() => exportToPDF('দৈনিক বিক্রয় রিপোর্ট', dailySalesData)}
+          />
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -351,7 +337,7 @@ export default function ReportsPage() {
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
-              <ChartPlaceholder title="রোগী বৃদ্ধির ট্রেন্���">
+              <ChartPlaceholder title="রোগী বৃদ্ধির ট্রেন্ড">
                 <div className="mt-4 text-xs text-blue-500">
                   Combined chart showing new patients vs retention rate
                 </div>
