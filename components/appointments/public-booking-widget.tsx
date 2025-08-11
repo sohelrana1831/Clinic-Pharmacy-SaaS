@@ -61,7 +61,7 @@ export function PublicBookingWidget({ embedded = false, onBookingComplete }: Pub
     const newErrors: Record<string, string> = {}
 
     if (!formData.patientName?.trim()) {
-      newErrors.patientName = 'রো��ীর নাম প্রয়োজন'
+      newErrors.patientName = 'রোগীর নাম প্রয়োজন'
     }
 
     if (!formData.phone?.trim()) {
@@ -95,11 +95,11 @@ export function PublicBookingWidget({ embedded = false, onBookingComplete }: Pub
     }
 
     if (!formData.reason?.trim()) {
-      newErrors.reason = 'অ্যাপয়েন্টমেন্টের কারণ লিখুন'
+      newErrors.reason = 'অ্যাপয়েন্টমেন্টের কারণ লিখ���ন'
     }
 
     if (!formData.consent) {
-      newErrors.consent = '��র্তাবলী সম্মত হতে হবে'
+      newErrors.consent = 'শর্তাবলী সম্মত হতে হবে'
     }
 
     setErrors(newErrors)
@@ -202,7 +202,7 @@ export function PublicBookingWidget({ embedded = false, onBookingComplete }: Pub
             variant="outline"
             className="w-full"
           >
-            নতুন অ্যাপয়েন্টমেন্ট বুক করুন
+            নতুন ���্যাপয়েন্টমেন্ট বুক করুন
           </Button>
         </CardContent>
       </Card>
@@ -232,7 +232,7 @@ export function PublicBookingWidget({ embedded = false, onBookingComplete }: Pub
                 id="patientName"
                 value={formData.patientName}
                 onChange={(e) => handleChange('patientName', e.target.value)}
-                placeholder="আপনার পূর্ণ নাম"
+                placeholder="��পনার পূর্ণ নাম"
                 className={errors.patientName ? 'border-red-500' : ''}
               />
               {errors.patientName && <p className="text-sm text-red-500 mt-1">{errors.patientName}</p>}
@@ -355,9 +355,9 @@ export function PublicBookingWidget({ embedded = false, onBookingComplete }: Pub
               id="reason"
               value={formData.reason}
               onChange={(e) => handleChange('reason', e.target.value)}
-              placeholder="সংক্ষেপে লিখুন (যেমন: নিয়মিত চেকআপ, জ্বর, পেটের স��স্যা)"
+              placeholder="সংক্ষেপে লিখুন (যেমন: নিয়মিত চেকআপ, জ্বর, পেটের সমস্যা)"
               rows={3}
-              className={`w-full p-3 border rounded-md resize-none ${errors.reason ? 'border-red-500' : 'border-gray-300'}`}
+              className={`w-full p-3 border rounded-md resize-none text-gray-900 placeholder:text-gray-500 ${errors.reason ? 'border-red-500' : 'border-gray-300'}`}
             />
             {errors.reason && <p className="text-sm text-red-500 mt-1">{errors.reason}</p>}
           </div>
