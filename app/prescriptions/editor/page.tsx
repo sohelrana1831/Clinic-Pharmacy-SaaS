@@ -192,7 +192,7 @@ export default function PrescriptionEditorPage() {
     }
 
     if (!prescriptionData.doctorId) {
-      newErrors.doctor = 'ডাক্তার নির্বাচন করুন'
+      newErrors.doctor = 'ডাক্তার ��ির্বাচন করুন'
     }
 
     if (!prescriptionData.diagnosis.trim()) {
@@ -345,7 +345,7 @@ export default function PrescriptionEditorPage() {
                     onChange={(e) => handleDoctorSelect(e.target.value)}
                     className={errors.doctor ? 'border-red-500' : ''}
                   >
-                    <option value="">ডাক্তার নির্বাচন করুন</option>
+                    <option value="">ডাক্তার নির্বাচ��� করুন</option>
                     {sampleDoctorsWithReg.map((doctor) => (
                       <option key={doctor.id} value={doctor.id}>
                         {doctor.name} - {doctor.specialization}
@@ -385,7 +385,7 @@ export default function PrescriptionEditorPage() {
                   onChange={(e) => setPrescriptionData(prev => ({ ...prev, diagnosis: e.target.value }))}
                   placeholder="রোগের নাম ও বিবরণ লিখুন..."
                   rows={3}
-                  className={`w-full p-3 border rounded-md resize-none ${errors.diagnosis ? 'border-red-500' : 'border-gray-300'}`}
+                  className={`w-full p-3 border rounded-md resize-none text-gray-900 placeholder:text-gray-500 ${errors.diagnosis ? 'border-red-500' : 'border-gray-300'}`}
                 />
                 {errors.diagnosis && <p className="text-sm text-red-500 mt-1">{errors.diagnosis}</p>}
               </CardContent>
@@ -539,7 +539,7 @@ export default function PrescriptionEditorPage() {
                             <Input
                               value={medicine.instructions}
                               onChange={(e) => updateMedicine(index, 'instructions', e.target.value)}
-                              placeholder="যেমন: খাবার��র সাথে, ঘুমানোর আগে..."
+                              placeholder="যেমন: খাবারের সাথে, ঘুমানোর আগে..."
                             />
                           </div>
                         </div>
@@ -562,7 +562,7 @@ export default function PrescriptionEditorPage() {
                   onChange={(e) => setPrescriptionData(prev => ({ ...prev, notes: e.target.value }))}
                   placeholder="রোগীর জন্য অতিরিক্ত পরামর্শ বা নির্দেশনা..."
                   rows={4}
-                  className="w-full p-3 border border-gray-300 rounded-md resize-none"
+                  className="w-full p-3 border border-gray-300 rounded-md resize-none text-gray-900 placeholder:text-gray-500"
                 />
               </CardContent>
             </Card>
