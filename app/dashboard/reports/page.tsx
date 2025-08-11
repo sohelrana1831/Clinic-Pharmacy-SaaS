@@ -60,7 +60,7 @@ export default function ReportsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Filter className="h-5 w-5" />
-            ফিল্টার নিয়ন���ত্রণ
+            ফিল্টার নিয়ন্ত্রণ
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -87,10 +87,9 @@ export default function ReportsPage() {
                 value={selectedDoctor}
                 onValueChange={setSelectedDoctor}
               >
-                <option value="সকল ডাক্তার">সকল ডাক্তার</option>
-                <option value="ডা. রহিম উদ্দিন">ডা. রহিম উদ্দিন</option>
-                <option value="ডা. ফাতেমা খাতুন">ডা. ফাতেমা খাতুন</option>
-                <option value="ডা. করিম হোসেন">ডা. করিম হোসেন</option>
+                {doctors.map(doctor => (
+                  <option key={doctor} value={doctor}>{doctor}</option>
+                ))}
               </Select>
             </div>
             <div>
@@ -99,15 +98,50 @@ export default function ReportsPage() {
                 value={selectedBranch}
                 onValueChange={setSelectedBranch}
               >
-                <option value="সকল শাখা">সকল শাখা</option>
-                <option value="ঢাকা মূল শাখা">ঢাকা মূল শাখা</option>
-                <option value="চট্টগ্রাম শাখা">চট্টগ্রাম শাখা</option>
-                <option value="সিলেট শাখা">সিলেট শাখা</option>
+                {branches.map(branch => (
+                  <option key={branch} value={branch}>{branch}</option>
+                ))}
               </Select>
             </div>
           </div>
         </CardContent>
       </Card>
+
+      {/* Summary Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <MetricCard
+          title="মোট বিক্রয়"
+          value={totalSales}
+          change={12.5}
+          icon={<DollarSign className="h-5 w-5" />}
+          color="green"
+          suffix=" টাকা"
+        />
+        <MetricCard
+          title="মোট লেনদেন"
+          value={totalTransactions}
+          change={8.3}
+          icon={<Activity className="h-5 w-5" />}
+          color="blue"
+          suffix=" টি"
+        />
+        <MetricCard
+          title="গড় বৃদ্ধির হার"
+          value={avgSalesGrowth.toFixed(1)}
+          change={avgSalesGrowth}
+          icon={<TrendingUp className="h-5 w-5" />}
+          color="purple"
+          suffix="%"
+        />
+        <MetricCard
+          title="মোট রোগী"
+          value={currentMonthPatients}
+          change={15.2}
+          icon={<Users className="h-5 w-5" />}
+          color="orange"
+          suffix=" জন"
+        />
+      </div>
 
       {/* Daily Sales Report */}
       <Card>
@@ -260,7 +294,7 @@ export default function ReportsPage() {
               </div>
             </ChartPlaceholder>
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">বিস্তারি�� তালিকা</h4>
+              <h4 className="font-semibold text-gray-800">বিস্তারিত তালিকা</h4>
               <div className="space-y-2 max-h-64 overflow-y-auto">
                 {topMedicinesData.map((medicine, index) => (
                   <div key={index} className="p-3 bg-gray-50 rounded-lg">
@@ -317,7 +351,7 @@ export default function ReportsPage() {
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
-              <ChartPlaceholder title="রোগী বৃদ্ধির ট্রেন্ড">
+              <ChartPlaceholder title="রোগী বৃদ্ধির ট্রেন্���">
                 <div className="mt-4 text-xs text-blue-500">
                   Combined chart showing new patients vs retention rate
                 </div>
