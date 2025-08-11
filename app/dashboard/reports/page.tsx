@@ -93,7 +93,7 @@ export default function ReportsPage() {
               </Select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">��াখা নির্বাচন</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">শাখা নির্বাচন</label>
               <Select
                 value={selectedBranch}
                 onValueChange={setSelectedBranch}
@@ -163,7 +163,7 @@ export default function ReportsPage() {
             <ChartPlaceholder
               title="দৈনিক বিক্রয় চার্ট"
               type="bar"
-              description="গত ৭ দিনে�� বিক্রয় পরিমাণ"
+              description="গত ৭ দিনের বিক্রয় পরিমাণ"
               data={dailySalesData}
             />
             <div className="space-y-3">
@@ -192,7 +192,7 @@ export default function ReportsPage() {
           <div>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-blue-600" />
-              ম���সিক আয়ের গ্রাফ
+              মাসিক আয়ের গ্রাফ
             </CardTitle>
             <p className="text-sm text-gray-600 mt-1">গত ৬ মাসের আয় এবং বৃদ্ধির হার</p>
           </div>
@@ -213,7 +213,7 @@ export default function ReportsPage() {
               />
             </div>
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">মাসিক পারফরম্যান্স</h4>
+              <h4 className="font-semibold text-gray-800">মাসিক পারফরম���যান্স</h4>
               <div className="space-y-2">
                 {monthlyRevenueData.slice(-3).map((month, index) => (
                   <div key={index} className="p-3 bg-gray-50 rounded-lg">
@@ -240,26 +240,12 @@ export default function ReportsPage() {
               <Pill className="h-5 w-5 text-purple-600" />
               সর্বাধিক বিক্রিত ওষুধ
             </CardTitle>
-            <p className="text-sm text-gray-600 mt-1">বেস্ট সেলিং মেডিসিন এবং আয়</p>
+            <p className="text-sm text-gray-600 mt-1">বেস্ট সেলিং মেড��সিন এবং আয়</p>
           </div>
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => exportToCSV(topMedicinesData, 'top-medicines', ['name', 'sold', 'revenue', 'category'])}
-            >
-              <Download className="h-4 w-4 mr-2" />
-              CSV
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => exportToPDF('জনপ্রিয় ওষুধের রিপোর্ট')}
-            >
-              <FileText className="h-4 w-4 mr-2" />
-              PDF
-            </Button>
-          </div>
+          <ExportButtons
+            onExportCSV={() => exportToCSV(topMedicinesData, 'top-medicines', csvHeaders.topMedicines)}
+            onExportPDF={() => exportToPDF('জনপ্রিয় ওষুধের রিপোর্ট', topMedicinesData)}
+          />
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -360,7 +346,7 @@ export default function ReportsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <FileText className="h-5 w-5 text-gray-600" />
-            CSV রপ��তানি কলাম হেডার
+            CSV রপ্তানি কলাম হেডার
           </CardTitle>
         </CardHeader>
         <CardContent>
