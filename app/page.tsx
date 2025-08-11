@@ -23,21 +23,23 @@ export default function Home() {
                 রোগীর তথ্য, অ্যাপয়েন্টমেন্ট, প্রেসক্রিপশন এবং স্টক ম্যানেজমেন্ট - সব একসাথে।
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
-                  onClick={() => window.location.href = '/auth/signup'}
-                >
-                  ফ্রি ট্রায়াল শুরু করুন
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
-                  onClick={() => window.location.href = '/auth/login'}
-                >
-                  ডেমো দেখুন
-                </Button>
+                <Link href="/auth/signup">
+                  <Button
+                    size="lg"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                  >
+                    ফ্রি ট্রায়াল শুরু করুন
+                  </Button>
+                </Link>
+                <Link href="/auth/login">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
+                  >
+                    ডেমো দেখুন
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="bg-white rounded-lg shadow-xl p-8">
@@ -149,7 +151,7 @@ export default function Home() {
                 <ul className="space-y-3">
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
-                    <span>১০০ রোগীর রেকর্ড</span>
+                    <span>১০০ র���গীর রেকর্ড</span>
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
@@ -253,7 +255,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "ফার্মেসি ইনভেন্টরি ম্যানেজমেন্ট ফিচারটি অসাধা���ণ। এখন আর ওষুধের স্টক নিয়ে চিন্তা করতে হয় না।"
+                "ফার্মেসি ইনভেন্টরি ম্যানেজমেন্��� ফিচারটি অসাধা���ণ। এখন আর ওষুধের স্টক নিয়ে চিন্তা করতে হয় না।"
               </p>
               <div>
                 <p className="font-semibold text-gray-900">নাসির আহমেদ</p>
@@ -277,7 +279,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card className="p-6">
                 <h3 className="font-semibold text-lg text-gray-900 mb-3">পেমেন্ট কিভাবে করব?</h3>
-                <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যাংক ট্রান্সফার এবং অ���লাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
+                <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যাং�� ট্রান্সফার এবং অ���লাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
               </Card>
 
               <Card className="p-6">
