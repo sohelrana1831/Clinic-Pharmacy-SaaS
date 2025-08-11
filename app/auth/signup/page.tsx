@@ -3,9 +3,11 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { AuthLayout } from '@/components/auth/auth-layout'
-import { FormField } from '@/components/auth/form-field'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Select } from '@/components/ui/select'
 import { Checkbox } from '@/components/ui/checkbox'
 import { CheckCircle } from 'lucide-react'
 
@@ -82,7 +84,7 @@ export default function SignUpPage() {
             সফল! অ্যাকাউন্ট তৈরি হয়েছে
           </h2>
           <p className="text-gray-600 mb-6">
-            আপনার ইমেইলে একটি নিশ্চিতকরণ লিংক পাঠানো হয়েছে। লিংকে ক্লিক করে অ্যাকাউন্ট সক্রিয় করুন।
+            আপনার ইমেইলে একটি নিশ্চিতকরণ লিংক পাঠানো হয়েছে। লিংকে ক্লিক করে অ্যাকাউন্ট সক্��িয় করুন।
           </p>
           <div className="space-y-3">
             <Button asChild className="w-full">
