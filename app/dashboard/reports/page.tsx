@@ -35,32 +35,11 @@ export default function ReportsPage() {
   const [selectedDoctor, setSelectedDoctor] = useState('সকল ডাক্তার')
   const [selectedBranch, setSelectedBranch] = useState('সকল শাখা')
 
-  const exportToCSV = (data: any[], filename: string, headers: string[]) => {
-    const csvContent = [
-      headers.join(','),
-      ...data.map(row => headers.map(header => row[header] || '').join(','))
-    ].join('\n')
-
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
-    const link = document.createElement('a')
-    link.href = URL.createObjectURL(blob)
-    link.download = `${filename}.csv`
-    link.click()
-  }
-
-  const exportToPDF = (reportName: string) => {
-    // In a real app, this would generate a PDF report
-    alert(`PDF রিপোর্ট তৈরি করা হচ্ছে: ${reportName}`)
-  }
-
-  const ChartPlaceholder = ({ title, children }: { title: string, children: React.ReactNode }) => (
-    <div className="w-full h-64 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg flex flex-col items-center justify-center border-2 border-dashed border-blue-300">
-      <BarChart3 className="h-12 w-12 text-blue-400 mb-2" />
-      <p className="text-blue-600 font-medium">{title}</p>
-      <p className="text-sm text-blue-500 mt-1">Chart will render here</p>
-      {children}
-    </div>
-  )
+  // Calculate summary metrics
+  const totalSales = dailySalesData.reduce((sum, day) => sum + day.sales, 0)
+  const totalTransactions = dailySalesData.reduce((sum, day) => sum + day.transactions, 0)
+  const avgSalesGrowth = monthlyRevenueData.reduce((sum, month) => sum + month.growth, 0) / monthlyRevenueData.length
+  const currentMonthPatients = patientGrowthData[patientGrowthData.length - 1]?.totalPatients || 0
 
   return (
     <div className="space-y-6 p-6">
@@ -81,7 +60,7 @@ export default function ReportsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Filter className="h-5 w-5" />
-            ফিল্টার নিয়ন্ত্রণ
+            ফিল্টার নিয়ন���ত্রণ
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -281,7 +260,7 @@ export default function ReportsPage() {
               </div>
             </ChartPlaceholder>
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">বিস্তারিত তালিকা</h4>
+              <h4 className="font-semibold text-gray-800">বিস্তারি�� তালিকা</h4>
               <div className="space-y-2 max-h-64 overflow-y-auto">
                 {topMedicinesData.map((medicine, index) => (
                   <div key={index} className="p-3 bg-gray-50 rounded-lg">
