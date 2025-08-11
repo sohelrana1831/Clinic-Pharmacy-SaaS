@@ -134,7 +134,7 @@ export default function ReportsPage() {
           suffix="%"
         />
         <MetricCard
-          title="মোট রোগ��"
+          title="মোট রোগী"
           value={currentMonthPatients}
           change={15.2}
           icon={<Users className="h-5 w-5" />}
@@ -163,7 +163,7 @@ export default function ReportsPage() {
             <ChartPlaceholder
               title="দৈনিক বিক্রয় চার্ট"
               type="bar"
-              description="গত ৭ দিনের বিক্রয় পরিম���ণ"
+              description="গত ৭ দিনের বিক্রয় পরিমাণ"
               data={dailySalesData}
             />
             <div className="space-y-3">
@@ -196,24 +196,10 @@ export default function ReportsPage() {
             </CardTitle>
             <p className="text-sm text-gray-600 mt-1">গত ৬ মাসের আয় এবং বৃদ্ধির হার</p>
           </div>
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => exportToCSV(monthlyRevenueData, 'monthly-revenue', ['month', 'revenue', 'growth'])}
-            >
-              <Download className="h-4 w-4 mr-2" />
-              CSV
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => exportToPDF('মাসিক আয়ের রিপোর্ট')}
-            >
-              <FileText className="h-4 w-4 mr-2" />
-              PDF
-            </Button>
-          </div>
+          <ExportButtons
+            onExportCSV={() => exportToCSV(monthlyRevenueData, 'monthly-revenue', csvHeaders.monthlyRevenue)}
+            onExportPDF={() => exportToPDF('মাসিক আয়ের রিপোর্ট', monthlyRevenueData)}
+          />
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -281,7 +267,7 @@ export default function ReportsPage() {
               </div>
             </ChartPlaceholder>
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">ব���স্তারিত তালিকা</h4>
+              <h4 className="font-semibold text-gray-800">বিস্তারিত তালিকা</h4>
               <div className="space-y-2 max-h-64 overflow-y-auto">
                 {topMedicinesData.map((medicine, index) => (
                   <div key={index} className="p-3 bg-gray-50 rounded-lg">
@@ -312,7 +298,7 @@ export default function ReportsPage() {
           <div>
             <CardTitle className="flex items-center gap-2">
               <Users className="h-5 w-5 text-emerald-600" />
-              রোগী বৃদ্ধির পরিসংখ্যান
+              রোগী বৃদ্ধির পরিসং��্যান
             </CardTitle>
             <p className="text-sm text-gray-600 mt-1">নতুন রোগী নিবন্ধন এবং ধরে রাখার হার</p>
           </div>
