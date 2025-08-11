@@ -186,13 +186,13 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-850 transition-colors duration-200">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               সাশ্রয়ী মূল্যে প্ল্যান সমূহ
             </h2>
-            <p className="text-xl text-gray-600">আপনার প্রয়োজন অনুযায়ী প্ল্যান বেছে নিন</p>
+            <p className="text-xl text-gray-600 dark:text-gray-300">আপনার প্রয়োজন অনুযায়ী প্ল্যান বেছে নিন</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -335,13 +335,13 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card className="p-6">
-                <h3 className="font-semibold text-lg text-gray-900 mb-3">পেমেন্ট কিভাবে কর��?</h3>
+                <h3 className="font-semibold text-lg text-gray-900 mb-3">পেমেন্ট কিভাবে করব?</h3>
                 <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যাং�� ট্রান্সফার এবং অ���লাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
               </Card>
 
               <Card className="p-6">
                 <h3 className="font-semibold text-lg text-gray-900 mb-3">সেটআপ করতে কত সময় লাগে?</h3>
-                <p className="text-gray-600">সাধারণত ১-২ ঘন্টার মধ্যে আপনার সিস্টেম সেটআপ হয়ে যাবে। আমাদের টিম আপনাকে সম্পূর্ণ প্রক্রিয়ায় সাহায্য করবে।</p>
+                <p className="text-gray-600">সাধারণত ১-২ ঘন্টার মধ্যে আপনার সিস্টেম সেটআপ হ��়ে যাবে। আমাদের টিম আপনাকে সম্পূর্ণ প্রক্রিয়ায় সাহায্য করবে।</p>
               </Card>
 
               <Card className="p-6">
@@ -369,7 +369,7 @@ export default function Home() {
             <div>
               <h3 className="text-lg sm:text-xl font-bold mb-4">ক্লিনিক ম্যানেজমেন্ট সিস্টেম</h3>
               <p className="text-gray-300 mb-4 text-sm sm:text-base">
-                বাংলাদেশের সবচেয়�� ভালো ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার।
+                বাংলাদেশের সবচেয়ে ভালো ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার।
               </p>
             </div>
 
@@ -433,7 +433,7 @@ export default function Home() {
             </nav>
 
             <div>
-              <h4 className="font-semibold mb-4 text-white">সোশ্যাল মিডিয়��</h4>
+              <h4 className="font-semibold mb-4 text-white">সোশ্যাল মিডিয়া</h4>
               <div className="flex space-x-4" role="list">
                 <a
                   href="https://facebook.com/clinicms"
@@ -468,7 +468,7 @@ export default function Home() {
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center">
             <p className="text-gray-400">
-              © ২০২৪ ক্লিনিক ম্যানেজমেন্ট সিস্টেম। সর্বস্বত্ব সংরক্ষিত।
+              © ২০২৪ ক্লিনিক ম্যানেজমে��্ট সিস্টেম। সর্বস্বত্ব সংরক্ষিত।
             </p>
           </div>
         </div>
