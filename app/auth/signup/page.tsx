@@ -26,7 +26,7 @@ export default function SignUpPage() {
   const [showSuccessModal, setShowSuccessModal] = useState(false)
 
   const planOptions = [
-    { value: 'basic', label: 'বেস���ক প্ল্যান - ৳২,৫০০/মাস' },
+    { value: 'basic', label: 'বেসিক প্ল্যান - ৳২,৫০০/মাস' },
     { value: 'pro', label: 'প্রো প্ল্যান - ৳৪,৫০০/মাস' },
     { value: 'enterprise', label: 'এন্টারপ্রাইজ প্ল্যান - ৳৮,০০০/মাস' }
   ]
@@ -87,11 +87,18 @@ export default function SignUpPage() {
             আপনার ইমেইলে একটি নিশ্চিতকরণ লিংক পাঠানো হয়েছে। লিংকে ক্লিক করে অ্যাকাউন্ট সক্রিয় করুন।
           </p>
           <div className="space-y-3">
-            <Button asChild className="w-full">
-              <Link href="/auth/onboarding">সেটআপ শুরু করুন</Link>
+            <Button
+              className="w-full"
+              onClick={() => window.location.href = '/auth/onboarding'}
+            >
+              সেটআপ শুরু করুন
             </Button>
-            <Button variant="outline" asChild className="w-full">
-              <Link href="/auth/login">লগইন পেজে যান</Link>
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => window.location.href = '/auth/login'}
+            >
+              লগইন পেজে যান
             </Button>
           </div>
         </Card>
@@ -139,7 +146,7 @@ export default function SignUpPage() {
 
         <div className="space-y-2">
           <Label htmlFor="confirmPassword" className="text-gray-700">
-            পাসওয়ার্�� নিশ্চিত করুন <span className="text-red-500">*</span>
+            পাসওয়ার্ড নিশ্চিত করুন <span className="text-red-500">*</span>
           </Label>
           <Input
             id="confirmPassword"
@@ -171,7 +178,7 @@ export default function SignUpPage() {
 
         <div className="space-y-2">
           <Label htmlFor="numberOfDoctors" className="text-gray-700">
-            ডাক্তারের সং��্যা <span className="text-red-500">*</span>
+            ডাক্তারের সংখ্যা <span className="text-red-500">*</span>
           </Label>
           <Select
             id="numberOfDoctors"
@@ -201,7 +208,7 @@ export default function SignUpPage() {
             onChange={(e) => setFormData(prev => ({ ...prev, plan: e.target.value }))}
             className={errors.plan ? 'border-red-500' : ''}
           >
-            <option value="">নির্বা��ন করুন</option>
+            <option value="">নির্বাচন করুন</option>
             {planOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
