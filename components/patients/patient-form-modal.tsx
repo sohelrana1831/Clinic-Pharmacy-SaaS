@@ -74,7 +74,7 @@ export function PatientFormModal({ isOpen, onClose, patient, onSave }: PatientFo
     if (!formData.phone.trim()) {
       newErrors.phone = 'ফোন নম্বর প্রয়োজন'
     } else if (!/^01[3-9]\d{8}$/.test(formData.phone)) {
-      newErrors.phone = 'বৈধ বাংলাদেশি মোবাইল নম্বর দিন (০১ ��িয়ে শুরু, ১১ ডিজিট)'
+      newErrors.phone = 'বৈধ বাংলাদেশি মোবাইল নম্বর দিন (০১ দিয়ে শুরু, ১১ ডিজিট)'
     }
 
     // Email validation (optional)
@@ -182,7 +182,7 @@ export function PatientFormModal({ isOpen, onClose, patient, onSave }: PatientFo
 
         {/* Email */}
         <div>
-          <Label htmlFor="email">ইমেই�� ঠিকানা</Label>
+          <Label htmlFor="email">ইমেইল ঠিকানা</Label>
           <Input
             id="email"
             type="email"
@@ -292,7 +292,7 @@ export function PatientFormModal({ isOpen, onClose, patient, onSave }: PatientFo
             value={formData.notes}
             onChange={(e) => handleChange('notes', e.target.value)}
             placeholder="রোগীর বিশেষ তথ্য, রোগের ইতিহাস ইত্যাদি..."
-            className="w-full p-2 border border-gray-300 rounded-md resize-none h-20"
+            className="w-full p-2 border border-gray-300 rounded-md resize-none h-20 text-gray-900 placeholder:text-gray-500"
           />
         </div>
 
