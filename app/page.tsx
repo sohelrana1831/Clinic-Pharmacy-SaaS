@@ -13,7 +13,7 @@ export default function Home() {
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50"
-        aria-label="মূল কন্টেন্টে যান"
+        aria-label="মূ�� কন্টেন্টে যান"
       >
         মূল কন্টেন্টে যান
       </a>
@@ -51,7 +51,7 @@ export default function Home() {
                     size="lg"
                     variant="outline"
                     className={`w-full sm:w-auto border-blue-600 text-blue-600 hover:bg-blue-50 focus:bg-blue-50 px-8 py-3 ${focusStyles.ring}`}
-                    aria-label="লাইভ ডেমো দেখুন, কোন রেজিস্ট্রেশন প্রয়োজন নেই"
+                    aria-label="লাইভ ডেমো দেখুন, কোন রেজিস্ট্রেশন ��্রয়োজন নেই"
                   >
                     ডেমো দেখুন
                   </Button>
@@ -62,7 +62,7 @@ export default function Home() {
               <div className="bg-white rounded-lg shadow-xl p-4 sm:p-8">
                 <img
                   src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDQwMCAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjU2IiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIyMTYiIGZpbGw9IndoaXRlIiBzdHJva2U9IiNFNUU3RUIiLz4KPHN2ZyB4PSI2MCIgeT0iNjAiIHdpZHRoPSIyODAiIGhlaWdodD0iMTM2IiBmaWxsPSJub25lIj4KICA8cmVjdCB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM2IiBmaWxsPSIjMzM4MUY2Ii8+CiAgPHJlY3QgeT0iNTIiIHdpZHRoPSIxMzAiIGhlaWdodD0iMjAiIGZpbGw9IiNFNUU3RUIiLz4KICA8cmVjdCB5PSI4NCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0Y5RkFGQiIvPgogIDxyZWN0IHk9IjExNiIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0Y5RkFGQiIvPgo8L3N2Zz4KPC9zdmc+"
-                  alt="ক্লিনিক ম্যানেজমেন্ট ড্যাশবোর্ডের স্ক্রিনশট - রোগীর তালিকা, অ্যাপয়েন্টমেন্ট এবং রিপোর্ট দেখাচ্ছে"
+                  alt="ক্লিনিক ম্যানেজমেন্ট ড্যাশবোর্ডের স্ক্রিনশট - রোগীর তালিকা, অ্যাপয়েন্টমেন্ট এবং রিপ���র্ট দেখাচ্ছে"
                   className="w-full h-64 object-cover rounded-lg"
                   loading="lazy"
                 />
@@ -297,7 +297,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "এই সফটওয়্যার ব্যবহার করে আমাদের ক্লিনিকের কাজের গতি অনেক বেড়েছে। রোগীদের তথ্য সংরক্ষণ এবং অ্যাপয়েন্টমেন্ট ব্যবস্থাপনা এখন অনেক সহজ।"
+                "এই সফটওয়্যার ব্যবহার করে আ���াদের ক্লিনিকের কাজের গতি অনেক বেড়েছে। রোগীদের তথ্য সংরক্ষণ এবং অ্যাপয়েন্টমেন্ট ব্যবস্থাপনা এখন অনেক সহজ।"
               </p>
               <div>
                 <p className="font-semibold text-gray-900">ডা. রহিম উদ্দিন</p>
@@ -359,49 +359,107 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <footer
+        className="bg-gray-900 text-white py-12"
+        role="contentinfo"
+        aria-label="সাইট ফুটার"
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">ক্লিনিক ম্যানেজমেন্ট সিস্টেম</h3>
-              <p className="text-gray-400 mb-4">
+              <h3 className="text-lg sm:text-xl font-bold mb-4">ক্লিনিক ম্যানেজমেন্ট সিস্টেম</h3>
+              <p className="text-gray-300 mb-4 text-sm sm:text-base">
                 বাংলাদেশের সবচেয়ে ভালো ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার।
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">যোগাযোগ</h4>
-              <div className="space-y-2">
+              <h4 className="font-semibold mb-4 text-white">যোগাযোগ</h4>
+              <address className="space-y-2 not-italic">
                 <div className="flex items-center">
-                  <Phone className="h-4 w-4 mr-2 text-blue-400" />
-                  <span className="text-gray-400">+৮৮০ ১৭০০ ০০০০০০</span>
+                  <Phone className="h-4 w-4 mr-2 text-blue-400" aria-hidden="true" />
+                  <a
+                    href="tel:+8801700000000"
+                    className={`text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                    aria-label="ফোন করুন +৮৮০ ১৭০০ ০০০০০০"
+                  >
+                    +৮৮০ ১৭০০ ০০০০০০
+                  </a>
                 </div>
                 <div className="flex items-center">
-                  <Mail className="h-4 w-4 mr-2 text-blue-400" />
-                  <span className="text-gray-400">support@clinicms.com</span>
+                  <Mail className="h-4 w-4 mr-2 text-blue-400" aria-hidden="true" />
+                  <a
+                    href="mailto:support@clinicms.com"
+                    className={`text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                    aria-label="ইমেইল পাঠান support@clinicms.com"
+                  >
+                    support@clinicms.com
+                  </a>
                 </div>
-              </div>
+              </address>
             </div>
 
-            <div>
-              <h4 className="font-semibold mb-4">দ্রুত লিংক</h4>
-              <div className="space-y-2">
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">প্রাইভেসি পলিসি</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">টার্মস অফ সার্ভিস</a>
-                <a href="#" className="block text-gray-400 hover:text-white transition-colors">সাপোর্ট</a>
-              </div>
-            </div>
+            <nav aria-label="ফুটার নেভিগেশন">
+              <h4 className="font-semibold mb-4 text-white">দ্রুত লিংক</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="/privacy"
+                    className={`block text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                    aria-label="প্রাইভেসি পলিসি পড়ুন"
+                  >
+                    প্রাইভেসি পলিসি
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/terms"
+                    className={`block text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                    aria-label="টার্মস অফ সার্ভিস পড়ুন"
+                  >
+                    টার্মস অফ সার্ভিস
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/support"
+                    className={`block text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                    aria-label="সাপোর্ট পেজে যান"
+                  >
+                    সাপোর্ট
+                  </a>
+                </li>
+              </ul>
+            </nav>
 
             <div>
-              <h4 className="font-semibold mb-4">সোশ্যাল মিডিয়া</h4>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+              <h4 className="font-semibold mb-4 text-white">সোশ্যাল মিডিয়া</h4>
+              <div className="flex space-x-4" role="list">
+                <a
+                  href="https://facebook.com/clinicms"
+                  className={`text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                  aria-label="ফেসবুকে আমাদের ফলো করুন"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Facebook className="h-6 w-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a
+                  href="https://twitter.com/clinicms"
+                  className={`text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                  aria-label="টুইটারে আমাদের ফলো করুন"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Twitter className="h-6 w-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a
+                  href="https://linkedin.com/company/clinicms"
+                  className={`text-gray-300 hover:text-white transition-colors ${focusStyles.ring}`}
+                  aria-label="লিংকডইনে আমাদের ফলো করুন"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Linkedin className="h-6 w-6" />
                 </a>
               </div>
