@@ -110,7 +110,7 @@ export default function Home() {
             </Card>
 
             <Card
-              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 dark:border-green-800 bg-white dark:bg-gray-800 ${focusStyles.within}`}
               role="listitem"
               tabIndex={0}
               aria-label="প্রেসক্রিপশন ম্যানেজমেন্ট ফিচার"
@@ -122,15 +122,15 @@ export default function Home() {
                 >
                   <FileText className="h-8 w-8 text-emerald-600" />
                 </div>
-                <CardTitle className="text-lg sm:text-xl text-gray-900">প্রেসক্রিপশন</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-gray-100">প্রেসক্রিপশন</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 text-sm sm:text-base">ডিজিটাল প্রেসক্রিপশন তৈরি করুন এবং PDF প্রিন্ট করুন।</p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">ডিজিটাল প্রেসক্রিপশন তৈরি করুন এবং PDF প্রিন্ট করুন।</p>
               </CardContent>
             </Card>
 
             <Card
-              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 dark:border-green-800 bg-white dark:bg-gray-800 ${focusStyles.within}`}
               role="listitem"
               tabIndex={0}
               aria-label="ফার্মেসি স্টক ম্যানেজমেন্ট ফিচার"
@@ -142,15 +142,15 @@ export default function Home() {
                 >
                   <Pill className="h-8 w-8 text-purple-600" />
                 </div>
-                <CardTitle className="text-lg sm:text-xl text-gray-900">ফার্মেসি স্টক</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-gray-100">ফার্মেসি স্টক</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 text-sm sm:text-base">ইনভেন্টরি ম্যানেজমেন্ট এবং এক্সপায়ারি ডেট ট্র্যাকিং।</p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">ইনভেন্টরি ম্যানেজমেন্ট এবং এক্সপায়ারি ডেট ট্র্যাকিং।</p>
               </CardContent>
             </Card>
 
             <Card
-              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 dark:border-green-800 bg-white dark:bg-gray-800 ${focusStyles.within}`}
               role="listitem"
               tabIndex={0}
               aria-label="SMS রিমাইন্ডার ফিচার"
@@ -162,24 +162,24 @@ export default function Home() {
                 >
                   <MessageSquare className="h-8 w-8 text-orange-600" />
                 </div>
-                <CardTitle className="text-lg sm:text-xl text-gray-900">SMS রিমাইন্ডার</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-gray-100">SMS রিমাইন্ডার</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 text-sm sm:text-base">স্বয়ংক্রিয় SMS এবং ইমেইল নোটিফিকেশন সিস্টেম।</p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">স্বয়ংক্রিয় SMS এবং ইমেইল নোটিফিকেশন সিস্টেম।</p>
               </CardContent>
             </Card>
           </div>
 
           {/* Product Screenshots */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-100 rounded-lg p-6 h-48 flex items-center justify-center">
-              <span className="text-gray-500 text-sm text-center">Patient Management Interface</span>
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 h-48 flex items-center justify-center transition-colors">
+              <span className="text-gray-500 dark:text-gray-400 text-sm text-center">Patient Management Interface</span>
             </div>
-            <div className="bg-gray-100 rounded-lg p-6 h-48 flex items-center justify-center">
-              <span className="text-gray-500 text-sm text-center">Prescription Writing Tool</span>
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 h-48 flex items-center justify-center transition-colors">
+              <span className="text-gray-500 dark:text-gray-400 text-sm text-center">Prescription Writing Tool</span>
             </div>
-            <div className="bg-gray-100 rounded-lg p-6 h-48 flex items-center justify-center">
-              <span className="text-gray-500 text-sm text-center">Inventory Dashboard</span>
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 h-48 flex items-center justify-center transition-colors">
+              <span className="text-gray-500 dark:text-gray-400 text-sm text-center">Inventory Dashboard</span>
             </div>
           </div>
         </div>
@@ -335,7 +335,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card className="p-6">
-                <h3 className="font-semibold text-lg text-gray-900 mb-3">পেমেন্ট কিভাবে করব?</h3>
+                <h3 className="font-semibold text-lg text-gray-900 mb-3">পেমেন্ট কিভাবে কর��?</h3>
                 <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যাং�� ট্রান্সফার এবং অ���লাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
               </Card>
 
@@ -345,7 +345,7 @@ export default function Home() {
               </Card>
 
               <Card className="p-6">
-                <h3 className="font-semibold text-lg text-gray-900 mb-3">ডে��া এক্সপোর্ট করা যাবে?</h3>
+                <h3 className="font-semibold text-lg text-gray-900 mb-3">ডেটা এক্সপোর্ট করা যাবে?</h3>
                 <p className="text-gray-600">হ্যাঁ, আপনি যেকোনো সময় আপনার সকল ডেটা Excel, PDF বা CSV ফরম্যাটে এক্সপোর্ট করতে পারবেন।</p>
               </Card>
 
@@ -369,7 +369,7 @@ export default function Home() {
             <div>
               <h3 className="text-lg sm:text-xl font-bold mb-4">ক্লিনিক ম্যানেজমেন্ট সিস্টেম</h3>
               <p className="text-gray-300 mb-4 text-sm sm:text-base">
-                বাংলাদেশের সবচেয়ে ভালো ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার।
+                বাংলাদেশের সবচেয়�� ভালো ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার।
               </p>
             </div>
 
@@ -433,7 +433,7 @@ export default function Home() {
             </nav>
 
             <div>
-              <h4 className="font-semibold mb-4 text-white">সোশ্যাল মিডিয়া</h4>
+              <h4 className="font-semibold mb-4 text-white">সোশ্যাল মিডিয়��</h4>
               <div className="flex space-x-4" role="list">
                 <a
                   href="https://facebook.com/clinicms"
