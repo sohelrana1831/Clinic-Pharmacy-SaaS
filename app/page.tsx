@@ -4,47 +4,68 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Calendar, FileText, Pill, MessageSquare, Check, Star, Phone, Mail, Facebook, Twitter, Linkedin } from 'lucide-react'
+import { ariaPatterns, focusStyles } from '@/lib/accessibility-utils'
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
+      {/* Skip to content link for screen readers */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50"
+        aria-label="মূল কন্টেন্টে যান"
+      >
+        মূল কন্টেন্টে যান
+      </a>
+
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-emerald-50 pt-20 pb-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+      <section
+        className="bg-gradient-to-br from-blue-50 to-emerald-50 pt-20 pb-16"
+        role="banner"
+        aria-label="প্রধান ব্যানার"
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 বাংলাদেশের #১ ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সিস্টেম
               </h1>
-              <p className="text-xl text-gray-600 mb-4">
+              <p className="text-lg sm:text-xl text-gray-700 mb-4">
                 আধুনিক প্রযুক্তি দিয়ে আপনার ক্লিনিক ও ফার্মেসি পরিচালনা করুন।
               </p>
-              <p className="text-lg text-gray-600 mb-8">
+              <p className="text-base sm:text-lg text-gray-600 mb-8">
                 রোগীর তথ্য, অ্যাপয়েন্টমেন্ট, প্রেসক্রিপশন এবং স্টক ম্যানেজমেন্ট - সব একসাথে।
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/auth/signup">
+              <div className="flex flex-col sm:flex-row gap-4" role="group" aria-label="প্রধান কর্মক্ষেত্র">
+                <Link href="/auth/signup" className="w-full sm:w-auto">
                   <Button
                     size="lg"
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                    className={`w-full sm:w-auto bg-blue-600 hover:bg-blue-700 focus:bg-blue-700 text-white px-8 py-3 ${focusStyles.ring}`}
+                    aria-label="১৪ দিনের ফ্রি ট্রায়াল শুরু করুন, কোন ক্রেডিট কার্ড প্রয়োজন নেই"
                   >
                     ফ্রি ট্রায়াল শুরু করুন
                   </Button>
                 </Link>
-                <Link href="/auth/login">
+                <Link href="/auth/login" className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
+                    className={`w-full sm:w-auto border-blue-600 text-blue-600 hover:bg-blue-50 focus:bg-blue-50 px-8 py-3 ${focusStyles.ring}`}
+                    aria-label="লাইভ ডেমো দেখুন, কোন রেজিস্ট্রেশন প্রয়োজন নেই"
                   >
                     ডেমো দেখুন
                   </Button>
                 </Link>
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow-xl p-8">
-              <div className="w-full h-64 bg-gradient-to-br from-blue-100 to-emerald-100 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500 text-sm">Clinic Management Dashboard Screenshot</span>
+            <div className="order-1 lg:order-2">
+              <div className="bg-white rounded-lg shadow-xl p-4 sm:p-8">
+                <img
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDQwMCAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjU2IiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIyMTYiIGZpbGw9IndoaXRlIiBzdHJva2U9IiNFNUU3RUIiLz4KPHN2ZyB4PSI2MCIgeT0iNjAiIHdpZHRoPSIyODAiIGhlaWdodD0iMTM2IiBmaWxsPSJub25lIj4KICA8cmVjdCB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM2IiBmaWxsPSIjMzM4MUY2Ii8+CiAgPHJlY3QgeT0iNTIiIHdpZHRoPSIxMzAiIGhlaWdodD0iMjAiIGZpbGw9IiNFNUU3RUIiLz4KICA8cmVjdCB5PSI4NCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0Y5RkFGQiIvPgogIDxyZWN0IHk9IjExNiIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0Y5RkFGQiIvPgo8L3N2Zz4KPC9zdmc+"
+                  alt="ক্লিনিক ম্যানেজমেন্ট ড্যাশবোর্ডের স্ক্রিনশট - রোগীর তালিকা, অ্যাপয়েন্টমেন্ট এবং রিপোর্ট দেখাচ্ছে"
+                  className="w-full h-64 object-cover rounded-lg"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -96,7 +117,7 @@ export default function Home() {
                 <CardTitle className="text-xl text-gray-900">ফার্মেসি স্টক</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">ইনভেন্টরি ম্যানেজমেন্ট এবং এক্সপায়ারি ডেট ট্র্যাকিং।</p>
+                <p className="text-gray-600">ইনভেন্টরি ম���যানেজমেন্ট এবং এক্সপায়ারি ডেট ট্র্যাকিং।</p>
               </CardContent>
             </Card>
 
