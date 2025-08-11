@@ -8,7 +8,7 @@ import { ariaPatterns, focusStyles } from '@/lib/accessibility-utils'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       {/* Skip to content link for screen readers */}
       <a
         href="#main-content"
@@ -20,20 +20,20 @@ export default function Home() {
 
       {/* Hero Section */}
       <section
-        className="bg-gradient-to-br from-blue-50 to-emerald-50 pt-20 pb-16"
+        className="bg-gradient-to-br from-blue-50 to-emerald-50 dark:from-blue-950 dark:to-emerald-950 pt-20 pb-16 transition-colors duration-200"
         role="banner"
         aria-label="প্রধান ব্যানার"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="order-2 lg:order-1">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-6 leading-tight">
                 বাংলাদেশের #১ ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সিস্টেম
               </h1>
-              <p className="text-lg sm:text-xl text-gray-700 mb-4">
+              <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-4">
                 আধুনিক প্রযুক্তি দিয়ে আপনার ক্লিনিক ও ফার্মেসি পরিচালনা করুন।
               </p>
-              <p className="text-base sm:text-lg text-gray-600 mb-8">
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-8">
                 রোগীর তথ্য, অ্যাপয়েন্টমেন্ট, প্রেসক্রিপশন এবং স্টক ম্যানেজমেন্ট - সব একসাথে।
               </p>
               <div className="flex flex-col sm:flex-row gap-4" role="group" aria-label="প্রধান কর্মক্ষেত্র">
@@ -59,7 +59,7 @@ export default function Home() {
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="bg-white rounded-lg shadow-xl p-4 sm:p-8">
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-4 sm:p-8 transition-colors duration-200">
                 <img
                   src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDQwMCAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjU2IiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIyMTYiIGZpbGw9IndoaXRlIiBzdHJva2U9IiNFNUU3RUIiLz4KPHN2ZyB4PSI2MCIgeT0iNjAiIHdpZHRoPSIyODAiIGhlaWdodD0iMTM2IiBmaWxsPSJub25lIj4KICA8cmVjdCB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM2IiBmaWxsPSIjMzM4MUY2Ii8+CiAgPHJlY3QgeT0iNTIiIHdpZHRoPSIxMzAiIGhlaWdodD0iMjAiIGZpbGw9IiNFNUU3RUIiLz4KICA8cmVjdCB5PSI4NCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0Y5RkFGQiIvPgogIDxyZWN0IHk9IjExNiIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0Y5RkFGQiIvPgo8L3N2Zz4KPC9zdmc+"
                   alt="ক্লিনিক ম্যানেজমেন্ট ড্যাশবোর্ডের স্ক্রিনশট - রোগীর তালিকা, অ্যাপয়েন্টমেন্ট এবং রিপ���র্ট দেখাচ্ছে"
@@ -75,22 +75,22 @@ export default function Home() {
       {/* Features Section */}
       <section
         id="main-content"
-        className="py-16 sm:py-20 bg-white"
+        className="py-16 sm:py-20 bg-white dark:bg-gray-900 transition-colors duration-200"
         aria-label="প্রধান ফিচার সমূহ"
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               শক্তিশালী ফিচার সমূহ
             </h2>
-            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
               বাংলা ও English দুটো ভাষা supported এবং SSLCommerz ও Stripe-ready
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8" role="list">
             <Card
-              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 dark:border-green-800 bg-white dark:bg-gray-800 ${focusStyles.within}`}
               role="listitem"
               tabIndex={0}
               aria-label="অ্যাপয়েন্টমেন্ট ম্যানেজমেন্ট ফিচার"
@@ -102,15 +102,15 @@ export default function Home() {
                 >
                   <Calendar className="h-8 w-8 text-blue-600" />
                 </div>
-                <CardTitle className="text-lg sm:text-xl text-gray-900">অ্যাপয়েন্টমেন্ট</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-gray-100">অ্যাপয়েন্টমেন্ট</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 text-sm sm:text-base">অনলাইন বুকিং এবং স্বয়ংক্রিয় SMS রিমাইন্ডার সিস্টেম।</p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">অনলাইন বুকিং এবং স্বয়ংক্রিয় SMS রিমাইন্ডার সিস্টেম।</p>
               </CardContent>
             </Card>
 
             <Card
-              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 dark:border-green-800 bg-white dark:bg-gray-800 ${focusStyles.within}`}
               role="listitem"
               tabIndex={0}
               aria-label="প্রেসক্রিপশন ম্যানেজমেন্ট ফিচার"
@@ -122,15 +122,15 @@ export default function Home() {
                 >
                   <FileText className="h-8 w-8 text-emerald-600" />
                 </div>
-                <CardTitle className="text-lg sm:text-xl text-gray-900">প্রেসক্রিপশন</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-gray-100">প্রেসক্রিপশন</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 text-sm sm:text-base">ডিজিটাল প্রেসক্রিপশন তৈরি করুন এবং PDF প্রিন্ট করুন।</p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">ডিজিটাল প্রেসক্রিপশন তৈরি করুন এবং PDF প্রিন্ট করুন।</p>
               </CardContent>
             </Card>
 
             <Card
-              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 dark:border-green-800 bg-white dark:bg-gray-800 ${focusStyles.within}`}
               role="listitem"
               tabIndex={0}
               aria-label="ফার্মেসি স্টক ম্যানেজমেন্ট ফিচার"
@@ -142,15 +142,15 @@ export default function Home() {
                 >
                   <Pill className="h-8 w-8 text-purple-600" />
                 </div>
-                <CardTitle className="text-lg sm:text-xl text-gray-900">ফার্মেসি স্টক</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-gray-100">ফার্মেসি স্টক</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 text-sm sm:text-base">ইনভেন্টরি ম্যানেজমেন্ট এবং এক্সপায়ারি ডেট ট্র্যাকিং।</p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">ইনভেন্টরি ম্যানেজমেন্ট এবং এক্সপায়ারি ডেট ট্র্যাকিং।</p>
               </CardContent>
             </Card>
 
             <Card
-              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 dark:border-green-800 bg-white dark:bg-gray-800 ${focusStyles.within}`}
               role="listitem"
               tabIndex={0}
               aria-label="SMS রিমাইন্ডার ফিচার"
@@ -162,37 +162,37 @@ export default function Home() {
                 >
                   <MessageSquare className="h-8 w-8 text-orange-600" />
                 </div>
-                <CardTitle className="text-lg sm:text-xl text-gray-900">SMS রিমাইন্ডার</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-gray-100">SMS রিমাইন্ডার</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 text-sm sm:text-base">স্বয়ংক্রিয় SMS এবং ইমেইল নোটিফিকেশন সিস্টেম।</p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">স্বয়ংক্রিয় SMS এবং ইমেইল নোটিফিকেশন সিস্টেম।</p>
               </CardContent>
             </Card>
           </div>
 
           {/* Product Screenshots */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-100 rounded-lg p-6 h-48 flex items-center justify-center">
-              <span className="text-gray-500 text-sm text-center">Patient Management Interface</span>
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 h-48 flex items-center justify-center transition-colors">
+              <span className="text-gray-500 dark:text-gray-400 text-sm text-center">Patient Management Interface</span>
             </div>
-            <div className="bg-gray-100 rounded-lg p-6 h-48 flex items-center justify-center">
-              <span className="text-gray-500 text-sm text-center">Prescription Writing Tool</span>
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 h-48 flex items-center justify-center transition-colors">
+              <span className="text-gray-500 dark:text-gray-400 text-sm text-center">Prescription Writing Tool</span>
             </div>
-            <div className="bg-gray-100 rounded-lg p-6 h-48 flex items-center justify-center">
-              <span className="text-gray-500 text-sm text-center">Inventory Dashboard</span>
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 h-48 flex items-center justify-center transition-colors">
+              <span className="text-gray-500 dark:text-gray-400 text-sm text-center">Inventory Dashboard</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-850 transition-colors duration-200">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               সাশ্রয়ী মূল্যে প্ল্যান সমূহ
             </h2>
-            <p className="text-xl text-gray-600">আপনার প্রয়োজন অনুযায়ী প্ল্যান বেছে নিন</p>
+            <p className="text-xl text-gray-600 dark:text-gray-300">আপনার প্রয়োজন অনুযায়ী প্ল্যান বেছে নিন</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -341,7 +341,7 @@ export default function Home() {
 
               <Card className="p-6">
                 <h3 className="font-semibold text-lg text-gray-900 mb-3">সেটআপ করতে কত সময় লাগে?</h3>
-                <p className="text-gray-600">সাধারণত ১-২ ঘন্টার মধ্যে আপনার সিস্টেম সেটআপ হয়ে যাবে। আমাদের টিম আপনাকে সম্পূর্ণ প্রক্রিয়ায় সাহায্য করবে।</p>
+                <p className="text-gray-600">সাধারণত ১-২ ঘন্টার মধ্যে আপনার সিস্টেম সেটআপ হ��়ে যাবে। আমাদের টিম আপনাকে সম্পূর্ণ প্রক্রিয়ায় সাহায্য করবে।</p>
               </Card>
 
               <Card className="p-6">
@@ -468,7 +468,7 @@ export default function Home() {
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center">
             <p className="text-gray-400">
-              © ২০২৪ ক্লিনিক ম্যানেজমেন্ট সিস্টেম। সর্বস্বত্ব সংরক্ষিত।
+              © ২০২৪ ক্লিনিক ম্যানেজমে��্ট সিস্টেম। সর্বস্বত্ব সংরক্ষিত।
             </p>
           </div>
         </div>

@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { Sidebar } from '@/components/dashboard/sidebar'
+import { Topbar } from '@/components/dashboard/topbar'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -64,7 +66,7 @@ export default function AdminSubscriptionsPage() {
 
   const handleSuspendClinic = (clinicId: string) => {
     // In real app, this would call API to suspend clinic
-    if (confirm('এই ক্লিনিকের সাবস্ক্রিপশন স্থগিত করতে চান?')) {
+    if (confirm('এই ক্লিনিকের সাবস্ক্রিপশন স্থ���িত করতে চান?')) {
       alert(`Clinic ${clinicId} স্থগিত করা হচ্ছে...`)
     }
   }
@@ -80,7 +82,18 @@ export default function AdminSubscriptionsPage() {
   }
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        {/* Top Navigation */}
+        <Topbar />
+
+        {/* Page Content */}
+        <main className="flex-1 p-6">
+          <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -89,7 +102,7 @@ export default function AdminSubscriptionsPage() {
         </div>
         <Button className="bg-blue-600 hover:bg-blue-700">
           <Plus className="h-4 w-4 mr-2" />
-          নতুন ক্লিনিক যোগ ���রুন
+          নতুন ক্লিনিক যোগ �����ুন
         </Button>
       </div>
 
@@ -229,7 +242,7 @@ export default function AdminSubscriptionsPage() {
                   <th className="text-left py-3 px-4 font-medium text-gray-600">পরবর্তী বিলিং</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-600">মাসিক আয়</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-600">যোগদান</th>
-                  <th className="text-center py-3 px-4 font-medium text-gray-600">অ্���াকশন</th>
+                  <th className="text-center py-3 px-4 font-medium text-gray-600">অ্����াকশন</th>
                 </tr>
               </thead>
               <tbody>
@@ -431,6 +444,9 @@ export default function AdminSubscriptionsPage() {
           })()}
         </Modal>
       )}
+          </div>
+        </main>
+      </div>
     </div>
   )
 }
