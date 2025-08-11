@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { Sidebar } from '@/components/dashboard/sidebar'
+import { Topbar } from '@/components/dashboard/topbar'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -42,7 +44,18 @@ export default function ReportsPage() {
   const currentMonthPatients = patientGrowthData[patientGrowthData.length - 1]?.totalPatients || 0
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        {/* Top Navigation */}
+        <Topbar />
+
+        {/* Page Content */}
+        <main className="flex-1 p-6">
+          <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -163,7 +176,7 @@ export default function ReportsPage() {
             <ChartPlaceholder
               title="দৈনিক বিক্রয় চার্ট"
               type="bar"
-              description="গত ৭ দিনের বিক্রয় পরিমাণ"
+              description="গত ৭ দিনের বিক্রয় পরিমা���"
               data={dailySalesData}
             />
             <div className="space-y-3">
@@ -377,6 +390,9 @@ export default function ReportsPage() {
           </div>
         </CardContent>
       </Card>
+          </div>
+        </main>
+      </div>
     </div>
   )
 }
