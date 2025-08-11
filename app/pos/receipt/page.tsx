@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { formatCurrency } from '@/lib/inventory-data'
 
 export default function ReceiptPage() {
@@ -223,18 +223,20 @@ export default function ReceiptPage() {
           <table className="items-table">
             <tbody>
               {receiptData.items.map((item: any, index: number) => (
-                <tr key={index}>
-                  <td colSpan={3} className="bold">{item.name}</td>
-                </tr>
-                <tr>
-                  <td>{item.quantity} × {formatCurrency(item.unitPrice)}</td>
-                  <td className="right">
-                    {item.discount > 0 && (
-                      <span className="text-sm">(-{formatCurrency(item.discount)}) </span>
-                    )}
-                  </td>
-                  <td className="right bold">{formatCurrency(item.lineTotal)}</td>
-                </tr>
+                <React.Fragment key={index}>
+                  <tr>
+                    <td colSpan={3} className="bold">{item.name}</td>
+                  </tr>
+                  <tr>
+                    <td>{item.quantity} × {formatCurrency(item.unitPrice)}</td>
+                    <td className="right">
+                      {item.discount > 0 && (
+                        <span className="text-sm">(-{formatCurrency(item.discount)}) </span>
+                      )}
+                    </td>
+                    <td className="right bold">{formatCurrency(item.lineTotal)}</td>
+                  </tr>
+                </React.Fragment>
               ))}
             </tbody>
           </table>
