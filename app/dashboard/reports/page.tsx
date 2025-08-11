@@ -96,7 +96,7 @@ export default function ReportsPage() {
               <label className="block text-sm font-medium text-gray-700 mb-2">শাখা নির্বাচন</label>
               <Select
                 value={selectedBranch}
-                onValueChange={setSelectedBranch}
+                onChange={(e) => setSelectedBranch(e.target.value)}
               >
                 {branches.map(branch => (
                   <option key={branch} value={branch}>{branch}</option>
@@ -161,7 +161,7 @@ export default function ReportsPage() {
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <ChartPlaceholder
-              title="দৈনিক বিক্রয় ��ার্ট"
+              title="দৈনিক বিক্রয় চার্ট"
               type="bar"
               description="গত ৭ দিনের বিক্রয় পরিমাণ"
               data={dailySalesData}
@@ -194,7 +194,7 @@ export default function ReportsPage() {
               <TrendingUp className="h-5 w-5 text-blue-600" />
               মাসিক আয়ের গ্রাফ
             </CardTitle>
-            <p className="text-sm text-gray-600 mt-1">গত ৬ মাসের আয় এবং বৃদ্ধির হার</p>
+            <p className="text-sm text-gray-600 mt-1">গত ৬ মাসের আয় এবং ব��দ্ধির হার</p>
           </div>
           <ExportButtons
             onExportCSV={() => exportToCSV(monthlyRevenueData, 'monthly-revenue', csvHeaders.monthlyRevenue)}
@@ -320,7 +320,7 @@ export default function ReportsPage() {
                     <p className="text-xl font-bold text-emerald-800">175</p>
                   </div>
                   <div>
-                    <p className="text-sm text-emerald-600">ধরে রা���ার হার</p>
+                    <p className="text-sm text-emerald-600">ধরে রাখার হার</p>
                     <p className="text-xl font-bold text-emerald-800">96%</p>
                   </div>
                 </div>
@@ -357,7 +357,7 @@ export default function ReportsPage() {
               </ul>
             </div>
             <div>
-              <h5 className="font-medium text-gray-800 mb-2">জনপ্রিয় ওষুধ</h5>
+              <h5 className="font-medium text-gray-800 mb-2">��নপ্রিয় ওষুধ</h5>
               <ul className="space-y-1 text-gray-600">
                 <li>• name (ওষুধের নাম)</li>
                 <li>• sold (বিক্রিত সংখ্যা)</li>
