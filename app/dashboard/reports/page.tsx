@@ -134,7 +134,7 @@ export default function ReportsPage() {
           suffix="%"
         />
         <MetricCard
-          title="মোট রোগী"
+          title="মোট রোগ��"
           value={currentMonthPatients}
           change={15.2}
           icon={<Users className="h-5 w-5" />}
@@ -160,11 +160,12 @@ export default function ReportsPage() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <ChartPlaceholder title="দৈনিক বিক্রয় চার্ট">
-              <div className="mt-4 text-xs text-blue-500">
-                Bar chart showing daily sales (BDT)
-              </div>
-            </ChartPlaceholder>
+            <ChartPlaceholder
+              title="দৈনিক বিক্রয় চার্ট"
+              type="bar"
+              description="গত ৭ দিনের বিক্রয় পরিম���ণ"
+              data={dailySalesData}
+            />
             <div className="space-y-3">
               <h4 className="font-semibold text-gray-800">সাম্প্রতিক বিক্রয়</h4>
               <div className="space-y-2 max-h-48 overflow-y-auto">
@@ -280,7 +281,7 @@ export default function ReportsPage() {
               </div>
             </ChartPlaceholder>
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">বিস্তারিত তালিকা</h4>
+              <h4 className="font-semibold text-gray-800">ব���স্তারিত তালিকা</h4>
               <div className="space-y-2 max-h-64 overflow-y-auto">
                 {topMedicinesData.map((medicine, index) => (
                   <div key={index} className="p-3 bg-gray-50 rounded-lg">
