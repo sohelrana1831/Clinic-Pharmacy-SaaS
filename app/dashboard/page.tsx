@@ -37,7 +37,7 @@ export default function DashboardPage() {
 
   const handleWritePrescription = () => {
     // Navigate to prescription writing page
-    window.location.href = '/dashboard/prescriptions/new'
+    window.location.href = '/prescriptions/editor'
   }
 
   return (
