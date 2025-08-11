@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -26,7 +28,7 @@ export default function Home() {
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
                   onClick={() => window.location.href = '/auth/signup'}
                 >
-                  ফ্রি ট্রায়াল শু��ু করুন
+                  ফ্রি ট্রায়াল শুরু করুন
                 </Button>
                 <Button
                   size="lg"
@@ -77,7 +79,7 @@ export default function Home() {
                 <div className="mx-auto w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
                   <FileText className="h-8 w-8 text-emerald-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">প্রেসক্রিপশ���</CardTitle>
+                <CardTitle className="text-xl text-gray-900">প্রেসক্রিপশন</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600">ডিজিটাল প্রেসক্রিপশন তৈরি করুন এবং PDF প্রিন্ট করুন।</p>
@@ -147,7 +149,7 @@ export default function Home() {
                 <ul className="space-y-3">
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
-                    <span>১��০ রোগীর রেকর্ড</span>
+                    <span>১০০ রোগীর রেকর্ড</span>
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
@@ -251,7 +253,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "ফার্মেসি ইনভেন্টরি ম্যানেজম���ন্ট ফিচারটি অসাধারণ। এখন আর ওষুধের স্টক নিয়ে চিন্তা করতে হয় না।"
+                "ফার্মেসি ইনভেন্টরি ম্যানেজমেন্ট ফিচারটি অসাধা���ণ। এখন আর ওষুধের স্টক নিয়ে চিন্তা করতে হয় না।"
               </p>
               <div>
                 <p className="font-semibold text-gray-900">নাসির আহমেদ</p>
@@ -275,7 +277,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card className="p-6">
                 <h3 className="font-semibold text-lg text-gray-900 mb-3">পেমেন্ট কিভাবে করব?</h3>
-                <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যা��ক ট্রান্সফার এবং অনলাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
+                <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যাংক ট্রান্সফার এবং অ���লাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
               </Card>
 
               <Card className="p-6">
