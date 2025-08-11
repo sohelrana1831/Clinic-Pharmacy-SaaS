@@ -23,9 +23,9 @@ const paymentData = {
   planName: 'প্রো প্ল্যান',
   paymentMethod: 'SSLCommerz',
   clinicName: 'SR Pharma',
-  billingDate: new Date().toLocaleDateString('bn-BD'),
-  nextBillingDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toLocaleDateString('bn-BD'),
-  invoiceNumber: 'INV-2024-' + Math.floor(Math.random() * 1000).toString().padStart(3, '0')
+  billingDate: '১৫ জানুয়ারি, ২০২৪',
+  nextBillingDate: '১৫ ফেব্রুয়ারি, ২০২৪',
+  invoiceNumber: 'INV-2024-001'
 }
 
 export default function PaymentSuccessPage() {
