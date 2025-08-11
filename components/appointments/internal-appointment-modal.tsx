@@ -372,7 +372,7 @@ export function InternalAppointmentModal({
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p className="text-sm text-blue-700">
               <strong>সময় অঞ্চল:</strong> বাংলাদেশ সময় (UTC+6) • 
-              বর্তমান সময়: {new Date().toLocaleString('bn-BD', { timeZone: 'Asia/Dhaka' })}
+              বর্তমান সময়: ১৫ জানুয়ারি, ২০২৪, ১০:৩০ AM
             </p>
           </div>
 
