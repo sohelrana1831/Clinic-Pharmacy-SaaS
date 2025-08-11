@@ -359,13 +359,13 @@ export function InternalAppointmentModal({
           <div>
             <Label htmlFor="notes">অতিরিক্ত নোট</Label>
             <textarea
-              id="notes"
-              value={formData.notes}
-              onChange={(e) => handleChange('notes', e.target.value)}
-              placeholder="বিশেষ নির্দেশনা বা মন্তব্য..."
-              rows={3}
-              className="w-full p-3 border border-gray-300 rounded-md resize-none"
-            />
+            id="notes"
+            value={formData.notes}
+            onChange={(e) => handleChange('notes', e.target.value)}
+            placeholder="বিশেষ নির্দেশনা বা মন্তব্য..."
+            rows={3}
+            className="w-full p-3 border border-gray-300 rounded-md resize-none text-gray-900 placeholder:text-gray-500"
+          />
           </div>
 
           {/* Timezone Info */}
