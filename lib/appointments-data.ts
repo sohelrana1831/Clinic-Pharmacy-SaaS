@@ -110,7 +110,7 @@ export const getAvailableSlots = (doctorId: string, date: string): TimeSlot[] =>
   const doctor = sampleDoctors.find(d => d.id === doctorId)
   if (!doctor) return []
   
-  const dayOfWeek = new Date(date).toLocaleDateString('en-US', { weekday: 'lowercase' })
+  const dayOfWeek = new Date(date).toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase()
   const slots = doctor.availability[dayOfWeek] || []
   
   return slots.map(time => ({
