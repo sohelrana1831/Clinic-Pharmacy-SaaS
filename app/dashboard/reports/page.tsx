@@ -5,54 +5,30 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select'
-import { 
-  BarChart3, 
-  TrendingUp, 
-  Pill, 
+import { ChartPlaceholder, MetricCard, ExportButtons } from '@/components/reports/chart-components'
+import {
+  dailySalesData,
+  monthlyRevenueData,
+  topMedicinesData,
+  patientGrowthData,
+  csvHeaders,
+  exportToCSV,
+  exportToPDF,
+  doctors,
+  branches
+} from '@/lib/reports-data'
+import {
+  BarChart3,
+  TrendingUp,
+  Pill,
   Users,
   Download,
   FileText,
   Calendar,
   Filter,
-  DollarSign
+  DollarSign,
+  Activity
 } from 'lucide-react'
-
-// Sample data for reports
-const dailySalesData = [
-  { date: '2024-01-15', sales: 15500, transactions: 45 },
-  { date: '2024-01-16', sales: 18200, transactions: 52 },
-  { date: '2024-01-17', sales: 21800, transactions: 68 },
-  { date: '2024-01-18', sales: 19400, transactions: 58 },
-  { date: '2024-01-19', sales: 23600, transactions: 72 },
-  { date: '2024-01-20', sales: 17900, transactions: 49 },
-  { date: '2024-01-21', sales: 26300, transactions: 81 }
-]
-
-const monthlyRevenueData = [
-  { month: 'জানুয়ারি', revenue: 450000, growth: 12.5 },
-  { month: 'ফেব্রুয়ারি', revenue: 520000, growth: 15.6 },
-  { month: 'মার্চ', revenue: 480000, growth: -7.7 },
-  { month: 'এপ্রিল', revenue: 610000, growth: 27.1 },
-  { month: 'মে', revenue: 580000, growth: -4.9 },
-  { month: 'জুন', revenue: 675000, growth: 16.4 }
-]
-
-const topMedicinesData = [
-  { name: 'প্যারাসিটামল ৫০০মিগ্রা', sold: 450, revenue: 13500, category: 'ব্যথানাশক' },
-  { name: 'অ্যামোক্সিসিলিন ক্যাপসুল', sold: 320, revenue: 19200, category: 'অ্যান্টিবায়োটিক' },
-  { name: 'ওমিপ্রাজল ২০মিগ্রা', sold: 280, revenue: 16800, category: 'গ্যাস্ট্রিক' },
-  { name: 'মেটফরমিন ৫০০মিগ্রা', sold: 250, revenue: 12500, category: 'ডায়াবেটিস' },
-  { name: 'সালবুটামল ইনহেলার', sold: 180, revenue: 21600, category: 'শ্বাসকষ্ট' }
-]
-
-const patientGrowthData = [
-  { month: 'জানুয়ারি', newPatients: 125, totalPatients: 1250, retention: 92 },
-  { month: 'ফেব্রুয়ারি', newPatients: 145, totalPatients: 1395, retention: 94 },
-  { month: 'মার্চ', newPatients: 160, totalPatients: 1555, retention: 91 },
-  { month: 'এপ্রিল', newPatients: 180, totalPatients: 1735, retention: 95 },
-  { month: 'মে', newPatients: 155, totalPatients: 1890, retention: 93 },
-  { month: 'জুন', newPatients: 175, totalPatients: 2065, retention: 96 }
-]
 
 export default function ReportsPage() {
   const [dateRange, setDateRange] = useState({ from: '2024-01-01', to: '2024-06-30' })
@@ -127,7 +103,7 @@ export default function ReportsPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">���াক্তার নির্বাচন</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">ডাক্তার নির্বাচন</label>
               <Select
                 value={selectedDoctor}
                 onValueChange={setSelectedDoctor}
