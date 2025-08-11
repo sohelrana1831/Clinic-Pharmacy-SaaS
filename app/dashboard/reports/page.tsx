@@ -93,7 +93,7 @@ export default function ReportsPage() {
               </Select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">শাখা নির্বাচন</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">শাখা নির্বাচ���</label>
               <Select
                 value={selectedBranch}
                 onValueChange={setSelectedBranch}
@@ -134,7 +134,7 @@ export default function ReportsPage() {
           suffix="%"
         />
         <MetricCard
-          title="মোট রোগী"
+          title="মোট রো���ী"
           value={currentMonthPatients}
           change={15.2}
           icon={<Users className="h-5 w-5" />}
@@ -192,7 +192,7 @@ export default function ReportsPage() {
           <div>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-blue-600" />
-              মাসিক আয়ের গ্রাফ
+              মাসিক আয়ের গ��রাফ
             </CardTitle>
             <p className="text-sm text-gray-600 mt-1">গত ৬ মাসের আয় এবং বৃদ্ধির হার</p>
           </div>
@@ -213,7 +213,7 @@ export default function ReportsPage() {
               />
             </div>
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">মাসিক পারফ��ম্যান্স</h4>
+              <h4 className="font-semibold text-gray-800">মাসিক পারফরম্যান্স</h4>
               <div className="space-y-2">
                 {monthlyRevenueData.slice(-3).map((month, index) => (
                   <div key={index} className="p-3 bg-gray-50 rounded-lg">
@@ -299,11 +299,13 @@ export default function ReportsPage() {
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2">
-              <ChartPlaceholder title="রোগী বৃদ্ধির ট্রেন্ড">
-                <div className="mt-4 text-xs text-blue-500">
-                  Combined chart showing new patients vs retention rate
-                </div>
-              </ChartPlaceholder>
+              <ChartPlaceholder
+                title="রোগী বৃদ্ধির ট্রেন্ড"
+                type="line"
+                description="নতুন রোগী নিবন্ধন এবং ধরে রাখার হার"
+                data={patientGrowthData}
+                height={280}
+              />
             </div>
             <div className="space-y-4">
               <div className="bg-gradient-to-r from-emerald-50 to-emerald-100 p-4 rounded-lg">
