@@ -2,32 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme transitions */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --transition-colors: color 200ms ease-in-out, background-color 200ms ease-in-out, border-color 200ms ease-in-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Apply transitions to all elements */
+*,
+*::before,
+*::after {
+  transition: var(--transition-colors);
 }
 
+/* Dark mode class setup */
+.dark {
+  color-scheme: dark;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
+}
+
+/* Body styling */
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  transition: var(--transition-colors);
+}
+
+/* Focus states for accessibility */
+.focus-visible:focus {
+  @apply outline-2 outline-offset-2 outline-blue-500 dark:outline-blue-400;
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+  .dark {
+    --tw-bg-gray-900: #000000;
+    --tw-text-gray-100: #ffffff;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  /* Dark mode utilities */
+  .bg-card {
+    @apply bg-white dark:bg-gray-800;
+  }
+  
+  .bg-background {
+    @apply bg-gray-50 dark:bg-gray-900;
+  }
+  
+  .text-foreground {
+    @apply text-gray-900 dark:text-gray-100;
+  }
+  
+  .text-muted {
+    @apply text-gray-600 dark:text-gray-400;
+  }
+  
+  .border-default {
+    @apply border-gray-200 dark:border-gray-700;
+  }
+  
+  .hover-bg {
+    @apply hover:bg-gray-50 dark:hover:bg-gray-800;
+  }
+  
+  /* Animation utilities */
+  .theme-transition {
+    transition: var(--transition-colors);
   }
 }
