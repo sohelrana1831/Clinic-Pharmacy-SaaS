@@ -85,7 +85,7 @@ export default function ReportsPage() {
               <label className="block text-sm font-medium text-gray-700 mb-2">ডাক্তার নির্বাচন</label>
               <Select
                 value={selectedDoctor}
-                onValueChange={setSelectedDoctor}
+                onChange={(e) => setSelectedDoctor(e.target.value)}
               >
                 {doctors.map(doctor => (
                   <option key={doctor} value={doctor}>{doctor}</option>
@@ -93,7 +93,7 @@ export default function ReportsPage() {
               </Select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">শাখা নির্বাচ���</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">শাখা নির্বাচন</label>
               <Select
                 value={selectedBranch}
                 onValueChange={setSelectedBranch}
@@ -134,7 +134,7 @@ export default function ReportsPage() {
           suffix="%"
         />
         <MetricCard
-          title="মোট রো���ী"
+          title="মোট রোগী"
           value={currentMonthPatients}
           change={15.2}
           icon={<Users className="h-5 w-5" />}
@@ -161,7 +161,7 @@ export default function ReportsPage() {
         <CardContent>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <ChartPlaceholder
-              title="দৈনিক বিক্রয় চার্ট"
+              title="দৈনিক বিক্রয় ��ার্ট"
               type="bar"
               description="গত ৭ দিনের বিক্রয় পরিমাণ"
               data={dailySalesData}
@@ -192,7 +192,7 @@ export default function ReportsPage() {
           <div>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5 text-blue-600" />
-              মাসিক আয়ের গ��রাফ
+              মাসিক আয়ের গ্রাফ
             </CardTitle>
             <p className="text-sm text-gray-600 mt-1">গত ৬ মাসের আয় এবং বৃদ্ধির হার</p>
           </div>
@@ -320,7 +320,7 @@ export default function ReportsPage() {
                     <p className="text-xl font-bold text-emerald-800">175</p>
                   </div>
                   <div>
-                    <p className="text-sm text-emerald-600">ধরে রাখার হার</p>
+                    <p className="text-sm text-emerald-600">ধরে রা���ার হার</p>
                     <p className="text-xl font-bold text-emerald-800">96%</p>
                   </div>
                 </div>
