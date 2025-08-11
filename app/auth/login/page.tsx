@@ -24,7 +24,7 @@ export default function LoginPage() {
     if (!formData.email) newErrors.email = 'ইমেইল প্রয়োজন'
     else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'বৈধ ইমেইল দিন'
 
-    if (!formData.password) newErrors.password = 'পাসওয়ার্ড প্রয়োজন'
+    if (!formData.password) newErrors.password = 'পাসওয়���র্ড প্রয়োজন'
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -49,25 +49,37 @@ export default function LoginPage() {
       subtitle="ক��লিনিক ম্যানেজমেন্ট ড্যাশবোর্ডে প্রবেশ করুন"
     >
       <form onSubmit={handleSubmit} className="space-y-4">
-        <FormField
-          label="ইমেইল ঠিকানা"
-          type="email"
-          placeholder="your@email.com"
-          required
-          value={formData.email}
-          onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-          error={errors.email}
-        />
+        <div className="space-y-2">
+          <Label htmlFor="email" className="text-gray-700">
+            ইমেইল ঠিকানা <span className="text-red-500">*</span>
+          </Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="your@email.com"
+            required
+            value={formData.email}
+            onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+            className={errors.email ? 'border-red-500' : ''}
+          />
+          {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
+        </div>
 
-        <FormField
-          label="পাসওয়ার্ড"
-          type="password"
-          placeholder="আপনার পাসওয়ার্ড"
-          required
-          value={formData.password}
-          onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-          error={errors.password}
-        />
+        <div className="space-y-2">
+          <Label htmlFor="password" className="text-gray-700">
+            পাসওয়ার্ড <span className="text-red-500">*</span>
+          </Label>
+          <Input
+            id="password"
+            type="password"
+            placeholder="আপনার পাসওয়ার্ড"
+            required
+            value={formData.password}
+            onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
+            className={errors.password ? 'border-red-500' : ''}
+          />
+          {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
+        </div>
 
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
