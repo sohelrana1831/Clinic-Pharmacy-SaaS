@@ -73,63 +73,99 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+      <section
+        id="main-content"
+        className="py-16 sm:py-20 bg-white"
+        aria-label="প্রধান ফিচার সমূহ"
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               শক্তিশালী ফিচার সমূহ
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
               বাংলা ও English দুটো ভাষা supported এবং SSLCommerz ও Stripe-ready
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="text-center hover:shadow-lg transition-shadow border-green-100">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8" role="list">
+            <Card
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              role="listitem"
+              tabIndex={0}
+              aria-label="অ্যাপয়েন্টমেন্ট ম্যানেজমেন্ট ফিচার"
+            >
               <CardHeader>
-                <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <div
+                  className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4"
+                  aria-hidden="true"
+                >
                   <Calendar className="h-8 w-8 text-blue-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">অ্যাপয়েন্টমেন্ট</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900">অ্যাপয়েন্টমেন্ট</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">অনলাইন বুকিং এবং স্বয়ংক্রিয় SMS রিমাইন্ডার সিস্টেম।</p>
+                <p className="text-gray-700 text-sm sm:text-base">অনলাইন বুকিং এবং স্বয়ংক্রিয় SMS রিমাইন্ডার সিস্টেম।</p>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow border-green-100">
+            <Card
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              role="listitem"
+              tabIndex={0}
+              aria-label="প্রেসক্রিপশন ম্যানেজমেন্ট ফিচার"
+            >
               <CardHeader>
-                <div className="mx-auto w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
+                <div
+                  className="mx-auto w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-4"
+                  aria-hidden="true"
+                >
                   <FileText className="h-8 w-8 text-emerald-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">প্রেসক্রিপশন</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900">প্রেসক্রিপশন</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">ডিজিটাল প্রেসক্রিপশন তৈরি করুন এবং PDF প্রিন্ট করুন।</p>
+                <p className="text-gray-700 text-sm sm:text-base">ডিজিটাল প্রেসক্রিপশন তৈরি করুন এবং PDF প্রিন্ট করুন।</p>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow border-green-100">
+            <Card
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              role="listitem"
+              tabIndex={0}
+              aria-label="ফার্মেসি স্টক ম্যানেজমেন্ট ফিচার"
+            >
               <CardHeader>
-                <div className="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                <div
+                  className="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4"
+                  aria-hidden="true"
+                >
                   <Pill className="h-8 w-8 text-purple-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">ফার্মেসি স্টক</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900">ফার্মেসি স্টক</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">ইনভেন্টরি ম���যানেজমেন্ট এবং এক্সপায়ারি ডেট ট্র্যাকিং।</p>
+                <p className="text-gray-700 text-sm sm:text-base">ইনভেন্টরি ম্যানেজমেন্ট এবং এক্সপায়ারি ডেট ট্র্যাকিং।</p>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-lg transition-shadow border-green-100">
+            <Card
+              className={`text-center hover:shadow-lg transition-all duration-300 border-green-100 ${focusStyles.within}`}
+              role="listitem"
+              tabIndex={0}
+              aria-label="SMS রিমাইন্ডার ফিচার"
+            >
               <CardHeader>
-                <div className="mx-auto w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
+                <div
+                  className="mx-auto w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4"
+                  aria-hidden="true"
+                >
                   <MessageSquare className="h-8 w-8 text-orange-600" />
                 </div>
-                <CardTitle className="text-xl text-gray-900">SMS রিমাইন্ডার</CardTitle>
+                <CardTitle className="text-lg sm:text-xl text-gray-900">SMS রিমাইন্ডার</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">স্বয়ংক্রিয় SMS এবং ইমেইল নোটিফিকেশন সিস্টেম।</p>
+                <p className="text-gray-700 text-sm sm:text-base">স্বয়ংক্রিয় SMS এবং ইমেইল নোটিফিকেশন সিস্টেম।</p>
               </CardContent>
             </Card>
           </div>
