@@ -2,6 +2,145 @@
 @tailwind components;
 @tailwind utilities;
 
+/* RTL Support */
+.rtl {
+  direction: rtl;
+}
+
+/* RTL-specific adjustments */
+.rtl .flex {
+  flex-direction: row-reverse;
+}
+
+.rtl .text-left {
+  text-align: right;
+}
+
+.rtl .text-right {
+  text-align: left;
+}
+
+.rtl .ml-3 {
+  margin-left: 0;
+  margin-right: 0.75rem;
+}
+
+.rtl .mr-3 {
+  margin-right: 0;
+  margin-left: 0.75rem;
+}
+
+.rtl .mr-2 {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+.rtl .ml-2 {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+.rtl .pl-10 {
+  padding-left: 0;
+  padding-right: 2.5rem;
+}
+
+.rtl .pr-10 {
+  padding-right: 0;
+  padding-left: 2.5rem;
+}
+
+.rtl .left-3 {
+  left: auto;
+  right: 0.75rem;
+}
+
+.rtl .right-3 {
+  right: auto;
+  left: 0.75rem;
+}
+
+.rtl .border-r {
+  border-right: none;
+  border-left: 1px solid;
+}
+
+.rtl .border-l {
+  border-left: none;
+  border-right: 1px solid;
+}
+
+.rtl .border-r-2 {
+  border-right: none;
+  border-left: 2px solid;
+}
+
+.rtl .rounded-l-lg {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.rtl .rounded-r-lg {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+/* Sidebar adjustments for RTL */
+.rtl .w-64 {
+  transform: translateX(0);
+}
+
+/* User dropdown positioning for RTL */
+.rtl .absolute.right-0 {
+  right: auto;
+  left: 0;
+}
+
+.rtl .absolute.left-0 {
+  left: auto;
+  right: 0;
+}
+
+/* Language selector dropdown positioning for RTL */
+.rtl .animate-slide-up {
+  transform-origin: top right;
+}
+
+/* Custom animation for RTL language transitions */
+@keyframes rtl-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes ltr-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.rtl .animate-slide-in {
+  animation: rtl-slide-in 0.3s ease-out;
+}
+
+:not(.rtl) .animate-slide-in {
+  animation: ltr-slide-in 0.3s ease-out;
+}
+
 /* CSS Custom Properties for Theme Colors */
 :root {
   /* Light theme colors */
