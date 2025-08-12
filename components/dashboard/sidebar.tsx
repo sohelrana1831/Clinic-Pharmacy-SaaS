@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
@@ -19,23 +20,24 @@ import {
   DollarSign
 } from 'lucide-react'
 
-const menuItems = [
-  { icon: LayoutDashboard, label: 'ড্যাশবোর্ড', href: '/dashboard' },
-  { icon: Users, label: 'রোগীগণ', href: '/dashboard/patients' },
-  { icon: Calendar, label: 'অ্যাপয়েন্টমেন্ট', href: '/dashboard/appointments' },
-  { icon: FileText, label: 'প্রেসক্রিপশন', href: '/prescriptions/editor' },
-  { icon: Package, label: 'ইনভেন্টরি', href: '/dashboard/inventory' },
-  { icon: Pill, label: 'POS', href: '/dashboard/pos' },
-  { icon: BarChart3, label: 'রিপোর্ট', href: '/dashboard/reports' },
-  { icon: CreditCard, label: 'বিলিং', href: '/dashboard/billing' },
-  { icon: UserCheck, label: 'সাবস্ক্রিপশন', href: '/admin/subscriptions' },
-  { icon: DollarSign, label: 'প্রাইসিং', href: '/pricing' },
-  { icon: Settings, label: 'সেটিংস', href: '/dashboard/settings' },
-]
-
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false)
   const pathname = usePathname()
+  const { t } = useTranslation()
+
+  const menuItems = [
+    { icon: LayoutDashboard, label: t('navigation.dashboard'), href: '/dashboard' },
+    { icon: Users, label: t('navigation.patients'), href: '/dashboard/patients' },
+    { icon: Calendar, label: t('navigation.appointments'), href: '/dashboard/appointments' },
+    { icon: FileText, label: t('navigation.prescriptions'), href: '/prescriptions/editor' },
+    { icon: Package, label: t('navigation.inventory'), href: '/dashboard/inventory' },
+    { icon: Pill, label: t('navigation.pos'), href: '/dashboard/pos' },
+    { icon: BarChart3, label: t('navigation.reports'), href: '/dashboard/reports' },
+    { icon: CreditCard, label: t('navigation.billing'), href: '/dashboard/billing' },
+    { icon: UserCheck, label: t('navigation.subscriptions'), href: '/admin/subscriptions' },
+    { icon: DollarSign, label: t('navigation.pricing'), href: '/pricing' },
+    { icon: Settings, label: t('navigation.settings'), href: '/dashboard/settings' },
+  ]
 
   return (
     <div className={`
@@ -46,8 +48,8 @@ export function Sidebar() {
       <div className="p-4 border-b border-theme-default flex items-center justify-between">
         {!collapsed && (
           <div>
-            <h2 className="text-xl font-bold text-theme-accent">ক্লিনিক MS</h2>
-            <p className="text-sm text-theme-muted">ম্যানেজমেন্ট সিস্টেম</p>
+            <h2 className="text-xl font-bold text-theme-accent">{t('app.title')}</h2>
+            <p className="text-sm text-theme-muted">{t('app.subtitle')}</p>
           </div>
         )}
         <button
@@ -97,7 +99,7 @@ export function Sidebar() {
             </div>
             <div className="ml-3">
               <p className="text-sm font-medium text-theme-foreground">SR Pharma</p>
-              <p className="text-xs text-theme-muted">অ্যাডমিন</p>
+              <p className="text-xs text-theme-muted">{t('user.admin')}</p>
             </div>
           </div>
         </div>
