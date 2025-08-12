@@ -20,7 +20,7 @@ import {
 export function Topbar() {
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [selectedClinic, setSelectedClinic] = useState('sr-pharma')
-  const { theme, toggleTheme } = useTheme()
+  const { theme, toggleTheme, colors, isTransitioning } = useTheme()
 
   const clinics = [
     { value: 'sr-pharma', label: 'SR Pharma - ধানমন্ডি' },
@@ -29,16 +29,16 @@ export function Topbar() {
   ]
 
   return (
-    <header className="h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6 flex items-center justify-between transition-colors duration-200">
+    <header className="h-16 bg-theme-card border-b border-theme-default px-6 flex items-center justify-between theme-transition">
       {/* Left Section */}
       <div className="flex items-center space-x-4">
         {/* Clinic Selector */}
         <div className="flex items-center space-x-2">
-          <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+          <MapPin className="h-5 w-5 text-theme-accent" />
           <Select
             value={selectedClinic}
             onChange={(e) => setSelectedClinic(e.target.value)}
-            className="border-0 bg-transparent font-medium text-gray-900 dark:text-gray-100"
+            className="border-0 bg-transparent font-medium text-theme-foreground theme-transition focus-ring"
           >
             {clinics.map((clinic) => (
               <option key={clinic.value} value={clinic.value}>
@@ -50,11 +50,11 @@ export function Topbar() {
 
         {/* Search */}
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 dark:text-gray-500" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-theme-muted" />
           <Input
             type="text"
             placeholder="রোগী, ওষুধ বা ডাক্তার খুঁজুন..."
-            className="pl-10 w-80 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+            className="pl-10 w-80 input-theme"
           />
         </div>
       </div>
