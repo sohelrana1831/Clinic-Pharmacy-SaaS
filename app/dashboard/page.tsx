@@ -41,7 +41,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-theme-background flex">
       {/* Sidebar */}
       <Sidebar />
       
@@ -51,11 +51,11 @@ export default function DashboardPage() {
         <Topbar />
         
         {/* Dashboard Content */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 bg-theme-background">
           {/* Page Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">ড্যাশবোর্ড</h1>
-            <p className="text-gray-600">আপনার ক্লিনিকের সামগ্রিক তথ্য এক নজরে দেখুন</p>
+            <h1 className="text-3xl font-bold text-theme-foreground mb-2">ড্যাশবোর্ড</h1>
+            <p className="text-theme-muted">আপনার ক্লিনিকের সামগ্রিক তথ্য এক নজরে দেখুন</p>
           </div>
 
           {/* Today's Stats */}
