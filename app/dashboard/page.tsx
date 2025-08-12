@@ -1,22 +1,24 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Sidebar } from '@/components/dashboard/sidebar'
 import { Topbar } from '@/components/dashboard/topbar'
-import { 
-  TodayStats, 
-  UpcomingAppointments, 
-  LowStockMedicines, 
-  QuickActions, 
-  RecentActivity 
+import {
+  TodayStats,
+  UpcomingAppointments,
+  LowStockMedicines,
+  QuickActions,
+  RecentActivity
 } from '@/components/dashboard/widgets'
-import { 
-  NewPatientModal, 
-  NewAppointmentModal, 
-  NewSaleModal 
+import {
+  NewPatientModal,
+  NewAppointmentModal,
+  NewSaleModal
 } from '@/components/modals/modal'
 
 export default function DashboardPage() {
+  const { t } = useTranslation()
   const [modals, setModals] = useState({
     newPatient: false,
     newAppointment: false,
@@ -54,8 +56,8 @@ export default function DashboardPage() {
         <main className="flex-1 p-6 bg-theme-background">
           {/* Page Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-theme-foreground mb-2">ড্যাশবোর্ড</h1>
-            <p className="text-theme-muted">আপনার ক্লিনিকের সামগ্রিক তথ্য এক নজরে দেখুন</p>
+            <h1 className="text-3xl font-bold text-theme-foreground mb-2">{t('dashboard.title')}</h1>
+            <p className="text-theme-muted">{t('dashboard.subtitle')}</p>
           </div>
 
           {/* Today's Stats */}
