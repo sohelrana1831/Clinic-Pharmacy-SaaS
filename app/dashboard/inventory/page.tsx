@@ -51,7 +51,7 @@ export default function InventoryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-theme-background flex">
       {/* Sidebar */}
       <Sidebar />
       
@@ -61,7 +61,7 @@ export default function InventoryPage() {
         <Topbar />
         
         {/* Page Content */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 bg-theme-background">
           <InventoryTable
             inventory={inventory}
             onEditItem={handleEditItem}

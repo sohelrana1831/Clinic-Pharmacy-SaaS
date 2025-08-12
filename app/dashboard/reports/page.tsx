@@ -44,7 +44,7 @@ export default function ReportsPage() {
   const currentMonthPatients = patientGrowthData[patientGrowthData.length - 1]?.totalPatients || 0
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-theme-background flex">
       {/* Sidebar */}
       <Sidebar />
 
@@ -54,17 +54,17 @@ export default function ReportsPage() {
         <Topbar />
 
         {/* Page Content */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 bg-theme-background">
           <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">রিপোর্ট ও বিশ্লেষণ</h1>
-          <p className="text-gray-600 mt-1">বিক্রয়, রোগী এবং ব্যবসায়িক পারফরম্যান্স রিপোর্ট</p>
+          <h1 className="text-3xl font-bold text-theme-foreground">রিপোর্ট ও বিশ্লেষণ</h1>
+          <p className="text-theme-muted mt-1">বিক্রয়, রোগী এবং ব্যবসায়িক পারফরম্যান্স রিপোর্ট</p>
         </div>
         <div className="flex items-center gap-2">
-          <Filter className="h-5 w-5 text-gray-500" />
-          <span className="text-sm text-gray-600">ফিল্টার সক্রিয়</span>
+          <Filter className="h-5 w-5 text-theme-muted" />
+          <span className="text-sm text-theme-muted">ফিল্টার সক্রিয়</span>
         </div>
       </div>
 
@@ -211,7 +211,7 @@ export default function ReportsPage() {
           </div>
           <ExportButtons
             onExportCSV={() => exportToCSV(monthlyRevenueData, 'monthly-revenue', csvHeaders.monthlyRevenue)}
-            onExportPDF={() => exportToPDF('মাসিক আয়ের রিপোর্ট', monthlyRevenueData)}
+            onExportPDF={() => exportToPDF('মাসিক ���য়ের রিপোর্ট', monthlyRevenueData)}
           />
         </CardHeader>
         <CardContent>
