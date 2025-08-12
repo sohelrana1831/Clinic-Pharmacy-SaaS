@@ -97,50 +97,50 @@ export default function DashboardPage() {
 
           {/* Additional Stats Cards */}
           <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="card-theme p-6 rounded-lg border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">মোট রোগী</p>
-                  <p className="text-2xl font-bold text-gray-900">১,২৮৫</p>
+                  <p className="text-sm text-theme-muted">মোট রোগী</p>
+                  <p className="text-2xl font-bold text-theme-foreground">১,২৮৫</p>
                 </div>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <span className="text-blue-600 font-bold">👥</span>
+                <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center theme-transition">
+                  <span className="text-primary-600 dark:text-primary-400 font-bold">👥</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="card-theme p-6 rounded-lg border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">মাসিক আয়</p>
-                  <p className="text-2xl font-bold text-gray-900">৳৩,৪৫,০০০</p>
+                  <p className="text-sm text-theme-muted">মাসিক আয়</p>
+                  <p className="text-2xl font-bold text-theme-foreground">৳৩,৪��,০০০</p>
                 </div>
-                <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                  <span className="text-emerald-600 font-bold">💰</span>
+                <div className="w-12 h-12 bg-success-100 dark:bg-success-900 rounded-lg flex items-center justify-center theme-transition">
+                  <span className="text-success-600 dark:text-success-400 font-bold">💰</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="card-theme p-6 rounded-lg border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">মোট ওষুধ</p>
-                  <p className="text-2xl font-bold text-gray-900">৪৫৬</p>
+                  <p className="text-sm text-theme-muted">মোট ওষুধ</p>
+                  <p className="text-2xl font-bold text-theme-foreground">৪৫৬</p>
                 </div>
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                  <span className="text-purple-600 font-bold">💊</span>
+                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center theme-transition">
+                  <span className="text-purple-600 dark:text-purple-400 font-bold">💊</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="card-theme p-6 rounded-lg border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">ডাক্তার</p>
-                  <p className="text-2xl font-bold text-gray-900">৫</p>
+                  <p className="text-sm text-theme-muted">ডাক্তার</p>
+                  <p className="text-2xl font-bold text-theme-foreground">৫</p>
                 </div>
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                  <span className="text-orange-600 font-bold">👨‍⚕️</span>
+                <div className="w-12 h-12 bg-warning-100 dark:bg-warning-900 rounded-lg flex items-center justify-center theme-transition">
+                  <span className="text-warning-600 dark:text-warning-400 font-bold">👨‍⚕️</span>
                 </div>
               </div>
             </div>
