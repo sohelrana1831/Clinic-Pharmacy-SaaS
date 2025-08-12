@@ -102,7 +102,7 @@ export default function DashboardPage() {
             <div className="card-theme p-6 rounded-lg border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-theme-muted">মোট রোগী</p>
+                  <p className="text-sm text-theme-muted">{t('dashboard.totalPatients')}</p>
                   <p className="text-2xl font-bold text-theme-foreground">১,২৮৫</p>
                 </div>
                 <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center theme-transition">
@@ -114,7 +114,7 @@ export default function DashboardPage() {
             <div className="card-theme p-6 rounded-lg border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-theme-muted">মাসিক আয়</p>
+                  <p className="text-sm text-theme-muted">{t('dashboard.monthlyIncome')}</p>
                   <p className="text-2xl font-bold text-theme-foreground">৳৩,৪��,০০০</p>
                 </div>
                 <div className="w-12 h-12 bg-success-100 dark:bg-success-900 rounded-lg flex items-center justify-center theme-transition">
@@ -126,7 +126,7 @@ export default function DashboardPage() {
             <div className="card-theme p-6 rounded-lg border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-theme-muted">মোট ওষুধ</p>
+                  <p className="text-sm text-theme-muted">{t('dashboard.totalMedicines')}</p>
                   <p className="text-2xl font-bold text-theme-foreground">৪৫৬</p>
                 </div>
                 <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center theme-transition">
@@ -138,7 +138,7 @@ export default function DashboardPage() {
             <div className="card-theme p-6 rounded-lg border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-theme-muted">ডাক্তার</p>
+                  <p className="text-sm text-theme-muted">{t('dashboard.doctors')}</p>
                   <p className="text-2xl font-bold text-theme-foreground">৫</p>
                 </div>
                 <div className="w-12 h-12 bg-warning-100 dark:bg-warning-900 rounded-lg flex items-center justify-center theme-transition">
