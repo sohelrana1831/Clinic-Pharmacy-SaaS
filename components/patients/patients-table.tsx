@@ -52,8 +52,8 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">রোগীর তালিকা</h1>
-          <p className="text-gray-600">সকল রোগীর তথ্য দেখুন ও পরিচালনা করুন</p>
+          <h1 className="text-2xl font-bold text-theme-foreground">রোগীর তালিকা</h1>
+          <p className="text-theme-muted">সকল রোগীর তথ্য দেখুন ও পরিচালনা করুন</p>
         </div>
         <Button onClick={onAddPatient} className="bg-blue-600 hover:bg-blue-700">
           <Plus className="h-4 w-4 mr-2" />
@@ -64,7 +64,7 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
       {/* Search and Filters */}
       <div className="flex items-center space-x-4">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-theme-muted" />
           <Input
             type="text"
             placeholder="নাম, ফোন বা ID দিয়ে খুঁজুন..."
@@ -74,7 +74,7 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
           />
         </div>
         <div className="flex items-center space-x-2">
-          <span className="text-sm text-gray-600">মোট: {filteredPatients.length} জন</span>
+          <span className="text-sm text-theme-muted">মোট: {filteredPatients.length} জন</span>
         </div>
       </div>
 
@@ -106,7 +106,7 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredPatients.map((patient) => (
-                <tr key={patient.id} className="hover:bg-gray-50">
+                <tr key={patient.id} className="hover:bg-gray-50 dark:hover:bg-gray-800">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-blue-600">{patient.id}</div>
                   </td>
@@ -118,24 +118,24 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
                         </span>
                       </div>
                       <div>
-                        <div className="text-sm font-medium text-gray-900">{patient.name}</div>
+                        <div className="text-sm font-medium text-theme-foreground">{patient.name}</div>
                         <div className="text-sm text-theme-muted">{patient.gender === 'male' ? 'পুরুষ' : patient.gender === 'female' ? 'মহিলা' : 'অন্যান্য'}</div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{patient.phone}</div>
+                    <div className="text-sm text-theme-foreground">{patient.phone}</div>
                     {patient.email && (
                       <div className="text-sm text-theme-muted">{patient.email}</div>
                     )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{calculateAge(patient.dateOfBirth)} বছর</div>
+                    <div className="text-sm text-theme-foreground">{calculateAge(patient.dateOfBirth)} বছর</div>
                     <div className="text-sm text-theme-muted">{formatDate(patient.dateOfBirth)}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {patient.lastVisit ? (
-                      <div className="text-sm text-gray-900">{formatDate(patient.lastVisit)}</div>
+                      <div className="text-sm text-theme-foreground">{formatDate(patient.lastVisit)}</div>
                     ) : (
                       <div className="text-sm text-theme-muted">কোনো ভিজিট নেই</div>
                     )}
