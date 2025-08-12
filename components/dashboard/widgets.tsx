@@ -166,7 +166,7 @@ export function LowStockMedicines({ onViewAll }: { onViewAll: () => void }) {
           কম স্টক ওষুধ
         </CardTitle>
         <Button variant="outline" size="sm" onClick={onViewAll}>
-          সব দেখুন
+          স�� দেখুন
         </Button>
       </CardHeader>
       <CardContent>
@@ -179,7 +179,7 @@ export function LowStockMedicines({ onViewAll }: { onViewAll: () => void }) {
               </div>
               <div className="text-right">
                 <p className="text-lg font-bold text-warning-600 dark:text-warning-400">{medicine.stock}</p>
-                <p className="text-sm text-gray-500">{medicine.unit}</p>
+                <p className="text-sm text-theme-muted">{medicine.unit}</p>
               </div>
             </div>
           ))}
