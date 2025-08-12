@@ -2,92 +2,318 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme transitions */
+/* CSS Custom Properties for Theme Colors */
 :root {
-  --transition-colors: color 200ms ease-in-out, background-color 200ms ease-in-out, border-color 200ms ease-in-out;
+  /* Light theme colors */
+  --bg-background: #F9FAFB;
+  --bg-card: #FFFFFF;
+  --bg-accent: #2563EB;
+  --bg-accent-secondary: #10B981;
+  --text-foreground: #111827;
+  --text-muted: #6B7280;
+  --border-default: #E5E7EB;
+  
+  /* Transition variables */
+  --transition-theme: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-colors: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  --transition-transform: transform 0.2s ease-in-out;
+  --transition-opacity: opacity 0.2s ease-in-out;
 }
 
-/* Apply transitions to all elements */
+/* Dark theme colors */
+.dark {
+  --bg-background: #111827;
+  --bg-card: #1F2937;
+  --bg-accent: #3B82F6;
+  --bg-accent-secondary: #34D399;
+  --text-foreground: #F9FAFB;
+  --text-muted: #9CA3AF;
+  --border-default: #374151;
+  
+  color-scheme: dark;
+}
+
+/* Universal smooth transitions for theme switching */
 *,
 *::before,
 *::after {
   transition: var(--transition-colors);
 }
 
-/* Dark mode class setup */
-.dark {
-  color-scheme: dark;
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-/* Custom scrollbar styling */
+/* Body styling with theme variables */
+body {
+  background-color: var(--bg-background);
+  color: var(--text-foreground);
+  transition: var(--transition-theme);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced scrollbar styling with theme colors */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-gray-800;
+  background-color: var(--bg-background);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-400 dark:bg-gray-500;
-}
-
-/* Body styling */
-body {
-  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  background-color: var(--text-muted);
+  border-radius: 4px;
+  opacity: 0.6;
   transition: var(--transition-colors);
 }
 
-/* Focus states for accessibility */
-.focus-visible:focus {
-  @apply outline-2 outline-offset-2 outline-blue-500 dark:outline-blue-400;
+::-webkit-scrollbar-thumb:hover {
+  opacity: 0.8;
 }
 
-/* High contrast support */
+/* Firefox scrollbar support */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-muted) var(--bg-background);
+}
+
+/* Focus states for accessibility with WCAG AA compliance */
+.focus-visible:focus,
+*:focus-visible {
+  outline: 2px solid var(--bg-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Enhanced focus ring utilities */
+.focus-ring {
+  transition: var(--transition-colors);
+}
+
+.focus-ring:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--bg-accent), 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.dark .focus-ring:focus {
+  box-shadow: 0 0 0 2px var(--bg-accent), 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.focus-ring-error:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #ef4444, 0 0 0 4px rgba(239, 68, 68, 0.1);
+}
+
+/* High contrast mode support */
 @media (prefers-contrast: high) {
+  :root {
+    --text-foreground: #000000;
+    --bg-background: #ffffff;
+    --border-default: #000000;
+  }
+  
   .dark {
-    --tw-bg-gray-900: #000000;
-    --tw-text-gray-100: #ffffff;
+    --text-foreground: #ffffff;
+    --bg-background: #000000;
+    --border-default: #ffffff;
+  }
+  
+  .contrast-high {
+    border-width: 2px;
+    border-color: currentColor;
   }
 }
 
+/* Selection styling */
+::selection {
+  background-color: var(--bg-accent);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--bg-accent);
+  color: white;
+}
+
 @layer utilities {
+  /* Theme-aware background utilities */
+  .bg-theme-background {
+    background-color: var(--bg-background);
+  }
+  
+  .bg-theme-card {
+    background-color: var(--bg-card);
+  }
+  
+  .bg-theme-accent {
+    background-color: var(--bg-accent);
+  }
+  
+  .bg-theme-accent-secondary {
+    background-color: var(--bg-accent-secondary);
+  }
+  
+  /* Theme-aware text utilities */
+  .text-theme-foreground {
+    color: var(--text-foreground);
+  }
+  
+  .text-theme-muted {
+    color: var(--text-muted);
+  }
+  
+  /* Theme-aware border utilities */
+  .border-theme-default {
+    border-color: var(--border-default);
+  }
+  
+  /* Hover states with theme colors */
+  .hover-theme-accent:hover {
+    background-color: var(--bg-accent);
+    color: white;
+  }
+  
+  .hover-theme-bg:hover {
+    background-color: color-mix(in srgb, var(--bg-card) 80%, var(--text-muted) 10%);
+  }
+  
+  /* Theme transition utilities */
+  .theme-transition {
+    transition: var(--transition-theme);
+  }
+  
+  .theme-transition-fast {
+    transition: var(--transition-colors);
+  }
+  
+  .theme-transition-transform {
+    transition: var(--transition-transform);
+  }
+  
+  /* Enhanced component utilities */
+  .card-theme {
+    background-color: var(--bg-card);
+    border-color: var(--border-default);
+    color: var(--text-foreground);
+    transition: var(--transition-theme);
+  }
+  
+  .card-theme:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .dark .card-theme:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Button theme utilities */
+  .btn-theme-primary {
+    background-color: var(--bg-accent);
+    color: white;
+    border-color: var(--bg-accent);
+    transition: var(--transition-theme);
+  }
+  
+  .btn-theme-primary:hover {
+    background-color: color-mix(in srgb, var(--bg-accent) 90%, black 10%);
+    border-color: color-mix(in srgb, var(--bg-accent) 90%, black 10%);
+  }
+  
+  .btn-theme-secondary {
+    background-color: var(--bg-accent-secondary);
+    color: white;
+    border-color: var(--bg-accent-secondary);
+    transition: var(--transition-theme);
+  }
+  
+  .btn-theme-secondary:hover {
+    background-color: color-mix(in srgb, var(--bg-accent-secondary) 90%, black 10%);
+    border-color: color-mix(in srgb, var(--bg-accent-secondary) 90%, black 10%);
+  }
+  
+  .btn-theme-outline {
+    background-color: transparent;
+    color: var(--text-foreground);
+    border-color: var(--border-default);
+    transition: var(--transition-theme);
+  }
+  
+  .btn-theme-outline:hover {
+    background-color: var(--bg-card);
+    border-color: var(--bg-accent);
+    color: var(--bg-accent);
+  }
+  
+  /* Text utilities with balance */
   .text-balance {
     text-wrap: balance;
   }
   
-  /* Dark mode utilities */
-  .bg-card {
-    @apply bg-white dark:bg-gray-800;
-  }
-  
-  .bg-background {
-    @apply bg-gray-50 dark:bg-gray-900;
-  }
-  
-  .text-foreground {
-    @apply text-gray-900 dark:text-gray-100;
-  }
-  
-  .text-muted {
-    @apply text-gray-600 dark:text-gray-400;
-  }
-  
-  .border-default {
-    @apply border-gray-200 dark:border-gray-700;
-  }
-  
-  .hover-bg {
-    @apply hover:bg-gray-50 dark:hover:bg-gray-800;
-  }
-  
   /* Animation utilities */
-  .theme-transition {
-    transition: var(--transition-colors);
+  .animate-theme-fade-in {
+    animation: themeTransition 0.3s ease-in-out;
+  }
+  
+  /* Glassmorphism effect for modals */
+  .backdrop-theme {
+    backdrop-filter: blur(8px);
+    background-color: color-mix(in srgb, var(--bg-background) 80%, transparent 20%);
+  }
+}
+
+/* Component-specific theme styles */
+@layer components {
+  /* Modal theme styling */
+  .modal-theme {
+    background-color: var(--bg-card);
+    border-color: var(--border-default);
+    color: var(--text-foreground);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transition: var(--transition-theme);
+  }
+  
+  .dark .modal-theme {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Input theme styling */
+  .input-theme {
+    background-color: var(--bg-card);
+    border-color: var(--border-default);
+    color: var(--text-foreground);
+    transition: var(--transition-theme);
+  }
+  
+  .input-theme:focus {
+    border-color: var(--bg-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--bg-accent) 20%, transparent 80%);
+  }
+  
+  .input-theme::placeholder {
+    color: var(--text-muted);
+  }
+  
+  /* Chart and graph theme colors */
+  .chart-theme {
+    --chart-primary: var(--bg-accent);
+    --chart-secondary: var(--bg-accent-secondary);
+    --chart-background: var(--bg-card);
+    --chart-grid: var(--border-default);
+    --chart-text: var(--text-foreground);
+    --chart-muted: var(--text-muted);
   }
 }
