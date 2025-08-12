@@ -22,30 +22,30 @@ export function ChartPlaceholder({
   const getChartIcon = () => {
     switch (type) {
       case 'bar':
-        return <BarChart3 className="h-12 w-12 text-blue-400 mb-2" />
+        return <BarChart3 className="h-12 w-12 text-primary-500 dark:text-primary-400 mb-2" />
       case 'line':
-        return <TrendingUp className="h-12 w-12 text-green-400 mb-2" />
+        return <TrendingUp className="h-12 w-12 text-success-500 dark:text-success-400 mb-2" />
       case 'pie':
-        return <PieChart className="h-12 w-12 text-purple-400 mb-2" />
+        return <PieChart className="h-12 w-12 text-purple-500 dark:text-purple-400 mb-2" />
       case 'area':
-        return <LineChart className="h-12 w-12 text-orange-400 mb-2" />
+        return <LineChart className="h-12 w-12 text-warning-500 dark:text-warning-400 mb-2" />
       default:
-        return <BarChart3 className="h-12 w-12 text-blue-400 mb-2" />
+        return <BarChart3 className="h-12 w-12 text-primary-500 dark:text-primary-400 mb-2" />
     }
   }
 
   const getGradientColors = () => {
     switch (type) {
       case 'bar':
-        return 'from-blue-50 to-blue-100 border-blue-300'
+        return 'from-primary-50 to-primary-100 border-primary-300 dark:from-primary-900 dark:to-primary-800 dark:border-primary-700'
       case 'line':
-        return 'from-green-50 to-green-100 border-green-300'
+        return 'from-success-50 to-success-100 border-success-300 dark:from-success-900 dark:to-success-800 dark:border-success-700'
       case 'pie':
-        return 'from-purple-50 to-purple-100 border-purple-300'
+        return 'from-purple-50 to-purple-100 border-purple-300 dark:from-purple-900 dark:to-purple-800 dark:border-purple-700'
       case 'area':
-        return 'from-orange-50 to-orange-100 border-orange-300'
+        return 'from-warning-50 to-warning-100 border-warning-300 dark:from-warning-900 dark:to-warning-800 dark:border-warning-700'
       default:
-        return 'from-blue-50 to-blue-100 border-blue-300'
+        return 'from-primary-50 to-primary-100 border-primary-300 dark:from-primary-900 dark:to-primary-800 dark:border-primary-700'
     }
   }
 
