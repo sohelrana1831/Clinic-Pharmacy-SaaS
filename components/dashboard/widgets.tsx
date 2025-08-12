@@ -29,20 +29,27 @@ interface StatsWidgetProps {
 
 function StatsWidget({ title, value, change, changeType, icon, color, onClick }: StatsWidgetProps) {
   return (
-    <Card className="hover:shadow-md transition-shadow cursor-pointer" onClick={onClick}>
+    <Card
+      className="hover:shadow-md theme-transition cursor-pointer focus-ring"
+      onClick={onClick}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } } : undefined}
+      aria-label={`${title}: ${value}${change ? `, ${change}` : ''}`}
+    >
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-gray-600">{title}</p>
-            <p className="text-2xl font-bold text-gray-900">{value}</p>
+            <p className="text-sm font-medium text-theme-muted">{title}</p>
+            <p className="text-2xl font-bold text-theme-foreground">{value}</p>
             {change && (
               <div className="flex items-center mt-1">
                 {changeType === 'increase' ? (
-                  <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
+                  <TrendingUp className="h-4 w-4 text-success-500 mr-1" />
                 ) : (
-                  <TrendingDown className="h-4 w-4 text-red-500 mr-1" />
+                  <TrendingDown className="h-4 w-4 text-error-500 mr-1" />
                 )}
-                <span className={`text-sm ${changeType === 'increase' ? 'text-green-600' : 'text-red-600'}`}>
+                <span className={`text-sm ${changeType === 'increase' ? 'text-success-600' : 'text-error-600'}`}>
                   {change}
                 </span>
               </div>
