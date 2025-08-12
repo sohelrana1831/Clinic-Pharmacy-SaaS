@@ -84,22 +84,22 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
                   রোগী ID
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
                   নাম
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
                   ফোন
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
                   বয়স
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
                   শেষ ভিজিট
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
                   কার্যক্রম
                 </th>
               </tr>
@@ -119,28 +119,28 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
                       </div>
                       <div>
                         <div className="text-sm font-medium text-gray-900">{patient.name}</div>
-                        <div className="text-sm text-gray-500">{patient.gender === 'male' ? 'পুরুষ' : patient.gender === 'female' ? 'মহিলা' : 'অন্যান্য'}</div>
+                        <div className="text-sm text-theme-muted">{patient.gender === 'male' ? 'পুরুষ' : patient.gender === 'female' ? 'মহিলা' : 'অন্যান্য'}</div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{patient.phone}</div>
                     {patient.email && (
-                      <div className="text-sm text-gray-500">{patient.email}</div>
+                      <div className="text-sm text-theme-muted">{patient.email}</div>
                     )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{calculateAge(patient.dateOfBirth)} বছর</div>
-                    <div className="text-sm text-gray-500">{formatDate(patient.dateOfBirth)}</div>
+                    <div className="text-sm text-theme-muted">{formatDate(patient.dateOfBirth)}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {patient.lastVisit ? (
                       <div className="text-sm text-gray-900">{formatDate(patient.lastVisit)}</div>
                     ) : (
-                      <div className="text-sm text-gray-500">কোনো ভিজিট নেই</div>
+                      <div className="text-sm text-theme-muted">কোনো ভিজিট নেই</div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-theme-muted">
                     <div className="flex items-center space-x-2">
                       <Button
                         size="sm"
@@ -168,7 +168,7 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
 
         {filteredPatients.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-gray-500">
+            <div className="text-theme-muted">
               {searchTerm ? 'কোনো রোগী পাওয়া যায়নি' : 'এখনো কোনো রোগী যোগ করা হয়নি'}
             </div>
             {!searchTerm && (
