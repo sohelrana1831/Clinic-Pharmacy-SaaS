@@ -58,14 +58,12 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     setThemeState(newTheme)
   }
 
-  // Prevent hydration mismatch
-  if (!mounted) {
-    return <div style={{ visibility: 'hidden' }}>{children}</div>
-  }
-
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
-      {children}
+      {/* Prevent hydration mismatch by hiding content until mounted */}
+      <div style={{ visibility: mounted ? 'visible' : 'hidden' }}>
+        {children}
+      </div>
     </ThemeContext.Provider>
   )
 }
