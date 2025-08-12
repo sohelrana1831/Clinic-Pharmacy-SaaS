@@ -62,9 +62,9 @@ export function Topbar() {
       {/* Right Section */}
       <div className="flex items-center space-x-4">
         {/* Current Date */}
-        <div className="text-sm text-gray-600 dark:text-gray-300">
+        <div className="text-sm text-theme-muted">
           <span>আজ: </span>
-          <span className="font-medium">১৫ জানুয়ারি, ২০২৪</span>
+          <span className="font-medium text-theme-foreground">১৫ জান���য়ারি, ২০২৪</span>
         </div>
 
         {/* Theme Toggle */}
@@ -72,20 +72,27 @@ export function Topbar() {
           variant="outline"
           size="icon"
           onClick={toggleTheme}
-          className="border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
+          className={`theme-transition ${isTransitioning ? 'animate-theme-fade-in' : ''}`}
           aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+          title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
         >
           {theme === 'light' ? (
-            <Moon className="h-4 w-4 text-gray-700 dark:text-gray-300" />
+            <Moon className="h-4 w-4 text-theme-foreground theme-transition" />
           ) : (
-            <Sun className="h-4 w-4 text-gray-700 dark:text-gray-300" />
+            <Sun className="h-4 w-4 text-theme-foreground theme-transition" />
           )}
         </Button>
 
         {/* Notifications */}
-        <Button variant="outline" size="icon" className="relative border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
-          <Bell className="h-4 w-4 text-gray-700 dark:text-gray-300" />
-          <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 dark:bg-red-400 text-white text-xs rounded-full flex items-center justify-center">
+        <Button
+          variant="outline"
+          size="icon"
+          className="relative theme-transition"
+          aria-label="Notifications (3 unread)"
+          title="Notifications"
+        >
+          <Bell className="h-4 w-4 text-theme-foreground" />
+          <span className="absolute -top-1 -right-1 h-4 w-4 bg-error-500 text-white text-xs rounded-full flex items-center justify-center font-medium">
             3
           </span>
         </Button>
@@ -95,36 +102,38 @@ export function Topbar() {
           <Button
             variant="outline"
             onClick={() => setShowUserMenu(!showUserMenu)}
-            className="flex items-center space-x-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
+            className="flex items-center space-x-2 theme-transition"
+            aria-label="User menu"
+            aria-expanded={showUserMenu}
           >
-            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
-              <span className="text-blue-600 dark:text-blue-400 font-medium text-sm">ড</span>
+            <div className="w-8 h-8 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center theme-transition">
+              <span className="text-theme-accent font-medium text-sm">ড</span>
             </div>
             <div className="text-left">
-              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">ডা. রহিম উদ্দিন</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">প্রধান চিকিৎসক</p>
+              <p className="text-sm font-medium text-theme-foreground">ডা. রহিম উদ্দিন</p>
+              <p className="text-xs text-theme-muted">প্রধান চিকিৎসক</p>
             </div>
-            <ChevronDown className="h-4 w-4 text-gray-700 dark:text-gray-300" />
+            <ChevronDown className="h-4 w-4 text-theme-foreground" />
           </Button>
 
           {/* User Dropdown */}
           {showUserMenu && (
-            <div className="absolute right-0 top-12 w-56 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50">
-              <div className="p-4 border-b border-gray-100 dark:border-gray-700">
-                <p className="font-medium text-gray-900 dark:text-gray-100">ডা. রহিম উদ্দিন</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">rahim@srpharma.com</p>
+            <div className="absolute right-0 top-12 w-56 modal-theme rounded-lg z-50 animate-slide-up">
+              <div className="p-4 border-b border-theme-default">
+                <p className="font-medium text-theme-foreground">ডা. রহিম উদ্দিন</p>
+                <p className="text-sm text-theme-muted">rahim@srpharma.com</p>
               </div>
               <div className="p-2">
-                <button className="w-full flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md">
+                <button className="w-full flex items-center px-3 py-2 text-sm text-theme-foreground hover-theme-bg rounded-md theme-transition focus-ring">
                   <User className="h-4 w-4 mr-2" />
                   প্রোফাইল
                 </button>
-                <button className="w-full flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md">
+                <button className="w-full flex items-center px-3 py-2 text-sm text-theme-foreground hover-theme-bg rounded-md theme-transition focus-ring">
                   <Settings className="h-4 w-4 mr-2" />
                   সেটিংস
                 </button>
-                <hr className="my-2 border-gray-200 dark:border-gray-600" />
-                <button className="w-full flex items-center px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md">
+                <hr className="my-2 border-theme-default" />
+                <button className="w-full flex items-center px-3 py-2 text-sm text-error-600 dark:text-error-400 hover:bg-error-50 dark:hover:bg-error-900/20 rounded-md theme-transition focus-ring">
                   <LogOut className="h-4 w-4 mr-2" />
                   লগআউট
                 </button>
