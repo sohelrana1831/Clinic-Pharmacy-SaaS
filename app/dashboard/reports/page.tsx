@@ -79,7 +79,7 @@ export default function ReportsPage() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">তারিখ থেকে</label>
+              <label className="block text-sm font-medium text-theme-foreground mb-2">তারিখ থেকে</label>
               <Input
                 type="date"
                 value={dateRange.from}
@@ -87,7 +87,7 @@ export default function ReportsPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">তারিখ পর্যন্ত</label>
+              <label className="block text-sm font-medium text-theme-foreground mb-2">তারিখ পর্যন্ত</label>
               <Input
                 type="date"
                 value={dateRange.to}
@@ -95,7 +95,7 @@ export default function ReportsPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">ডাক্তার নির্বাচন</label>
+              <label className="block text-sm font-medium text-theme-foreground mb-2">ডাক্তার নির্বাচন</label>
               <Select
                 value={selectedDoctor}
                 onChange={(e) => setSelectedDoctor(e.target.value)}
@@ -106,7 +106,7 @@ export default function ReportsPage() {
               </Select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">শাখা নির্বাচন</label>
+              <label className="block text-sm font-medium text-theme-foreground mb-2">শাখা নির্বাচন</label>
               <Select
                 value={selectedBranch}
                 onChange={(e) => setSelectedBranch(e.target.value)}
@@ -139,7 +139,7 @@ export default function ReportsPage() {
           suffix=" টি"
         />
         <MetricCard
-          title="গড় বৃদ্ধির হার"
+          title="���ড় বৃদ্ধির হার"
           value={avgSalesGrowth.toFixed(1)}
           change={avgSalesGrowth}
           icon={<TrendingUp className="h-5 w-5" />}
@@ -164,7 +164,7 @@ export default function ReportsPage() {
               <DollarSign className="h-5 w-5 text-green-600" />
               দৈনিক বিক্রয় রিপোর্ট
             </CardTitle>
-            <p className="text-sm text-gray-600 mt-1">গত ৭ দিনের বিক্রয় পরিসংখ্যান</p>
+            <p className="text-sm text-theme-muted mt-1">গত ৭ দিনের বিক্রয় পরিসংখ্যান</p>
           </div>
           <ExportButtons
             onExportCSV={() => exportToCSV(dailySalesData, 'daily-sales', csvHeaders.dailySales)}
@@ -180,13 +180,13 @@ export default function ReportsPage() {
               data={dailySalesData}
             />
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">সাম্প্রতিক বিক্রয়</h4>
+              <h4 className="font-semibold text-theme-foreground">সাম্প্রতিক বিক্রয়</h4>
               <div className="space-y-2 max-h-48 overflow-y-auto">
                 {dailySalesData.map((day, index) => (
-                  <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <div key={index} className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                     <div>
                       <p className="font-medium">{day.date}</p>
-                      <p className="text-sm text-gray-600">{day.transactions} লেনদেন</p>
+                      <p className="text-sm text-theme-muted">{day.transactions} লেনদেন</p>
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-green-600">৳{day.sales.toLocaleString()}</p>
@@ -207,11 +207,11 @@ export default function ReportsPage() {
               <TrendingUp className="h-5 w-5 text-blue-600" />
               মাসিক আয়ের গ্রাফ
             </CardTitle>
-            <p className="text-sm text-gray-600 mt-1">গত ৬ মাসের আয় এবং ব��দ্ধির হার</p>
+            <p className="text-sm text-theme-muted mt-1">গত ৬ মাসের আয় এবং ব��দ্ধির হার</p>
           </div>
           <ExportButtons
             onExportCSV={() => exportToCSV(monthlyRevenueData, 'monthly-revenue', csvHeaders.monthlyRevenue)}
-            onExportPDF={() => exportToPDF('মাসিক ���য়ের রিপোর্ট', monthlyRevenueData)}
+            onExportPDF={() => exportToPDF('মাসিক আয়ের রিপোর্ট', monthlyRevenueData)}
           />
         </CardHeader>
         <CardContent>
@@ -226,10 +226,10 @@ export default function ReportsPage() {
               />
             </div>
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">মাসিক পারফরম্যান্স</h4>
+              <h4 className="font-semibold text-theme-foreground">মাসিক পারফরম্যান্স</h4>
               <div className="space-y-2">
                 {monthlyRevenueData.slice(-3).map((month, index) => (
-                  <div key={index} className="p-3 bg-gray-50 rounded-lg">
+                  <div key={index} className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                     <div className="flex justify-between items-center mb-1">
                       <p className="font-medium">{month.month}</p>
                       <span className={`text-sm font-medium ${month.growth > 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -251,9 +251,9 @@ export default function ReportsPage() {
           <div>
             <CardTitle className="flex items-center gap-2">
               <Pill className="h-5 w-5 text-purple-600" />
-              সর্বাধিক বিক্রিত ওষুধ
+              সর্বা���িক বিক্রিত ওষুধ
             </CardTitle>
-            <p className="text-sm text-gray-600 mt-1">বেস্ট সেলিং মেডিসিন এবং আয়</p>
+            <p className="text-sm text-theme-muted mt-1">বেস্ট সেলিং মেডিসিন এবং আয়</p>
           </div>
           <ExportButtons
             onExportCSV={() => exportToCSV(topMedicinesData, 'top-medicines', csvHeaders.topMedicines)}
@@ -269,21 +269,21 @@ export default function ReportsPage() {
               data={topMedicinesData}
             />
             <div className="space-y-3">
-              <h4 className="font-semibold text-gray-800">বিস্তারিত তালিকা</h4>
+              <h4 className="font-semibold text-theme-foreground">বিস্তারিত তালিকা</h4>
               <div className="space-y-2 max-h-64 overflow-y-auto">
                 {topMedicinesData.map((medicine, index) => (
-                  <div key={index} className="p-3 bg-gray-50 rounded-lg">
+                  <div key={index} className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <p className="font-medium text-sm">{medicine.name}</p>
-                        <p className="text-xs text-gray-600">{medicine.category}</p>
+                        <p className="text-xs text-theme-muted">{medicine.category}</p>
                       </div>
                       <span className="text-sm bg-blue-100 text-blue-600 px-2 py-1 rounded">
                         #{index + 1}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-sm text-gray-600">{medicine.sold} বিক্রি</span>
+                      <span className="text-sm text-theme-muted">{medicine.sold} বিক্রি</span>
                       <span className="font-medium text-green-600">৳{medicine.revenue.toLocaleString()}</span>
                     </div>
                   </div>
@@ -302,7 +302,7 @@ export default function ReportsPage() {
               <Users className="h-5 w-5 text-emerald-600" />
               রোগী বৃদ্ধির পরিসংখ্যান
             </CardTitle>
-            <p className="text-sm text-gray-600 mt-1">নতুন রোগী নিবন্ধন এবং ধরে রাখার হার</p>
+            <p className="text-sm text-theme-muted mt-1">নতুন রোগী নিবন্ধন এবং ধরে রাখার হার</p>
           </div>
           <ExportButtons
             onExportCSV={() => exportToCSV(patientGrowthData, 'patient-growth', csvHeaders.patientGrowth)}
@@ -344,34 +344,34 @@ export default function ReportsPage() {
       </Card>
 
       {/* CSV Export Headers Information */}
-      <Card className="bg-gray-50">
+      <Card className="bg-gray-50 dark:bg-gray-800">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <FileText className="h-5 w-5 text-gray-600" />
+            <FileText className="h-5 w-5 text-theme-muted" />
             CSV রপ্তানি কলাম হেডার
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
             <div>
-              <h5 className="font-medium text-gray-800 mb-2">দৈনিক বিক্রয়</h5>
-              <ul className="space-y-1 text-gray-600">
+              <h5 className="font-medium text-theme-foreground mb-2">দৈনিক বিক্রয়</h5>
+              <ul className="space-y-1 text-theme-muted">
                 <li>• date (তারিখ)</li>
                 <li>• sales (বিক্রয় টাকা)</li>
                 <li>• transactions (লেনদেন সংখ্যা)</li>
               </ul>
             </div>
             <div>
-              <h5 className="font-medium text-gray-800 mb-2">মাসিক আয়</h5>
-              <ul className="space-y-1 text-gray-600">
+              <h5 className="font-medium text-theme-foreground mb-2">মাসিক আয়</h5>
+              <ul className="space-y-1 text-theme-muted">
                 <li>• month (মাস)</li>
                 <li>• revenue (আয়)</li>
                 <li>• growth (বৃদ্ধির হার %)</li>
               </ul>
             </div>
             <div>
-              <h5 className="font-medium text-gray-800 mb-2">��নপ্রিয় ওষুধ</h5>
-              <ul className="space-y-1 text-gray-600">
+              <h5 className="font-medium text-theme-foreground mb-2">��নপ্রিয় ওষুধ</h5>
+              <ul className="space-y-1 text-theme-muted">
                 <li>• name (ওষুধের নাম)</li>
                 <li>• sold (বিক্রিত সংখ্যা)</li>
                 <li>• revenue (আয়)</li>
@@ -379,8 +379,8 @@ export default function ReportsPage() {
               </ul>
             </div>
             <div>
-              <h5 className="font-medium text-gray-800 mb-2">রোগী বৃদ্ধি</h5>
-              <ul className="space-y-1 text-gray-600">
+              <h5 className="font-medium text-theme-foreground mb-2">রোগী বৃদ্ধি</h5>
+              <ul className="space-y-1 text-theme-muted">
                 <li>• month (মাস)</li>
                 <li>• newPatients (নতুন রোগী)</li>
                 <li>• totalPatients (মোট রোগী)</li>
