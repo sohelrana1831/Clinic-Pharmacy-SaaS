@@ -40,24 +40,24 @@ export function Sidebar() {
   return (
     <div className={`
       ${collapsed ? 'w-16' : 'w-64'}
-      h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 flex flex-col
+      h-screen bg-theme-card border-r border-theme-default theme-transition flex flex-col
     `}>
       {/* Logo & Toggle */}
-      <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+      <div className="p-4 border-b border-theme-default flex items-center justify-between">
         {!collapsed && (
           <div>
-            <h2 className="text-xl font-bold text-blue-600 dark:text-blue-400">ক্লিনিক MS</h2>
-            <p className="text-sm text-gray-500 dark:text-gray-400">ম্যানেজমেন্ট সিস্টেম</p>
+            <h2 className="text-xl font-bold text-theme-accent">ক্লিনিক MS</h2>
+            <p className="text-sm text-theme-muted">ম্যানেজমেন্ট সিস্টেম</p>
           </div>
         )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          className="p-1 rounded-lg hover-theme-bg theme-transition"
         >
           {collapsed ? (
-            <ChevronRight className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+            <ChevronRight className="h-5 w-5 text-theme-muted" />
           ) : (
-            <ChevronLeft className="h-5 w-5 text-gray-600 dark:text-gray-400" />
+            <ChevronLeft className="h-5 w-5 text-theme-muted" />
           )}
         </button>
       </div>
@@ -72,10 +72,10 @@ export function Sidebar() {
                 <Link
                   href={item.href}
                   className={`
-                    flex items-center px-3 py-3 rounded-lg text-sm font-medium transition-colors
+                    flex items-center px-3 py-3 rounded-lg text-sm font-medium theme-transition
                     ${isActive
-                      ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border-r-2 border-blue-600 dark:border-blue-400'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'
+                      ? 'bg-primary-50 dark:bg-primary-900/20 text-theme-accent border-r-2 border-theme-accent'
+                      : 'text-theme-foreground hover-theme-bg'
                     }
                   `}
                 >
@@ -90,14 +90,14 @@ export function Sidebar() {
 
       {/* User Info */}
       {!collapsed && (
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="p-4 border-t border-theme-default">
           <div className="flex items-center">
-            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
-              <span className="text-blue-600 dark:text-blue-400 font-medium">SR</span>
+            <div className="w-8 h-8 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center theme-transition">
+              <span className="text-theme-accent font-medium">SR</span>
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">SR Pharma</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">অ্যাডমিন</p>
+              <p className="text-sm font-medium text-theme-foreground">SR Pharma</p>
+              <p className="text-xs text-theme-muted">অ্যাডমিন</p>
             </div>
           </div>
         </div>
