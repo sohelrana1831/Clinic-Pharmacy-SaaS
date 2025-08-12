@@ -66,9 +66,12 @@ export function Topbar() {
       <div className="flex items-center space-x-4">
         {/* Current Date */}
         <div className="text-sm text-theme-muted">
-          <span>আজ: </span>
-          <span className="font-medium text-theme-foreground">১৫ জান���য়ারি, ২০২৪</span>
+          <span>{t('dashboard.todayLabel')}</span>
+          <span className="font-medium text-theme-foreground">১��� জানুয়ারি, ২০২৪</span>
         </div>
+
+        {/* Language Selector */}
+        <LanguageSelector />
 
         {/* Theme Toggle */}
         <Button
