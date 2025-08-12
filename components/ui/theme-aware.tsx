@@ -4,7 +4,7 @@ import * as React from "react"
 import { useTheme } from "@/lib/theme-context"
 import { cn } from "@/lib/utils"
 
-interface ThemeAwareProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ThemeAwareProps extends React.HTMLAttributes<HTMLElement> {
   component?: keyof JSX.IntrinsicElements
   themeColors?: {
     light: string
