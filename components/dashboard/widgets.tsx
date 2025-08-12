@@ -166,7 +166,7 @@ export function LowStockMedicines({ onViewAll }: { onViewAll: () => void }) {
           কম স্টক ওষুধ
         </CardTitle>
         <Button variant="outline" size="sm" onClick={onViewAll}>
-          স�� দেখুন
+          স��� দেখুন
         </Button>
       </CardHeader>
       <CardContent>
@@ -202,7 +202,7 @@ export function QuickActions({
 }) {
   const actions = [
     { label: 'নতুন রোগী', icon: <Plus className="h-5 w-5" />, color: 'bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600', onClick: onNewPatient },
-    { label: 'অ্যাপয়েন্��মেন্ট', icon: <Calendar className="h-5 w-5" />, color: 'bg-emerald-600 hover:bg-emerald-700', onClick: onNewAppointment },
+    { label: 'অ্যাপয়েন্��মেন্ট', icon: <Calendar className="h-5 w-5" />, color: 'bg-success-600 hover:bg-success-700 dark:bg-success-500 dark:hover:bg-success-600', onClick: onNewAppointment },
     { label: 'নতুন বিক্রয়', icon: <ShoppingCart className="h-5 w-5" />, color: 'bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600', onClick: onNewSale },
     { label: 'প্রেসক্রিপশন', icon: <FileText className="h-5 w-5" />, color: 'bg-warning-600 hover:bg-warning-700 dark:bg-warning-500 dark:hover:bg-warning-600', onClick: onWritePrescription }
   ]
