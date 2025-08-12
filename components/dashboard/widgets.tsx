@@ -211,7 +211,7 @@ export function QuickActions({
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center">
-          <Activity className="h-5 w-5 text-blue-600 mr-2" />
+          <Activity className="h-5 w-5 text-primary-600 dark:text-primary-400 mr-2" />
           দ্রুত কার্যক্রম
         </CardTitle>
       </CardHeader>
@@ -221,7 +221,7 @@ export function QuickActions({
             <Button
               key={index}
               onClick={action.onClick}
-              className={`${action.color} text-white h-16 flex flex-col items-center justify-center space-y-1`}
+              className={`${action.color} text-white h-16 flex flex-col items-center justify-center space-y-1 theme-transition`}
             >
               {action.icon}
               <span className="text-sm">{action.label}</span>
@@ -244,12 +244,12 @@ export function RecentActivity() {
 
   const getIcon = (type: string) => {
     switch (type) {
-      case 'patient': return <Users className="h-4 w-4 text-blue-600" />
-      case 'prescription': return <FileText className="h-4 w-4 text-green-600" />
-      case 'sale': return <ShoppingCart className="h-4 w-4 text-purple-600" />
-      case 'appointment': return <Calendar className="h-4 w-4 text-orange-600" />
-      case 'inventory': return <AlertTriangle className="h-4 w-4 text-red-600" />
-      default: return <Activity className="h-4 w-4 text-gray-600" />
+      case 'patient': return <Users className="h-4 w-4 text-primary-600 dark:text-primary-400" />
+      case 'prescription': return <FileText className="h-4 w-4 text-success-600 dark:text-success-400" />
+      case 'sale': return <ShoppingCart className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+      case 'appointment': return <Calendar className="h-4 w-4 text-warning-600 dark:text-warning-400" />
+      case 'inventory': return <AlertTriangle className="h-4 w-4 text-error-600 dark:text-error-400" />
+      default: return <Activity className="h-4 w-4 text-theme-muted" />
     }
   }
 
@@ -257,7 +257,7 @@ export function RecentActivity() {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center">
-          <Activity className="h-5 w-5 text-blue-600 mr-2" />
+          <Activity className="h-5 w-5 text-primary-600 dark:text-primary-400 mr-2" />
           সাম্প্রতিক কার্যক্রম
         </CardTitle>
       </CardHeader>
@@ -265,13 +265,13 @@ export function RecentActivity() {
         <div className="space-y-4">
           {activities.map((activity, index) => (
             <div key={index} className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center flex-shrink-0 theme-transition">
                 {getIcon(activity.type)}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900">{activity.action}</p>
-                <p className="text-sm text-gray-500">{activity.details}</p>
-                <p className="text-xs text-gray-400 mt-1">{activity.time}</p>
+                <p className="text-sm font-medium text-theme-foreground">{activity.action}</p>
+                <p className="text-sm text-theme-muted">{activity.details}</p>
+                <p className="text-xs text-theme-muted opacity-75 mt-1">{activity.time}</p>
               </div>
             </div>
           ))}
