@@ -115,7 +115,7 @@ export function UpcomingAppointments({ onViewAll }: { onViewAll: () => void }) {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="flex items-center">
-          <Clock className="h-5 w-5 text-blue-600 mr-2" />
+          <Clock className="h-5 w-5 text-primary-600 dark:text-primary-400 mr-2" />
           আসন্ন অ্যাপয়েন্টমেন্ট
         </CardTitle>
         <Button variant="outline" size="sm" onClick={onViewAll}>
@@ -125,20 +125,20 @@ export function UpcomingAppointments({ onViewAll }: { onViewAll: () => void }) {
       <CardContent>
         <div className="space-y-4">
           {appointments.map((appointment, index) => (
-            <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+            <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg theme-transition">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <span className="text-blue-600 font-medium text-sm">{appointment.time}</span>
+                <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center theme-transition">
+                  <span className="text-primary-600 dark:text-primary-400 font-medium text-sm">{appointment.time}</span>
                 </div>
                 <div>
-                  <p className="font-medium text-gray-900">{appointment.patient}</p>
-                  <p className="text-sm text-gray-500">{appointment.type}</p>
+                  <p className="font-medium text-theme-foreground">{appointment.patient}</p>
+                  <p className="text-sm text-theme-muted">{appointment.type}</p>
                 </div>
               </div>
               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                appointment.status === 'নিশ্চিত' 
-                  ? 'bg-green-100 text-green-600' 
-                  : 'bg-yellow-100 text-yellow-600'
+                appointment.status === 'নিশ্চিত'
+                  ? 'bg-success-100 dark:bg-success-900 text-success-600 dark:text-success-400'
+                  : 'bg-warning-100 dark:bg-warning-900 text-warning-600 dark:text-warning-400'
               }`}>
                 {appointment.status}
               </span>
@@ -162,7 +162,7 @@ export function LowStockMedicines({ onViewAll }: { onViewAll: () => void }) {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="flex items-center">
-          <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
+          <AlertTriangle className="h-5 w-5 text-warning-600 dark:text-warning-400 mr-2" />
           কম স্টক ওষুধ
         </CardTitle>
         <Button variant="outline" size="sm" onClick={onViewAll}>
@@ -172,10 +172,10 @@ export function LowStockMedicines({ onViewAll }: { onViewAll: () => void }) {
       <CardContent>
         <div className="space-y-3">
           {medicines.map((medicine, index) => (
-            <div key={index} className="flex items-center justify-between p-3 border border-orange-200 rounded-lg bg-orange-50">
+            <div key={index} className="flex items-center justify-between p-3 border border-warning-200 dark:border-warning-800 rounded-lg bg-warning-50 dark:bg-warning-900/20 theme-transition">
               <div>
-                <p className="font-medium text-gray-900">{medicine.name}</p>
-                <p className="text-sm text-gray-500">সর্বনিম্ন: {medicine.minStock} {medicine.unit}</p>
+                <p className="font-medium text-theme-foreground">{medicine.name}</p>
+                <p className="text-sm text-theme-muted">সর্বনিম্ন: {medicine.minStock} {medicine.unit}</p>
               </div>
               <div className="text-right">
                 <p className="text-lg font-bold text-orange-600">{medicine.stock}</p>
