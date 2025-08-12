@@ -76,8 +76,8 @@ export function TodayStats({ onAppointmentsClick, onPatientsClick, onSalesClick 
         value={24}
         change="+৮%"
         changeType="increase"
-        icon={<Calendar className="h-6 w-6 text-blue-600" />}
-        color="bg-blue-100"
+        icon={<Calendar className="h-6 w-6 text-primary-600 dark:text-primary-400" />}
+        color="bg-primary-100 dark:bg-primary-900"
         onClick={onAppointmentsClick}
       />
       <StatsWidget
@@ -85,8 +85,8 @@ export function TodayStats({ onAppointmentsClick, onPatientsClick, onSalesClick 
         value={7}
         change="+২৩%"
         changeType="increase"
-        icon={<Users className="h-6 w-6 text-emerald-600" />}
-        color="bg-emerald-100"
+        icon={<Users className="h-6 w-6 text-success-600 dark:text-success-400" />}
+        color="bg-success-100 dark:bg-success-900"
         onClick={onPatientsClick}
       />
       <StatsWidget
@@ -94,8 +94,8 @@ export function TodayStats({ onAppointmentsClick, onPatientsClick, onSalesClick 
         value="৳১২,৫০০"
         change="-৫%"
         changeType="decrease"
-        icon={<DollarSign className="h-6 w-6 text-purple-600" />}
-        color="bg-purple-100"
+        icon={<DollarSign className="h-6 w-6 text-purple-600 dark:text-purple-400" />}
+        color="bg-purple-100 dark:bg-purple-900"
         onClick={onSalesClick}
       />
     </div>
