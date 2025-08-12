@@ -107,7 +107,7 @@ export function UpcomingAppointments({ onViewAll }: { onViewAll: () => void }) {
     { time: '০৯:৩০', patient: 'আবদুর রহমান', type: 'চেকআপ', status: 'নিশ্চিত' },
     { time: '১০:১৫', patient: 'ফাতেমা খাতুন', type: 'ফলোআপ', status: 'অপেক্ষায়' },
     { time: '১১:০০', patient: 'মোহাম্মদ আলী', type: 'পরামর্শ', status: 'নিশ্চিত' },
-    { time: '১১:৪৫', patient: 'রোকেয়া বেগম', type: 'চেকআপ', status: 'নিশ্চ��ত' },
+    { time: '১১:৪৫', patient: 'রোকেয়া বেগম', type: '��েকআপ', status: 'নিশ্চ��ত' },
     { time: '১২:৩০', patient: 'করিম উদ্দিন', type: 'জরুরি', status: 'অপেক্ষায়' }
   ]
 
@@ -178,7 +178,7 @@ export function LowStockMedicines({ onViewAll }: { onViewAll: () => void }) {
                 <p className="text-sm text-theme-muted">সর্বনিম্ন: {medicine.minStock} {medicine.unit}</p>
               </div>
               <div className="text-right">
-                <p className="text-lg font-bold text-orange-600">{medicine.stock}</p>
+                <p className="text-lg font-bold text-warning-600 dark:text-warning-400">{medicine.stock}</p>
                 <p className="text-sm text-gray-500">{medicine.unit}</p>
               </div>
             </div>
@@ -201,10 +201,10 @@ export function QuickActions({
   onWritePrescription: () => void
 }) {
   const actions = [
-    { label: 'নতুন রোগী', icon: <Plus className="h-5 w-5" />, color: 'bg-blue-600 hover:bg-blue-700', onClick: onNewPatient },
+    { label: 'নতুন রোগী', icon: <Plus className="h-5 w-5" />, color: 'bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600', onClick: onNewPatient },
     { label: 'অ্যাপয়েন্��মেন্ট', icon: <Calendar className="h-5 w-5" />, color: 'bg-emerald-600 hover:bg-emerald-700', onClick: onNewAppointment },
-    { label: 'নতুন বিক্রয়', icon: <ShoppingCart className="h-5 w-5" />, color: 'bg-purple-600 hover:bg-purple-700', onClick: onNewSale },
-    { label: 'প্রেসক্রিপশন', icon: <FileText className="h-5 w-5" />, color: 'bg-orange-600 hover:bg-orange-700', onClick: onWritePrescription }
+    { label: 'নতুন বিক্রয়', icon: <ShoppingCart className="h-5 w-5" />, color: 'bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600', onClick: onNewSale },
+    { label: 'প্রেসক্রিপশন', icon: <FileText className="h-5 w-5" />, color: 'bg-warning-600 hover:bg-warning-700 dark:bg-warning-500 dark:hover:bg-warning-600', onClick: onWritePrescription }
   ]
 
   return (
