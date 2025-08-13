@@ -85,9 +85,11 @@ export function usePaginatedApi<T>(
     }
   }, [apiCall])
 
-  // Initial load only
+  // Initial load only - check if we're on the client side
   useEffect(() => {
-    fetchData(initialParams, 1, 10)
+    if (typeof window !== 'undefined') {
+      fetchData(initialParams, 1, 10)
+    }
   }, []) // Empty dependency array for initial load only
 
   // Handle params changes
