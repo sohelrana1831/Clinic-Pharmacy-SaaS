@@ -115,23 +115,23 @@ export function usePaginatedApi<T>(
   const goToPage = useCallback((page: number) => {
     setPagination(prev => ({ ...prev, page }))
     fetchData(params, page, pagination.limit)
-  }, [params, pagination.limit, fetchData])
+  }, []) // Remove all dependencies
 
   // Handle page size changes
   const changePageSize = useCallback((limit: number) => {
     setPagination(prev => ({ ...prev, limit, page: 1 }))
     fetchData(params, 1, limit)
-  }, [params, fetchData])
+  }, []) // Remove all dependencies
 
   const updateParams = useCallback((newParams: any) => {
     const updatedParams = { ...params, ...newParams }
     setParams(updatedParams)
     setPagination(prev => ({ ...prev, page: 1 }))
-  }, [params])
+  }, []) // Remove params dependency
 
   const refetch = useCallback(() => {
     fetchData(params, pagination.page, pagination.limit)
-  }, [fetchData, params, pagination.page, pagination.limit])
+  }, []) // Remove all dependencies
 
   return {
     data,
