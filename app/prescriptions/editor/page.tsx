@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Sidebar } from '@/components/dashboard/sidebar'
+import { Topbar } from '@/components/dashboard/topbar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -236,7 +238,7 @@ export default function PrescriptionEditorPage() {
 
   const handlePrint = () => {
     if (!validateForm()) {
-      showToastMessage('প্রিন্ট করার আগে সকল তথ্য পূরণ করুন', 'error')
+      showToastMessage('প্রিন্ট করার আগে সকল তথ্য পূরণ ক���ুন', 'error')
       return
     }
 
