@@ -1,0 +1,155 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  role      String   // 'admin', 'doctor', 'staff'
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  appointments  Appointment[]
+  prescriptions Prescription[]
+}
+
+model Patient {
+  id          String    @id @default(cuid())
+  name        String
+  email       String?
+  phone       String
+  address     String?
+  dateOfBirth DateTime?
+  gender      String?
+  bloodGroup  String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  appointments  Appointment[]
+  prescriptions Prescription[]
+}
+
+model Medicine {
+  id           String   @id @default(cuid())
+  sku          String   @unique
+  name         String
+  genericName  String?
+  category     String
+  manufacturer String?
+  strength     String?
+  unit         String   // 'piece', 'bottle', 'box'
+  purchasePrice Float
+  sellingPrice Float
+  stockQty     Int
+  reorderLevel Int
+  expiryDate   DateTime?
+  batchNumber  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  prescriptionMedicines PrescriptionMedicine[]
+  saleItems            SaleItem[]
+  stockMovements       StockMovement[]
+}
+
+model Appointment {
+  id        String   @id @default(cuid())
+  patientId String
+  doctorId  String
+  date      DateTime
+  time      String
+  type      String   // 'consultation', 'followup', 'emergency'
+  status    String   // 'scheduled', 'confirmed', 'completed', 'cancelled'
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  patient Patient @relation(fields: [patientId], references: [id])
+  doctor  User    @relation(fields: [doctorId], references: [id])
+}
+
+model Prescription {
+  id         String   @id @default(cuid())
+  patientId  String
+  doctorId   String
+  date       DateTime
+  diagnosis  String
+  notes      String?
+  status     String   // 'draft', 'issued', 'dispensed'
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relations
+  patient   Patient                @relation(fields: [patientId], references: [id])
+  doctor    User                   @relation(fields: [doctorId], references: [id])
+  medicines PrescriptionMedicine[]
+}
+
+model PrescriptionMedicine {
+  id             String @id @default(cuid())
+  prescriptionId String
+  medicineId     String
+  dosage         String
+  frequency      String
+  duration       String
+  instructions   String?
+  quantity       Int
+
+  // Relations
+  prescription Prescription @relation(fields: [prescriptionId], references: [id])
+  medicine     Medicine     @relation(fields: [medicineId], references: [id])
+}
+
+model Sale {
+  id          String   @id @default(cuid())
+  invoiceNo   String   @unique
+  patientId   String?
+  totalAmount Float
+  discount    Float    @default(0)
+  tax         Float    @default(0)
+  finalAmount Float
+  paymentMethod String // 'cash', 'card', 'mobile'
+  status      String   @default("completed")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  items SaleItem[]
+}
+
+model SaleItem {
+  id         String @id @default(cuid())
+  saleId     String
+  medicineId String
+  quantity   Int
+  unitPrice  Float
+  totalPrice Float
+
+  // Relations
+  sale     Sale     @relation(fields: [saleId], references: [id])
+  medicine Medicine @relation(fields: [medicineId], references: [id])
+}
+
+model StockMovement {
+  id         String   @id @default(cuid())
+  medicineId String
+  type       String   // 'purchase', 'sale', 'adjustment', 'return'
+  quantity   Int      // positive for incoming, negative for outgoing
+  reason     String?
+  reference  String?  // invoice number, return number, etc.
+  createdAt  DateTime @default(now())
+
+  // Relations
+  medicine Medicine @relation(fields: [medicineId], references: [id])
+}
