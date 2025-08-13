@@ -57,6 +57,16 @@ export function usePaginatedApi<T>(
   })
   const [params, setParams] = useState(initialParams)
 
+  // Use refs to store current values to avoid circular dependencies
+  const paramsRef = useRef(params)
+  const paginationRef = useRef(pagination)
+  const apiCallRef = useRef(apiCall)
+
+  // Update refs when state changes
+  paramsRef.current = params
+  paginationRef.current = pagination
+  apiCallRef.current = apiCall
+
   const fetchData = useCallback(async (customParams?: any, customPage?: number, customLimit?: number) => {
     // Don't make requests on the server side
     if (typeof window === 'undefined') {
