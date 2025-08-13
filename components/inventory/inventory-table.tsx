@@ -114,10 +114,10 @@ export function InventoryTable({ inventory, onEditItem, onAddStock, onAddNew }: 
       )}
 
       {/* Table */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+      <div className="table-theme rounded-lg border overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200">
+          <table className="w-full table-theme">
+            <thead className="border-b">
               <tr>
                 <th className="px-4 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
                   SKU
@@ -151,7 +151,7 @@ export function InventoryTable({ inventory, onEditItem, onAddStock, onAddNew }: 
                 const expiryStatus = getExpiryStatus(item)
                 
                 return (
-                  <tr key={item.id} className="hover:bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-800">
+                  <tr key={item.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 theme-transition">{/* Updated hover classes */}
                     <td className="px-4 py-3 whitespace-nowrap">
                       <div className="text-sm font-medium text-blue-600">{item.sku}</div>
                     </td>
@@ -240,7 +240,7 @@ export function InventoryTable({ inventory, onEditItem, onAddStock, onAddNew }: 
 
       {/* Summary Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="stats-card-theme p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-theme-muted">মোট পণ্য</p>
@@ -250,7 +250,7 @@ export function InventoryTable({ inventory, onEditItem, onAddStock, onAddNew }: 
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="stats-card-theme p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-theme-muted">কম স্টক</p>
@@ -262,7 +262,7 @@ export function InventoryTable({ inventory, onEditItem, onAddStock, onAddNew }: 
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="stats-card-theme p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-theme-muted">স্টক শেষ</p>
@@ -274,7 +274,7 @@ export function InventoryTable({ inventory, onEditItem, onAddStock, onAddNew }: 
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
+        <div className="stats-card-theme p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-theme-muted">মোট মূল্য</p>
