@@ -119,33 +119,33 @@ export function InventoryTable({ inventory, onEditItem, onAddStock, onAddNew }: 
           <table className="w-full table-theme">
             <thead className="border-b">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   SKU
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   ওষুধের না���
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   ক্যাটেগরি
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   স্টক
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   দাম
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   রিঅর্ডার লেভেল
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   ম���য়াদ
                 </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-4 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   কার্যক্রম
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="divide-y">
               {filteredInventory.map((item) => {
                 const stockStatus = getStockStatus(item)
                 const expiryStatus = getExpiryStatus(item)
