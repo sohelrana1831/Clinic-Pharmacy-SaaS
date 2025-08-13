@@ -92,9 +92,9 @@ export function usePaginatedApi<T>(
     }
   }, []) // Empty dependency array for initial load only
 
-  // Handle params changes
+  // Handle params changes - only on client side
   useEffect(() => {
-    if (JSON.stringify(params) !== JSON.stringify(initialParams)) {
+    if (typeof window !== 'undefined' && JSON.stringify(params) !== JSON.stringify(initialParams)) {
       fetchData(params, 1, pagination.limit)
     }
   }, [params, fetchData, initialParams, pagination.limit])
