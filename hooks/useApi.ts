@@ -102,14 +102,14 @@ export function usePaginatedApi<T>(
     if (typeof window !== 'undefined') {
       fetchData(initialParams, 1, 10)
     }
-  }, []) // Empty dependency array for initial load only
+  }, [fetchData]) // Only depend on fetchData
 
   // Handle params changes - only on client side
   useEffect(() => {
     if (typeof window !== 'undefined' && JSON.stringify(params) !== JSON.stringify(initialParams)) {
       fetchData(params, 1, pagination.limit)
     }
-  }, [params, fetchData, initialParams, pagination.limit])
+  }, [params, initialParams]) // Remove fetchData and pagination.limit dependencies
 
   // Handle page changes
   const goToPage = useCallback((page: number) => {
