@@ -68,32 +68,57 @@ export interface ApiResponse<T = any> {
 class ApiService {
   // Generic GET request
   async get<T>(url: string, params?: any): Promise<ApiResponse<T>> {
-    const response: AxiosResponse<ApiResponse<T>> = await api.get(url, { params })
-    return response.data
+    try {
+      const response: AxiosResponse<ApiResponse<T>> = await api.get(url, { params })
+      return response.data
+    } catch (error: any) {
+      console.error(`GET ${url} failed:`, error)
+      throw new Error(error.response?.data?.message || error.message || 'Request failed')
+    }
   }
 
   // Generic POST request
   async post<T>(url: string, data?: any): Promise<ApiResponse<T>> {
-    const response: AxiosResponse<ApiResponse<T>> = await api.post(url, data)
-    return response.data
+    try {
+      const response: AxiosResponse<ApiResponse<T>> = await api.post(url, data)
+      return response.data
+    } catch (error: any) {
+      console.error(`POST ${url} failed:`, error)
+      throw new Error(error.response?.data?.message || error.message || 'Request failed')
+    }
   }
 
   // Generic PUT request
   async put<T>(url: string, data?: any): Promise<ApiResponse<T>> {
-    const response: AxiosResponse<ApiResponse<T>> = await api.put(url, data)
-    return response.data
+    try {
+      const response: AxiosResponse<ApiResponse<T>> = await api.put(url, data)
+      return response.data
+    } catch (error: any) {
+      console.error(`PUT ${url} failed:`, error)
+      throw new Error(error.response?.data?.message || error.message || 'Request failed')
+    }
   }
 
   // Generic PATCH request
   async patch<T>(url: string, data?: any): Promise<ApiResponse<T>> {
-    const response: AxiosResponse<ApiResponse<T>> = await api.patch(url, data)
-    return response.data
+    try {
+      const response: AxiosResponse<ApiResponse<T>> = await api.patch(url, data)
+      return response.data
+    } catch (error: any) {
+      console.error(`PATCH ${url} failed:`, error)
+      throw new Error(error.response?.data?.message || error.message || 'Request failed')
+    }
   }
 
   // Generic DELETE request
   async delete<T>(url: string): Promise<ApiResponse<T>> {
-    const response: AxiosResponse<ApiResponse<T>> = await api.delete(url)
-    return response.data
+    try {
+      const response: AxiosResponse<ApiResponse<T>> = await api.delete(url)
+      return response.data
+    } catch (error: any) {
+      console.error(`DELETE ${url} failed:`, error)
+      throw new Error(error.response?.data?.message || error.message || 'Request failed')
+    }
   }
 }
 
