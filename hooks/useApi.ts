@@ -114,24 +114,47 @@ export function usePaginatedApi<T>(
   // Handle page changes
   const goToPage = useCallback((page: number) => {
     setPagination(prev => ({ ...prev, page }))
-    fetchData(params, page, pagination.limit)
-  }, []) // Remove all dependencies
+    // Use setTimeout to ensure fetchData has access to updated state
+    setTimeout(() => {
+      setParams(currentParams => {
+        setPagination(currentPagination => {
+          fetchData(currentParams, page, currentPagination.limit)
+          return currentPagination
+        })
+        return currentParams
+      })
+    }, 0)
+  }, [fetchData])
 
   // Handle page size changes
   const changePageSize = useCallback((limit: number) => {
     setPagination(prev => ({ ...prev, limit, page: 1 }))
-    fetchData(params, 1, limit)
-  }, []) // Remove all dependencies
+    // Use setTimeout to ensure fetchData has access to updated state
+    setTimeout(() => {
+      setParams(currentParams => {
+        fetchData(currentParams, 1, limit)
+        return currentParams
+      })
+    }, 0)
+  }, [fetchData])
 
   const updateParams = useCallback((newParams: any) => {
-    const updatedParams = { ...params, ...newParams }
-    setParams(updatedParams)
-    setPagination(prev => ({ ...prev, page: 1 }))
-  }, []) // Remove params dependency
+    setParams(currentParams => {
+      const updatedParams = { ...currentParams, ...newParams }
+      setPagination(prev => ({ ...prev, page: 1 }))
+      return updatedParams
+    })
+  }, [])
 
   const refetch = useCallback(() => {
-    fetchData(params, pagination.page, pagination.limit)
-  }, []) // Remove all dependencies
+    setParams(currentParams => {
+      setPagination(currentPagination => {
+        fetchData(currentParams, currentPagination.page, currentPagination.limit)
+        return currentPagination
+      })
+      return currentParams
+    })
+  }, [fetchData])
 
   return {
     data,
