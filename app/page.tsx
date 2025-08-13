@@ -55,7 +55,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section
-        className="bg-gradient-to-br from-blue-50 to-emerald-50 dark:from-blue-950 dark:to-emerald-950 pt-20 pb-16 transition-colors duration-200"
+        className="bg-gradient-to-br from-blue-50 to-emerald-50 dark:from-blue-950 dark:to-emerald-950 pt-12 pb-16 transition-colors duration-200"
         role="banner"
         aria-label="প্রধান ব্যানার"
       >
@@ -66,10 +66,10 @@ export default function Home() {
                 বাংলাদেশের #১ ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সিস্টেম
               </h1>
               <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-4">
-                আধুনিক প্রযুক্���ি দিয়ে আপনার ক্লিনিক ও ফার্মেসি পরিচালনা করুন।
+                আধুনিক প্রযুক্তি দিয়ে আপনার ক্লিনিক ও ফার্মেসি পরিচালনা করুন।
               </p>
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-8">
-                রোগীর তথ্য, অ্যাপয়েন্টমেন্ট, প্রেসক্রিপশন এবং স্টক ম্যানেজমেন্ট - সব একসাথে।
+                রোগীর তথ্য, অ্যাপয়েন্টমেন্ট, প্রেসক্রিপশ�� এবং স্টক ম্যানেজমেন্ট - সব একসাথে।
               </p>
               <div className="flex flex-col sm:flex-row gap-4" role="group" aria-label="প্রধান কর্মক্ষেত্র">
                 <Link href="/auth/signup" className="w-full sm:w-auto">
@@ -86,7 +86,7 @@ export default function Home() {
                     size="lg"
                     variant="outline"
                     className={`w-full sm:w-auto border-blue-600 text-blue-600 hover:bg-blue-50 focus:bg-blue-50 px-8 py-3 ${focusStyles.ring}`}
-                    aria-label="লাইভ ডেমো দেখুন, কোন রে��িস্ট্রেশন ��্রয়োজন নেই"
+                    aria-label="লাইভ ডেমো দেখুন, কোন রে��িস্ট্���েশন ��্রয়োজন নেই"
                   >
                     ডেমো দেখুন
                   </Button>
@@ -109,7 +109,7 @@ export default function Home() {
 
       {/* Features Section */}
       <section
-        id="main-content"
+        id="features"
         className="py-16 sm:py-20 bg-white dark:bg-gray-900 transition-colors duration-200"
         aria-label="প্রধান ফিচার সমূহ"
       >
@@ -140,7 +140,7 @@ export default function Home() {
                 <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-gray-100">অ্যাপয়েন্টমেন্ট</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">অনলাইন ���ুকিং এবং স্বয়ংক্রিয় SMS রিমাইন্ডার সিস্টেম।</p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">অনলাইন বুকিং এবং স্বয়ংক্রিয় SMS রিমাইন্ডার সিস্টেম।</p>
               </CardContent>
             </Card>
 
@@ -300,11 +300,11 @@ export default function Home() {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-850 transition-colors duration-200">
+      <section id="pricing" className="py-20 bg-gray-50 dark:bg-gray-850 transition-colors duration-200">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              সাশ্রয়ী মূল্যে প্ল্যা��� সমূহ
+              সাশ্রয়ী মূল্যে প্ল্যান সমূহ
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">আপনার প্রয়োজন অনুযায়ী প্ল্যান বেছে নিন</p>
           </div>
@@ -326,7 +326,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
-                    <span>অ্যাপয়েন্টমেন্ট বু���িং</span>
+                    <span>অ্যাপয়েন্টমেন্ট বুকিং</span>
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
@@ -351,7 +351,7 @@ export default function Home() {
                 <ul className="space-y-3">
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
-                    <span>৫০০ রোগীর রেকর���ড</span>
+                    <span>৫০০ রোগীর রেকর্ড</span>
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
@@ -411,7 +411,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "এই সফটওয়্যার ব্যবহার করে আ���াদের ক্লিনিকের কাজের গতি অনেক বেড়েছে। রোগীদের তথ��য সংরক্ষণ এবং অ্যাপয়েন্টমেন্ট ব্যবস্থাপনা এখন অনেক সহজ।"
+                "এই সফটওয়্যার ব্যবহার করে আ���াদের ক্লিনিকের কাজের গতি অনেক বেড়েছে। ���োগীদের তথ��য সংরক্ষণ এবং অ্যাপয়েন্টমেন্ট ব্যবস্থাপনা এখন অনেক সহজ।"
               </p>
               <div>
                 <p className="font-semibold text-gray-900">ডা. রহিম উদ্দিন</p>
@@ -426,11 +426,11 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "ফার্মেসি ইনভেন্টরি ম্যানেজমেন্��� ফিচারটি অসাধা�����। এখন আর ওষুধের স্টক নিয়ে চিন্তা করতে হয় না।"
+                "ফার্মেসি ইনভেন্টরি ম্যানেজমেন্��� ফিচারটি অসাধা���ণ। এখন আর ওষুধের স্টক নিয়ে চিন্তা করতে হয় না।"
               </p>
               <div>
                 <p className="font-semibold text-gray-900">নাসির আহমেদ</p>
-                <p className="text-gray-600">ম্যানেজার, সিটি হেলথ ক্লিনিক</p>
+                <p className="text-gray-600">ম্যানেজার, সিটি হেল��� ক্লিনিক</p>
               </div>
             </Card>
           </div>
@@ -450,7 +450,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card className="p-6">
                 <h3 className="font-semibold text-lg text-gray-900 mb-3">পেমেন্ট কিভাবে করব?</h3>
-                <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যাং�� ট্রান্সফার এবং অ����লাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
+                <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যাং�� ট্রান্সফার এবং অ���লাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
               </Card>
 
               <Card className="p-6">
@@ -582,7 +582,7 @@ export default function Home() {
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center">
             <p className="text-gray-400">
-              © ২০২৪ ক্লিনিক ম্যানেজমে��্ট সিস্টেম। সর্বস্বত্ব সংরক্ষিত।
+              © ২০২৪ ক্লিনিক ম্যানেজমে��্ট সিস্টে���। সর্বস্বত্ব সংরক্ষিত।
             </p>
           </div>
         </div>
