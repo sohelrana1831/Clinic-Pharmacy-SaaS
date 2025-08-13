@@ -1,22 +1,24 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Sidebar } from '@/components/dashboard/sidebar'
 import { Topbar } from '@/components/dashboard/topbar'
-import { 
-  TodayStats, 
-  UpcomingAppointments, 
-  LowStockMedicines, 
-  QuickActions, 
-  RecentActivity 
+import {
+  TodayStats,
+  UpcomingAppointments,
+  LowStockMedicines,
+  QuickActions,
+  RecentActivity
 } from '@/components/dashboard/widgets'
-import { 
-  NewPatientModal, 
-  NewAppointmentModal, 
-  NewSaleModal 
+import {
+  NewPatientModal,
+  NewAppointmentModal,
+  NewSaleModal
 } from '@/components/modals/modal'
 
 export default function DashboardPage() {
+  const { t } = useTranslation()
   const [modals, setModals] = useState({
     newPatient: false,
     newAppointment: false,
@@ -41,7 +43,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-theme-background flex">
       {/* Sidebar */}
       <Sidebar />
       
@@ -51,11 +53,11 @@ export default function DashboardPage() {
         <Topbar />
         
         {/* Dashboard Content */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 bg-theme-background">
           {/* Page Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">ড্যাশবোর্ড</h1>
-            <p className="text-gray-600">আপনার ক্লিনিকের সামগ্রিক তথ্য এক নজরে দেখুন</p>
+            <h1 className="text-3xl font-bold text-theme-foreground mb-2">{t('dashboard.title')}</h1>
+            <p className="text-theme-muted">{t('dashboard.subtitle')}</p>
           </div>
 
           {/* Today's Stats */}
@@ -97,50 +99,50 @@ export default function DashboardPage() {
 
           {/* Additional Stats Cards */}
           <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="card-theme p-6 rounded-lg border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">মোট রোগী</p>
-                  <p className="text-2xl font-bold text-gray-900">১,২৮৫</p>
+                  <p className="text-sm text-theme-muted">{t('dashboard.totalPatients')}</p>
+                  <p className="text-2xl font-bold text-theme-foreground">১,২৮৫</p>
                 </div>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <span className="text-blue-600 font-bold">👥</span>
+                <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center theme-transition">
+                  <span className="text-primary-600 dark:text-primary-400 font-bold">👥</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="card-theme p-6 rounded-lg border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">মাসিক আয়</p>
-                  <p className="text-2xl font-bold text-gray-900">৳৩,৪৫,০০০</p>
+                  <p className="text-sm text-theme-muted">{t('dashboard.monthlyIncome')}</p>
+                  <p className="text-2xl font-bold text-theme-foreground">৳৩,৪��,০০০</p>
                 </div>
-                <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                  <span className="text-emerald-600 font-bold">💰</span>
+                <div className="w-12 h-12 bg-success-100 dark:bg-success-900 rounded-lg flex items-center justify-center theme-transition">
+                  <span className="text-success-600 dark:text-success-400 font-bold">💰</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="card-theme p-6 rounded-lg border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">মোট ওষুধ</p>
-                  <p className="text-2xl font-bold text-gray-900">৪৫৬</p>
+                  <p className="text-sm text-theme-muted">{t('dashboard.totalMedicines')}</p>
+                  <p className="text-2xl font-bold text-theme-foreground">৪৫৬</p>
                 </div>
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                  <span className="text-purple-600 font-bold">💊</span>
+                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center theme-transition">
+                  <span className="text-purple-600 dark:text-purple-400 font-bold">💊</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <div className="card-theme p-6 rounded-lg border">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-600">ডাক্তার</p>
-                  <p className="text-2xl font-bold text-gray-900">৫</p>
+                  <p className="text-sm text-theme-muted">{t('dashboard.doctors')}</p>
+                  <p className="text-2xl font-bold text-theme-foreground">৫</p>
                 </div>
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                  <span className="text-orange-600 font-bold">👨‍⚕️</span>
+                <div className="w-12 h-12 bg-warning-100 dark:bg-warning-900 rounded-lg flex items-center justify-center theme-transition">
+                  <span className="text-warning-600 dark:text-warning-400 font-bold">👨‍⚕️</span>
                 </div>
               </div>
             </div>

@@ -139,7 +139,7 @@ export default function AdminSubscriptionsPage() {
               </div>
             </div>
             <div className="mt-4 flex items-center text-sm">
-              <span className="text-gray-600">সফলতার হার:</span>
+              <span className="text-gray-600">সফলতার হা��:</span>
               <span className="text-green-600 ml-1 font-medium">
                 {((activeClinics / totalClinics) * 100).toFixed(1)}%
               </span>
@@ -363,7 +363,6 @@ export default function AdminSubscriptionsPage() {
             setSelectedClinic(null)
           }}
           title="ক্লিনিকের বিস্তারিত তথ্য"
-          size="lg"
         >
           {(() => {
             const clinic = adminClinicData.find(c => c.id === selectedClinic)

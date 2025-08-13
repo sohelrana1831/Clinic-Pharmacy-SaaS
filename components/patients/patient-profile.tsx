@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { CalendarModal } from '@/components/patients/calendar-modal'
 import { Patient, Appointment, Prescription } from '@/lib/patients-data'
 import { 
   ArrowLeft, 
@@ -37,6 +38,7 @@ export function PatientProfile({
   onNewPrescription 
 }: PatientProfileProps) {
   const [activeTab, setActiveTab] = useState('summary')
+  const [showCalendarModal, setShowCalendarModal] = useState(false)
 
   const calculateAge = (dateOfBirth: string) => {
     const today = new Date()
@@ -245,7 +247,7 @@ export function PatientProfile({
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>অ্যাপয়েন্টমেন্ট তালিকা</CardTitle>
               <div className="flex items-center space-x-2">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" onClick={() => setShowCalendarModal(true)}>
                   <CalendarDays className="h-4 w-4 mr-2" />
                   ক্যালেন্ডার
                 </Button>
@@ -310,7 +312,7 @@ export function PatientProfile({
                           <div>
                             <p className="font-medium">{formatDate(prescription.date)}</p>
                             <p className="text-sm text-gray-600">{prescription.doctorName}</p>
-                            <p className="text-sm text-blue-600 mt-1">রোগ নির্ণয়: {prescription.diagnosis}</p>
+                            <p className="text-sm text-blue-600 mt-1">রোগ নির্ণয��: {prescription.diagnosis}</p>
                           </div>
                           <div className="flex items-center space-x-2">
                             <Button size="sm" variant="outline">
@@ -395,6 +397,12 @@ export function PatientProfile({
           </Card>
         )}
       </div>
+
+      {/* Calendar Modal */}
+      <CalendarModal
+        isOpen={showCalendarModal}
+        onClose={() => setShowCalendarModal(false)}
+      />
     </div>
   )
 }

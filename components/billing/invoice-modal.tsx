@@ -30,7 +30,6 @@ export function InvoiceModal({ invoice, onClose }: InvoiceModalProps) {
       isOpen={true}
       onClose={onClose}
       title={`ইনভয়েস ${invoice.invoiceNumber}`}
-      size="lg"
     >
       <div className="space-y-6">
         {/* Invoice Header */}
@@ -60,7 +59,7 @@ export function InvoiceModal({ invoice, onClose }: InvoiceModalProps) {
           {/* Invoice Details */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div>
-              <h4 className="font-semibold text-gray-900 mb-3">বিল প্রাপক:</h4>
+              <h4 className="font-semibold text-gray-900 mb-3">বিল প্র��পক:</h4>
               <div className="text-gray-700">
                 <p className="font-medium">SR Pharma</p>
                 <p>admin@srpharma.com</p>
@@ -160,7 +159,7 @@ export function InvoiceModal({ invoice, onClose }: InvoiceModalProps) {
                 <span className="font-medium text-yellow-800">পেমেন্ট অপেক্ষমান</span>
               </div>
               <p className="text-yellow-700 mt-1">
-                এই ইনভয়েসের পেমেন্ট এখনো প্রাপ্ত হয়নি। অনুগ্রহ করে যত শীঘ্র সম্ভব পেমেন্ট করুন।
+                এই ইনভয়েসের পেমেন্ট এখনো প্রা��্ত হয়নি। অনুগ্রহ করে যত শীঘ্র সম্ভব পেমেন্ট করুন।
               </p>
             </div>
           )}

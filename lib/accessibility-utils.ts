@@ -10,6 +10,7 @@ export interface AccessibilityConfig {
   ariaExpanded?: boolean
   ariaSelected?: boolean
   ariaDisabled?: boolean
+  ariaModal?: boolean
 }
 
 // WCAG AA Color Contrast Ratios (4.5:1 for normal text, 3:1 for large text)

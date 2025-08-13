@@ -1,0 +1,75 @@
+{
+  "app": {
+    "title": "ক্লিনিক MS",
+    "subtitle": "ম্যানেজমেন্ট সিস্টেম"
+  },
+  "navigation": {
+    "dashboard": "ড্যাশবোর্ড",
+    "patients": "রোগীগণ",
+    "appointments": "অ্যাপয়েন্টমেন্ট",
+    "prescriptions": "প্রেসক্রিপশন",
+    "inventory": "ইনভেন্টরি",
+    "pos": "POS",
+    "reports": "রিপোর্ট",
+    "billing": "বিলিং",
+    "subscriptions": "সাবস্ক্রিপশন",
+    "pricing": "প্রাইসিং",
+    "settings": "সেটিংস"
+  },
+  "user": {
+    "admin": "অ্যাডমিন",
+    "profile": "প্রোফাইল",
+    "logout": "লগআউট",
+    "chiefPhysician": "প্রধান চিকিৎসক",
+    "drRahimUddin": "ডা. রহিম উদ্দিন"
+  },
+  "dashboard": {
+    "title": "ড্যাশবোর্ড",
+    "subtitle": "আপনার ক্লিনিকের সামগ্রিক তথ্য এক নজরে দেখুন",
+    "todayLabel": "আজ: ",
+    "totalPatients": "মোট রোগী",
+    "monthlyIncome": "মাসিক আয়",
+    "totalMedicines": "মোট ওষুধ",
+    "doctors": "ডাক্তার"
+  },
+  "search": {
+    "placeholder": "রোগী, ওষুধ বা ডাক্তার খুঁজুন..."
+  },
+  "clinics": {
+    "srPharmaDhanmondi": "SR Pharma - ধানমন্ডি",
+    "srPharmaUttara": "SR Pharma - উত্তরা",
+    "srPharmaGulshan": "SR Pharma - গুলশান"
+  },
+  "notifications": {
+    "label": "বিজ্ঞপ্তি",
+    "unread": "অপঠিত"
+  },
+  "theme": {
+    "switchToDark": "ড���র্ক মোডে পরিবর্তন করুন",
+    "switchToLight": "লাইট মোডে পরিবর্তন করুন"
+  },
+  "language": {
+    "label": "ভাষা",
+    "english": "English",
+    "bengali": "বাংলা",
+    "arabic": "العربية"
+  },
+  "common": {
+    "welcome": "আমাদের ড্যাশবোর্ডে স্বাগতম",
+    "loading": "লোড হচ্ছে...",
+    "save": "সংরক্ষণ",
+    "cancel": "বাতিল",
+    "edit": "সম্পাদনা",
+    "delete": "মুছুন",
+    "view": "দেখুন",
+    "add": "যোগ করুন",
+    "search": "খুঁজুন",
+    "filter": "ফিল্টার",
+    "export": "রপ্তানি",
+    "import": "আমদানি",
+    "refresh": "রিফ্রেশ",
+    "close": "বন্ধ",
+    "submit": "জমা দিন",
+    "reset": "রিসেট"
+  }
+}

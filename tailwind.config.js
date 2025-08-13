@@ -18,6 +18,36 @@ module.exports = {
     },
     extend: {
       colors: {
+        // Theme colors - WCAG AA compliant
+        background: {
+          light: '#F9FAFB',
+          dark: '#111827',
+        },
+        foreground: {
+          light: '#111827',
+          dark: '#F9FAFB',
+        },
+        muted: {
+          light: '#6B7280',
+          dark: '#9CA3AF',
+        },
+        card: {
+          light: '#FFFFFF',
+          dark: '#1F2937',
+        },
+        border: {
+          light: '#E5E7EB',
+          dark: '#374151',
+        },
+        accent: {
+          light: '#2563EB',
+          dark: '#3B82F6',
+        },
+        'accent-secondary': {
+          light: '#10B981',
+          dark: '#34D399',
+        },
+        // Enhanced primary scale with WCAG AA compliance
         primary: {
           50: '#eff6ff',
           100: '#dbeafe',
@@ -25,22 +55,23 @@ module.exports = {
           300: '#93c5fd',
           400: '#60a5fa',
           500: '#3b82f6', // 4.5:1 contrast on white
-          600: '#2563eb', // 7:1 contrast on white
+          600: '#2563eb', // 7:1 contrast on white - Light mode accent
           700: '#1d4ed8', // 10:1 contrast on white
           800: '#1e40af',
           900: '#1e3a8a', // 15:1 contrast on white
         },
+        // Success/secondary colors
         success: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e', // 4.5:1 contrast
-          600: '#16a34a', // 7:1 contrast
-          700: '#15803d', // 10:1 contrast
-          800: '#166534',
-          900: '#14532d',
+          50: '#ecfdf5',
+          100: '#d1fae5',
+          200: '#a7f3d0',
+          300: '#6ee7b7',
+          400: '#34d399', // Dark mode secondary
+          500: '#10b981', // Light mode secondary
+          600: '#059669', // 7:1 contrast
+          700: '#047857', // 10:1 contrast
+          800: '#065f46',
+          900: '#064e3b',
         },
         error: {
           50: '#fef2f2',
@@ -65,6 +96,19 @@ module.exports = {
           700: '#b45309', // 10:1 contrast
           800: '#92400e',
           900: '#78350f',
+        },
+        // Gray scale optimized for theme colors
+        gray: {
+          50: '#F9FAFB',   // Light background
+          100: '#F3F4F6',
+          200: '#E5E7EB',  // Light border
+          300: '#D1D5DB',
+          400: '#9CA3AF',  // Dark muted
+          500: '#6B7280',  // Light muted
+          600: '#4B5563',
+          700: '#374151',  // Dark border
+          800: '#1F2937',  // Dark card
+          900: '#111827',  // Dark background
         }
       },
       fontFamily: {
@@ -95,6 +139,7 @@ module.exports = {
         'fade-in': 'fadeIn 0.3s ease-in-out',
         'slide-up': 'slideUp 0.3s ease-out',
         'scale-in': 'scaleIn 0.2s ease-out',
+        'theme-transition': 'themeTransition 0.3s ease-in-out',
       },
       keyframes: {
         fadeIn: {
@@ -108,6 +153,10 @@ module.exports = {
         scaleIn: {
           '0%': { transform: 'scale(0.95)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        themeTransition: {
+          '0%': { opacity: '0.8' },
+          '100%': { opacity: '1' },
         },
       },
       backdropBlur: {

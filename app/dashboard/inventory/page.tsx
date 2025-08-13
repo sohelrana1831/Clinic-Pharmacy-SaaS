@@ -5,17 +5,19 @@ import { Sidebar } from '@/components/dashboard/sidebar'
 import { Topbar } from '@/components/dashboard/topbar'
 import { InventoryTable } from '@/components/inventory/inventory-table'
 import { AddStockModal } from '@/components/inventory/add-stock-modal'
+import { MedicineModal } from '@/components/inventory/medicine-modal'
 import { sampleInventory, InventoryItem, Batch } from '@/lib/inventory-data'
 
 export default function InventoryPage() {
   const [inventory, setInventory] = useState(sampleInventory)
   const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(null)
   const [showAddStockModal, setShowAddStockModal] = useState(false)
-  const [showEditModal, setShowEditModal] = useState(false)
+  const [showMedicineModal, setShowMedicineModal] = useState(false)
+  const [editingMedicine, setEditingMedicine] = useState<InventoryItem | null>(null)
 
   const handleEditItem = (item: InventoryItem) => {
-    setSelectedItem(item)
-    setShowEditModal(true)
+    setEditingMedicine(item)
+    setShowMedicineModal(true)
   }
 
   const handleAddStock = (item: InventoryItem) => {
@@ -24,8 +26,39 @@ export default function InventoryPage() {
   }
 
   const handleAddNew = () => {
-    // In a real app, this would open a modal to add new medicine
-    console.log('Add new medicine')
+    setEditingMedicine(null)
+    setShowMedicineModal(true)
+  }
+
+  const handleSaveMedicine = (medicineData: Partial<InventoryItem>) => {
+    if (editingMedicine) {
+      // Update existing medicine
+      setInventory(prev => prev.map(item =>
+        item.id === editingMedicine.id
+          ? { ...item, ...medicineData, updatedAt: new Date().toISOString() }
+          : item
+      ))
+    } else {
+      // Add new medicine
+      const newMedicine: InventoryItem = {
+        id: `med-${Date.now()}`,
+        sku: medicineData.sku || `MED${Date.now()}`,
+        name: medicineData.name || '',
+        genericName: medicineData.genericName,
+        manufacturer: medicineData.manufacturer || '',
+        category: medicineData.category || '',
+        unitPrice: medicineData.unitPrice || 0,
+        stockQty: medicineData.stockQty || 0,
+        reorderLevel: medicineData.reorderLevel || 10,
+        description: medicineData.description,
+        dosageForm: medicineData.dosageForm,
+        strength: medicineData.strength,
+        batches: [],
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      }
+      setInventory(prev => [...prev, newMedicine])
+    }
   }
 
   const handleSaveStock = (itemId: string, batch: Omit<Batch, 'id'>) => {
@@ -51,7 +84,7 @@ export default function InventoryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-theme-background flex">
       {/* Sidebar */}
       <Sidebar />
       
@@ -61,7 +94,7 @@ export default function InventoryPage() {
         <Topbar />
         
         {/* Page Content */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 bg-theme-background">
           <InventoryTable
             inventory={inventory}
             onEditItem={handleEditItem}
@@ -80,6 +113,16 @@ export default function InventoryPage() {
         }}
         item={selectedItem}
         onSave={handleSaveStock}
+      />
+
+      <MedicineModal
+        isOpen={showMedicineModal}
+        onClose={() => {
+          setShowMedicineModal(false)
+          setEditingMedicine(null)
+        }}
+        medicine={editingMedicine}
+        onSave={handleSaveMedicine}
       />
     </div>
   )

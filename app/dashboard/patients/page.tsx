@@ -6,6 +6,7 @@ import { Topbar } from '@/components/dashboard/topbar'
 import { PatientsTable } from '@/components/patients/patients-table'
 import { PatientProfile } from '@/components/patients/patient-profile'
 import { PatientFormModal } from '@/components/patients/patient-form-modal'
+import { PrescriptionModal } from '@/components/patients/prescription-modal'
 import { NewAppointmentModal } from '@/components/modals/modal'
 import { samplePatients, sampleAppointments, samplePrescriptions, Patient } from '@/lib/patients-data'
 
@@ -15,6 +16,8 @@ export default function PatientsPage() {
   const [editingPatient, setEditingPatient] = useState<Patient | null>(null)
   const [showAddModal, setShowAddModal] = useState(false)
   const [showAppointmentModal, setShowAppointmentModal] = useState(false)
+  const [showPrescriptionModal, setShowPrescriptionModal] = useState(false)
+  const [prescriptionPatient, setPrescriptionPatient] = useState<Patient | null>(null)
   const [view, setView] = useState<'table' | 'profile'>('table')
 
   const handleViewPatient = (patient: Patient) => {
@@ -62,9 +65,13 @@ export default function PatientsPage() {
   }
 
   const handleNewPrescription = () => {
-    // Navigate to prescription creation page
+    // Open prescription modal for selected patient
     if (selectedPatient) {
-      window.location.href = `/dashboard/prescriptions/new?patientId=${selectedPatient.id}`
+      setPrescriptionPatient(selectedPatient)
+      setShowPrescriptionModal(true)
+    } else {
+      // Navigate to prescription creation page if no patient selected
+      window.location.href = '/prescriptions/editor'
     }
   }
 
@@ -78,7 +85,7 @@ export default function PatientsPage() {
     : []
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-theme-background flex">
       {/* Sidebar */}
       <Sidebar />
       
@@ -88,7 +95,7 @@ export default function PatientsPage() {
         <Topbar />
         
         {/* Page Content */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 bg-theme-background">
           {view === 'table' ? (
             <PatientsTable
               patients={patients}
@@ -125,6 +132,15 @@ export default function PatientsPage() {
       <NewAppointmentModal
         isOpen={showAppointmentModal}
         onClose={() => setShowAppointmentModal(false)}
+      />
+
+      <PrescriptionModal
+        isOpen={showPrescriptionModal}
+        onClose={() => {
+          setShowPrescriptionModal(false)
+          setPrescriptionPatient(null)
+        }}
+        patient={prescriptionPatient}
       />
     </div>
   )
