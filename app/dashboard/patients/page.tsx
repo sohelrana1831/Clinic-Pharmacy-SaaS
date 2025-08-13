@@ -83,38 +83,26 @@ export default function PatientsPage() {
     : []
 
   return (
-    <div className="min-h-screen bg-theme-background flex">
-      {/* Sidebar */}
-      <Sidebar />
-      
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Top Navigation */}
-        <Topbar />
-        
-        {/* Page Content */}
-        <main className="flex-1 p-6 bg-theme-background">
-          {view === 'table' ? (
-            <PatientsTable
-              patients={patients}
-              onViewPatient={handleViewPatient}
-              onEditPatient={handleEditPatient}
-              onAddPatient={handleAddPatient}
-            />
-          ) : (
-            selectedPatient && (
-              <PatientProfile
-                patient={selectedPatient}
-                appointments={patientAppointments}
-                prescriptions={patientPrescriptions}
-                onBack={handleBackToTable}
-                onNewAppointment={handleNewAppointment}
-                onNewPrescription={handleNewPrescription}
-              />
-            )
-          )}
-        </main>
-      </div>
+    <div>
+      {view === 'table' ? (
+        <PatientsTable
+          patients={patients}
+          onViewPatient={handleViewPatient}
+          onEditPatient={handleEditPatient}
+          onAddPatient={handleAddPatient}
+        />
+      ) : (
+        selectedPatient && (
+          <PatientProfile
+            patient={selectedPatient}
+            appointments={patientAppointments}
+            prescriptions={patientPrescriptions}
+            onBack={handleBackToTable}
+            onNewAppointment={handleNewAppointment}
+            onNewPrescription={handleNewPrescription}
+          />
+        )
+      )}
 
       {/* Modals */}
       <PatientFormModal
