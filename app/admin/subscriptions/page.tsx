@@ -238,7 +238,7 @@ export default function AdminSubscriptionsPage() {
                 <tr className="border-b border-gray-200">
                   <th className="text-left py-3 px-4 font-medium text-gray-600">ক্লিনিক</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-600">প্ল্যান</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">স্ট্যাটাস</th>
+                  <th className="text-left py-3 px-4 font-medium text-gray-600">স্ট্য���টাস</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-600">পরবর্তী বিলিং</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-600">মাসিক আয়</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-600">যোগদান</th>
@@ -406,17 +406,17 @@ export default function AdminSubscriptionsPage() {
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <div>
-                        <label className="text-sm font-medium text-gray-600">বর্তমান প্ল্যান</label>
+                        <label className="text-sm font-medium text-gray-600 dark:text-gray-400">বর্তমান প্ল্যান</label>
                         <p className="font-medium">{plan?.name}</p>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-gray-600">মাসিক ফি</label>
+                        <label className="text-sm font-medium text-gray-600 dark:text-gray-400">মাসিক ফি</label>
                         <p className="font-medium text-green-600">
                           {formatCurrency(clinic.revenue, 'BDT')}
                         </p>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-gray-600">পরবর্তী বিলিং</label>
+                        <label className="text-sm font-medium text-gray-600 dark:text-gray-400">পরবর্তী বিলিং</label>
                         <p>{new Date(clinic.billingDate).toLocaleDateString('bn-BD')}</p>
                       </div>
                     </CardContent>
