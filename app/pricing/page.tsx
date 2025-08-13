@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { Sidebar } from '@/components/dashboard/sidebar'
+import { Topbar } from '@/components/dashboard/topbar'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Modal } from '@/components/modals/modal'
@@ -140,7 +142,7 @@ export default function PricingPage() {
                   </div>
                   <div className="flex items-center">
                     <Globe className="h-4 w-4 text-gray-500 mr-2" />
-                    <span>ইন্টারনেট ব্যাংকিং</span>
+                    <span>ইন্টারন��ট ব্যাংকিং</span>
                   </div>
                   <div className="flex items-center">
                     <CreditCard className="h-4 w-4 text-gray-500 mr-2" />
