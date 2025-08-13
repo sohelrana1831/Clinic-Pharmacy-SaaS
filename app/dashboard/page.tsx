@@ -115,7 +115,7 @@ export default function DashboardPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-theme-muted">{t('dashboard.monthlyIncome')}</p>
-                  <p className="text-2xl font-bold text-theme-foreground">৳৩,৪��,০০০</p>
+                  <p className="text-2xl font-bold text-theme-foreground">৳৩,00,০০০</p>
                 </div>
                 <div className="w-12 h-12 bg-success-100 dark:bg-success-900 rounded-lg flex items-center justify-center theme-transition">
                   <span className="text-success-600 dark:text-success-400 font-bold">💰</span>
