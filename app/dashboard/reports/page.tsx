@@ -79,7 +79,7 @@ export default function ReportsPage() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
-              <label className="block text-sm font-medium text-theme-foreground mb-2">তারিখ থেকে</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">তারিখ থেকে</label>
               <Input
                 type="date"
                 value={dateRange.from}
@@ -87,7 +87,7 @@ export default function ReportsPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-theme-foreground mb-2">তারিখ পর্যন্ত</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">তারিখ পর্যন্ত</label>
               <Input
                 type="date"
                 value={dateRange.to}
@@ -95,7 +95,7 @@ export default function ReportsPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-theme-foreground mb-2">ডাক্তার নির্বাচন</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">ডাক্তার নির্বাচন</label>
               <Select
                 value={selectedDoctor}
                 onChange={(e) => setSelectedDoctor(e.target.value)}
@@ -106,7 +106,7 @@ export default function ReportsPage() {
               </Select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-theme-foreground mb-2">শাখা নির্বাচন</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">শাখা নির্বাচন</label>
               <Select
                 value={selectedBranch}
                 onChange={(e) => setSelectedBranch(e.target.value)}
@@ -176,7 +176,7 @@ export default function ReportsPage() {
             <ChartPlaceholder
               title="দৈনিক বিক্রয় চার্ট"
               type="bar"
-              description="গত ৭ দিনের বিক্রয় পরিমা���"
+              description="গত ৭ দিনের বি��্রয় পরিমা���"
               data={dailySalesData}
             />
             <div className="space-y-3">
@@ -333,7 +333,7 @@ export default function ReportsPage() {
                     <p className="text-xl font-bold text-emerald-800">175</p>
                   </div>
                   <div>
-                    <p className="text-sm text-emerald-600">ধরে রাখার হার</p>
+                    <p className="text-sm text-emerald-600">ধরে ���াখার হার</p>
                     <p className="text-xl font-bold text-emerald-800">96%</p>
                   </div>
                 </div>
