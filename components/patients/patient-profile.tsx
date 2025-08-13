@@ -397,6 +397,12 @@ export function PatientProfile({
           </Card>
         )}
       </div>
+
+      {/* Calendar Modal */}
+      <CalendarModal
+        isOpen={showCalendarModal}
+        onClose={() => setShowCalendarModal(false)}
+      />
     </div>
   )
 }
