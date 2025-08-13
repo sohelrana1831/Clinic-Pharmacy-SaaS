@@ -65,8 +65,8 @@ export function Topbar() {
       {/* Right Section */}
       <div className="flex items-center space-x-4">
         {/* Current Date */}
-        <div className="text-sm text-theme-muted">
-          <span>{t('dashboard.todayLabel')}</span>
+        <div className="text-sm text-theme-muted" suppressHydrationWarning>
+          <span suppressHydrationWarning>{t('dashboard.todayLabel')}</span>
           <span className="font-medium text-theme-foreground">১��� জানুয়ারি, ২০২৪</span>
         </div>
 
