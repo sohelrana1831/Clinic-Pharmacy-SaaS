@@ -82,7 +82,7 @@ export default function AdminSubscriptionsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
       {/* Sidebar */}
       <Sidebar />
 
@@ -97,8 +97,8 @@ export default function AdminSubscriptionsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">সাবস্ক্রিপশন ম্যানেজমেন্ট</h1>
-          <p className="text-gray-600 mt-1">সকল ক্লিনিকের সাবস্ক্রিপশন পরিচালনা করুন</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">সাবস্ক্রিপশন ম্যানেজমেন্ট</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">��কল ক্লিনিকের সাবস্ক্রিপশন পরিচালনা করুন</p>
         </div>
         <Button className="bg-blue-600 hover:bg-blue-700">
           <Plus className="h-4 w-4 mr-2" />
@@ -416,7 +416,7 @@ export default function AdminSubscriptionsPage() {
                         </p>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-gray-600 dark:text-gray-400">পরবর্তী বিলিং</label>
+                        <label className="text-sm font-medium text-gray-600 dark:text-gray-400">পর���র্তী বিলিং</label>
                         <p>{new Date(clinic.billingDate).toLocaleDateString('bn-BD')}</p>
                       </div>
                     </CardContent>
