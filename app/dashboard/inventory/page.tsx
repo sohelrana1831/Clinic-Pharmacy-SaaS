@@ -114,6 +114,16 @@ export default function InventoryPage() {
         item={selectedItem}
         onSave={handleSaveStock}
       />
+
+      <MedicineModal
+        isOpen={showMedicineModal}
+        onClose={() => {
+          setShowMedicineModal(false)
+          setEditingMedicine(null)
+        }}
+        medicine={editingMedicine}
+        onSave={handleSaveMedicine}
+      />
     </div>
   )
 }
