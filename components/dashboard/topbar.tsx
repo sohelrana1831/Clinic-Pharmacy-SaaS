@@ -115,33 +115,33 @@ export function Topbar() {
             <div className="w-8 h-8 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center theme-transition">
               <span className="text-theme-accent font-medium text-sm">ড</span>
             </div>
-            <div className="text-left">
-              <p className="text-sm font-medium text-theme-foreground">{t('user.drRahimUddin')}</p>
-              <p className="text-xs text-theme-muted">{t('user.chiefPhysician')}</p>
+            <div className="text-left" suppressHydrationWarning>
+              <p className="text-sm font-medium text-theme-foreground" suppressHydrationWarning>{t('user.drRahimUddin')}</p>
+              <p className="text-xs text-theme-muted" suppressHydrationWarning>{t('user.chiefPhysician')}</p>
             </div>
             <ChevronDown className="h-4 w-4 text-theme-foreground" />
           </Button>
 
           {/* User Dropdown */}
           {showUserMenu && (
-            <div className="absolute right-0 top-12 w-56 modal-theme rounded-lg z-50 animate-slide-up">
+            <div className="absolute right-0 top-12 w-56 modal-theme rounded-lg z-50 animate-slide-up" suppressHydrationWarning>
               <div className="p-4 border-b border-theme-default">
-                <p className="font-medium text-theme-foreground">{t('user.drRahimUddin')}</p>
+                <p className="font-medium text-theme-foreground" suppressHydrationWarning>{t('user.drRahimUddin')}</p>
                 <p className="text-sm text-theme-muted">rahim@srpharma.com</p>
               </div>
               <div className="p-2">
                 <button className="w-full flex items-center px-3 py-2 text-sm text-theme-foreground hover-theme-bg rounded-md theme-transition focus-ring">
                   <User className="h-4 w-4 mr-2" />
-                  {t('user.profile')}
+                  <span suppressHydrationWarning>{t('user.profile')}</span>
                 </button>
                 <button className="w-full flex items-center px-3 py-2 text-sm text-theme-foreground hover-theme-bg rounded-md theme-transition focus-ring">
                   <Settings className="h-4 w-4 mr-2" />
-                  {t('navigation.settings')}
+                  <span suppressHydrationWarning>{t('navigation.settings')}</span>
                 </button>
                 <hr className="my-2 border-theme-default" />
                 <button className="w-full flex items-center px-3 py-2 text-sm text-error-600 dark:text-error-400 hover:bg-error-50 dark:hover:bg-error-900/20 rounded-md theme-transition focus-ring">
                   <LogOut className="h-4 w-4 mr-2" />
-                  {t('user.logout')}
+                  <span suppressHydrationWarning>{t('user.logout')}</span>
                 </button>
               </div>
             </div>
