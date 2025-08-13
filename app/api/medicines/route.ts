@@ -39,17 +39,32 @@ export async function GET(request: NextRequest) {
     }
 
     // Get medicines with pagination
-    const [medicines, total] = await Promise.all([
-      prisma.medicine.findMany({
+    let medicines, total;
+
+    if (lowStock) {
+      // For low stock, we need to filter after fetching
+      const allMedicines = await prisma.medicine.findMany({
         where: whereClause,
         orderBy: { [sortBy]: sortOrder },
-        skip,
-        take: limit,
-      }),
-      prisma.medicine.count({
-        where: whereClause,
-      }),
-    ])
+      })
+
+      const lowStockMedicines = allMedicines.filter(med => med.stockQty <= med.reorderLevel)
+
+      total = lowStockMedicines.length
+      medicines = lowStockMedicines.slice(skip, skip + limit)
+    } else {
+      [medicines, total] = await Promise.all([
+        prisma.medicine.findMany({
+          where: whereClause,
+          orderBy: { [sortBy]: sortOrder },
+          skip,
+          take: limit,
+        }),
+        prisma.medicine.count({
+          where: whereClause,
+        }),
+      ])
+    }
 
     return NextResponse.json({
       success: true,
