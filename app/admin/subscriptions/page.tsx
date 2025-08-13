@@ -380,19 +380,19 @@ export default function AdminSubscriptionsPage() {
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <div>
-                        <label className="text-sm font-medium text-gray-600">ক্লিনিকের নাম</label>
+                        <label className="text-sm font-medium text-gray-600 dark:text-gray-400">ক্লিনিকের নাম</label>
                         <p className="font-medium">{clinic.name}</p>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-gray-600">ইমেইল</label>
+                        <label className="text-sm font-medium text-gray-600 dark:text-gray-400">ইমেইল</label>
                         <p>{clinic.email}</p>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-gray-600">যোগদানের তারিখ</label>
+                        <label className="text-sm font-medium text-gray-600 dark:text-gray-400">যোগদানের তারিখ</label>
                         <p>{new Date(clinic.joinDate).toLocaleDateString('bn-BD')}</p>
                       </div>
                       <div>
-                        <label className="text-sm font-medium text-gray-600">স্ট্যাটাস</label>
+                        <label className="text-sm font-medium text-gray-600 dark:text-gray-400">স্ট্যাটাস</label>
                         <span className={`inline-block px-2 py-1 text-xs font-medium rounded-full ${getStatusBadgeColor(clinic.status)}`}>
                           {getStatusText(clinic.status)}
                         </span>
@@ -435,7 +435,7 @@ export default function AdminSubscriptionsPage() {
                   </Button>
                   <Button variant="outline" className="flex-1">
                     <FileText className="h-4 w-4 mr-2" />
-                    ইনভয়েস তৈরি
+                    ইনভ��়েস তৈরি
                   </Button>
                 </div>
               </div>
