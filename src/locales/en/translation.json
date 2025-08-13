@@ -1,0 +1,75 @@
+{
+  "app": {
+    "title": "Clinic MS",
+    "subtitle": "Management System"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "patients": "Patients", 
+    "appointments": "Appointments",
+    "prescriptions": "Prescriptions",
+    "inventory": "Inventory",
+    "pos": "POS",
+    "reports": "Reports",
+    "billing": "Billing",
+    "subscriptions": "Subscriptions",
+    "pricing": "Pricing",
+    "settings": "Settings"
+  },
+  "user": {
+    "admin": "Admin",
+    "profile": "Profile",
+    "logout": "Logout",
+    "chiefPhysician": "Chief Physician",
+    "drRahimUddin": "Dr. Rahim Uddin"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "View your clinic's overall information at a glance",
+    "todayLabel": "Today: ",
+    "totalPatients": "Total Patients",
+    "monthlyIncome": "Monthly Income",
+    "totalMedicines": "Total Medicines",
+    "doctors": "Doctors"
+  },
+  "search": {
+    "placeholder": "Search patients, medicines or doctors..."
+  },
+  "clinics": {
+    "srPharmaDhanmondi": "SR Pharma - Dhanmondi",
+    "srPharmaUttara": "SR Pharma - Uttara", 
+    "srPharmaGulshan": "SR Pharma - Gulshan"
+  },
+  "notifications": {
+    "label": "Notifications",
+    "unread": "unread"
+  },
+  "theme": {
+    "switchToDark": "Switch to dark mode",
+    "switchToLight": "Switch to light mode"
+  },
+  "language": {
+    "label": "Language",
+    "english": "English",
+    "bengali": "বাংলা",
+    "arabic": "العربية"
+  },
+  "common": {
+    "welcome": "Welcome to our dashboard",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "refresh": "Refresh",
+    "close": "Close",
+    "submit": "Submit",
+    "reset": "Reset"
+  }
+}

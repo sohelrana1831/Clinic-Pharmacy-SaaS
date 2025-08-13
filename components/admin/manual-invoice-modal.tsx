@@ -156,7 +156,6 @@ export function ManualInvoiceModal({ clinicId, onClose }: ManualInvoiceModalProp
       isOpen={true}
       onClose={onClose}
       title="ম্যানুয়াল ইনভয়েস তৈরি করুন"
-      size="xl"
     >
       <div className="space-y-6 max-h-[80vh] overflow-y-auto">
         {/* Client Info */}

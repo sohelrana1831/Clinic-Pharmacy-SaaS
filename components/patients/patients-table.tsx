@@ -52,8 +52,8 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">রোগীর তালিকা</h1>
-          <p className="text-gray-600">সকল রোগীর তথ্য দেখুন ও পরিচালনা করুন</p>
+          <h1 className="text-2xl font-bold text-theme-foreground">রোগীর তালিকা</h1>
+          <p className="text-theme-muted">সকল রোগীর তথ্য দেখুন ও পরিচালনা করুন</p>
         </div>
         <Button onClick={onAddPatient} className="bg-blue-600 hover:bg-blue-700">
           <Plus className="h-4 w-4 mr-2" />
@@ -64,7 +64,7 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
       {/* Search and Filters */}
       <div className="flex items-center space-x-4">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-theme-muted" />
           <Input
             type="text"
             placeholder="নাম, ফোন বা ID দিয়ে খুঁজুন..."
@@ -74,39 +74,39 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
           />
         </div>
         <div className="flex items-center space-x-2">
-          <span className="text-sm text-gray-600">মোট: {filteredPatients.length} জন</span>
+          <span className="text-sm text-theme-muted">মোট: {filteredPatients.length} জন</span>
         </div>
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+      <div className="table-theme rounded-lg border overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
+          <table className="w-full table-theme">
+            <thead className="border-b">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   রোগী ID
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   নাম
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   ফোন
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   বয়স
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   শেষ ভিজিট
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   কার্যক্রম
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="divide-y">{/* class removed: divide-gray-200 */}
               {filteredPatients.map((patient) => (
-                <tr key={patient.id} className="hover:bg-gray-50">
+                <tr key={patient.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 theme-transition">{/* Updated hover classes */}
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-blue-600">{patient.id}</div>
                   </td>
@@ -118,29 +118,29 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
                         </span>
                       </div>
                       <div>
-                        <div className="text-sm font-medium text-gray-900">{patient.name}</div>
-                        <div className="text-sm text-gray-500">{patient.gender === 'male' ? 'পুরুষ' : patient.gender === 'female' ? 'মহিলা' : 'অন্যান্য'}</div>
+                        <div className="text-sm font-medium text-theme-foreground">{patient.name}</div>
+                        <div className="text-sm text-theme-muted">{patient.gender === 'male' ? 'পুরুষ' : patient.gender === 'female' ? 'মহিলা' : 'অন্যান্য'}</div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{patient.phone}</div>
+                    <div className="text-sm text-theme-foreground">{patient.phone}</div>
                     {patient.email && (
-                      <div className="text-sm text-gray-500">{patient.email}</div>
+                      <div className="text-sm text-theme-muted">{patient.email}</div>
                     )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{calculateAge(patient.dateOfBirth)} বছর</div>
-                    <div className="text-sm text-gray-500">{formatDate(patient.dateOfBirth)}</div>
+                    <div className="text-sm text-theme-foreground">{calculateAge(patient.dateOfBirth)} বছর</div>
+                    <div className="text-sm text-theme-muted">{formatDate(patient.dateOfBirth)}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {patient.lastVisit ? (
-                      <div className="text-sm text-gray-900">{formatDate(patient.lastVisit)}</div>
+                      <div className="text-sm text-theme-foreground">{formatDate(patient.lastVisit)}</div>
                     ) : (
-                      <div className="text-sm text-gray-500">কোনো ভিজিট নেই</div>
+                      <div className="text-sm text-theme-muted">কোনো ভিজিট নেই</div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-theme-muted">
                     <div className="flex items-center space-x-2">
                       <Button
                         size="sm"
@@ -168,7 +168,7 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
 
         {filteredPatients.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-gray-500">
+            <div className="text-theme-muted">
               {searchTerm ? 'কোনো রোগী পাওয়া যায়নি' : 'এখনো কোনো রোগী যোগ করা হয়নি'}
             </div>
             {!searchTerm && (

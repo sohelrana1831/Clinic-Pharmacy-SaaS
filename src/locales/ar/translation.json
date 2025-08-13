@@ -1,0 +1,75 @@
+{
+  "app": {
+    "title": "عيادة MS",
+    "subtitle": "نظام الإدارة"
+  },
+  "navigation": {
+    "dashboard": "لوحة التحكم",
+    "patients": "المرضى",
+    "appointments": "المواعيد",
+    "prescriptions": "الوصفات",
+    "inventory": "المخزون",
+    "pos": "نقطة البيع",
+    "reports": "التقارير",
+    "billing": "الفواتير",
+    "subscriptions": "الاشتراكات",
+    "pricing": "التسعير",
+    "settings": "الإعدادات"
+  },
+  "user": {
+    "admin": "مشرف",
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "chiefPhysician": "كبير الأطباء",
+    "drRahimUddin": "د. رحيم الدين"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "subtitle": "اعرض معلومات عيادتك الشاملة في لمحة واحدة",
+    "todayLabel": "اليوم: ",
+    "totalPatients": "إجمالي المرضى",
+    "monthlyIncome": "الدخل الشهري",
+    "totalMedicines": "إجمالي الأدوية",
+    "doctors": "الأطباء"
+  },
+  "search": {
+    "placeholder": "البحث عن المرضى أو الأدوية أو الأطباء..."
+  },
+  "clinics": {
+    "srPharmaDhanmondi": "صيدلية SR - دانموندي",
+    "srPharmaUttara": "صيدلية SR - أوتارا",
+    "srPharmaGulshan": "صيدلية SR - جولشان"
+  },
+  "notifications": {
+    "label": "الإشعارات",
+    "unread": "غير مقروءة"
+  },
+  "theme": {
+    "switchToDark": "التبديل إلى الوضع المظلم",
+    "switchToLight": "التبديل إلى الوضع الفاتح"
+  },
+  "language": {
+    "label": "اللغة",
+    "english": "English",
+    "bengali": "বাংলা",
+    "arabic": "العربية"
+  },
+  "common": {
+    "welcome": "مرحبا بكم في لوحة التحكم",
+    "loading": "جاري التحميل...",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "edit": "تحرير",
+    "delete": "حذف",
+    "view": "عرض",
+    "add": "إضافة",
+    "search": "بحث",
+    "filter": "تصفية",
+    "export": "تصدير",
+    "import": "استيراد",
+    "refresh": "تحديث",
+    "close": "إغلاق",
+    "submit": "إرسال",
+    "reset": "إعادة تعيين"
+  }
+}

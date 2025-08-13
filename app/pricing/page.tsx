@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { Sidebar } from '@/components/dashboard/sidebar'
+import { Topbar } from '@/components/dashboard/topbar'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Modal } from '@/components/modals/modal'
@@ -32,7 +34,17 @@ export default function PricingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-emerald-50">
+    <div className="min-h-screen bg-theme-background flex">
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        {/* Top Navigation */}
+        <Topbar />
+
+        {/* Pricing Content */}
+        <main className="flex-1 bg-gradient-to-br from-blue-50 to-emerald-50 dark:from-gray-800 dark:to-gray-900">
       {/* Header */}
       <section className="pt-20 pb-16">
         <div className="container mx-auto px-4">
@@ -140,11 +152,11 @@ export default function PricingPage() {
                   </div>
                   <div className="flex items-center">
                     <Globe className="h-4 w-4 text-gray-500 mr-2" />
-                    <span>ইন্টারনেট ব্যাংকিং</span>
+                    <span>ইন্টারন��ট ব্যাংকিং</span>
                   </div>
                   <div className="flex items-center">
                     <CreditCard className="h-4 w-4 text-gray-500 mr-2" />
-                    <span>ডিজিটাল ওয়ালেট</span>
+                    <span>ডিজিটাল ��য়ালেট</span>
                   </div>
                 </div>
               </Card>
@@ -259,7 +271,7 @@ export default function PricingPage() {
                   প্ল্যান পরিবর্তন করা যাবে?
                 </h4>
                 <p className="text-gray-600">
-                  হ্যাঁ, যেকোনো সময় আপগ্রেড বা ডাউনগ্রেড করতে পারেন। পরিবর্তন পরবর্তী বিলিং সাইকেলে কার্যকর হবে।
+                  হ্যাঁ, যেকোনো সময় আপ���্রেড বা ডাউনগ্রেড করতে পারেন। পরিবর্তন পরবর্তী বিলিং সাইকেলে কার্যকর হবে।
                 </p>
               </Card>
 
@@ -284,6 +296,9 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
+
+        </main>
+      </div>
 
       {/* Checkout Modal */}
       {showCheckout && selectedPlan && (

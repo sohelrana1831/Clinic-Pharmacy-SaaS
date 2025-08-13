@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Sidebar } from '@/components/dashboard/sidebar'
+import { Topbar } from '@/components/dashboard/topbar'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -41,12 +43,20 @@ export default function PrescriptionEditorPage() {
     doctorName: '',
     doctorRegistration: '',
     clinicId: 'clinic-1',
-    date: new Date().toISOString().split('T')[0],
+    date: '2024-01-15', // Static date to prevent hydration mismatch
     diagnosis: '',
     medicines: [],
     notes: '',
     status: 'draft'
   })
+
+  // Set current date on client-side only
+  useEffect(() => {
+    setPrescriptionData(prev => ({
+      ...prev,
+      date: new Date().toISOString().split('T')[0]
+    }))
+  }, [])
 
   const [patientSearch, setPatientSearch] = useState('')
   const [showPatientDropdown, setShowPatientDropdown] = useState(false)
@@ -188,7 +198,7 @@ export default function PrescriptionEditorPage() {
     const newErrors: Record<string, string> = {}
 
     if (!prescriptionData.patientId) {
-      newErrors.patient = 'রোগী নির্বাচন করুন'
+      newErrors.patient = 'র���গী নির্বাচন করুন'
     }
 
     if (!prescriptionData.doctorId) {
@@ -236,7 +246,7 @@ export default function PrescriptionEditorPage() {
 
   const handlePrint = () => {
     if (!validateForm()) {
-      showToastMessage('প্রিন্ট করার আগে সকল তথ্য পূরণ করুন', 'error')
+      showToastMessage('প্রিন্ট করার আগে সকল তথ্য পূরণ ক���ুন', 'error')
       return
     }
 
@@ -255,8 +265,18 @@ export default function PrescriptionEditorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-theme-background flex">
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        {/* Top Navigation */}
+        <Topbar />
+
+        {/* Prescription Content */}
+        <main className="flex-1 p-6 bg-theme-background">
+          <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -383,7 +403,7 @@ export default function PrescriptionEditorPage() {
                 <textarea
                   value={prescriptionData.diagnosis}
                   onChange={(e) => setPrescriptionData(prev => ({ ...prev, diagnosis: e.target.value }))}
-                  placeholder="রোগের নাম ও বিবরণ লিখুন..."
+                  placeholder="রোগের নাম ও বিবর�� লিখুন..."
                   rows={3}
                   className={`w-full p-3 border rounded-md resize-none text-gray-900 placeholder:text-gray-500 ${errors.diagnosis ? 'border-red-500' : 'border-gray-300'}`}
                 />
@@ -574,7 +594,7 @@ export default function PrescriptionEditorPage() {
             {prescriptionData.doctorId && (
               <Card>
                 <CardHeader>
-                  <CardTitle>ডাক্তারের স্বাক্ষর</CardTitle>
+                  <CardTitle>��াক্তারের স্বাক্ষর</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="text-center p-6 border-2 border-dashed border-gray-300 rounded-lg">
@@ -637,6 +657,8 @@ export default function PrescriptionEditorPage() {
             </Card>
           </div>
         </div>
+          </div>
+        </main>
       </div>
 
       {/* Toast Notification */}

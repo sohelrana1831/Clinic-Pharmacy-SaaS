@@ -29,20 +29,27 @@ interface StatsWidgetProps {
 
 function StatsWidget({ title, value, change, changeType, icon, color, onClick }: StatsWidgetProps) {
   return (
-    <Card className="hover:shadow-md transition-shadow cursor-pointer" onClick={onClick}>
+    <Card
+      className="hover:shadow-md theme-transition cursor-pointer focus-ring"
+      onClick={onClick}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } } : undefined}
+      aria-label={`${title}: ${value}${change ? `, ${change}` : ''}`}
+    >
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-gray-600">{title}</p>
-            <p className="text-2xl font-bold text-gray-900">{value}</p>
+            <p className="text-sm font-medium text-theme-muted">{title}</p>
+            <p className="text-2xl font-bold text-theme-foreground">{value}</p>
             {change && (
               <div className="flex items-center mt-1">
                 {changeType === 'increase' ? (
-                  <TrendingUp className="h-4 w-4 text-green-500 mr-1" />
+                  <TrendingUp className="h-4 w-4 text-success-500 mr-1" />
                 ) : (
-                  <TrendingDown className="h-4 w-4 text-red-500 mr-1" />
+                  <TrendingDown className="h-4 w-4 text-error-500 mr-1" />
                 )}
-                <span className={`text-sm ${changeType === 'increase' ? 'text-green-600' : 'text-red-600'}`}>
+                <span className={`text-sm ${changeType === 'increase' ? 'text-success-600' : 'text-error-600'}`}>
                   {change}
                 </span>
               </div>
@@ -69,8 +76,8 @@ export function TodayStats({ onAppointmentsClick, onPatientsClick, onSalesClick 
         value={24}
         change="+৮%"
         changeType="increase"
-        icon={<Calendar className="h-6 w-6 text-blue-600" />}
-        color="bg-blue-100"
+        icon={<Calendar className="h-6 w-6 text-primary-600 dark:text-primary-400" />}
+        color="bg-primary-100 dark:bg-primary-900"
         onClick={onAppointmentsClick}
       />
       <StatsWidget
@@ -78,8 +85,8 @@ export function TodayStats({ onAppointmentsClick, onPatientsClick, onSalesClick 
         value={7}
         change="+২৩%"
         changeType="increase"
-        icon={<Users className="h-6 w-6 text-emerald-600" />}
-        color="bg-emerald-100"
+        icon={<Users className="h-6 w-6 text-success-600 dark:text-success-400" />}
+        color="bg-success-100 dark:bg-success-900"
         onClick={onPatientsClick}
       />
       <StatsWidget
@@ -87,8 +94,8 @@ export function TodayStats({ onAppointmentsClick, onPatientsClick, onSalesClick 
         value="৳১২,৫০০"
         change="-৫%"
         changeType="decrease"
-        icon={<DollarSign className="h-6 w-6 text-purple-600" />}
-        color="bg-purple-100"
+        icon={<DollarSign className="h-6 w-6 text-purple-600 dark:text-purple-400" />}
+        color="bg-purple-100 dark:bg-purple-900"
         onClick={onSalesClick}
       />
     </div>
@@ -100,7 +107,7 @@ export function UpcomingAppointments({ onViewAll }: { onViewAll: () => void }) {
     { time: '০৯:৩০', patient: 'আবদুর রহমান', type: 'চেকআপ', status: 'নিশ্চিত' },
     { time: '১০:১৫', patient: 'ফাতেমা খাতুন', type: 'ফলোআপ', status: 'অপেক্ষায়' },
     { time: '১১:০০', patient: 'মোহাম্মদ আলী', type: 'পরামর্শ', status: 'নিশ্চিত' },
-    { time: '১১:৪৫', patient: 'রোকেয়া বেগম', type: 'চেকআপ', status: 'নিশ্চ��ত' },
+    { time: '১১:৪৫', patient: 'রোকেয়া বেগম', type: '��েকআপ', status: 'নিশ্চ��ত' },
     { time: '১২:৩০', patient: 'করিম উদ্দিন', type: 'জরুরি', status: 'অপেক্ষায়' }
   ]
 
@@ -108,7 +115,7 @@ export function UpcomingAppointments({ onViewAll }: { onViewAll: () => void }) {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="flex items-center">
-          <Clock className="h-5 w-5 text-blue-600 mr-2" />
+          <Clock className="h-5 w-5 text-primary-600 dark:text-primary-400 mr-2" />
           আসন্ন অ্যাপয়েন্টমেন্ট
         </CardTitle>
         <Button variant="outline" size="sm" onClick={onViewAll}>
@@ -118,20 +125,20 @@ export function UpcomingAppointments({ onViewAll }: { onViewAll: () => void }) {
       <CardContent>
         <div className="space-y-4">
           {appointments.map((appointment, index) => (
-            <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+            <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg theme-transition">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <span className="text-blue-600 font-medium text-sm">{appointment.time}</span>
+                <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center theme-transition">
+                  <span className="text-primary-600 dark:text-primary-400 font-medium text-sm">{appointment.time}</span>
                 </div>
                 <div>
-                  <p className="font-medium text-gray-900">{appointment.patient}</p>
-                  <p className="text-sm text-gray-500">{appointment.type}</p>
+                  <p className="font-medium text-theme-foreground">{appointment.patient}</p>
+                  <p className="text-sm text-theme-muted">{appointment.type}</p>
                 </div>
               </div>
               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                appointment.status === 'নিশ্চিত' 
-                  ? 'bg-green-100 text-green-600' 
-                  : 'bg-yellow-100 text-yellow-600'
+                appointment.status === 'নিশ্চিত'
+                  ? 'bg-success-100 dark:bg-success-900 text-success-600 dark:text-success-400'
+                  : 'bg-warning-100 dark:bg-warning-900 text-warning-600 dark:text-warning-400'
               }`}>
                 {appointment.status}
               </span>
@@ -155,24 +162,24 @@ export function LowStockMedicines({ onViewAll }: { onViewAll: () => void }) {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="flex items-center">
-          <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
+          <AlertTriangle className="h-5 w-5 text-warning-600 dark:text-warning-400 mr-2" />
           কম স্টক ওষুধ
         </CardTitle>
         <Button variant="outline" size="sm" onClick={onViewAll}>
-          সব দেখুন
+          স��� দেখুন
         </Button>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
           {medicines.map((medicine, index) => (
-            <div key={index} className="flex items-center justify-between p-3 border border-orange-200 rounded-lg bg-orange-50">
+            <div key={index} className="flex items-center justify-between p-3 border border-warning-200 dark:border-warning-800 rounded-lg bg-warning-50 dark:bg-warning-900/20 theme-transition">
               <div>
-                <p className="font-medium text-gray-900">{medicine.name}</p>
-                <p className="text-sm text-gray-500">সর্বনিম্ন: {medicine.minStock} {medicine.unit}</p>
+                <p className="font-medium text-theme-foreground">{medicine.name}</p>
+                <p className="text-sm text-theme-muted">সর্বনিম্ন: {medicine.minStock} {medicine.unit}</p>
               </div>
               <div className="text-right">
-                <p className="text-lg font-bold text-orange-600">{medicine.stock}</p>
-                <p className="text-sm text-gray-500">{medicine.unit}</p>
+                <p className="text-lg font-bold text-warning-600 dark:text-warning-400">{medicine.stock}</p>
+                <p className="text-sm text-theme-muted">{medicine.unit}</p>
               </div>
             </div>
           ))}
@@ -194,17 +201,17 @@ export function QuickActions({
   onWritePrescription: () => void
 }) {
   const actions = [
-    { label: 'নতুন রোগী', icon: <Plus className="h-5 w-5" />, color: 'bg-blue-600 hover:bg-blue-700', onClick: onNewPatient },
-    { label: 'অ্যাপয়েন্��মেন্ট', icon: <Calendar className="h-5 w-5" />, color: 'bg-emerald-600 hover:bg-emerald-700', onClick: onNewAppointment },
-    { label: 'নতুন বিক্রয়', icon: <ShoppingCart className="h-5 w-5" />, color: 'bg-purple-600 hover:bg-purple-700', onClick: onNewSale },
-    { label: 'প্রেসক্রিপশন', icon: <FileText className="h-5 w-5" />, color: 'bg-orange-600 hover:bg-orange-700', onClick: onWritePrescription }
+    { label: 'নতুন রোগী', icon: <Plus className="h-5 w-5" />, color: 'bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600', onClick: onNewPatient },
+    { label: 'অ্যাপয়েন্��মেন্ট', icon: <Calendar className="h-5 w-5" />, color: 'bg-success-600 hover:bg-success-700 dark:bg-success-500 dark:hover:bg-success-600', onClick: onNewAppointment },
+    { label: 'নতুন বিক্রয়', icon: <ShoppingCart className="h-5 w-5" />, color: 'bg-purple-600 hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600', onClick: onNewSale },
+    { label: 'প্রেসক্রিপশন', icon: <FileText className="h-5 w-5" />, color: 'bg-warning-600 hover:bg-warning-700 dark:bg-warning-500 dark:hover:bg-warning-600', onClick: onWritePrescription }
   ]
 
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center">
-          <Activity className="h-5 w-5 text-blue-600 mr-2" />
+          <Activity className="h-5 w-5 text-primary-600 dark:text-primary-400 mr-2" />
           দ্রুত কার্যক্রম
         </CardTitle>
       </CardHeader>
@@ -214,7 +221,7 @@ export function QuickActions({
             <Button
               key={index}
               onClick={action.onClick}
-              className={`${action.color} text-white h-16 flex flex-col items-center justify-center space-y-1`}
+              className={`${action.color} text-white h-16 flex flex-col items-center justify-center space-y-1 theme-transition`}
             >
               {action.icon}
               <span className="text-sm">{action.label}</span>
@@ -237,12 +244,12 @@ export function RecentActivity() {
 
   const getIcon = (type: string) => {
     switch (type) {
-      case 'patient': return <Users className="h-4 w-4 text-blue-600" />
-      case 'prescription': return <FileText className="h-4 w-4 text-green-600" />
-      case 'sale': return <ShoppingCart className="h-4 w-4 text-purple-600" />
-      case 'appointment': return <Calendar className="h-4 w-4 text-orange-600" />
-      case 'inventory': return <AlertTriangle className="h-4 w-4 text-red-600" />
-      default: return <Activity className="h-4 w-4 text-gray-600" />
+      case 'patient': return <Users className="h-4 w-4 text-primary-600 dark:text-primary-400" />
+      case 'prescription': return <FileText className="h-4 w-4 text-success-600 dark:text-success-400" />
+      case 'sale': return <ShoppingCart className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+      case 'appointment': return <Calendar className="h-4 w-4 text-warning-600 dark:text-warning-400" />
+      case 'inventory': return <AlertTriangle className="h-4 w-4 text-error-600 dark:text-error-400" />
+      default: return <Activity className="h-4 w-4 text-theme-muted" />
     }
   }
 
@@ -250,7 +257,7 @@ export function RecentActivity() {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center">
-          <Activity className="h-5 w-5 text-blue-600 mr-2" />
+          <Activity className="h-5 w-5 text-primary-600 dark:text-primary-400 mr-2" />
           সাম্প্রতিক কার্যক্রম
         </CardTitle>
       </CardHeader>
@@ -258,13 +265,13 @@ export function RecentActivity() {
         <div className="space-y-4">
           {activities.map((activity, index) => (
             <div key={index} className="flex items-start space-x-3">
-              <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
+              <div className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center flex-shrink-0 theme-transition">
                 {getIcon(activity.type)}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900">{activity.action}</p>
-                <p className="text-sm text-gray-500">{activity.details}</p>
-                <p className="text-xs text-gray-400 mt-1">{activity.time}</p>
+                <p className="text-sm font-medium text-theme-foreground">{activity.action}</p>
+                <p className="text-sm text-theme-muted">{activity.details}</p>
+                <p className="text-xs text-theme-muted opacity-75 mt-1">{activity.time}</p>
               </div>
             </div>
           ))}

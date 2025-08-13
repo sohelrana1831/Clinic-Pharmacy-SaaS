@@ -372,7 +372,6 @@ export function CheckoutModal({ plan, onClose }: CheckoutModalProps) {
       isOpen={true}
       onClose={paymentState === 'processing' ? () => {} : onClose}
       title={getTitle()}
-      size="lg"
     >
       {renderContent()}
     </Modal>

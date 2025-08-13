@@ -1,9 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select'
+import { LanguageSelector } from '@/components/ui/language-selector'
 import { useTheme } from '@/lib/theme-context'
 import {
   Search,
@@ -20,25 +22,26 @@ import {
 export function Topbar() {
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [selectedClinic, setSelectedClinic] = useState('sr-pharma')
-  const { theme, toggleTheme } = useTheme()
+  const { theme, toggleTheme, colors, isTransitioning } = useTheme()
+  const { t } = useTranslation()
 
   const clinics = [
-    { value: 'sr-pharma', label: 'SR Pharma - ধানমন্ডি' },
-    { value: 'sr-pharma-2', label: 'SR Pharma - উত্তরা' },
-    { value: 'sr-pharma-3', label: 'SR Pharma - গুলশান' }
+    { value: 'sr-pharma', label: t('clinics.srPharmaDhanmondi') },
+    { value: 'sr-pharma-2', label: t('clinics.srPharmaUttara') },
+    { value: 'sr-pharma-3', label: t('clinics.srPharmaGulshan') }
   ]
 
   return (
-    <header className="h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6 flex items-center justify-between transition-colors duration-200">
+    <header className="h-16 bg-theme-card border-b border-theme-default px-6 flex items-center justify-between theme-transition">
       {/* Left Section */}
       <div className="flex items-center space-x-4">
         {/* Clinic Selector */}
         <div className="flex items-center space-x-2">
-          <MapPin className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+          <MapPin className="h-5 w-5 text-theme-accent" />
           <Select
             value={selectedClinic}
             onChange={(e) => setSelectedClinic(e.target.value)}
-            className="border-0 bg-transparent font-medium text-gray-900 dark:text-gray-100"
+            className="border-0 bg-transparent font-medium text-theme-foreground theme-transition focus-ring"
           >
             {clinics.map((clinic) => (
               <option key={clinic.value} value={clinic.value}>
@@ -50,11 +53,11 @@ export function Topbar() {
 
         {/* Search */}
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 dark:text-gray-500" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-theme-muted" />
           <Input
             type="text"
-            placeholder="রোগী, ওষুধ বা ডাক্তার খুঁজুন..."
-            className="pl-10 w-80 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400"
+            placeholder={t('search.placeholder')}
+            className="pl-10 w-80 input-theme"
           />
         </div>
       </div>
@@ -62,30 +65,40 @@ export function Topbar() {
       {/* Right Section */}
       <div className="flex items-center space-x-4">
         {/* Current Date */}
-        <div className="text-sm text-gray-600 dark:text-gray-300">
-          <span>আজ: </span>
-          <span className="font-medium">১৫ জানুয়ারি, ২০২৪</span>
+        <div className="text-sm text-theme-muted" suppressHydrationWarning>
+          <span suppressHydrationWarning>{t('dashboard.todayLabel')}</span>
+          <span className="font-medium text-theme-foreground">১��� জানুয়ারি, ২০২৪</span>
         </div>
+
+        {/* Language Selector */}
+        <LanguageSelector />
 
         {/* Theme Toggle */}
         <Button
           variant="outline"
           size="icon"
           onClick={toggleTheme}
-          className="border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
-          aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+          className={`theme-transition ${isTransitioning ? 'animate-theme-fade-in' : ''}`}
+          aria-label={theme === 'light' ? t('theme.switchToDark') : t('theme.switchToLight')}
+          title={theme === 'light' ? t('theme.switchToDark') : t('theme.switchToLight')}
         >
           {theme === 'light' ? (
-            <Moon className="h-4 w-4 text-gray-700 dark:text-gray-300" />
+            <Moon className="h-4 w-4 text-theme-foreground theme-transition" />
           ) : (
-            <Sun className="h-4 w-4 text-gray-700 dark:text-gray-300" />
+            <Sun className="h-4 w-4 text-theme-foreground theme-transition" />
           )}
         </Button>
 
         {/* Notifications */}
-        <Button variant="outline" size="icon" className="relative border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
-          <Bell className="h-4 w-4 text-gray-700 dark:text-gray-300" />
-          <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 dark:bg-red-400 text-white text-xs rounded-full flex items-center justify-center">
+        <Button
+          variant="outline"
+          size="icon"
+          className="relative theme-transition"
+          aria-label={`${t('notifications.label')} (3 ${t('notifications.unread')})`}
+          title={t('notifications.label')}
+        >
+          <Bell className="h-4 w-4 text-theme-foreground" />
+          <span className="absolute -top-1 -right-1 h-4 w-4 bg-error-500 text-white text-xs rounded-full flex items-center justify-center font-medium">
             3
           </span>
         </Button>
@@ -95,38 +108,40 @@ export function Topbar() {
           <Button
             variant="outline"
             onClick={() => setShowUserMenu(!showUserMenu)}
-            className="flex items-center space-x-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
+            className="flex items-center space-x-2 theme-transition"
+            aria-label="User menu"
+            aria-expanded={showUserMenu}
           >
-            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
-              <span className="text-blue-600 dark:text-blue-400 font-medium text-sm">ড</span>
+            <div className="w-8 h-8 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center theme-transition">
+              <span className="text-theme-accent font-medium text-sm">ড</span>
             </div>
-            <div className="text-left">
-              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">ডা. রহিম উদ্দিন</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">প্রধান চিকিৎসক</p>
+            <div className="text-left" suppressHydrationWarning>
+              <p className="text-sm font-medium text-theme-foreground" suppressHydrationWarning>{t('user.drRahimUddin')}</p>
+              <p className="text-xs text-theme-muted" suppressHydrationWarning>{t('user.chiefPhysician')}</p>
             </div>
-            <ChevronDown className="h-4 w-4 text-gray-700 dark:text-gray-300" />
+            <ChevronDown className="h-4 w-4 text-theme-foreground" />
           </Button>
 
           {/* User Dropdown */}
           {showUserMenu && (
-            <div className="absolute right-0 top-12 w-56 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50">
-              <div className="p-4 border-b border-gray-100 dark:border-gray-700">
-                <p className="font-medium text-gray-900 dark:text-gray-100">ডা. রহিম উদ্দিন</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">rahim@srpharma.com</p>
+            <div className="absolute right-0 top-12 w-56 modal-theme rounded-lg z-50 animate-slide-up" suppressHydrationWarning>
+              <div className="p-4 border-b border-theme-default">
+                <p className="font-medium text-theme-foreground" suppressHydrationWarning>{t('user.drRahimUddin')}</p>
+                <p className="text-sm text-theme-muted">rahim@srpharma.com</p>
               </div>
               <div className="p-2">
-                <button className="w-full flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md">
+                <button className="w-full flex items-center px-3 py-2 text-sm text-theme-foreground hover-theme-bg rounded-md theme-transition focus-ring">
                   <User className="h-4 w-4 mr-2" />
-                  প্রোফাইল
+                  <span suppressHydrationWarning>{t('user.profile')}</span>
                 </button>
-                <button className="w-full flex items-center px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md">
+                <button className="w-full flex items-center px-3 py-2 text-sm text-theme-foreground hover-theme-bg rounded-md theme-transition focus-ring">
                   <Settings className="h-4 w-4 mr-2" />
-                  সেটিংস
+                  <span suppressHydrationWarning>{t('navigation.settings')}</span>
                 </button>
-                <hr className="my-2 border-gray-200 dark:border-gray-600" />
-                <button className="w-full flex items-center px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md">
+                <hr className="my-2 border-theme-default" />
+                <button className="w-full flex items-center px-3 py-2 text-sm text-error-600 dark:text-error-400 hover:bg-error-50 dark:hover:bg-error-900/20 rounded-md theme-transition focus-ring">
                   <LogOut className="h-4 w-4 mr-2" />
-                  লগআউট
+                  <span suppressHydrationWarning>{t('user.logout')}</span>
                 </button>
               </div>
             </div>

@@ -69,7 +69,7 @@ export default function BillingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-theme-background flex">
       {/* Sidebar */}
       <Sidebar />
 
@@ -84,8 +84,8 @@ export default function BillingPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">বিলিং ও সাবস্ক্রিপশন</h1>
-          <p className="text-gray-600 mt-1">আপনার প্ল্যান এবং পেমেন্ট তথ্য পরিচালনা করুন</p>
+          <h1 className="text-3xl font-bold text-theme-foreground">বিলিং ও সাবস্ক্রিপশন</h1>
+          <p className="text-theme-muted mt-1">আপনার প্ল্যান এবং পেমেন্ট তথ্য পরিচালনা করুন</p>
         </div>
       </div>
 
@@ -119,36 +119,36 @@ export default function BillingPage() {
             <div className="lg:col-span-2">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900">{currentPlan?.name} প্ল্যান</h3>
-                  <p className="text-gray-600">মাসিক সাবস্ক্রিপশন</p>
+                  <h3 className="text-2xl font-bold text-theme-foreground">{currentPlan?.name} প্ল��যান</h3>
+                  <p className="text-theme-muted">মাসিক সাবস্ক্রিপশন</p>
                 </div>
                 <div className="text-right">
                   <p className="text-3xl font-bold text-blue-600">
                     {formatCurrency(currentSubscription.amount, currentSubscription.currency)}
                   </p>
-                  <p className="text-gray-600">/মাস</p>
+                  <p className="text-theme-muted">/মাস</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <p className="text-sm text-gray-600">অবস্থা</p>
+                <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <p className="text-sm text-theme-muted">অবস্থা</p>
                   <span className={`inline-block px-2 py-1 text-xs font-medium rounded-full ${getStatusBadgeColor(currentSubscription.status)}`}>
                     {getStatusText(currentSubscription.status)}
                   </span>
                 </div>
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <p className="text-sm text-gray-600">পরবর্তী বিলিং</p>
+                <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <p className="text-sm text-theme-muted">পরবর্তী বিলিং</p>
                   <p className="font-medium">{daysUntilBilling} দিন</p>
                 </div>
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <p className="text-sm text-gray-600">পেমেন্ট পদ্ধতি</p>
+                <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <p className="text-sm text-theme-muted">পেমেন্ট পদ্ধতি</p>
                   <p className="font-medium">
                     {currentSubscription.paymentMethod === 'sslcommerz' ? 'SSLCommerz' : 'Stripe'}
                   </p>
                 </div>
-                <div className="text-center p-3 bg-gray-50 rounded-lg">
-                  <p className="text-sm text-gray-600">সর্বশেষ পেমেন্ট</p>
+                <div className="text-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <p className="text-sm text-theme-muted">সর্বশেষ পেমেন্ট</p>
                   <p className="font-medium">
                     {new Date(currentSubscription.currentPeriodStart).toLocaleDateString('bn-BD')}
                   </p>
@@ -157,12 +157,12 @@ export default function BillingPage() {
 
               {/* Plan Features */}
               <div>
-                <h4 className="font-semibold text-gray-900 mb-3">প্ল্যানে অন্তর্ভুক্ত ফিচার</h4>
+                <h4 className="font-semibold text-theme-foreground mb-3">প্ল্যানে অন্তর্ভুক্ত ফিচার</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {currentPlan?.features.map((feature, index) => (
                     <div key={index} className="flex items-center space-x-2">
                       <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span className="text-sm text-gray-700">{feature}</span>
+                      <span className="text-sm text-theme-foreground">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -171,7 +171,7 @@ export default function BillingPage() {
 
             {/* Quick Actions */}
             <div className="space-y-4">
-              <h4 className="font-semibold text-gray-900">দ্রুত অ্যাকশন</h4>
+              <h4 className="font-semibold text-theme-foreground">দ্রুত অ্যাকশন</h4>
               
               <Button 
                 className="w-full bg-green-600 hover:bg-green-700"
@@ -214,10 +214,10 @@ export default function BillingPage() {
           </CardHeader>
           <CardContent>
             <div className="text-center">
-              <p className="text-3xl font-bold text-gray-900">
+              <p className="text-3xl font-bold text-theme-foreground">
                 {nextBillingDate.toLocaleDateString('bn-BD')}
               </p>
-              <p className="text-gray-600 mt-1">{daysUntilBilling} দিন বাকি</p>
+              <p className="text-theme-muted mt-1">{daysUntilBilling} দিন বাকি</p>
               <p className="text-sm text-gray-500 mt-2">
                 পরিমাণ: {formatCurrency(currentSubscription.amount, currentSubscription.currency)}
               </p>
@@ -234,13 +234,13 @@ export default function BillingPage() {
           </CardHeader>
           <CardContent>
             <div className="text-center">
-              <p className="text-3xl font-bold text-gray-900">
+              <p className="text-3xl font-bold text-theme-foreground">
                 {formatCurrency(
                   currentSubscription.invoices.reduce((sum, inv) => sum + inv.amount, 0),
                   currentSubscription.currency
                 )}
               </p>
-              <p className="text-gray-600 mt-1">এ বছরে মোট</p>
+              <p className="text-theme-muted mt-1">এ বছরে মোট</p>
               <p className="text-sm text-gray-500 mt-2">
                 {currentSubscription.invoices.length} টি ইনভয়েস
               </p>
@@ -257,8 +257,8 @@ export default function BillingPage() {
           </CardHeader>
           <CardContent>
             <div className="text-center">
-              <p className="text-3xl font-bold text-gray-900">8</p>
-              <p className="text-gray-600 mt-1">মাস</p>
+              <p className="text-3xl font-bold text-theme-foreground">8</p>
+              <p className="text-theme-muted mt-1">মাস</p>
               <p className="text-sm text-gray-500 mt-2">
                 যোগদানের তারিখ: জুন ২০২৩
               </p>
@@ -271,7 +271,7 @@ export default function BillingPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <FileText className="h-5 w-5 text-gray-600" />
+            <FileText className="h-5 w-5 text-theme-muted" />
             ইনভয়েসের ইতিহাস
           </CardTitle>
         </CardHeader>
@@ -280,11 +280,11 @@ export default function BillingPage() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-gray-200">
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">ইনভয়েস নম্বর</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">তারিখ</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">পরি��াণ</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">অবস্থা</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">অ্যাকশন</th>
+                  <th className="text-left py-3 px-4 font-medium text-theme-muted">ইনভয়েস নম্বর</th>
+                  <th className="text-left py-3 px-4 font-medium text-theme-muted">তারিখ</th>
+                  <th className="text-left py-3 px-4 font-medium text-theme-muted">পরি��াণ</th>
+                  <th className="text-left py-3 px-4 font-medium text-theme-muted">অবস্থা</th>
+                  <th className="text-left py-3 px-4 font-medium text-theme-muted">অ্যাকশন</th>
                 </tr>
               </thead>
               <tbody>
@@ -293,7 +293,7 @@ export default function BillingPage() {
                     <td className="py-3 px-4">
                       <span className="font-medium">{invoice.invoiceNumber}</span>
                     </td>
-                    <td className="py-3 px-4 text-gray-600">
+                    <td className="py-3 px-4 text-theme-muted">
                       {new Date(invoice.date).toLocaleDateString('bn-BD')}
                     </td>
                     <td className="py-3 px-4 font-medium">
@@ -351,9 +351,9 @@ export default function BillingPage() {
                   <CardContent className="p-4">
                     <div className="text-center mb-4">
                       <h4 className="font-semibold text-lg">{plan.name}</h4>
-                      <p className="text-2xl font-bold text-gray-900 mt-2">
+                      <p className="text-2xl font-bold text-theme-foreground mt-2">
                         {formatCurrency(plan.price, plan.currency)}
-                        <span className="text-sm font-normal text-gray-600">/মাস</span>
+                        <span className="text-sm font-normal text-theme-muted">/মাস</span>
                       </p>
                     </div>
                     
@@ -425,7 +425,7 @@ export default function BillingPage() {
             </div>
 
             <div>
-              <h4 className="font-semibold text-gray-900 mb-2">বাতিল করার কারণ (ঐচ্ছিক)</h4>
+              <h4 className="font-semibold text-theme-foreground mb-2">বাতিল করার কারণ (ঐচ্ছিক)</h4>
               <textarea
                 className="w-full p-3 border border-gray-300 rounded-lg resize-none"
                 rows={3}
