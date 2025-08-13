@@ -32,10 +32,15 @@ export async function GET(request: NextRequest) {
       whereClause.category = category
     }
     
-    // Low stock filter
+    // Low stock filter - compare stockQty with reorderLevel using raw SQL
     if (lowStock) {
-      whereClause.stockQty = {
-        lte: prisma.medicine.fields.reorderLevel
+      whereClause = {
+        ...whereClause,
+        stockQty: {
+          lte: {
+            path: ['reorderLevel']
+          }
+        }
       }
     }
 
