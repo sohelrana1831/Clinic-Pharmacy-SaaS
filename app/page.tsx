@@ -69,7 +69,7 @@ export default function Home() {
                 আধুনিক প্রযুক্তি দিয়ে আপনার ক্লিনিক ও ফার্মেসি পরিচালনা করুন।
               </p>
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-8">
-                রোগীর তথ্য, অ্যাপয়েন্টমেন্ট, প্রেসক্রিপশ�� এবং স্টক ম্যানেজমেন্ট - সব একসাথে।
+                রোগীর তথ্য, অ্যাপয়েন্টমেন্ট, প্রেসক্রিপশন এবং স্টক ম্যানেজমেন্ট - সব একসাথে।
               </p>
               <div className="flex flex-col sm:flex-row gap-4" role="group" aria-label="প্রধান কর্মক্ষেত্র">
                 <Link href="/auth/signup" className="w-full sm:w-auto">
@@ -86,7 +86,7 @@ export default function Home() {
                     size="lg"
                     variant="outline"
                     className={`w-full sm:w-auto border-blue-600 text-blue-600 hover:bg-blue-50 focus:bg-blue-50 px-8 py-3 ${focusStyles.ring}`}
-                    aria-label="লাইভ ডেমো দেখুন, কোন রে��িস্ট্���েশন ��্রয়োজন নেই"
+                    aria-label="লাইভ ডেমো দেখুন, কোন রে��িস্ট্রেশন ��্রয়োজন নেই"
                   >
                     ডেমো দেখুন
                   </Button>
@@ -97,7 +97,7 @@ export default function Home() {
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-4 sm:p-8 transition-colors duration-200">
                 <img
                   src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDQwMCAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjU2IiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIyMTYiIGZpbGw9IndoaXRlIiBzdHJva2U9IiNFNUU3RUIiLz4KPHN2ZyB4PSI2MCIgeT0iNjAiIHdpZHRoPSIyODAiIGhlaWdodD0iMTM2IiBmaWxsPSJub25lIj4KICA8cmVjdCB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM2IiBmaWxsPSIjMzM4MUY2Ii8+CiAgPHJlY3QgeT0iNTIiIHdpZHRoPSIxMzAiIGhlaWdodD0iMjAiIGZpbGw9IiNFNUU3RUIiLz4KICA8cmVjdCB5PSI4NCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0Y5RkFGQiIvPgogIDxyZWN0IHk9IjExNiIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0Y5RkFGQiIvPgo8L3N2Zz4KPC9zdmc+"
-                  alt="ক্লিনিক ম্যানেজমেন্ট ড্যাশবোর্ডের স্ক্রিনশট - রোগীর তা���িকা, অ্যাপয়েন্টমেন্ট এবং রিপ���র্ট দেখাচ্ছে"
+                  alt="ক্ল���নিক ম্যানেজমেন্ট ড্যাশবোর্ডের স্ক্রিনশট - রোগীর তা���িকা, অ্যাপয়েন্টমেন্ট এবং রিপ���র্ট দেখাচ্ছে"
                   className="w-full h-64 object-cover rounded-lg"
                   loading="lazy"
                 />
@@ -330,7 +330,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
-                    <span>বেসিক রিপোর্ট</span>
+                    <span>বেস���ক রিপোর্ট</span>
                   </li>
                 </ul>
               </CardContent>
@@ -355,7 +355,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
-                    <span>ফার্মেসি ইনভেন্টরি</span>
+                    <span>ফার্���েসি ইনভেন্টরি</span>
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
@@ -381,7 +381,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
-                    <span>মাল্টি-ব্রাঞ্চ সাপোর্ট</span>
+                    <span>��াল্টি-ব্রাঞ্চ সাপোর্ট</span>
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
@@ -411,7 +411,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "এই সফটওয়্যার ব্যবহার করে আ���াদের ক্লিনিকের কাজের গতি অনেক বেড়েছে। ���োগীদের তথ��য সংরক্ষণ এবং অ্যাপয়েন্টমেন্ট ব্যবস্থাপনা এখন অনেক সহজ।"
+                "এই সফটওয়্য���র ব্যবহার করে আ���াদের ক্লিনিকের কাজের গতি অনেক বেড়েছে। রোগীদের তথ��য সংরক্ষণ এবং অ্যাপয়েন্টমেন্ট ব্যবস্থাপনা এখন অনেক সহজ।"
               </p>
               <div>
                 <p className="font-semibold text-gray-900">ডা. রহিম উদ্দিন</p>
@@ -430,7 +430,7 @@ export default function Home() {
               </p>
               <div>
                 <p className="font-semibold text-gray-900">নাসির আহমেদ</p>
-                <p className="text-gray-600">ম্যানেজার, সিটি হেল��� ক্লিনিক</p>
+                <p className="text-gray-600">ম্যানেজার, সিটি হেলথ ক্লিনিক</p>
               </div>
             </Card>
           </div>
@@ -465,9 +465,33 @@ export default function Home() {
 
               <Card className="p-6">
                 <h3 className="font-semibold text-lg text-gray-900 mb-3">সাপোর্ট কেমন পাবো?</h3>
-                <p className="text-gray-600">আমরা ২৪/৭ ফোন, ইমেইল এবং হোয়াটসঅ্যাপ সাপোর্ট প্রদান করি। বাংলা ও ইংরেজি দুই ভাষাতেই সাহায্য পাবেন।</p>
+                <p className="text-gray-600">আমরা ২৪/৭ ফোন, ইমেইল এবং হ��য়াটসঅ্যাপ সাপোর্ট প্রদান করি। বাংলা ও ইংরেজি দুই ভাষাতেই সাহায্য পাবেন।</p>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-16 bg-blue-50 dark:bg-blue-950 transition-colors duration-200">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            প্রস্তুত শুরু করতে?
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+            আজই শুরু করুন এবং দেখুন কিভাবে আমাদের সিস্টেম আপনার ক্লিনিক ও ফার্মেসি পরিচালনাকে সহজ করে তোলে।
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/auth/signup">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
+                ১৪ দিনের ফ্রি ট্রায়াল
+              </Button>
+            </Link>
+            <Link href="/auth/login">
+              <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3">
+                ডেমো দেখুন
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -582,7 +606,7 @@ export default function Home() {
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center">
             <p className="text-gray-400">
-              © ২০২৪ ক্লিনিক ম্যানেজমে��্ট সিস্টে���। সর্বস্বত্ব সংরক্ষিত।
+              © ২০২৪ ক্লিনিক ম্যানেজমে��্ট সিস্টেম। সর্বস্বত্ব সংরক্ষিত।
             </p>
           </div>
         </div>
