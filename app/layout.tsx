@@ -21,7 +21,9 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning={true}>
         <I18nProvider>
           <ThemeProvider>
-            {children}
+            <div suppressHydrationWarning={true}>
+              {children}
+            </div>
           </ThemeProvider>
         </I18nProvider>
       </body>
