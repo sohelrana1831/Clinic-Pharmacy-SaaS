@@ -568,7 +568,65 @@ export function EnhancedPatientsTable({ className }: EnhancedPatientsTableProps)
                 placeholder="Phone number"
               />
             </div>
-            {/* Add other fields as needed */}
+            <div>
+              <Label htmlFor="edit-email">Email</Label>
+              <Input
+                id="edit-email"
+                type="email"
+                value={patientForm.email}
+                onChange={(e) => setPatientForm(prev => ({ ...prev, email: e.target.value }))}
+                placeholder="Email address"
+              />
+            </div>
+            <div>
+              <Label htmlFor="edit-dateOfBirth">Date of Birth</Label>
+              <Input
+                id="edit-dateOfBirth"
+                type="date"
+                value={patientForm.dateOfBirth}
+                onChange={(e) => setPatientForm(prev => ({ ...prev, dateOfBirth: e.target.value }))}
+              />
+            </div>
+            <div>
+              <Label htmlFor="edit-gender">Gender</Label>
+              <Select
+                id="edit-gender"
+                value={patientForm.gender}
+                onChange={(e) => setPatientForm(prev => ({ ...prev, gender: e.target.value }))}
+              >
+                <option value="">Select gender</option>
+                <option value="পুরুষ">পুরুষ</option>
+                <option value="মহিলা">মহি��া</option>
+                <option value="অন্যান্য">অন্যান্য</option>
+              </Select>
+            </div>
+            <div>
+              <Label htmlFor="edit-bloodGroup">Blood Group</Label>
+              <Select
+                id="edit-bloodGroup"
+                value={patientForm.bloodGroup}
+                onChange={(e) => setPatientForm(prev => ({ ...prev, bloodGroup: e.target.value }))}
+              >
+                <option value="">Select blood group</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </Select>
+            </div>
+            <div className="md:col-span-2">
+              <Label htmlFor="edit-address">Address</Label>
+              <Input
+                id="edit-address"
+                value={patientForm.address}
+                onChange={(e) => setPatientForm(prev => ({ ...prev, address: e.target.value }))}
+                placeholder="Patient address"
+              />
+            </div>
           </div>
           
           <div className="flex justify-end space-x-3 pt-4">
