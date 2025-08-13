@@ -455,4 +455,75 @@ html {
     --chart-text: var(--text-foreground);
     --chart-muted: var(--text-muted);
   }
+
+  /* Table theme styling with proper dark mode colors */
+  .table-theme {
+    background-color: var(--bg-card);
+    border-color: var(--border-default);
+    color: var(--text-foreground);
+    transition: var(--transition-theme);
+  }
+
+  .table-theme th {
+    background-color: var(--bg-background);
+    color: var(--text-muted);
+    border-color: var(--border-default);
+  }
+
+  .table-theme td {
+    background-color: var(--bg-card);
+    color: var(--text-foreground);
+    border-color: var(--border-default);
+  }
+
+  .table-theme tbody tr:hover {
+    background-color: color-mix(in srgb, var(--bg-card) 85%, var(--text-muted) 5%);
+  }
+
+  .dark .table-theme {
+    background-color: #1F2937;
+    border-color: #374151;
+  }
+
+  .dark .table-theme th {
+    background-color: #1F2937;
+    color: #F9FAFB;
+    border-color: #374151;
+  }
+
+  .dark .table-theme td {
+    background-color: #1F2937;
+    color: #F9FAFB;
+    border-color: #374151;
+  }
+
+  .dark .table-theme tbody tr:hover {
+    background-color: #374151;
+  }
+
+  /* Form label theme styling */
+  .form-label-theme {
+    color: var(--text-foreground);
+    background-color: transparent;
+    transition: var(--transition-theme);
+  }
+
+  .dark .form-label-theme {
+    color: #F9FAFB;
+    background-color: transparent;
+  }
+
+  /* Stats card theme styling */
+  .stats-card-theme {
+    background-color: var(--bg-card);
+    border-color: var(--border-default);
+    color: var(--text-foreground);
+    transition: var(--transition-theme);
+  }
+
+  .dark .stats-card-theme {
+    background-color: #1F2937;
+    border-color: #374151;
+    color: #F9FAFB;
+  }
 }
