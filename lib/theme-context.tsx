@@ -74,8 +74,11 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
       const initialTheme = savedTheme || systemTheme
 
+      // Only update if different and wait for next tick to prevent hydration mismatch
       if (initialTheme !== theme) {
-        setThemeState(initialTheme)
+        setTimeout(() => {
+          setThemeState(initialTheme)
+        }, 0)
       }
     }
   }, [])
