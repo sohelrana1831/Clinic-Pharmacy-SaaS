@@ -58,6 +58,11 @@ export function usePaginatedApi<T>(
   const [params, setParams] = useState(initialParams)
 
   const fetchData = useCallback(async (customParams?: any, customPage?: number, customLimit?: number) => {
+    // Don't make requests on the server side
+    if (typeof window === 'undefined') {
+      return
+    }
+
     try {
       setLoading(true)
       setError(null)
@@ -79,7 +84,14 @@ export function usePaginatedApi<T>(
         setError(response.message || 'An error occurred')
       }
     } catch (err: any) {
-      setError(err.message || 'An unexpected error occurred')
+      console.error('API fetch error:', err)
+
+      // Handle specific error types
+      if (err.message === 'Failed to fetch' || err.code === 'NETWORK_ERROR') {
+        setError('Network error. Please check your connection and try again.')
+      } else {
+        setError(err.message || 'An unexpected error occurred')
+      }
     } finally {
       setLoading(false)
     }
