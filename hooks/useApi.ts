@@ -78,12 +78,12 @@ export function usePaginatedApi<T>(
       setError(null)
 
       const requestParams = {
-        ...(customParams !== undefined ? customParams : params),
-        page: customPage !== undefined ? customPage : pagination.page,
-        limit: customLimit !== undefined ? customLimit : pagination.limit,
+        ...(customParams !== undefined ? customParams : paramsRef.current),
+        page: customPage !== undefined ? customPage : paginationRef.current.page,
+        limit: customLimit !== undefined ? customLimit : paginationRef.current.limit,
       }
 
-      const response = await apiCall(requestParams)
+      const response = await apiCallRef.current(requestParams)
 
       if (response.success) {
         setData(response.data)
@@ -105,7 +105,7 @@ export function usePaginatedApi<T>(
     } finally {
       setLoading(false)
     }
-  }, []) // Remove apiCall dependency to prevent recreation
+  }, []) // No dependencies to prevent recreation
 
   // Initial load only - check if we're on the client side
   useEffect(() => {
