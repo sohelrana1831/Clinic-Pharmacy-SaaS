@@ -6,6 +6,7 @@ import { Topbar } from '@/components/dashboard/topbar'
 import { PatientsTable } from '@/components/patients/patients-table'
 import { PatientProfile } from '@/components/patients/patient-profile'
 import { PatientFormModal } from '@/components/patients/patient-form-modal'
+import { PrescriptionModal } from '@/components/patients/prescription-modal'
 import { NewAppointmentModal } from '@/components/modals/modal'
 import { samplePatients, sampleAppointments, samplePrescriptions, Patient } from '@/lib/patients-data'
 
@@ -15,6 +16,8 @@ export default function PatientsPage() {
   const [editingPatient, setEditingPatient] = useState<Patient | null>(null)
   const [showAddModal, setShowAddModal] = useState(false)
   const [showAppointmentModal, setShowAppointmentModal] = useState(false)
+  const [showPrescriptionModal, setShowPrescriptionModal] = useState(false)
+  const [prescriptionPatient, setPrescriptionPatient] = useState<Patient | null>(null)
   const [view, setView] = useState<'table' | 'profile'>('table')
 
   const handleViewPatient = (patient: Patient) => {
