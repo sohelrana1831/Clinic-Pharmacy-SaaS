@@ -62,7 +62,7 @@ export default function SignUpPage() {
     if (!formData.clinicName) newErrors.clinicName = 'ক্লিনিকের নাম প্রয়োজন'
     if (!formData.numberOfDoctors) newErrors.numberOfDoctors = 'ডাক্তারের সংখ্যা নির্বাচন করুন'
     if (!formData.plan) newErrors.plan = 'প্ল্যান নির্বাচন করুন'
-    if (!formData.acceptTerms) newErrors.acceptTerms = 'শর্তাবলী গ্রহণ করুন'
+    if (!formData.acceptTerms) newErrors.acceptTerms = '��র্তাবলী গ্রহণ করুন'
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -113,7 +113,7 @@ export default function SignUpPage() {
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-gray-700">
+          <Label htmlFor="email">
             ইমেইল ঠিকানা <span className="text-red-500">*</span>
           </Label>
           <Input
@@ -129,7 +129,7 @@ export default function SignUpPage() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="password" className="text-gray-700">
+          <Label htmlFor="password">
             পাসওয়ার্ড <span className="text-red-500">*</span>
           </Label>
           <Input
@@ -145,7 +145,7 @@ export default function SignUpPage() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="confirmPassword" className="text-gray-700">
+          <Label htmlFor="confirmPassword">
             পাসওয়ার্ড নিশ্চিত করুন <span className="text-red-500">*</span>
           </Label>
           <Input
@@ -161,13 +161,13 @@ export default function SignUpPage() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="clinicName" className="text-gray-700">
+          <Label htmlFor="clinicName">
             ক্লিনিকের নাম <span className="text-red-500">*</span>
           </Label>
           <Input
             id="clinicName"
             type="text"
-            placeholder="আপনার ক্লিনিকের নাম"
+            placeholder="আপনার ক্লিনিকে��� নাম"
             required
             value={formData.clinicName}
             onChange={(e) => setFormData(prev => ({ ...prev, clinicName: e.target.value }))}
@@ -177,7 +177,7 @@ export default function SignUpPage() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="numberOfDoctors" className="text-gray-700">
+          <Label htmlFor="numberOfDoctors">
             ডাক্তারের সংখ্যা <span className="text-red-500">*</span>
           </Label>
           <Select
@@ -198,7 +198,7 @@ export default function SignUpPage() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="plan" className="text-gray-700">
+          <Label htmlFor="plan">
             প্ল্যান নির্বাচন করুন <span className="text-red-500">*</span>
           </Label>
           <Select
@@ -226,7 +226,7 @@ export default function SignUpPage() {
               checked={formData.acceptTerms}
               onChange={(e) => setFormData(prev => ({ ...prev, acceptTerms: e.target.checked }))}
             />
-            <label htmlFor="acceptTerms" className="text-sm text-gray-700 cursor-pointer">
+            <label htmlFor="acceptTerms" className="text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
               আমি{' '}
               <Link href="/terms" className="text-blue-600 hover:underline">
                 শর্তাবলী

@@ -1,8 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Sidebar } from '@/components/dashboard/sidebar'
-import { Topbar } from '@/components/dashboard/topbar'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Modal } from '@/components/modals/modal'
@@ -69,18 +67,7 @@ export default function BillingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-theme-background flex">
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Top Navigation */}
-        <Topbar />
-
-        {/* Page Content */}
-        <main className="flex-1 p-6">
-          <div className="space-y-6">
+    <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -366,7 +353,7 @@ export default function BillingPage() {
                       ))}
                       {plan.features.length > 3 && (
                         <li className="text-sm text-gray-500">
-                          +{plan.features.length - 3} আরো ফিচার
+                          +{plan.features.length - 3} আ��ো ফিচার
                         </li>
                       )}
                     </ul>
@@ -452,9 +439,6 @@ export default function BillingPage() {
           </div>
         </Modal>
       )}
-          </div>
-        </main>
-      </div>
     </div>
   )
 }
