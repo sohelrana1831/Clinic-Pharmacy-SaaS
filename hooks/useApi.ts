@@ -95,7 +95,7 @@ export function usePaginatedApi<T>(
     } finally {
       setLoading(false)
     }
-  }, [apiCall])
+  }, []) // Remove apiCall dependency to prevent recreation
 
   // Initial load only - check if we're on the client side
   useEffect(() => {
