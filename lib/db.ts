@@ -47,12 +47,11 @@ export function getPaginationParams(
 // Utility function for search filters
 export function buildSearchFilter(search: string | undefined, fields: string[]) {
   if (!search) return {}
-  
+
   return {
     OR: fields.map(field => ({
       [field]: {
-        contains: search,
-        mode: 'insensitive'
+        contains: search
       }
     }))
   }
