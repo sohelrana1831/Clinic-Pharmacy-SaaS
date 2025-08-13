@@ -652,12 +652,30 @@ export function EnhancedInventoryTable({ className }: EnhancedInventoryTableProp
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Same form fields as Add modal */}
             <div>
+              <Label htmlFor="edit-sku">SKU *</Label>
+              <Input
+                id="edit-sku"
+                value={medicineForm.sku}
+                onChange={(e) => setMedicineForm(prev => ({ ...prev, sku: e.target.value }))}
+                placeholder="Medicine SKU"
+              />
+            </div>
+            <div>
               <Label htmlFor="edit-name">Name *</Label>
               <Input
                 id="edit-name"
                 value={medicineForm.name}
                 onChange={(e) => setMedicineForm(prev => ({ ...prev, name: e.target.value }))}
                 placeholder="Medicine name"
+              />
+            </div>
+            <div>
+              <Label htmlFor="edit-genericName">Generic Name</Label>
+              <Input
+                id="edit-genericName"
+                value={medicineForm.genericName}
+                onChange={(e) => setMedicineForm(prev => ({ ...prev, genericName: e.target.value }))}
+                placeholder="Generic name"
               />
             </div>
             <div>
@@ -675,7 +693,87 @@ export function EnhancedInventoryTable({ className }: EnhancedInventoryTableProp
                 <option value="Ointment">Ointment</option>
               </Select>
             </div>
-            {/* Add other fields as needed */}
+            <div>
+              <Label htmlFor="edit-manufacturer">Manufacturer</Label>
+              <Input
+                id="edit-manufacturer"
+                value={medicineForm.manufacturer}
+                onChange={(e) => setMedicineForm(prev => ({ ...prev, manufacturer: e.target.value }))}
+                placeholder="Manufacturer"
+              />
+            </div>
+            <div>
+              <Label htmlFor="edit-strength">Strength</Label>
+              <Input
+                id="edit-strength"
+                value={medicineForm.strength}
+                onChange={(e) => setMedicineForm(prev => ({ ...prev, strength: e.target.value }))}
+                placeholder="e.g., 500mg"
+              />
+            </div>
+            <div>
+              <Label htmlFor="edit-unit">Unit *</Label>
+              <Select
+                id="edit-unit"
+                value={medicineForm.unit}
+                onChange={(e) => setMedicineForm(prev => ({ ...prev, unit: e.target.value }))}
+              >
+                <option value="piece">Piece</option>
+                <option value="bottle">Bottle</option>
+                <option value="box">Box</option>
+                <option value="strip">Strip</option>
+              </Select>
+            </div>
+            <div>
+              <Label htmlFor="edit-purchasePrice">Purchase Price</Label>
+              <Input
+                id="edit-purchasePrice"
+                type="number"
+                step="0.01"
+                value={medicineForm.purchasePrice}
+                onChange={(e) => setMedicineForm(prev => ({ ...prev, purchasePrice: parseFloat(e.target.value) || 0 }))}
+                placeholder="0.00"
+              />
+            </div>
+            <div>
+              <Label htmlFor="edit-sellingPrice">Selling Price</Label>
+              <Input
+                id="edit-sellingPrice"
+                type="number"
+                step="0.01"
+                value={medicineForm.sellingPrice}
+                onChange={(e) => setMedicineForm(prev => ({ ...prev, sellingPrice: parseFloat(e.target.value) || 0 }))}
+                placeholder="0.00"
+              />
+            </div>
+            <div>
+              <Label htmlFor="edit-reorderLevel">Reorder Level</Label>
+              <Input
+                id="edit-reorderLevel"
+                type="number"
+                value={medicineForm.reorderLevel}
+                onChange={(e) => setMedicineForm(prev => ({ ...prev, reorderLevel: parseInt(e.target.value) || 0 }))}
+                placeholder="10"
+              />
+            </div>
+            <div>
+              <Label htmlFor="edit-expiryDate">Expiry Date</Label>
+              <Input
+                id="edit-expiryDate"
+                type="date"
+                value={medicineForm.expiryDate}
+                onChange={(e) => setMedicineForm(prev => ({ ...prev, expiryDate: e.target.value }))}
+              />
+            </div>
+            <div>
+              <Label htmlFor="edit-batchNumber">Batch Number</Label>
+              <Input
+                id="edit-batchNumber"
+                value={medicineForm.batchNumber}
+                onChange={(e) => setMedicineForm(prev => ({ ...prev, batchNumber: e.target.value }))}
+                placeholder="Batch number"
+              />
+            </div>
           </div>
           
           <div className="flex justify-end space-x-3 pt-4">
