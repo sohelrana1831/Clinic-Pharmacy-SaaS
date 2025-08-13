@@ -96,7 +96,7 @@ if (isClient) {
     .use(initReactI18next)
     .init({
       resources,
-      lng: 'bn', // Default language for SSR
+      lng: 'bn', // Default language for SSR (consistent with client)
       fallbackLng: 'bn',
       debug: false,
 
@@ -114,7 +114,10 @@ if (isClient) {
 
       // Key separator
       keySeparator: '.',
-      nsSeparator: ':'
+      nsSeparator: ':',
+
+      // Ensure consistent initialization
+      initImmediate: false
     })
 }
 
