@@ -18,6 +18,41 @@ export default function Home() {
         মূল কন্টেন্ট�� যান
       </a>
 
+      {/* Navigation Header */}
+      <header className="bg-white dark:bg-gray-900 shadow-sm border-b border-gray-200 dark:border-gray-800 transition-colors duration-200">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <Link href="/" className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">ক</span>
+                </div>
+                <span className="text-xl font-bold text-gray-900 dark:text-gray-100">ক্লিনিক মস</span>
+              </Link>
+            </div>
+
+            <nav className="hidden md:flex items-center space-x-8">
+              <a href="#features" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">ফিচার</a>
+              <a href="#pricing" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">প্রাইসিং</a>
+              <a href="#contact" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">যোগাযোগ</a>
+            </nav>
+
+            <div className="flex items-center space-x-4">
+              <Link href="/auth/login">
+                <Button variant="ghost" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                  লগ ইন
+                </Button>
+              </Link>
+              <Link href="/auth/signup">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                  শুরু করুন
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </header>
+
       {/* Hero Section */}
       <section
         className="bg-gradient-to-br from-blue-50 to-emerald-50 dark:from-blue-950 dark:to-emerald-950 pt-20 pb-16 transition-colors duration-200"
@@ -31,7 +66,7 @@ export default function Home() {
                 বাংলাদেশের #১ ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সিস্টেম
               </h1>
               <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-4">
-                আধুনিক প্রযুক্তি দিয়ে আপনার ক্লিনিক ও ফার্মেসি পরিচালনা করুন।
+                আধুনিক প্রযুক্���ি দিয়ে আপনার ক্লিনিক ও ফার্মেসি পরিচালনা করুন।
               </p>
               <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-8">
                 রোগীর তথ্য, অ্যাপয়েন্টমেন্ট, প্রেসক্রিপশন এবং স্টক ম্যানেজমেন্ট - সব একসাথে।
@@ -105,7 +140,7 @@ export default function Home() {
                 <CardTitle className="text-lg sm:text-xl text-gray-900 dark:text-gray-100">অ্যাপয়েন্টমেন্ট</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">অনলাইন বুকিং এবং স্বয়ংক্রিয় SMS রিমাইন্ডার সিস্টেম।</p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">অনলাইন ���ুকিং এবং স্বয়ংক্রিয় SMS রিমাইন্ডার সিস্টেম।</p>
               </CardContent>
             </Card>
 
@@ -269,7 +304,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              সাশ্রয়ী মূল্যে প্ল্যান সমূহ
+              সাশ্রয়ী মূল্যে প্ল্যা��� সমূহ
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">আপনার প্রয়োজন অনুযায়ী প্ল্যান বেছে নিন</p>
           </div>
@@ -291,7 +326,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
-                    <span>অ্যাপয়েন্টমেন্ট বুকিং</span>
+                    <span>অ্যাপয়েন্টমেন্ট বু���িং</span>
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
@@ -316,7 +351,7 @@ export default function Home() {
                 <ul className="space-y-3">
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
-                    <span>৫০০ রোগীর রেকর্ড</span>
+                    <span>৫০০ রোগীর রেকর���ড</span>
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-green-500 mr-3" />
@@ -391,7 +426,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "ফার্মেসি ইনভেন্টরি ম্যানেজমেন্��� ফিচারটি অসাধা���ণ। এখন আর ওষুধের স্টক নিয়ে চিন্তা করতে হয় না।"
+                "ফার্মেসি ইনভেন্টরি ম্যানেজমেন্��� ফিচারটি অসাধা�����। এখন আর ওষুধের স্টক নিয়ে চিন্তা করতে হয় না।"
               </p>
               <div>
                 <p className="font-semibold text-gray-900">নাসির আহমেদ</p>
@@ -415,7 +450,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card className="p-6">
                 <h3 className="font-semibold text-lg text-gray-900 mb-3">পেমেন্ট কিভাবে করব?</h3>
-                <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যাং�� ট্রান্সফার এবং অ���লাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
+                <p className="text-gray-600">আমরা মোবাইল ব্যাংকিং, ব্যাং�� ট্রান্সফার এবং অ����লাইন পেমেন্ট সিস্টেম সাপোর্ট করি। SSLCommerz এর মাধ্যমে নিরাপদ পেমেন্ট করতে পারেন।</p>
               </Card>
 
               <Card className="p-6">
