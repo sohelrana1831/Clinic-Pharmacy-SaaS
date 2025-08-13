@@ -136,7 +136,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   }
 
   const setTheme = (newTheme: Theme, transition: ThemeTransition = 'smooth') => {
-    if (transition === 'instant') {
+    if (typeof window !== 'undefined' && transition === 'instant') {
       document.documentElement.style.setProperty('--transition-theme', 'none')
       setTimeout(() => {
         document.documentElement.style.removeProperty('--transition-theme')
