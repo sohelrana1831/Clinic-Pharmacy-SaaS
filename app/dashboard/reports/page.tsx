@@ -1,8 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Sidebar } from '@/components/dashboard/sidebar'
-import { Topbar } from '@/components/dashboard/topbar'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -44,18 +42,7 @@ export default function ReportsPage() {
   const currentMonthPatients = patientGrowthData[patientGrowthData.length - 1]?.totalPatients || 0
 
   return (
-    <div className="min-h-screen bg-theme-background flex">
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Top Navigation */}
-        <Topbar />
-
-        {/* Page Content */}
-        <main className="flex-1 p-6 bg-theme-background">
-          <div className="space-y-6">
+    <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -357,7 +344,7 @@ export default function ReportsPage() {
               <h5 className="font-medium text-theme-foreground mb-2">দৈনিক বিক্রয়</h5>
               <ul className="space-y-1 text-theme-muted">
                 <li>• date (তারিখ)</li>
-                <li>• sales (বিক্রয় টাকা)</li>
+                <li>• sales (বি���্রয় টাকা)</li>
                 <li>• transactions (লেনদেন সংখ্যা)</li>
               </ul>
             </div>
@@ -390,9 +377,6 @@ export default function ReportsPage() {
           </div>
         </CardContent>
       </Card>
-          </div>
-        </main>
-      </div>
     </div>
   )
 }
