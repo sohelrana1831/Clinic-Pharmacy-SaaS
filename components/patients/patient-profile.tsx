@@ -247,7 +247,7 @@ export function PatientProfile({
             <CardHeader className="flex flex-row items-center justify-between">
               <CardTitle>অ্যাপয়েন্টমেন্ট তালিকা</CardTitle>
               <div className="flex items-center space-x-2">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" onClick={() => setShowCalendarModal(true)}>
                   <CalendarDays className="h-4 w-4 mr-2" />
                   ক্যালেন্ডার
                 </Button>
