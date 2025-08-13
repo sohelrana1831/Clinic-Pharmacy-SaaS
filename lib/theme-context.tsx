@@ -82,7 +82,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   // Apply theme to document with enhanced transition support
   useEffect(() => {
-    if (!mounted) return
+    if (!mounted || typeof window === 'undefined') return
 
     const root = document.documentElement
     const body = document.body
@@ -101,10 +101,8 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       root.style.setProperty(cssVar, value)
     })
 
-    // Save to localStorage (client-side only)
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('theme', theme)
-    }
+    // Save to localStorage
+    localStorage.setItem('theme', theme)
 
     // End transition after animation completes
     const timeout = setTimeout(() => {
