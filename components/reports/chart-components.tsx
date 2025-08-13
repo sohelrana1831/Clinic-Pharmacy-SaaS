@@ -1,5 +1,6 @@
 'use client'
 
+import { useTheme } from '@/lib/theme-context'
 import { BarChart3, TrendingUp, PieChart, LineChart } from 'lucide-react'
 
 interface ChartPlaceholderProps {
@@ -11,14 +12,15 @@ interface ChartPlaceholderProps {
   children?: React.ReactNode
 }
 
-export function ChartPlaceholder({ 
-  title, 
-  type, 
-  description, 
-  data = [], 
+export function ChartPlaceholder({
+  title,
+  type,
+  description,
+  data = [],
   height = 256,
-  children 
+  children
 }: ChartPlaceholderProps) {
+  const { theme } = useTheme()
   const getChartIcon = () => {
     switch (type) {
       case 'bar':
@@ -55,7 +57,7 @@ export function ChartPlaceholder({
       style={{ height: `${height}px` }}
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-10 dark:opacity-20">
         <div className="grid grid-cols-8 h-full gap-1 p-4">
           {Array.from({ length: 32 }).map((_, i) => {
             // Use consistent heights based on index to avoid hydration mismatch
@@ -63,7 +65,7 @@ export function ChartPlaceholder({
             return (
               <div
                 key={i}
-                className="bg-gray-400 rounded"
+                className="bg-theme-foreground rounded"
                 style={{ height: `${heights[i]}%` }}
               />
             )
@@ -74,18 +76,18 @@ export function ChartPlaceholder({
       {/* Main Content */}
       <div className="relative z-10 text-center">
         {getChartIcon()}
-        <p className="text-gray-700 font-medium text-lg mb-1">{title}</p>
+        <p className="text-theme-foreground font-medium text-lg mb-1">{title}</p>
         {description && (
-          <p className="text-sm text-gray-500 mb-2">{description}</p>
+          <p className="text-sm text-theme-muted mb-2">{description}</p>
         )}
-        <div className="text-xs text-gray-500 bg-white/70 px-3 py-1 rounded-full">
+        <div className="text-xs text-theme-muted bg-theme-card/70 px-3 py-1 rounded-full border border-theme-default">
           {type.charAt(0).toUpperCase() + type.slice(1)} Chart • {data.length} data points
         </div>
         {children}
       </div>
 
       {/* Corner Badge */}
-      <div className="absolute top-3 right-3 bg-white/80 backdrop-blur-sm px-2 py-1 rounded text-xs font-medium text-gray-600">
+      <div className="absolute top-3 right-3 bg-theme-card/80 backdrop-blur-sm px-2 py-1 rounded text-xs font-medium text-theme-foreground border border-theme-default">
         Preview Mode
       </div>
     </div>
