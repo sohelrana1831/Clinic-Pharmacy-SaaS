@@ -65,9 +65,13 @@ export default function PatientsPage() {
   }
 
   const handleNewPrescription = () => {
-    // Navigate to prescription creation page
+    // Open prescription modal for selected patient
     if (selectedPatient) {
-      window.location.href = `/dashboard/prescriptions/new?patientId=${selectedPatient.id}`
+      setPrescriptionPatient(selectedPatient)
+      setShowPrescriptionModal(true)
+    } else {
+      // Navigate to prescription creation page if no patient selected
+      window.location.href = '/prescriptions/editor'
     }
   }
 
