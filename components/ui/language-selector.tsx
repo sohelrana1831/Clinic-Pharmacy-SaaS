@@ -20,9 +20,11 @@ export function LanguageSelector() {
   const handleLanguageChange = (languageCode: string) => {
     i18n.changeLanguage(languageCode)
     setIsOpen(false)
-    
-    // Store language preference in localStorage
-    localStorage.setItem('i18nextLng', languageCode)
+
+    // Store language preference in localStorage (client-side only)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('i18nextLng', languageCode)
+    }
   }
 
   return (
