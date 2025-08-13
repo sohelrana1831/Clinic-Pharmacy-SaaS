@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Modal } from '@/components/modals/modal'
 import { Button } from '@/components/ui/button'
@@ -39,12 +39,18 @@ const mockEvents: Record<string, CalendarEvent[]> = {
 
 export function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
   const { t } = useTranslation()
-  const [currentDate, setCurrentDate] = useState(new Date())
+  // Use static date initially to prevent hydration mismatch
+  const [currentDate, setCurrentDate] = useState(new Date('2024-01-15'))
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
+
+  // Set current date on client-side only
+  useEffect(() => {
+    setCurrentDate(new Date())
+  }, [])
 
   const getMonthName = (month: number) => {
     const months = [
-      'জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন',
+      'জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জু���',
       'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'
     ]
     return months[month]
@@ -126,7 +132,7 @@ export function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="অ্যাপয়েন্টমেন্ট ক্যালেন্ডার"
+      title="অ্যাপয়েন্টমেন্ট ক্যা���েন্ডার"
     >
       <div className="space-y-6">
         {/* Calendar Header */}
@@ -160,7 +166,7 @@ export function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
             <CardContent className="p-4">
               {/* Weekday Headers */}
               <div className="grid grid-cols-7 gap-1 mb-2">
-                {['রবি', 'সোম', 'মঙ্গল', 'বুধ', 'বৃহ', 'শুক্র', 'শনি'].map((day) => (
+                {['রবি', 'সোম', 'মঙ্গল', 'বুধ', 'ব��হ', 'শুক্র', 'শনি'].map((day) => (
                   <div key={day} className="p-2 text-center text-xs font-medium text-theme-muted">
                     {day}
                   </div>
@@ -210,7 +216,7 @@ export function CalendarModal({ isOpen, onClose }: CalendarModalProps) {
                       <div className="flex items-center justify-between mb-2">
                         <span className={`text-xs px-2 py-1 rounded-full font-medium ${getEventTypeColor(event.type)}`}>
                           {event.type === 'appointment' ? 'অ্যাপয়েন্টমেন্ট' :
-                           event.type === 'follow-up' ? 'ফলোআপ' : 'চেকআপ'}
+                           event.type === 'follow-up' ? 'ফলোআপ' : 'চে���আপ'}
                         </span>
                         <div className="flex items-center text-sm text-theme-muted">
                           <Clock className="h-4 w-4 mr-1" />
