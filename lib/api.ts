@@ -31,6 +31,8 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    console.error('API Error:', error)
+
     if (error.response?.status === 401) {
       // Handle unauthorized access
       if (typeof window !== 'undefined') {
@@ -38,6 +40,12 @@ api.interceptors.response.use(
         window.location.href = '/auth/login'
       }
     }
+
+    // Handle network errors
+    if (error.code === 'NETWORK_ERROR' || error.message === 'Failed to fetch') {
+      console.error('Network error - possibly CORS or server issue')
+    }
+
     return Promise.reject(error)
   }
 )
