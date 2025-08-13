@@ -61,18 +61,23 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
+  // Start with light theme for SSR to prevent hydration mismatch
   const [theme, setThemeState] = useState<Theme>('light')
   const [mounted, setMounted] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
-  // Load theme from localStorage on mount
+  // Load theme from localStorage on mount (client-side only)
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as Theme | null
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    const initialTheme = savedTheme || systemTheme
-
-    setThemeState(initialTheme)
     setMounted(true)
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme') as Theme | null
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      const initialTheme = savedTheme || systemTheme
+
+      if (initialTheme !== theme) {
+        setThemeState(initialTheme)
+      }
+    }
   }, [])
 
   // Apply theme to document with enhanced transition support
@@ -96,8 +101,10 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       root.style.setProperty(cssVar, value)
     })
 
-    // Save to localStorage
-    localStorage.setItem('theme', theme)
+    // Save to localStorage (client-side only)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', theme)
+    }
 
     // End transition after animation completes
     const timeout = setTimeout(() => {
@@ -107,9 +114,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     return () => clearTimeout(timeout)
   }, [theme, mounted])
 
-  // Listen for system theme changes
+  // Listen for system theme changes (client-side only)
   useEffect(() => {
-    if (!mounted) return
+    if (!mounted || typeof window === 'undefined') return
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     const handleChange = (e: MediaQueryListEvent) => {
@@ -153,16 +160,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   return (
     <ThemeContext.Provider value={contextValue}>
-      {/* Prevent hydration mismatch by hiding content until mounted */}
-      <div
-        style={{
-          visibility: mounted ? 'visible' : 'hidden',
-          transition: 'visibility 0s linear 0s'
-        }}
-        className={isTransitioning ? 'animate-theme-fade-in' : ''}
-      >
-        {children}
-      </div>
+      {children}
     </ThemeContext.Provider>
   )
 }
