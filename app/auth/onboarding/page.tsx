@@ -111,8 +111,8 @@ export default function OnboardingPage() {
         />
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-gray-700">
-            ক্লিনিকের লোগো <span className="text-gray-500">(ঐচ্ছিক)</span>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            ক্লিনিকের লোগো <span className="text-gray-500 dark:text-gray-400">(ঐচ্ছিক)</span>
           </label>
           <div className="flex items-center space-x-4">
             <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
@@ -198,7 +198,7 @@ export default function OnboardingPage() {
         <div className="bg-blue-50 p-4 rounded-lg">
           <p className="text-sm text-blue-700">
             <strong>পরবর্তীতে আরো ডাক্তার যোগ করতে পারবেন</strong><br />
-            সেটআপ সম্পন্ন হওয়ার পর ড্যাশবোর্ড থেকে আরো ডাক্তার ও স্টাফ যোগ করুন।
+            সেটআপ সম্পন্ন হওয়ার পর ড্যাশ���োর্ড থেকে আরো ডাক্তার ও স্টাফ যোগ করুন।
           </p>
         </div>
 

@@ -29,7 +29,7 @@ export function Sidebar() {
     { icon: LayoutDashboard, label: t('navigation.dashboard'), href: '/dashboard' },
     { icon: Users, label: t('navigation.patients'), href: '/dashboard/patients' },
     { icon: Calendar, label: t('navigation.appointments'), href: '/dashboard/appointments' },
-    { icon: FileText, label: t('navigation.prescriptions'), href: '/prescriptions/editor' },
+    { icon: FileText, label: t('navigation.prescriptions'), href: '/dashboard/prescriptions' },
     { icon: Package, label: t('navigation.inventory'), href: '/dashboard/inventory' },
     { icon: Pill, label: t('navigation.pos'), href: '/dashboard/pos' },
     { icon: BarChart3, label: t('navigation.reports'), href: '/dashboard/reports' },

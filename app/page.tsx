@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Calendar, FileText, Pill, MessageSquare, Check, Star, Phone, Mail, Facebook, Twitter, Linkedin } from 'lucide-react'
 import { ariaPatterns, focusStyles } from '@/lib/accessibility-utils'
+import { ClientWrapper } from '@/components/client-wrapper'
 
 export default function Home() {
   return (
@@ -63,7 +64,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="order-2 lg:order-1">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-6 leading-tight">
-                বাংলাদেশের #১ ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সিস্টেম
+                বাংলাদেশের #১ ���্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সিস্টেম
               </h1>
               <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-4">
                 আধুনিক প্রযুক্তি দিয়ে আপনার ক্লিনিক ও ফার্মেসি পরিচালনা করুন।
@@ -399,7 +400,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              আমাদের ক্লায়েন্টদের মতামত
+              আমাদের ক্লায়েন্টদের মতা���ত
             </h2>
           </div>
 
@@ -460,7 +461,7 @@ export default function Home() {
 
               <Card className="p-6">
                 <h3 className="font-semibold text-lg text-gray-900 mb-3">ডেটা এক্সপোর্ট করা যাবে?</h3>
-                <p className="text-gray-600">হ্যাঁ, আপনি যেকোনো সময় আপনার সকল ডেটা Excel, PDF বা CSV ফরম্যাটে এক্সপোর্ট করতে পারবেন।</p>
+                <p className="text-gray-600">���্যাঁ, আপনি যেকোনো সময় আপনার সকল ডেটা Excel, PDF বা CSV ফরম্যাটে এক্সপোর্ট করতে পারবেন।</p>
               </Card>
 
               <Card className="p-6">
@@ -479,7 +480,7 @@ export default function Home() {
             প্রস্তুত শুরু করতে?
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            আজই শুরু করুন এবং দেখুন কিভাবে আমাদের সিস্টেম আপনার ক্লিনিক ও ফার্মেসি পরিচালনাকে সহজ করে তোলে।
+            আজই শুরু ক��ুন এবং দেখুন কিভাবে আমাদের সিস্টেম আপনার ক্লিনিক ও ফার্মেসি পরিচালনাকে সহজ করে তোলে।
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/auth/signup">
@@ -507,7 +508,7 @@ export default function Home() {
             <div>
               <h3 className="text-lg sm:text-xl font-bold mb-4">ক্লিনিক ম্যানেজমেন্ট সিস্টেম</h3>
               <p className="text-gray-300 mb-4 text-sm sm:text-base">
-                বাংলাদেশের সবচেয়ে ভালো ক্লিনিক ও ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার।
+                বাংলাদেশের সবচেয়ে ভালো ক্লিনিক ও ফা��্মেসি ম্যানেজমেন্ট সফটওয়্যার।
               </p>
             </div>
 

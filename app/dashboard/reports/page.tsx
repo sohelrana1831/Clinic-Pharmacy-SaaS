@@ -1,8 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Sidebar } from '@/components/dashboard/sidebar'
-import { Topbar } from '@/components/dashboard/topbar'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -44,18 +42,7 @@ export default function ReportsPage() {
   const currentMonthPatients = patientGrowthData[patientGrowthData.length - 1]?.totalPatients || 0
 
   return (
-    <div className="min-h-screen bg-theme-background flex">
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Top Navigation */}
-        <Topbar />
-
-        {/* Page Content */}
-        <main className="flex-1 p-6 bg-theme-background">
-          <div className="space-y-6">
+    <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -79,7 +66,7 @@ export default function ReportsPage() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
-              <label className="block text-sm font-medium text-theme-foreground mb-2">তারিখ থেকে</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">তারিখ থেকে</label>
               <Input
                 type="date"
                 value={dateRange.from}
@@ -87,7 +74,7 @@ export default function ReportsPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-theme-foreground mb-2">তারিখ পর্যন্ত</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">তারিখ পর্যন্ত</label>
               <Input
                 type="date"
                 value={dateRange.to}
@@ -95,7 +82,7 @@ export default function ReportsPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-theme-foreground mb-2">ডাক্তার নির্বাচন</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">ডাক্তার নির্বাচন</label>
               <Select
                 value={selectedDoctor}
                 onChange={(e) => setSelectedDoctor(e.target.value)}
@@ -106,7 +93,7 @@ export default function ReportsPage() {
               </Select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-theme-foreground mb-2">শাখা নির্বাচন</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">শাখা নির্বাচন</label>
               <Select
                 value={selectedBranch}
                 onChange={(e) => setSelectedBranch(e.target.value)}
@@ -176,7 +163,7 @@ export default function ReportsPage() {
             <ChartPlaceholder
               title="দৈনিক বিক্রয় চার্ট"
               type="bar"
-              description="গত ৭ দিনের বিক্রয় পরিমা���"
+              description="গত ৭ দিনের বি��্রয় পরিমা���"
               data={dailySalesData}
             />
             <div className="space-y-3">
@@ -333,7 +320,7 @@ export default function ReportsPage() {
                     <p className="text-xl font-bold text-emerald-800">175</p>
                   </div>
                   <div>
-                    <p className="text-sm text-emerald-600">ধরে রাখার হার</p>
+                    <p className="text-sm text-emerald-600">ধরে ���াখার হার</p>
                     <p className="text-xl font-bold text-emerald-800">96%</p>
                   </div>
                 </div>
@@ -357,7 +344,7 @@ export default function ReportsPage() {
               <h5 className="font-medium text-theme-foreground mb-2">দৈনিক বিক্রয়</h5>
               <ul className="space-y-1 text-theme-muted">
                 <li>• date (তারিখ)</li>
-                <li>• sales (বিক্রয় টাকা)</li>
+                <li>• sales (বি���্রয় টাকা)</li>
                 <li>• transactions (লেনদেন সংখ্যা)</li>
               </ul>
             </div>
@@ -390,9 +377,6 @@ export default function ReportsPage() {
           </div>
         </CardContent>
       </Card>
-          </div>
-        </main>
-      </div>
     </div>
   )
 }

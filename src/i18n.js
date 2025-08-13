@@ -22,6 +22,38 @@ const resources = {
 // Check if we're on the client side
 const isClient = typeof window !== 'undefined'
 
+// Common configuration for both client and server
+const commonConfig = {
+  resources,
+  lng: 'bn', // Always start with Bengali for consistency
+  fallbackLng: 'bn',
+  debug: false,
+
+  interpolation: {
+    escapeValue: false // React already does escaping
+  },
+
+  // React specific options
+  react: {
+    useSuspense: false // Disable suspense mode to avoid issues with SSR
+  },
+
+  // Language whitelist
+  supportedLngs: ['en', 'bn', 'ar'],
+  nonExplicitSupportedLngs: true,
+
+  // Namespace options
+  defaultNS: 'translation',
+  ns: ['translation'],
+
+  // Key separator
+  keySeparator: '.',
+  nsSeparator: ':',
+
+  // Ensure consistent initialization
+  initImmediate: false
+}
+
 // Configure i18next
 if (isClient) {
   // Client-side configuration with language detection
@@ -29,46 +61,20 @@ if (isClient) {
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
-      resources,
-      fallbackLng: 'bn', // Default to Bengali
+      ...commonConfig,
       debug: process.env.NODE_ENV === 'development',
 
       // Language detection options
       detection: {
         order: [
-          'localStorage', 
-          'sessionStorage', 
-          'navigator', 
-          'htmlTag', 
-          'path', 
-          'subdomain'
+          'localStorage',
+          'sessionStorage',
+          'htmlTag'
         ],
-        caches: ['localStorage', 'sessionStorage'],
+        caches: ['localStorage'],
         lookupLocalStorage: 'i18nextLng',
-        lookupSessionStorage: 'i18nextLng',
         checkWhitelist: true
       },
-
-      interpolation: {
-        escapeValue: false // React already does escaping
-      },
-
-      // React specific options
-      react: {
-        useSuspense: false // Disable suspense mode to avoid issues with SSR
-      },
-
-      // Language whitelist
-      supportedLngs: ['en', 'bn', 'ar'],
-      nonExplicitSupportedLngs: true,
-
-      // Namespace options
-      defaultNS: 'translation',
-      ns: ['translation'],
-
-      // Key separator
-      keySeparator: '.',
-      nsSeparator: ':',
 
       // Load options
       load: 'languageOnly'
@@ -78,7 +84,7 @@ if (isClient) {
   i18n.on('languageChanged', (lng) => {
     const isRTL = lng === 'ar'
     const htmlElement = document.documentElement
-    
+
     if (isRTL) {
       htmlElement.setAttribute('dir', 'rtl')
       htmlElement.classList.add('rtl')
@@ -86,7 +92,7 @@ if (isClient) {
       htmlElement.setAttribute('dir', 'ltr')
       htmlElement.classList.remove('rtl')
     }
-    
+
     // Store language preference
     localStorage.setItem('i18nextLng', lng)
   })
@@ -94,31 +100,7 @@ if (isClient) {
   // Server-side configuration (minimal setup)
   i18n
     .use(initReactI18next)
-    .init({
-      resources,
-      lng: 'bn', // Default language for SSR (consistent with client)
-      fallbackLng: 'bn',
-      debug: false,
-
-      interpolation: {
-        escapeValue: false
-      },
-
-      react: {
-        useSuspense: false
-      },
-
-      // Namespace options
-      defaultNS: 'translation',
-      ns: ['translation'],
-
-      // Key separator
-      keySeparator: '.',
-      nsSeparator: ':',
-
-      // Ensure consistent initialization
-      initImmediate: false
-    })
+    .init(commonConfig)
 }
 
 export default i18n

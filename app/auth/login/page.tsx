@@ -50,7 +50,7 @@ export default function LoginPage() {
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-gray-700">
+          <Label htmlFor="email">
             ইমেইল ঠিকানা <span className="text-red-500">*</span>
           </Label>
           <Input
@@ -66,7 +66,7 @@ export default function LoginPage() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="password" className="text-gray-700">
+          <Label htmlFor="password">
             পাসওয়ার্ড <span className="text-red-500">*</span>
           </Label>
           <Input
@@ -88,7 +88,7 @@ export default function LoginPage() {
               checked={formData.rememberMe}
               onChange={(e) => setFormData(prev => ({ ...prev, rememberMe: e.target.checked }))}
             />
-            <label htmlFor="rememberMe" className="text-sm text-gray-700 cursor-pointer">
+            <label htmlFor="rememberMe" className="text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
               আমাকে মনে রাখুন
             </label>
           </div>
