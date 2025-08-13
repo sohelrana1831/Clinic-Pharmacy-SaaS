@@ -15,7 +15,7 @@ export default function Home() {
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50"
         aria-label="মূ�� কন্টেন্টে যান"
       >
-        মূল কন্টেন্টে যান
+        মূল কন্টেন্ট�� যান
       </a>
 
       {/* Hero Section */}
@@ -51,7 +51,7 @@ export default function Home() {
                     size="lg"
                     variant="outline"
                     className={`w-full sm:w-auto border-blue-600 text-blue-600 hover:bg-blue-50 focus:bg-blue-50 px-8 py-3 ${focusStyles.ring}`}
-                    aria-label="লাইভ ডেমো দেখুন, কোন রেজিস্ট্রেশন ��্রয়োজন নেই"
+                    aria-label="লাইভ ডেমো দেখুন, কোন রে��িস্ট্রেশন ��্রয়োজন নেই"
                   >
                     ডেমো দেখুন
                   </Button>
@@ -62,7 +62,7 @@ export default function Home() {
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-4 sm:p-8 transition-colors duration-200">
                 <img
                   src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDQwMCAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjU2IiBmaWxsPSIjRjNGNEY2Ii8+CjxyZWN0IHg9IjIwIiB5PSIyMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIyMTYiIGZpbGw9IndoaXRlIiBzdHJva2U9IiNFNUU3RUIiLz4KPHN2ZyB4PSI2MCIgeT0iNjAiIHdpZHRoPSIyODAiIGhlaWdodD0iMTM2IiBmaWxsPSJub25lIj4KICA8cmVjdCB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM2IiBmaWxsPSIjMzM4MUY2Ii8+CiAgPHJlY3QgeT0iNTIiIHdpZHRoPSIxMzAiIGhlaWdodD0iMjAiIGZpbGw9IiNFNUU3RUIiLz4KICA8cmVjdCB5PSI4NCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0Y5RkFGQiIvPgogIDxyZWN0IHk9IjExNiIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyMCIgZmlsbD0iI0Y5RkFGQiIvPgo8L3N2Zz4KPC9zdmc+"
-                  alt="ক্লিনিক ম্যানেজমেন্ট ড্যাশবোর্ডের স্ক্রিনশট - রোগীর তালিকা, অ্যাপয়েন্টমেন্ট এবং রিপ���র্ট দেখাচ্ছে"
+                  alt="ক্লিনিক ম্যানেজমেন্ট ড্যাশবোর্ডের স্ক্রিনশট - রোগীর তা���িকা, অ্যাপয়েন্টমেন্ট এবং রিপ���র্ট দেখাচ্ছে"
                   className="w-full h-64 object-cover rounded-lg"
                   loading="lazy"
                 />
@@ -172,14 +172,93 @@ export default function Home() {
 
           {/* Product Screenshots */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 h-48 flex items-center justify-center transition-colors">
-              <span className="text-gray-500 dark:text-gray-400 text-sm text-center">Patient Management Interface</span>
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-colors border border-gray-200 dark:border-gray-700">
+              <div className="bg-gradient-to-r from-blue-500 to-blue-600 h-8 flex items-center px-3">
+                <div className="flex space-x-1">
+                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+              </div>
+              <div className="p-4 h-40">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200">রোগীর তালিকা</h3>
+                  <div className="w-16 h-6 bg-blue-100 dark:bg-blue-900 rounded text-xs flex items-center justify-center text-blue-600 dark:text-blue-300">৫৪ জন</div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-3 p-2 bg-gray-50 dark:bg-gray-700 rounded">
+                    <div className="w-8 h-8 bg-blue-200 dark:bg-blue-800 rounded-full"></div>
+                    <div className="flex-1">
+                      <div className="w-20 h-3 bg-gray-300 dark:bg-gray-600 rounded mb-1"></div>
+                      <div className="w-16 h-2 bg-gray-200 dark:bg-gray-500 rounded"></div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-3 p-2 bg-gray-50 dark:bg-gray-700 rounded">
+                    <div className="w-8 h-8 bg-green-200 dark:bg-green-800 rounded-full"></div>
+                    <div className="flex-1">
+                      <div className="w-24 h-3 bg-gray-300 dark:bg-gray-600 rounded mb-1"></div>
+                      <div className="w-14 h-2 bg-gray-200 dark:bg-gray-500 rounded"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 h-48 flex items-center justify-center transition-colors">
-              <span className="text-gray-500 dark:text-gray-400 text-sm text-center">Prescription Writing Tool</span>
+
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-colors border border-gray-200 dark:border-gray-700">
+              <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 h-8 flex items-center px-3">
+                <div className="flex space-x-1">
+                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+              </div>
+              <div className="p-4 h-40">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200">প্রেসক্রিপশন</h3>
+                  <div className="w-12 h-6 bg-emerald-100 dark:bg-emerald-900 rounded text-xs flex items-center justify-center text-emerald-600 dark:text-emerald-300">নতুন</div>
+                </div>
+                <div className="space-y-2">
+                  <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded p-3">
+                    <div className="w-full h-3 bg-gray-200 dark:bg-gray-600 rounded mb-2"></div>
+                    <div className="w-3/4 h-3 bg-gray-200 dark:bg-gray-600 rounded mb-2"></div>
+                    <div className="w-1/2 h-3 bg-gray-200 dark:bg-gray-600 rounded"></div>
+                  </div>
+                  <div className="flex space-x-2">
+                    <div className="flex-1 h-6 bg-blue-100 dark:bg-blue-900 rounded text-xs flex items-center justify-center text-blue-600 dark:text-blue-300">সেভ</div>
+                    <div className="flex-1 h-6 bg-gray-100 dark:bg-gray-700 rounded text-xs flex items-center justify-center text-gray-600 dark:text-gray-300">প্রিন্ট</div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 h-48 flex items-center justify-center transition-colors">
-              <span className="text-gray-500 dark:text-gray-400 text-sm text-center">Inventory Dashboard</span>
+
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-colors border border-gray-200 dark:border-gray-700">
+              <div className="bg-gradient-to-r from-purple-500 to-purple-600 h-8 flex items-center px-3">
+                <div className="flex space-x-1">
+                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+              </div>
+              <div className="p-4 h-40">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200">ইনভেন্টরি</h3>
+                  <div className="w-16 h-6 bg-red-100 dark:bg-red-900 rounded text-xs flex items-center justify-center text-red-600 dark:text-red-300">স্টক কম</div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center p-2 bg-red-50 dark:bg-red-900/20 rounded border border-red-200 dark:border-red-800">
+                    <span className="text-xs text-gray-700 dark:text-gray-300">প্যারাসিটামল</span>
+                    <span className="text-xs text-red-600 dark:text-red-400 font-medium">৫টি</span>
+                  </div>
+                  <div className="flex justify-between items-center p-2 bg-green-50 dark:bg-green-900/20 rounded border border-green-200 dark:border-green-800">
+                    <span className="text-xs text-gray-700 dark:text-gray-300">নাপা এক্সটেন্ড</span>
+                    <span className="text-xs text-green-600 dark:text-green-400 font-medium">২৫০টি</span>
+                  </div>
+                  <div className="flex justify-between items-center p-2 bg-yellow-50 dark:bg-yellow-900/20 rounded border border-yellow-200 dark:border-yellow-800">
+                    <span className="text-xs text-gray-700 dark:text-gray-300">সিরাপ</span>
+                    <span className="text-xs text-yellow-600 dark:text-yellow-400 font-medium">১২টি</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -297,7 +376,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "এই সফটওয়্যার ব্যবহার করে আ���াদের ক্লিনিকের কাজের গতি অনেক বেড়েছে। রোগীদের তথ্য সংরক্ষণ এবং অ্যাপয়েন্টমেন্ট ব্যবস্থাপনা এখন অনেক সহজ।"
+                "এই সফটওয়্যার ব্যবহার করে আ���াদের ক্লিনিকের কাজের গতি অনেক বেড়েছে। রোগীদের তথ��য সংরক্ষণ এবং অ্যাপয়েন্টমেন্ট ব্যবস্থাপনা এখন অনেক সহজ।"
               </p>
               <div>
                 <p className="font-semibold text-gray-900">ডা. রহিম উদ্দিন</p>
