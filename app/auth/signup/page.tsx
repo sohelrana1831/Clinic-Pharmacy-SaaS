@@ -113,7 +113,7 @@ export default function SignUpPage() {
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-gray-700">
+          <Label htmlFor="email">
             ইমেইল ঠিকানা <span className="text-red-500">*</span>
           </Label>
           <Input
@@ -129,7 +129,7 @@ export default function SignUpPage() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="password" className="text-gray-700">
+          <Label htmlFor="password">
             পাসওয়ার্ড <span className="text-red-500">*</span>
           </Label>
           <Input
@@ -145,7 +145,7 @@ export default function SignUpPage() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="confirmPassword" className="text-gray-700">
+          <Label htmlFor="confirmPassword">
             পাসওয়ার্ড নিশ্চিত করুন <span className="text-red-500">*</span>
           </Label>
           <Input
@@ -167,7 +167,7 @@ export default function SignUpPage() {
           <Input
             id="clinicName"
             type="text"
-            placeholder="আপনার ক্লিনিকের নাম"
+            placeholder="আপনার ক্লিনিকে��� নাম"
             required
             value={formData.clinicName}
             onChange={(e) => setFormData(prev => ({ ...prev, clinicName: e.target.value }))}
