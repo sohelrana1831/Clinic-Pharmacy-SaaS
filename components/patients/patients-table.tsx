@@ -79,34 +79,34 @@ export function PatientsTable({ patients, onViewPatient, onEditPatient, onAddPat
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+      <div className="table-theme rounded-lg border overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
+          <table className="w-full table-theme">
+            <thead className="border-b">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   রোগী ID
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   নাম
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   ফোন
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   বয়স
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   শেষ ভিজিট
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-theme-muted uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium form-label-theme uppercase tracking-wider">
                   কার্যক্রম
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="divide-y">{/* class removed: divide-gray-200 */}
               {filteredPatients.map((patient) => (
-                <tr key={patient.id} className="hover:bg-gray-50 dark:hover:bg-gray-800">
+                <tr key={patient.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 theme-transition">{/* Updated hover classes */}
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-blue-600">{patient.id}</div>
                   </td>
