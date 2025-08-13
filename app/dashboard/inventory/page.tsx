@@ -1,8 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Sidebar } from '@/components/dashboard/sidebar'
-import { Topbar } from '@/components/dashboard/topbar'
 import { InventoryTable } from '@/components/inventory/inventory-table'
 import { AddStockModal } from '@/components/inventory/add-stock-modal'
 import { MedicineModal } from '@/components/inventory/medicine-modal'
@@ -84,25 +82,13 @@ export default function InventoryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-theme-background flex">
-      {/* Sidebar */}
-      <Sidebar />
-      
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Top Navigation */}
-        <Topbar />
-        
-        {/* Page Content */}
-        <main className="flex-1 p-6 bg-theme-background">
-          <InventoryTable
-            inventory={inventory}
-            onEditItem={handleEditItem}
-            onAddStock={handleAddStock}
-            onAddNew={handleAddNew}
-          />
-        </main>
-      </div>
+    <div>
+      <InventoryTable
+        inventory={inventory}
+        onEditItem={handleEditItem}
+        onAddStock={handleAddStock}
+        onAddNew={handleAddNew}
+      />
 
       {/* Modals */}
       <AddStockModal
