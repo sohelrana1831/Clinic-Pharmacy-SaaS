@@ -158,7 +158,9 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   return (
     <ThemeContext.Provider value={contextValue}>
-      {children}
+      <div suppressHydrationWarning={mounted}>
+        {children}
+      </div>
     </ThemeContext.Provider>
   )
 }
