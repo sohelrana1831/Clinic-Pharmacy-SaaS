@@ -57,18 +57,19 @@ export function usePaginatedApi<T>(
   })
   const [params, setParams] = useState(initialParams)
 
-  const fetchData = useCallback(async (newParams?: any) => {
+  const fetchData = useCallback(async (customParams?: any, customPage?: number, customLimit?: number) => {
     try {
       setLoading(true)
       setError(null)
-      
-      const currentParams = newParams || params
-      const response = await apiCall({
-        ...currentParams,
-        page: pagination.page,
-        limit: pagination.limit,
-      })
-      
+
+      const requestParams = {
+        ...(customParams !== undefined ? customParams : params),
+        page: customPage !== undefined ? customPage : pagination.page,
+        limit: customLimit !== undefined ? customLimit : pagination.limit,
+      }
+
+      const response = await apiCall(requestParams)
+
       if (response.success) {
         setData(response.data)
         if (response.pagination) {
@@ -82,25 +83,41 @@ export function usePaginatedApi<T>(
     } finally {
       setLoading(false)
     }
-  }, [apiCall, params, pagination.page, pagination.limit])
+  }, [apiCall])
 
-  // Load data when params or pagination changes
+  // Initial load only
   useEffect(() => {
-    fetchData()
-  }, [params, pagination.page, pagination.limit])
+    fetchData(initialParams, 1, 10)
+  }, []) // Empty dependency array for initial load only
 
-  const updateParams = (newParams: any) => {
-    setParams({ ...params, ...newParams })
-    setPagination(prev => ({ ...prev, page: 1 })) // Reset to first page
-  }
+  // Handle params changes
+  useEffect(() => {
+    if (JSON.stringify(params) !== JSON.stringify(initialParams)) {
+      fetchData(params, 1, pagination.limit)
+    }
+  }, [params, fetchData, initialParams, pagination.limit])
 
-  const goToPage = (page: number) => {
+  // Handle page changes
+  const goToPage = useCallback((page: number) => {
     setPagination(prev => ({ ...prev, page }))
-  }
+    fetchData(params, page, pagination.limit)
+  }, [params, pagination.limit, fetchData])
 
-  const changePageSize = (limit: number) => {
+  // Handle page size changes
+  const changePageSize = useCallback((limit: number) => {
     setPagination(prev => ({ ...prev, limit, page: 1 }))
-  }
+    fetchData(params, 1, limit)
+  }, [params, fetchData])
+
+  const updateParams = useCallback((newParams: any) => {
+    const updatedParams = { ...params, ...newParams }
+    setParams(updatedParams)
+    setPagination(prev => ({ ...prev, page: 1 }))
+  }, [params])
+
+  const refetch = useCallback(() => {
+    fetchData(params, pagination.page, pagination.limit)
+  }, [fetchData, params, pagination.page, pagination.limit])
 
   return {
     data,
@@ -111,7 +128,7 @@ export function usePaginatedApi<T>(
     updateParams,
     goToPage,
     changePageSize,
-    refetch: () => fetchData(),
+    refetch,
     setData,
   }
 }
