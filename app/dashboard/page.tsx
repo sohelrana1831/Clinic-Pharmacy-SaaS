@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Sidebar } from '@/components/dashboard/sidebar'
-import { Topbar } from '@/components/dashboard/topbar'
 import {
   TodayStats,
   UpcomingAppointments,
@@ -43,17 +41,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-theme-background flex">
-      {/* Sidebar */}
-      <Sidebar />
-      
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Top Navigation */}
-        <Topbar />
-        
-        {/* Dashboard Content */}
-        <main className="flex-1 p-6 bg-theme-background">
+    <div>
           {/* Page Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-theme-foreground mb-2">{t('dashboard.title')}</h1>
@@ -147,9 +135,6 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
-        </main>
-      </div>
-
       {/* Modals */}
       <NewPatientModal
         isOpen={modals.newPatient}
