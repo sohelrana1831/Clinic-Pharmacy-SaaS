@@ -1,8 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Sidebar } from '@/components/dashboard/sidebar'
-import { Topbar } from '@/components/dashboard/topbar'
 import { POSInterface } from '@/components/pos/pos-interface'
 import { sampleInventory, InventoryItem, Sale } from '@/lib/inventory-data'
 
@@ -32,24 +30,10 @@ export default function POSPage() {
   }
 
   return (
-    <div className="min-h-screen bg-theme-background flex">
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        {/* Top Navigation */}
-        <Topbar />
-
-        {/* Page Content */}
-        <main className="flex-1">
-          <POSInterface
-            inventory={inventory}
-            onSaleComplete={handleSaleComplete}
-            onUpdateInventory={handleUpdateInventory}
-          />
-        </main>
-      </div>
-    </div>
+    <POSInterface
+      inventory={inventory}
+      onSaleComplete={handleSaleComplete}
+      onUpdateInventory={handleUpdateInventory}
+    />
   )
 }
