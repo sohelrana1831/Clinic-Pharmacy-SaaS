@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { CalendarModal } from '@/components/patients/calendar-modal'
 import { Patient, Appointment, Prescription } from '@/lib/patients-data'
 import { 
   ArrowLeft, 
@@ -37,6 +38,7 @@ export function PatientProfile({
   onNewPrescription 
 }: PatientProfileProps) {
   const [activeTab, setActiveTab] = useState('summary')
+  const [showCalendarModal, setShowCalendarModal] = useState(false)
 
   const calculateAge = (dateOfBirth: string) => {
     const today = new Date()
@@ -310,7 +312,7 @@ export function PatientProfile({
                           <div>
                             <p className="font-medium">{formatDate(prescription.date)}</p>
                             <p className="text-sm text-gray-600">{prescription.doctorName}</p>
-                            <p className="text-sm text-blue-600 mt-1">রোগ নির্ণয়: {prescription.diagnosis}</p>
+                            <p className="text-sm text-blue-600 mt-1">রোগ নির্ণয��: {prescription.diagnosis}</p>
                           </div>
                           <div className="flex items-center space-x-2">
                             <Button size="sm" variant="outline">
