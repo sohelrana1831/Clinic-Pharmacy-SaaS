@@ -133,6 +133,15 @@ export default function PatientsPage() {
         isOpen={showAppointmentModal}
         onClose={() => setShowAppointmentModal(false)}
       />
+
+      <PrescriptionModal
+        isOpen={showPrescriptionModal}
+        onClose={() => {
+          setShowPrescriptionModal(false)
+          setPrescriptionPatient(null)
+        }}
+        patient={prescriptionPatient}
+      />
     </div>
   )
 }
