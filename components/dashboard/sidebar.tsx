@@ -43,11 +43,11 @@ export function Sidebar() {
     <div className={`
       ${collapsed ? 'w-16' : 'w-64'}
       h-screen bg-theme-card border-r border-theme-default theme-transition flex flex-col
-    `}>
+    `} suppressHydrationWarning>
       {/* Logo & Toggle */}
       <div className="p-4 border-b border-theme-default flex items-center justify-between">
         {!collapsed && (
-          <div>
+          <div suppressHydrationWarning>
             <h2 className="text-xl font-bold text-theme-accent">{t('app.title')}</h2>
             <p className="text-sm text-theme-muted">{t('app.subtitle')}</p>
           </div>
@@ -70,7 +70,7 @@ export function Sidebar() {
           {menuItems.map((item, index) => {
             const isActive = pathname === item.href
             return (
-              <li key={index}>
+              <li key={index} suppressHydrationWarning>
                 <Link
                   href={item.href}
                   className={`
@@ -82,7 +82,7 @@ export function Sidebar() {
                   `}
                 >
                   <item.icon className="h-5 w-5 mr-3 flex-shrink-0" />
-                  {!collapsed && <span>{item.label}</span>}
+                  {!collapsed && <span suppressHydrationWarning>{item.label}</span>}
                 </Link>
               </li>
             )
@@ -92,14 +92,14 @@ export function Sidebar() {
 
       {/* User Info */}
       {!collapsed && (
-        <div className="p-4 border-t border-theme-default">
+        <div className="p-4 border-t border-theme-default" suppressHydrationWarning>
           <div className="flex items-center">
             <div className="w-8 h-8 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center theme-transition">
               <span className="text-theme-accent font-medium">SR</span>
             </div>
             <div className="ml-3">
               <p className="text-sm font-medium text-theme-foreground">SR Pharma</p>
-              <p className="text-xs text-theme-muted">{t('user.admin')}</p>
+              <p className="text-xs text-theme-muted" suppressHydrationWarning>{t('user.admin')}</p>
             </div>
           </div>
         </div>
