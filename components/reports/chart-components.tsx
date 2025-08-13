@@ -103,45 +103,47 @@ interface MetricCardProps {
   suffix?: string
 }
 
-export function MetricCard({ 
-  title, 
-  value, 
-  change, 
-  icon, 
+export function MetricCard({
+  title,
+  value,
+  change,
+  icon,
   color = 'blue',
-  suffix = '' 
+  suffix = ''
 }: MetricCardProps) {
+  const { theme } = useTheme()
+
   const colorClasses = {
-    blue: 'from-blue-50 to-blue-100 text-blue-600 border-blue-200',
-    green: 'from-green-50 to-green-100 text-green-600 border-green-200',
-    purple: 'from-purple-50 to-purple-100 text-purple-600 border-purple-200',
-    orange: 'from-orange-50 to-orange-100 text-orange-600 border-orange-200',
-    red: 'from-red-50 to-red-100 text-red-600 border-red-200'
+    blue: 'from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-700',
+    green: 'from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 text-green-600 dark:text-green-400 border-green-200 dark:border-green-700',
+    purple: 'from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 text-purple-600 dark:text-purple-400 border-purple-200 dark:border-purple-700',
+    orange: 'from-orange-50 to-orange-100 dark:from-orange-900 dark:to-orange-800 text-orange-600 dark:text-orange-400 border-orange-200 dark:border-orange-700',
+    red: 'from-red-50 to-red-100 dark:from-red-900 dark:to-red-800 text-red-600 dark:text-red-400 border-red-200 dark:border-red-700'
   }
 
   return (
     <div className={`bg-gradient-to-br ${colorClasses[color]} p-4 rounded-lg border`}>
       <div className="flex items-center justify-between mb-2">
-        <div className="p-2 bg-white/70 rounded-lg">
+        <div className="p-2 bg-theme-card/70 rounded-lg border border-theme-default">
           {icon}
         </div>
         {change !== undefined && (
           <span className={`text-sm font-medium px-2 py-1 rounded-full ${
-            change > 0 
-              ? 'bg-green-100 text-green-700' 
-              : change < 0 
-                ? 'bg-red-100 text-red-700'
-                : 'bg-gray-100 text-gray-700'
+            change > 0
+              ? 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300'
+              : change < 0
+                ? 'bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300'
+                : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
           }`}>
             {change > 0 ? '+' : ''}{change}%
           </span>
         )}
       </div>
       <div>
-        <p className="text-sm font-medium text-gray-600 mb-1">{title}</p>
-        <p className="text-2xl font-bold text-gray-900">
+        <p className="text-sm font-medium text-theme-muted mb-1">{title}</p>
+        <p className="text-2xl font-bold text-theme-foreground">
           {typeof value === 'number' ? value.toLocaleString() : value}
-          {suffix && <span className="text-sm font-normal text-gray-600">{suffix}</span>}
+          {suffix && <span className="text-sm font-normal text-theme-muted">{suffix}</span>}
         </p>
       </div>
     </div>
@@ -156,13 +158,13 @@ interface DataTableProps {
 
 export function DataTable({ headers, data, maxHeight = 300 }: DataTableProps) {
   return (
-    <div className="bg-white rounded-lg border overflow-hidden">
+    <div className="table-theme rounded-lg border overflow-hidden">
       <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead className="bg-gray-50">
+        <table className="w-full table-theme">
+          <thead className="border-b">
             <tr>
               {headers.map((header, index) => (
-                <th key={index} className="px-4 py-3 text-left text-sm font-medium text-gray-700">
+                <th key={index} className="px-4 py-3 text-left text-sm font-medium form-label-theme">
                   {header}
                 </th>
               ))}
@@ -171,12 +173,12 @@ export function DataTable({ headers, data, maxHeight = 300 }: DataTableProps) {
         </table>
       </div>
       <div className="overflow-y-auto" style={{ maxHeight: `${maxHeight}px` }}>
-        <table className="w-full">
-          <tbody className="divide-y divide-gray-200">
+        <table className="w-full table-theme">
+          <tbody className="divide-y">
             {data.map((row, rowIndex) => (
-              <tr key={rowIndex} className="hover:bg-gray-50">
+              <tr key={rowIndex} className="hover:bg-gray-50 dark:hover:bg-gray-700 theme-transition">
                 {headers.map((header, colIndex) => (
-                  <td key={colIndex} className="px-4 py-3 text-sm text-gray-900">
+                  <td key={colIndex} className="px-4 py-3 text-sm text-theme-foreground">
                     {row[header] || '-'}
                   </td>
                 ))}
