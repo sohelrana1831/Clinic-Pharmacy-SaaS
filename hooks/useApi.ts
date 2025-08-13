@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { ApiResponse } from '@/lib/api'
 
 // Generic API hook with loading, error, and data state
