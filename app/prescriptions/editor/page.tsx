@@ -43,12 +43,20 @@ export default function PrescriptionEditorPage() {
     doctorName: '',
     doctorRegistration: '',
     clinicId: 'clinic-1',
-    date: new Date().toISOString().split('T')[0],
+    date: '2024-01-15', // Static date to prevent hydration mismatch
     diagnosis: '',
     medicines: [],
     notes: '',
     status: 'draft'
   })
+
+  // Set current date on client-side only
+  useEffect(() => {
+    setPrescriptionData(prev => ({
+      ...prev,
+      date: new Date().toISOString().split('T')[0]
+    }))
+  }, [])
 
   const [patientSearch, setPatientSearch] = useState('')
   const [showPatientDropdown, setShowPatientDropdown] = useState(false)
@@ -190,7 +198,7 @@ export default function PrescriptionEditorPage() {
     const newErrors: Record<string, string> = {}
 
     if (!prescriptionData.patientId) {
-      newErrors.patient = 'রোগী নির্বাচন করুন'
+      newErrors.patient = 'র���গী নির্বাচন করুন'
     }
 
     if (!prescriptionData.doctorId) {
