@@ -1,8 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Sidebar } from '@/components/dashboard/sidebar'
-import { Topbar } from '@/components/dashboard/topbar'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Modal } from '@/components/modals/modal'
