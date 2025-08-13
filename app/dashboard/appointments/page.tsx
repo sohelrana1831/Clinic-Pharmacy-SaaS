@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -71,8 +71,13 @@ export default function AppointmentsPage() {
   const { t } = useTranslation()
   const [viewMode, setViewMode] = useState<'table' | 'calendar'>('table')
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0])
+  const [selectedDate, setSelectedDate] = useState('2024-01-15') // Static date to prevent hydration mismatch
   const [statusFilter, setStatusFilter] = useState('')
+
+  // Set current date on client-side only
+  useEffect(() => {
+    setSelectedDate(new Date().toISOString().split('T')[0])
+  }, [])
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -166,7 +171,7 @@ export default function AppointmentsPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-theme-muted">নিশ্��িত</p>
+                  <p className="text-sm text-theme-muted">নিশ্চিত</p>
                   <p className="text-2xl font-bold text-blue-600">
                     {filteredAppointments.filter(a => a.status === 'confirmed').length}
                   </p>
