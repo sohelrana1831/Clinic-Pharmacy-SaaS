@@ -196,7 +196,7 @@ export default function AdminSubscriptionsPage() {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
-                  placeholder="ক্লিনিকের নাম বা ইমেইল দিয়ে খুঁজুন..."
+                  placeholder="ক্লিনিকের নাম বা ইমেইল দিয়ে খুঁজু��..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -235,7 +235,7 @@ export default function AdminSubscriptionsPage() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-gray-200">
+                <tr className="border-b border-gray-200 dark:border-gray-700">
                   <th className="text-left py-3 px-4 font-medium text-gray-600">ক্লিনিক</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-600">প্ল্যান</th>
                   <th className="text-left py-3 px-4 font-medium text-gray-600">স্ট্য���টাস</th>
