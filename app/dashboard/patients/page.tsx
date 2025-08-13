@@ -1,8 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Sidebar } from '@/components/dashboard/sidebar'
-import { Topbar } from '@/components/dashboard/topbar'
 import { PatientsTable } from '@/components/patients/patients-table'
 import { PatientProfile } from '@/components/patients/patient-profile'
 import { PatientFormModal } from '@/components/patients/patient-form-modal'
