@@ -69,7 +69,7 @@ export default function PrescriptionPrintPage() {
       const imgY = 0
 
       pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio)
-      pdf.save(`prescription-${prescription?.data?.id || 'unknown'}.pdf`)
+      pdf.save(`prescription-${prescription?.id || 'unknown'}.pdf`)
     } catch (error) {
       console.error('Error generating PDF:', error)
       alert('PDF জেনারেট করতে সমস্যা হয়েছে')
@@ -82,12 +82,12 @@ export default function PrescriptionPrintPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-        <p className="ml-2">প্রেসক্রিপশন লোড হচ্ছে...</p>
+        <p className="ml-2">প্রেসক্র���পশন লোড হচ্ছে...</p>
       </div>
     )
   }
 
-  if (error || !prescription?.data) {
+  if (error || !prescription) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
