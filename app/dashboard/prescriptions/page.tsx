@@ -47,7 +47,7 @@ export default function DashboardPrescriptionsPage() {
 
   const [patientSearch, setPatientSearch] = useState('')
   const [showPatientDropdown, setShowPatientDropdown] = useState(false)
-  const [filteredPatients, setFilteredPatients] = useState(samplePatients)
+  const [filteredPatients, setFilteredPatients] = useState<any[]>([])
   const [medicineSearches, setMedicineSearches] = useState<{ [key: number]: string }>({})
   const [medicineDropdowns, setMedicineDropdowns] = useState<{ [key: number]: boolean }>({})
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -520,7 +520,7 @@ export default function DashboardPrescriptionsPage() {
                             onChange={(e) => updateMedicine(index, 'duration', e.target.value)}
                             className={errors[`medicine_${index}_duration`] ? 'border-red-500' : ''}
                           >
-                            <option value="">সময়কাল নির্বাচন করুন</option>
+                            <option value="">সময়কাল ন���র্বাচন করুন</option>
                             {durationOptions.map((duration) => (
                               <option key={duration} value={duration}>{duration}</option>
                             ))}
