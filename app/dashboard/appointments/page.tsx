@@ -266,17 +266,31 @@ export default function AppointmentsPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y">
-                      {filteredAppointments.map((appointment) => (
+                      {loading ? (
+                        <tr>
+                          <td colSpan={7} className="px-4 py-12 text-center">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                            <p className="text-theme-muted mt-2">লোড হচ্ছে...</p>
+                          </td>
+                        </tr>
+                      ) : error ? (
+                        <tr>
+                          <td colSpan={7} className="px-4 py-12 text-center">
+                            <p className="text-red-600">{error}</p>
+                            <Button onClick={refetch} className="mt-4">পুনরায় চেষ্টা করুন</Button>
+                          </td>
+                        </tr>
+                      ) : appointments?.map((appointment) => (
                         <tr key={appointment.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 theme-transition">
                           <td className="px-4 py-3 whitespace-nowrap">
                             <div className="text-sm font-medium text-blue-600">{appointment.id}</div>
                           </td>
                           <td className="px-4 py-3">
                             <div>
-                              <div className="text-sm font-medium text-theme-foreground">{appointment.patientName}</div>
+                              <div className="text-sm font-medium text-theme-foreground">{appointment.patient?.name}</div>
                               <div className="text-sm text-theme-muted flex items-center">
                                 <Phone className="h-3 w-3 mr-1" />
-                                {appointment.patientPhone}
+                                {appointment.patient?.phone}
                               </div>
                             </div>
                           </td>
@@ -288,7 +302,7 @@ export default function AppointmentsPage() {
                             <div className="text-sm text-theme-foreground">{appointment.type}</div>
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap">
-                            <div className="text-sm text-theme-foreground">{appointment.doctor}</div>
+                            <div className="text-sm text-theme-foreground">{appointment.doctor?.name}</div>
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap">
                             <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(appointment.status)}`}>
@@ -307,6 +321,7 @@ export default function AppointmentsPage() {
                               {appointment.status === 'pending' && (
                                 <Button
                                   size="sm"
+                                  onClick={() => handleStatusUpdate(appointment.id, 'confirmed')}
                                   className="h-8 bg-green-600 hover:bg-green-700"
                                 >
                                   নিশ্চিত
