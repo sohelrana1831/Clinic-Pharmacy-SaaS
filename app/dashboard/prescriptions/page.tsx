@@ -22,6 +22,32 @@ import {
   CheckCircle
 } from 'lucide-react'
 
+// Prescription data types
+interface PrescriptionMedicine {
+  medicineId: string
+  medicineName: string
+  dose: string
+  frequency: string
+  duration: string
+  instructions: string
+  totalQuantity: number
+}
+
+interface PrescriptionData {
+  patientId: string
+  patientName: string
+  doctorId: string
+  doctorName: string
+  doctorRegistration: string
+  clinicId: string
+  date: string
+  diagnosis: string
+  medicines: PrescriptionMedicine[]
+  notes: string
+  status: string
+  nextRefillDate?: string
+}
+
 export default function DashboardPrescriptionsPage() {
   const [prescriptionData, setPrescriptionData] = useState<PrescriptionData>({
     patientId: '',
@@ -211,7 +237,7 @@ export default function DashboardPrescriptionsPage() {
         newErrors[`medicine_${index}_name`] = 'ওষুধ নির্বাচন করুন'
       }
       if (!med.dose) {
-        newErrors[`medicine_${index}_dose`] = 'ডোজ নির্ধারণ করুন'
+        newErrors[`medicine_${index}_dose`] = 'ডোজ নির্ধারণ কর���ন'
       }
       if (!med.frequency) {
         newErrors[`medicine_${index}_frequency`] = 'সেবনের নিয়ম নির্ধারণ করুন'
@@ -554,7 +580,7 @@ export default function DashboardPrescriptionsPage() {
                           <Input
                             value={medicine.instructions}
                             onChange={(e) => updateMedicine(index, 'instructions', e.target.value)}
-                            placeholder="যেমন: খাবারের সাথে, ঘুমানোর আগে..."
+                            placeholder="যেমন: খ���বারের সাথে, ঘুমানোর আগে..."
                           />
                         </div>
                       </div>
