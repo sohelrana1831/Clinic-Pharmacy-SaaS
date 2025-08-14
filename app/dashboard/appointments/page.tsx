@@ -469,3 +469,11 @@ function AppointmentsPageContent() {
     </div>
   )
 }
+
+export default function AppointmentsPage() {
+  return (
+    <ErrorBoundary>
+      <AppointmentsPageContent />
+    </ErrorBoundary>
+  )
+}
