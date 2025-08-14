@@ -1,4 +1,5 @@
 // Role-based permissions system
+import React from 'react'
 
 export type UserRole = 'admin' | 'doctor' | 'staff'
 
@@ -135,12 +136,12 @@ export function PermissionWrapper({
   action,
   children,
   fallback = null
-}: PermissionWrapperProps) {
+}: PermissionWrapperProps): React.ReactElement | null {
   if (!hasPermission(userRole, resource, action)) {
-    return <>{fallback}</>
+    return fallback as React.ReactElement | null
   }
 
-  return <>{children}</>
+  return children as React.ReactElement
 }
 
 // Get user role label
