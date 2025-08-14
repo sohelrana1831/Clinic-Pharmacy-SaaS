@@ -26,7 +26,8 @@ export function CalendarView({ onRefresh }: CalendarViewProps) {
   )
 
   // Transform appointments for FullCalendar
-  const calendarEvents = appointments?.data?.map((appointment: Appointment) => ({
+  const appointmentList = Array.isArray(appointments) ? appointments : appointments?.data || []
+  const calendarEvents = appointmentList.map((appointment: Appointment) => ({
     id: appointment.id,
     title: `${appointment.patient?.name} - ${appointment.type}`,
     start: `${appointment.date.split('T')[0]}T${appointment.time}`,
