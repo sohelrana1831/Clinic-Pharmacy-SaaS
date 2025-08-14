@@ -57,8 +57,10 @@ export default function DashboardPrescriptionsPage() {
     type: 'success'
   })
 
-  // Get patients from API
+  // Get patients and doctors from API
   const { data: allPatients } = useApi(() => patientsApi.getPatients({ limit: 100 }), [])
+  const { data: allDoctors } = useApi(() => usersApi.getUsers({ role: 'doctor', limit: 100 }), [])
+  const { data: allMedicines } = useApi(() => medicinesApi.getMedicines({ limit: 1000 }), [])
 
   // Filter patients based on search
   useEffect(() => {
@@ -90,13 +92,13 @@ export default function DashboardPrescriptionsPage() {
   }
 
   const handleDoctorSelect = (doctorId: string) => {
-    const doctor = sampleDoctorsWithReg.find(d => d.id === doctorId)
+    const doctor = allDoctors?.data?.find((d: any) => d.id === doctorId)
     if (doctor) {
       setPrescriptionData(prev => ({
         ...prev,
         doctorId: doctor.id,
         doctorName: doctor.name,
-        doctorRegistration: doctor.registrationNo
+        doctorRegistration: doctor.registrationNo || 'N/A'
       }))
     }
   }
@@ -196,7 +198,7 @@ export default function DashboardPrescriptionsPage() {
     }
 
     if (!prescriptionData.diagnosis.trim()) {
-      newErrors.diagnosis = 'রোগ নির্ণয় লিখুন'
+      newErrors.diagnosis = 'র���গ নির্ণয় লিখুন'
     }
 
     if (prescriptionData.medicines.length === 0) {
@@ -357,9 +359,9 @@ export default function DashboardPrescriptionsPage() {
                   className={errors.doctor ? 'border-red-500' : ''}
                 >
                   <option value="">ডাক্তার নির্বাচন করুন</option>
-                  {sampleDoctorsWithReg.map((doctor) => (
+                  {allDoctors?.data?.map((doctor: any) => (
                     <option key={doctor.id} value={doctor.id}>
-                      {doctor.name} - {doctor.specialization}
+                      {doctor.name} - {doctor.role}
                     </option>
                   ))}
                 </Select>
@@ -591,10 +593,10 @@ export default function DashboardPrescriptionsPage() {
                 <div className="text-center p-6 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">ডিজিটাল স্বাক্ষর</p>
                   <div className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                    {sampleDoctorsWithReg.find(d => d.id === prescriptionData.doctorId)?.name}
+                    {allDoctors?.data?.find((d: any) => d.id === prescriptionData.doctorId)?.name}
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    রেজি: {sampleDoctorsWithReg.find(d => d.id === prescriptionData.doctorId)?.registrationNo}
+                    রেজি: {allDoctors?.data?.find((d: any) => d.id === prescriptionData.doctorId)?.registrationNo || 'N/A'}
                   </p>
                 </div>
               </CardContent>
