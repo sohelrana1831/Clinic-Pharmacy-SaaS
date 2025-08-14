@@ -21,15 +21,38 @@ import {
 } from 'lucide-react'
 
 export default function ReportsPage() {
-  const [dateRange, setDateRange] = useState({ from: '2024-01-01', to: '2024-06-30' })
-  const [selectedDoctor, setSelectedDoctor] = useState('সকল ডাক��তার')
+  const [dateRange, setDateRange] = useState({
+    from: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    to: new Date().toISOString().split('T')[0]
+  })
+  const [selectedDoctor, setSelectedDoctor] = useState('সকল ডাক্তার')
   const [selectedBranch, setSelectedBranch] = useState('সকল শাখা')
 
-  // Calculate summary metrics
-  const totalSales = dailySalesData.reduce((sum, day) => sum + day.sales, 0)
-  const totalTransactions = dailySalesData.reduce((sum, day) => sum + day.transactions, 0)
-  const avgSalesGrowth = monthlyRevenueData.reduce((sum, month) => sum + month.growth, 0) / monthlyRevenueData.length
-  const currentMonthPatients = patientGrowthData[patientGrowthData.length - 1]?.totalPatients || 0
+  // Fetch live reports data
+  const { data: reportsData, loading, refetch } = useApi(() =>
+    fetch(`/api/reports?type=dashboard&startDate=${dateRange.from}&endDate=${dateRange.to}`)
+      .then(res => res.json())
+      .then(res => res.data),
+    [dateRange.from, dateRange.to]
+  )
+
+  // Get overview data with fallbacks
+  const overview = reportsData?.overview || {
+    totalPatients: 0,
+    totalAppointments: 0,
+    totalPrescriptions: 0,
+    todayAppointments: 0
+  }
+
+  const monthlyStats = reportsData?.monthlyStats || []
+  const dailyAppointments = reportsData?.dailyAppointments || []
+
+  // Calculate metrics from real data
+  const totalSales = monthlyStats.reduce((sum: number, month: any) => sum + (month.revenue || 0), 0)
+  const totalTransactions = dailyAppointments.reduce((sum: number, day: any) => sum + (day.count || 0), 0)
+  const avgGrowth = monthlyStats.length > 0
+    ? monthlyStats.reduce((sum: number, month: any) => sum + (month.growth || 0), 0) / monthlyStats.length
+    : 0
 
   return (
     <div className="space-y-6">
@@ -139,7 +162,7 @@ export default function ReportsPage() {
           <div>
             <CardTitle className="flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-green-600" />
-              দৈনিক বিক্রয় রিপোর্ট
+              দৈনিক বিক্রয় রিপোর্��
             </CardTitle>
             <p className="text-sm text-theme-muted mt-1">গত ৭ দিনের বিক্রয় পরিসংখ্যান</p>
           </div>
@@ -242,7 +265,7 @@ export default function ReportsPage() {
             <ChartPlaceholder
               title="টপ মেডিসিন চার্ট"
               type="bar"
-              description="সর্বাধিক বিক্রিত ওষুধের তালিকা"
+              description="সর্বাধিক বিক্রিত ওষুধের ত���লিকা"
               data={topMedicinesData}
             />
             <div className="space-y-3">
@@ -325,7 +348,7 @@ export default function ReportsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <FileText className="h-5 w-5 text-theme-muted" />
-            CSV রপ্তানি কলাম হেডার
+            CSV রপ্তানি কলাম হ���ডার
           </CardTitle>
         </CardHeader>
         <CardContent>
