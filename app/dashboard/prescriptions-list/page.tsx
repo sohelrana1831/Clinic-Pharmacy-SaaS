@@ -50,6 +50,11 @@ export default function PrescriptionsListPage() {
     updateParams({ status: status || undefined, page: 1 })
   }
 
+  const handleEdit = (prescription: Prescription) => {
+    setEditingPrescription(prescription)
+    setIsModalOpen(true)
+  }
+
   const handleDelete = async (prescriptionId: string) => {
     if (confirm('আপনি কি নিশ্চিত যে এই প্রেসক্রিপশন মুছে ফেলতে চান?')) {
       try {
@@ -58,6 +63,49 @@ export default function PrescriptionsListPage() {
       } catch (error) {
         console.error('Error deleting prescription:', error)
       }
+    }
+  }
+
+  const handleModalClose = () => {
+    setIsModalOpen(false)
+    setEditingPrescription(null)
+    refetch()
+  }
+
+  const handleExport = () => {
+    const csvContent = generateCSV(prescriptions || [])
+    downloadCSV(csvContent, `prescriptions-${new Date().toISOString().split('T')[0]}.csv`)
+  }
+
+  const generateCSV = (data: Prescription[]) => {
+    const headers = ['ID', 'Patient', 'Doctor', 'Date', 'Diagnosis', 'Medicines', 'Status', 'Notes']
+    const rows = data.map(prescription => [
+      prescription.id,
+      prescription.patient?.name || '',
+      prescription.doctor?.name || '',
+      new Date(prescription.date).toLocaleDateString('bn-BD'),
+      prescription.diagnosis,
+      prescription.medicines?.length || 0,
+      prescription.status,
+      prescription.notes || ''
+    ])
+
+    return [headers, ...rows].map(row =>
+      row.map(cell => `"${cell}"`).join(',')
+    ).join('\n')
+  }
+
+  const downloadCSV = (content: string, filename: string) => {
+    const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' })
+    const link = document.createElement('a')
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob)
+      link.setAttribute('href', url)
+      link.setAttribute('download', filename)
+      link.style.visibility = 'hidden'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
     }
   }
 
@@ -149,7 +197,7 @@ export default function PrescriptionsListPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-theme-muted">প্রদান করা</p>
+                  <p className="text-sm text-theme-muted">প্রদ���ন করা</p>
                   <p className="text-2xl font-bold text-green-600">{dispensedCount}</p>
                 </div>
                 <User className="h-8 w-8 text-green-600" />
@@ -319,7 +367,7 @@ export default function PrescriptionsListPage() {
             {pagination.totalPages > 1 && (
               <div className="flex items-center justify-between mt-4">
                 <div className="text-sm text-theme-muted">
-                  মোট {pagination.total} এর মধ্যে {((pagination.page - 1) * pagination.limit) + 1}-{Math.min(pagination.page * pagination.limit, pagination.total)}
+                  মোট {pagination.total} এর ম��্যে {((pagination.page - 1) * pagination.limit) + 1}-{Math.min(pagination.page * pagination.limit, pagination.total)}
                 </div>
                 <div className="flex items-center space-x-2">
                   <Button
