@@ -13,8 +13,8 @@ export async function GET(request: NextRequest) {
     const sortOrder = searchParams.get('sortOrder') || 'asc'
     
     const { page, limit, skip } = getPaginationParams(
-      searchParams.get('page'),
-      searchParams.get('limit')
+      searchParams.get('page') || undefined,
+      searchParams.get('limit') || undefined
     )
 
     // Build filters
