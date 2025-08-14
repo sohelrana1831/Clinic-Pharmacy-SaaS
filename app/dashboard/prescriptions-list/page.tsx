@@ -7,7 +7,8 @@ import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { usePaginatedApi, useApiMutation } from '@/hooks/useApi'
 import { prescriptionsApi, Prescription } from '@/lib/api'
-import { 
+import { PrescriptionModal } from '@/components/prescriptions/prescription-modal'
+import {
   Search,
   Plus,
   Edit,
@@ -17,7 +18,8 @@ import {
   Calendar,
   Filter,
   Eye,
-  Printer
+  Printer,
+  Download
 } from 'lucide-react'
 
 export default function PrescriptionsListPage() {
@@ -91,7 +93,7 @@ export default function PrescriptionsListPage() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-theme-foreground">প্রেসক্রিপশন তালিকা</h1>
+            <h1 className="text-2xl font-bold text-theme-foreground">প্রেসক্রিপশন ত���লিকা</h1>
             <p className="text-theme-muted">সকল প্রেসক্রিপশন দেখুন এবং পরিচালনা করুন</p>
           </div>
           <Button 
@@ -324,7 +326,7 @@ export default function PrescriptionsListPage() {
                     onClick={() => updateParams({ page: pagination.page - 1 })}
                     disabled={pagination.page <= 1}
                   >
-                    পূর্��বর্তী
+                    পূর্ববর্তী
                   </Button>
                   <span className="text-sm text-theme-foreground">
                     পৃষ্ঠা {pagination.page} / {pagination.totalPages}
