@@ -5,7 +5,9 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { 
+import { usePaginatedApi, useApiMutation } from '@/hooks/useApi'
+import { appointmentsApi, Appointment } from '@/lib/api'
+import {
   Calendar,
   Clock,
   User,
@@ -20,64 +22,32 @@ import {
   XCircle
 } from 'lucide-react'
 
-interface Appointment {
-  id: string
-  patientName: string
-  patientPhone: string
-  date: string
-  time: string
-  type: string
-  status: 'confirmed' | 'pending' | 'cancelled' | 'completed'
-  doctor: string
-  notes?: string
-}
-
-const mockAppointments: Appointment[] = [
-  {
-    id: 'A001',
-    patientName: 'রহিম উদ্দিন',
-    patientPhone: '01712345678',
-    date: '2024-01-15',
-    time: '10:00',
-    type: 'নিয়মিত চেকআপ',
-    status: 'confirmed',
-    doctor: 'ডা. রহিম উদ্দিন',
-    notes: 'নিয়মিত ফলোআপ'
-  },
-  {
-    id: 'A002',
-    patientName: 'ফাতেমা খাতুন',
-    patientPhone: '01812345678',
-    date: '2024-01-15',
-    time: '11:30',
-    type: 'ডায়াবেটিস চেকআপ',
-    status: 'pending',
-    doctor: 'ডা. রহিম উদ্দিন'
-  },
-  {
-    id: 'A003',
-    patientName: 'আবুল কাশেম',
-    patientPhone: '01912345678',
-    date: '2024-01-15',
-    time: '14:00',
-    type: 'হার্ট চেকআপ',
-    status: 'completed',
-    doctor: 'ডা. রহিম উদ্দিন',
-    notes: 'ECG এবং রক্ত পরীক্ষা সম্পন্ন'
-  }
-]
-
 export default function AppointmentsPage() {
   const { t } = useTranslation()
   const [viewMode, setViewMode] = useState<'table' | 'calendar'>('table')
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedDate, setSelectedDate] = useState('2024-01-15') // Static date to prevent hydration mismatch
+  const [selectedDate, setSelectedDate] = useState('') // Will be set on client-side
   const [statusFilter, setStatusFilter] = useState('')
 
   // Set current date on client-side only
   useEffect(() => {
     setSelectedDate(new Date().toISOString().split('T')[0])
   }, [])
+
+  // API hooks
+  const {
+    data: appointments,
+    loading,
+    error,
+    pagination,
+    updateParams,
+    refetch
+  } = usePaginatedApi(appointmentsApi.getAppointments, {
+    date: selectedDate,
+    status: statusFilter || undefined
+  })
+
+  const { mutate: updateAppointment } = useApiMutation()
 
   const getStatusColor = (status: string) => {
     switch (status) {
