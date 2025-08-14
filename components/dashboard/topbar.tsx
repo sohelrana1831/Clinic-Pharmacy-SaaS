@@ -42,15 +42,6 @@ export function Topbar() {
     }
   }, [])
 
-  const handleLogout = () => {
-    // Clear any stored authentication
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('token')
-      localStorage.removeItem('user')
-      // Redirect to login
-      window.location.href = '/auth/login'
-    }
-  }
 
   const clinics = [
     { value: 'sr-pharma', label: t('clinics.srPharmaDhanmondi') },
