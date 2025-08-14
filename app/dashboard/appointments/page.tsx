@@ -34,7 +34,7 @@ export default function AppointmentsPage() {
     setSelectedDate(new Date().toISOString().split('T')[0])
   }, [])
 
-  // API hooks
+  // API hooks - only initialize when selectedDate is available
   const {
     data: appointments,
     loading,
@@ -42,10 +42,14 @@ export default function AppointmentsPage() {
     pagination,
     updateParams,
     refetch
-  } = usePaginatedApi(appointmentsApi.getAppointments, {
-    date: selectedDate,
-    status: statusFilter || undefined
-  })
+  } = usePaginatedApi(
+    appointmentsApi.getAppointments,
+    {
+      date: selectedDate || undefined,
+      status: statusFilter || undefined
+    },
+    { enabled: !!selectedDate } // Only run when date is available
+  )
 
   const { mutate: updateAppointment } = useApiMutation()
 
@@ -128,7 +132,7 @@ export default function AppointmentsPage() {
             </div>
             <Button className="bg-blue-600 hover:bg-blue-700">
               <Plus className="h-4 w-4 mr-2" />
-              নতুন অ্যাপয়েন্টমেন্ট
+              নতুন ��্যাপয়েন্টমেন্ট
             </Button>
           </div>
         </div>
