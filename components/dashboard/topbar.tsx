@@ -25,6 +25,7 @@ export function Topbar() {
   const [selectedClinic, setSelectedClinic] = useState('sr-pharma')
   const { theme, toggleTheme, colors, isTransitioning } = useTheme()
   const { t } = useTranslation()
+  const { user, logout } = useUser()
   const userMenuRef = useRef<HTMLDivElement>(null)
 
   // Close dropdown when clicking outside
