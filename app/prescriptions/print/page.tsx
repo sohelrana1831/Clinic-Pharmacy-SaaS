@@ -103,24 +103,24 @@ export default function PrescriptionPrintPage() {
 
   // Transform prescription data for PDF component
   const prescriptionData = {
-    id: prescription.data.id,
+    id: prescription.id,
     patient: {
-      name: prescription.data.patient?.name || 'Unknown',
-      phone: prescription.data.patient?.phone || '',
-      address: prescription.data.patient?.address,
-      gender: prescription.data.patient?.gender,
-      age: prescription.data.patient?.dateOfBirth 
-        ? new Date().getFullYear() - new Date(prescription.data.patient.dateOfBirth).getFullYear()
+      name: prescription.patient?.name || 'Unknown',
+      phone: prescription.patient?.phone || '',
+      address: prescription.patient?.address,
+      gender: prescription.patient?.gender,
+      age: prescription.patient?.dateOfBirth
+        ? new Date().getFullYear() - new Date(prescription.patient.dateOfBirth).getFullYear()
         : undefined
     },
     doctor: {
-      name: prescription.data.doctor?.name || 'Unknown',
-      registrationNo: prescription.data.doctor?.registrationNo || 'N/A',
-      specialization: prescription.data.doctor?.role || 'Doctor'
+      name: prescription.doctor?.name || 'Unknown',
+      registrationNo: (prescription.doctor as any)?.registrationNo || 'N/A',
+      specialization: prescription.doctor?.role || 'Doctor'
     },
-    date: prescription.data.date,
-    diagnosis: prescription.data.diagnosis,
-    medicines: prescription.data.medicines?.map((med: any) => ({
+    date: prescription.date,
+    diagnosis: prescription.diagnosis,
+    medicines: prescription.medicines?.map((med: any) => ({
       medicine: {
         name: med.medicine?.name || 'Unknown Medicine',
         strength: med.medicine?.strength,
@@ -150,7 +150,7 @@ export default function PrescriptionPrintPage() {
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 ফিরে যান
               </Button>
-              <h1 className="text-lg font-semibold">প্রেসক্রিপশন প্রিন্ট/PDF</h1>
+              <h1 className="text-lg font-semibold">প্রেসক্রি���শন প্রিন্ট/PDF</h1>
             </div>
             
             <div className="flex items-center space-x-3">
