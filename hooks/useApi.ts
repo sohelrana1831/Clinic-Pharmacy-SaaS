@@ -83,7 +83,15 @@ export function usePaginatedApi<T>(
         limit: customLimit !== undefined ? customLimit : paginationRef.current.limit,
       }
 
-      const response = await apiCallRef.current(requestParams)
+      // Add timeout handling
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Request timeout - please try again')), 3000)
+      })
+
+      const response = await Promise.race([
+        apiCallRef.current(requestParams),
+        timeoutPromise
+      ]) as any
 
       if (response.success) {
         setData(response.data)
@@ -99,6 +107,8 @@ export function usePaginatedApi<T>(
       // Handle specific error types
       if (err.message === 'Failed to fetch' || err.code === 'NETWORK_ERROR') {
         setError('Network error. Please check your connection and try again.')
+      } else if (err.message.includes('timeout')) {
+        setError('Request timeout. Please try again.')
       } else {
         setError(err.message || 'An unexpected error occurred')
       }
