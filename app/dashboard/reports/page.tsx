@@ -1,22 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select'
 import { ChartPlaceholder, MetricCard, ExportButtons } from '@/components/reports/chart-components'
-import {
-  dailySalesData,
-  monthlyRevenueData,
-  topMedicinesData,
-  patientGrowthData,
-  csvHeaders,
-  exportToCSV,
-  exportToPDF,
-  doctors,
-  branches
-} from '@/lib/reports-data'
+import { useApi } from '@/hooks/useApi'
 import {
   BarChart3,
   TrendingUp,
@@ -32,7 +22,7 @@ import {
 
 export default function ReportsPage() {
   const [dateRange, setDateRange] = useState({ from: '2024-01-01', to: '2024-06-30' })
-  const [selectedDoctor, setSelectedDoctor] = useState('সকল ডাক্তার')
+  const [selectedDoctor, setSelectedDoctor] = useState('সকল ডাক��তার')
   const [selectedBranch, setSelectedBranch] = useState('সকল শাখা')
 
   // Calculate summary metrics
