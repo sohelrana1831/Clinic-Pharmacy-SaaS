@@ -205,9 +205,21 @@ export default function AppointmentsPage() {
                 ক্যালেন্ডার
               </Button>
             </div>
-            <Button className="bg-blue-600 hover:bg-blue-700">
+            <Button
+              onClick={handleExport}
+              variant="outline"
+              size="sm"
+              className="h-8"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              এক্সপোর্ট
+            </Button>
+            <Button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-blue-600 hover:bg-blue-700"
+            >
               <Plus className="h-4 w-4 mr-2" />
-              নতুন ��্যাপয়েন্টমেন্ট
+              নতুন অ্যাপয়েন্টমেন্ট
             </Button>
           </div>
         </div>
