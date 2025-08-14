@@ -198,7 +198,7 @@ export default function DashboardPrescriptionsPage() {
     }
 
     if (!prescriptionData.diagnosis.trim()) {
-      newErrors.diagnosis = 'র���গ নির্ণয় লিখুন'
+      newErrors.diagnosis = 'রোগ নির্ণয় লিখুন'
     }
 
     if (prescriptionData.medicines.length === 0) {
@@ -459,7 +459,9 @@ export default function DashboardPrescriptionsPage() {
                           {/* Medicine Dropdown */}
                           {medicineDropdowns[index] && medicineSearches[index] && (
                             <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg max-h-60 overflow-y-auto">
-                              {searchMedicines(medicineSearches[index]).slice(0, 5).map((med) => (
+                              {allMedicines?.data?.filter((med: any) =>
+                                med.name.toLowerCase().includes(medicineSearches[index].toLowerCase())
+                              ).slice(0, 5).map((med: any) => (
                                 <button
                                   key={med.id}
                                   type="button"
