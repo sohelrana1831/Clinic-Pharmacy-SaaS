@@ -7,6 +7,8 @@ import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { usePaginatedApi, useApiMutation } from '@/hooks/useApi'
 import { appointmentsApi, Appointment } from '@/lib/api'
+import { AppointmentModal } from '@/components/appointments/appointment-modal'
+import { CalendarView } from '@/components/appointments/calendar-view'
 import {
   Calendar,
   Clock,
@@ -19,7 +21,10 @@ import {
   List,
   Edit,
   CheckCircle,
-  XCircle
+  XCircle,
+  Trash2,
+  Download,
+  FileText
 } from 'lucide-react'
 
 export default function AppointmentsPage() {
@@ -115,7 +120,7 @@ export default function AppointmentsPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-theme-foreground">{t('navigation.appointments')}</h1>
-            <p className="text-theme-muted">অ্যাপয়ে��্টমেন্ট পরিচালনা ও ক্যালেন্ডার দেখুন</p>
+            <p className="text-theme-muted">অ্যাপয়েন্টমেন্ট পরিচালনা ও ক্যালেন্ডার দেখুন</p>
           </div>
           <div className="flex items-center space-x-3">
             <div className="flex items-center bg-theme-card border border-theme-default rounded-lg p-1">
@@ -233,7 +238,7 @@ export default function AppointmentsPage() {
                 className="px-3 py-2 border border-theme-default rounded-md bg-theme-card text-theme-foreground input-theme"
               >
                 <option value="">সব স্ট্যাটাস</option>
-                <option value="confirmed">নিশ্���িত</option>
+                <option value="confirmed">নিশ্চিত</option>
                 <option value="pending">অপেক্ষমান</option>
                 <option value="completed">সম্পন্ন</option>
                 <option value="cancelled">বাতিল</option>
@@ -364,7 +369,7 @@ export default function AppointmentsPage() {
         {viewMode === 'calendar' && (
           <Card className="card-theme border">
             <CardHeader>
-              <CardTitle className="text-theme-foreground">ক্যালেন্ডার ভিউ</CardTitle>
+              <CardTitle className="text-theme-foreground">ক্যাল���ন্ডার ভিউ</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-center py-12">
