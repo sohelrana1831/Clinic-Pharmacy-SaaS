@@ -167,7 +167,7 @@ export default function AppointmentsPage() {
                 <div>
                   <p className="text-sm text-theme-muted">অপেক্ষমান</p>
                   <p className="text-2xl font-bold text-yellow-600">
-                    {filteredAppointments.filter(a => a.status === 'pending').length}
+                    {appointments?.filter(a => a.status === 'pending').length || 0}
                   </p>
                 </div>
                 <Clock className="h-8 w-8 text-yellow-600" />
@@ -181,7 +181,7 @@ export default function AppointmentsPage() {
                 <div>
                   <p className="text-sm text-theme-muted">সম্পন্ন</p>
                   <p className="text-2xl font-bold text-green-600">
-                    {filteredAppointments.filter(a => a.status === 'completed').length}
+                    {appointments?.filter(a => a.status === 'completed').length || 0}
                   </p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-green-600" />
