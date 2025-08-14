@@ -54,6 +54,37 @@ export default function ReportsPage() {
     ? monthlyStats.reduce((sum: number, month: any) => sum + (month.growth || 0), 0) / monthlyStats.length
     : 0
 
+  // Create fallback data for charts
+  const dailySalesData = dailyAppointments.length > 0 ? dailyAppointments : [
+    { date: 'আজ', sales: 0, transactions: 0 },
+    { date: 'গতকাল', sales: 0, transactions: 0 },
+    { date: '3 দিন আগে', sales: 0, transactions: 0 }
+  ]
+
+  const monthlyRevenueData = monthlyStats.length > 0 ? monthlyStats : [
+    { month: 'এই মাস', revenue: 0, growth: 0 },
+    { month: 'গত মাস', revenue: 0, growth: 0 }
+  ]
+
+  const topMedicinesData = []
+  const patientGrowthData = []
+
+  // Export functions
+  const exportToCSV = (data: any[], filename: string) => {
+    const csvContent = data.map(row => Object.values(row).join(',')).join('\n')
+    const blob = new Blob([csvContent], { type: 'text/csv' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${filename}.csv`
+    a.click()
+  }
+
+  const exportToPDF = (title: string, data: any[]) => {
+    console.log('Exporting to PDF:', title, data)
+    // PDF export functionality would go here
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -177,8 +208,8 @@ export default function ReportsPage() {
             <p className="text-sm text-theme-muted mt-1">গত ৭ দিনের বিক্রয় পরিসংখ্যান</p>
           </div>
           <ExportButtons
-            onExportCSV={() => exportToCSV(dailySalesData, 'daily-sales', csvHeaders.dailySales)}
-            onExportPDF={() => exportToPDF('দৈনিক বিক্রয় রিপোর্ট', dailySalesData)}
+            onExportCSV={() => exportToCSV(dailySalesData, 'daily-sales')}
+            onExportPDF={() => exportToPDF('দৈনিক ব��ক্রয় রিপোর্ট', dailySalesData)}
           />
         </CardHeader>
         <CardContent>
@@ -220,7 +251,7 @@ export default function ReportsPage() {
             <p className="text-sm text-theme-muted mt-1">গত ৬ মাসের আয় এবং ব��দ্ধির হার</p>
           </div>
           <ExportButtons
-            onExportCSV={() => exportToCSV(monthlyRevenueData, 'monthly-revenue', csvHeaders.monthlyRevenue)}
+            onExportCSV={() => exportToCSV(monthlyRevenueData, 'monthly-revenue')}
             onExportPDF={() => exportToPDF('মাসিক আয়ের রিপোর্ট', monthlyRevenueData)}
           />
         </CardHeader>
@@ -266,7 +297,7 @@ export default function ReportsPage() {
             <p className="text-sm text-theme-muted mt-1">বেস্ট সেলিং মেডিসিন এবং আয়</p>
           </div>
           <ExportButtons
-            onExportCSV={() => exportToCSV(topMedicinesData, 'top-medicines', csvHeaders.topMedicines)}
+            onExportCSV={() => exportToCSV(topMedicinesData, 'top-medicines')}
             onExportPDF={() => exportToPDF('জনপ্রিয় ওষুধের রিপোর্ট', topMedicinesData)}
           />
         </CardHeader>
@@ -315,7 +346,7 @@ export default function ReportsPage() {
             <p className="text-sm text-theme-muted mt-1">নতুন রোগী নিবন্ধন এবং ধরে রাখার হার</p>
           </div>
           <ExportButtons
-            onExportCSV={() => exportToCSV(patientGrowthData, 'patient-growth', csvHeaders.patientGrowth)}
+            onExportCSV={() => exportToCSV(patientGrowthData, 'patient-growth')}
             onExportPDF={() => exportToPDF('রোগী বৃদ্ধির রিপোর্ট', patientGrowthData)}
           />
         </CardHeader>
@@ -367,7 +398,7 @@ export default function ReportsPage() {
               <h5 className="font-medium text-theme-foreground mb-2">দৈনিক বিক্রয়</h5>
               <ul className="space-y-1 text-theme-muted">
                 <li>• date (তারিখ)</li>
-                <li>• sales (বি���্রয় টাকা)</li>
+                <li>• sales (��ি���্রয় টাকা)</li>
                 <li>• transactions (লেনদেন সংখ্যা)</li>
               </ul>
             </div>
@@ -392,7 +423,7 @@ export default function ReportsPage() {
               <h5 className="font-medium text-theme-foreground mb-2">রোগী বৃদ্ধি</h5>
               <ul className="space-y-1 text-theme-muted">
                 <li>• month (মাস)</li>
-                <li>• newPatients (নতুন রোগী)</li>
+                <li>• newPatients (ন��ুন রোগী)</li>
                 <li>• totalPatients (মোট রোগী)</li>
                 <li>• retention (ধরে রাখার হার %)</li>
               </ul>
