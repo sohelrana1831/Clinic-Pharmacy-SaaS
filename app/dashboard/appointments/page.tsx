@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { usePaginatedApi, useApiMutation } from '@/hooks/useApi'
+import { useNetworkStatus } from '@/hooks/useNetworkStatus'
 import { appointmentsApi, Appointment } from '@/lib/api'
 import { AppointmentModal } from '@/components/appointments/appointment-modal'
 import { CalendarView } from '@/components/appointments/calendar-view'
@@ -146,7 +147,7 @@ function AppointmentsPageContent() {
 
   const getStatusLabel = (status: string) => {
     switch (status) {
-      case 'confirmed': return 'নিশ্চিত'
+      case 'confirmed': return '��িশ্চিত'
       case 'pending': return 'অপেক্ষমান'
       case 'cancelled': return 'বাতিল'
       case 'completed': return 'সম্পন্ন'
@@ -183,7 +184,7 @@ function AppointmentsPageContent() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-theme-foreground">{t('navigation.appointments')}</h1>
-            <p className="text-theme-muted">অ্যাপয়েন্টমেন্ট পরিচালনা ও ক্যালেন্ডার দেখুন</p>
+            <p className="text-theme-muted">অ্যাপয়েন্টমেন্ট পরিচালনা ও ক্যালেন্ডার দেখ���ন</p>
           </div>
           <div className="flex items-center space-x-3">
             <div className="flex items-center bg-theme-card border border-theme-default rounded-lg p-1">
