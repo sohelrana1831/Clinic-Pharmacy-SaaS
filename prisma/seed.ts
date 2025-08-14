@@ -16,33 +16,67 @@ async function main() {
   // await prisma.patient.deleteMany()
   // await prisma.user.deleteMany()
 
-  // Create users (doctors and staff)
-  const doctor1 = await prisma.user.create({
-    data: {
-      email: 'dr.rahman@srpharma.com',
-      name: 'ডা. রহিম উদ্দিন',
-      role: 'doctor',
-      phone: '01712345678',
-    },
-  })
+  // Create users (doctors and staff) - at least 5 users
+  const users = await Promise.all([
+    prisma.user.create({
+      data: {
+        email: 'dr.rahman@srpharma.com',
+        name: 'ডা. র��িম উদ্দিন',
+        role: 'doctor',
+        phone: '01712345671',
+      },
+    }),
+    prisma.user.create({
+      data: {
+        email: 'dr.fatema@srpharma.com',
+        name: 'ডা. ফাতেমা খাতুন',
+        role: 'doctor',
+        phone: '01812345672',
+      },
+    }),
+    prisma.user.create({
+      data: {
+        email: 'dr.karim@srpharma.com',
+        name: 'ডা. করিম উদ্দিন',
+        role: 'doctor',
+        phone: '01912345673',
+      },
+    }),
+    prisma.user.create({
+      data: {
+        email: 'pharmacist.nasir@srpharma.com',
+        name: 'ফার্মাসিস্ট নাসির আহমেদ',
+        role: 'pharmacist',
+        phone: '01612345674',
+      },
+    }),
+    prisma.user.create({
+      data: {
+        email: 'admin.salma@srpharma.com',
+        name: 'অ্যাডমিন সালমা বেগম',
+        role: 'admin',
+        phone: '01512345675',
+      },
+    }),
+    prisma.user.create({
+      data: {
+        email: 'reception.ahmed@srpharma.com',
+        name: 'রিসেপশনিস্ট আহমেদ',
+        role: 'receptionist',
+        phone: '01712345676',
+      },
+    }),
+    prisma.user.create({
+      data: {
+        email: 'dr.jahid@srpharma.com',
+        name: 'ডা. জাহিদ হাসান',
+        role: 'doctor',
+        phone: '01812345677',
+      },
+    })
+  ])
 
-  const doctor2 = await prisma.user.create({
-    data: {
-      email: 'dr.fatema@srpharma.com',
-      name: 'ডা. ফাতেমা খাতুন',
-      role: 'doctor',
-      phone: '01812345679',
-    },
-  })
-
-  const staff1 = await prisma.user.create({
-    data: {
-      email: 'admin@srpharma.com',
-      name: 'নাসির আহমেদ',
-      role: 'admin',
-      phone: '01912345680',
-    },
-  })
+  const [doctor1, doctor2, doctor3, pharmacist1, admin1, receptionist1, doctor4] = users
 
   console.log('✅ Users created')
 
@@ -161,7 +195,7 @@ async function main() {
     prisma.medicine.create({
       data: {
         sku: 'MED004',
-        name: 'এমোক���সিসিলিন',
+        name: 'এমোক্সিসিলিন',
         genericName: 'Amoxicillin',
         category: 'Capsule',
         manufacturer: 'Renata Limited',
@@ -256,7 +290,7 @@ async function main() {
         time: '14:00',
         type: 'consultation',
         status: 'confirmed',
-        notes: 'পেটে�� সমস্যা',
+        notes: 'পেটের সমস্যা',
       },
     }),
     prisma.appointment.create({
@@ -297,7 +331,7 @@ async function main() {
             medicineId: medicines[5].id,
             dosage: '1টি',
             frequency: 'দিনে ২ বার',
-            duration: '৩ দ���ন',
+            duration: '৩ দিন',
             instructions: 'খাবারের পর সেবন করুন',
             quantity: 6,
           },
