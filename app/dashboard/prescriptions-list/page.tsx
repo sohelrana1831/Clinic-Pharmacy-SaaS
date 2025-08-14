@@ -337,7 +337,7 @@ export default function PrescriptionsListPage() {
                               <Button
                                 size="sm"
                                 variant="outline"
-                                onClick={() => window.location.href = `/prescriptions/editor?id=${prescription.id}`}
+                                onClick={() => handleEdit(prescription)}
                                 className="h-8 w-8 p-0"
                                 title="সম্পাদনা"
                               >
