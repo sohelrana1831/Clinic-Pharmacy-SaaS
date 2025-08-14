@@ -212,7 +212,7 @@ export default function AppointmentsPage() {
               className="h-8"
             >
               <Download className="h-4 w-4 mr-2" />
-              এক্সপোর্ট
+              এক���সপোর্ট
             </Button>
             <Button
               onClick={() => setIsModalOpen(true)}
@@ -405,9 +405,19 @@ export default function AppointmentsPage() {
                               <Button
                                 size="sm"
                                 variant="outline"
+                                onClick={() => handleEdit(appointment)}
                                 className="h-8 w-8 p-0"
                               >
                                 <Edit className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => handleDelete(appointment.id)}
+                                disabled={deleting}
+                                className="h-8 w-8 p-0 text-red-600 hover:text-red-700"
+                              >
+                                <Trash2 className="h-4 w-4" />
                               </Button>
                               {appointment.status === 'pending' && (
                                 <Button
