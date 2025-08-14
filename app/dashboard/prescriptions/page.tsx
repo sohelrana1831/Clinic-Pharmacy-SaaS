@@ -98,7 +98,7 @@ export default function DashboardPrescriptionsPage() {
   const frequencyOptions = [
     'দিনে ১ বার', 'দিনে ২ বার', 'দিনে ৩ বার', 'দিনে ৪ বার',
     'সকালে ১ বার', 'রাতে ১ বার', 'সকাল-রাত', 'সকাল-দুপুর-রাত',
-    '��াবারের আগে', 'খাবারের পরে', 'প্রয়োজন অনুযায়ী'
+    'খাবারের আগে', 'খাবারের পরে', 'প্রয়োজন অনুযায়ী'
   ]
 
   const durationOptions = [
@@ -160,7 +160,7 @@ export default function DashboardPrescriptionsPage() {
         ...prev,
         doctorId: doctor.id,
         doctorName: doctor.name,
-        doctorRegistration: doctor.registrationNo || 'N/A'
+        doctorRegistration: (doctor as any).registrationNo || 'N/A'
       }))
     }
   }
@@ -300,7 +300,7 @@ export default function DashboardPrescriptionsPage() {
 
   const handlePrint = () => {
     if (!validateForm()) {
-      showToastMessage('প্রিন্ট করার আগে সকল তথ্য পূরণ করুন', 'error')
+      showToastMessage('প্রিন্ট করার আগে সকল তথ্য পূরণ করু��', 'error')
       return
     }
 
@@ -323,7 +323,7 @@ export default function DashboardPrescriptionsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">প্রেসক্র��পশন লিখুন</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">প্রেসক্রিপশন লিখুন</h1>
           <p className="text-gray-600 dark:text-gray-400">নতুন প্রেসক্রিপশন তৈরি করুন</p>
         </div>
         <div className="flex items-center space-x-3">
@@ -553,7 +553,7 @@ export default function DashboardPrescriptionsPage() {
                             onChange={(e) => updateMedicine(index, 'dose', e.target.value)}
                             className={errors[`medicine_${index}_dose`] ? 'border-red-500' : ''}
                           >
-                            <option value="">ডোজ ��ির্বা��ন করুন</option>
+                            <option value="">ডোজ নির্বা��ন করুন</option>
                             {doseOptions.map((dose) => (
                               <option key={dose} value={dose}>{dose}</option>
                             ))}
@@ -565,7 +565,7 @@ export default function DashboardPrescriptionsPage() {
 
                         {/* Frequency */}
                         <div>
-                          <Label>সেবনের নিয়ম *</Label>
+                          <Label>সেবনের নিয়��� *</Label>
                           <Select
                             value={medicine.frequency}
                             onChange={(e) => updateMedicine(index, 'frequency', e.target.value)}
@@ -612,7 +612,7 @@ export default function DashboardPrescriptionsPage() {
 
                         {/* Instructions */}
                         <div className="md:col-span-2">
-                          <Label>বিশেষ নির্দেশনা</Label>
+                          <Label>বিশেষ নির্দেশ��া</Label>
                           <Input
                             value={medicine.instructions}
                             onChange={(e) => updateMedicine(index, 'instructions', e.target.value)}
