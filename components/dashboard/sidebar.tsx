@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useUser } from '@/lib/user-context'
 import {
   LayoutDashboard,
   Users,
