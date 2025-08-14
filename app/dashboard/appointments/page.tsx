@@ -63,7 +63,7 @@ export default function AppointmentsPage() {
       date: selectedDate || undefined,
       status: statusFilter || undefined
     },
-    { enabled: !!selectedDate } // Only run when date is available
+    { enabled: !!selectedDate && typeof window !== 'undefined' } // Only run when date is available and on client side
   )
 
   const { mutate: updateAppointment } = useApiMutation()
@@ -145,7 +145,7 @@ export default function AppointmentsPage() {
 
   const getStatusLabel = (status: string) => {
     switch (status) {
-      case 'confirmed': return 'নিশ্চিত'
+      case 'confirmed': return 'নি��্চিত'
       case 'pending': return 'অপেক্ষমান'
       case 'cancelled': return 'বাতিল'
       case 'completed': return 'সম্পন্ন'
