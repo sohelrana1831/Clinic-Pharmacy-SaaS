@@ -153,7 +153,7 @@ export default function AppointmentsPage() {
                 <div>
                   <p className="text-sm text-theme-muted">নিশ্চিত</p>
                   <p className="text-2xl font-bold text-blue-600">
-                    {filteredAppointments.filter(a => a.status === 'confirmed').length}
+                    {appointments?.filter(a => a.status === 'confirmed').length || 0}
                   </p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-blue-600" />
