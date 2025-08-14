@@ -98,7 +98,7 @@ export default function DashboardPrescriptionsPage() {
   const frequencyOptions = [
     'দিনে ১ বার', 'দিনে ২ বার', 'দিনে ৩ বার', 'দিনে ৪ বার',
     'সকালে ১ বার', 'রাতে ১ বার', 'সকাল-রাত', 'সকাল-দুপুর-রাত',
-    'খাবারের আগে', 'খাবারের পরে', 'প্রয়োজন অনুযায়ী'
+    'খাবারের আগে', 'খাব���রের পরে', 'প্রয়োজন অনুযায়ী'
   ]
 
   const durationOptions = [
@@ -126,15 +126,15 @@ export default function DashboardPrescriptionsPage() {
 
   // Filter patients based on search
   useEffect(() => {
-    if (allPatients?.data && patientSearch) {
-      const filtered = allPatients.data.filter((patient: any) =>
+    if (allPatients && patientSearch) {
+      const filtered = allPatients.filter((patient: any) =>
         patient.name.toLowerCase().includes(patientSearch.toLowerCase()) ||
         patient.phone.includes(patientSearch) ||
         patient.id.toLowerCase().includes(patientSearch.toLowerCase())
       )
       setFilteredPatients(filtered)
     } else {
-      setFilteredPatients(allPatients?.data || [])
+      setFilteredPatients(allPatients || [])
     }
   }, [patientSearch, allPatients])
 
