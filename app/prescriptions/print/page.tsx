@@ -29,7 +29,7 @@ export default function PrescriptionPrintPage() {
   // Print function
   const handlePrint = useReactToPrint({
     contentRef: componentRef,
-    documentTitle: `Prescription-${prescription?.data?.id || 'Unknown'}`,
+    documentTitle: `Prescription-${prescription?.id || 'Unknown'}`,
     pageStyle: `
       @page {
         size: A4;
