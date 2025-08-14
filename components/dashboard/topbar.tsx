@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select'
 import { LanguageSelector } from '@/components/ui/language-selector'
 import { useTheme } from '@/lib/theme-context'
+import { useUser } from '@/lib/user-context'
 import {
   Search,
   Bell,
