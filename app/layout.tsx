@@ -37,7 +37,9 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <I18nProvider>
           <ThemeProvider>
-            {children}
+            <UserProvider>
+              {children}
+            </UserProvider>
           </ThemeProvider>
         </I18nProvider>
       </body>
