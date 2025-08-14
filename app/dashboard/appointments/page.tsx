@@ -9,6 +9,7 @@ import { usePaginatedApi, useApiMutation } from '@/hooks/useApi'
 import { appointmentsApi, Appointment } from '@/lib/api'
 import { AppointmentModal } from '@/components/appointments/appointment-modal'
 import { CalendarView } from '@/components/appointments/calendar-view'
+import { ErrorBoundary } from '@/components/error-boundary'
 import {
   Calendar,
   Clock,
@@ -145,7 +146,7 @@ export default function AppointmentsPage() {
 
   const getStatusLabel = (status: string) => {
     switch (status) {
-      case 'confirmed': return 'নি��্চিত'
+      case 'confirmed': return 'নিশ্চিত'
       case 'pending': return 'অপেক্ষমান'
       case 'cancelled': return 'বাতিল'
       case 'completed': return 'সম্পন্ন'
@@ -440,7 +441,7 @@ export default function AppointmentsPage() {
                   <div className="text-center py-12">
                     <Calendar className="h-12 w-12 text-theme-muted mx-auto mb-4" />
                     <div className="text-theme-muted">
-                      {statusFilter ? 'কোনো অ্যাপয়েন্টমেন্ট পাওয়া যায়নি' : 'আজ কোনো অ্যাপয়েন্টমেন্ট নে��'}
+                      {statusFilter ? 'কোনো অ্যাপয়েন্টমেন্ট পাওয়��� যায়নি' : 'আজ কোনো অ্যাপয়েন্টমেন্ট নে��'}
                     </div>
                   </div>
                 )}
