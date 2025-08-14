@@ -57,19 +57,22 @@ export default function DashboardPrescriptionsPage() {
     type: 'success'
   })
 
+  // Get patients from API
+  const { data: allPatients } = useApi(() => patientsApi.getPatients({ limit: 100 }), [])
+
   // Filter patients based on search
   useEffect(() => {
-    if (patientSearch) {
-      const filtered = samplePatients.filter(patient =>
+    if (allPatients?.data && patientSearch) {
+      const filtered = allPatients.data.filter((patient: any) =>
         patient.name.toLowerCase().includes(patientSearch.toLowerCase()) ||
         patient.phone.includes(patientSearch) ||
         patient.id.toLowerCase().includes(patientSearch.toLowerCase())
       )
       setFilteredPatients(filtered)
     } else {
-      setFilteredPatients(samplePatients)
+      setFilteredPatients(allPatients?.data || [])
     }
-  }, [patientSearch])
+  }, [patientSearch, allPatients])
 
   const showToastMessage = (message: string, type: 'success' | 'error' = 'success') => {
     setShowToast({ show: true, message, type })
@@ -520,7 +523,7 @@ export default function DashboardPrescriptionsPage() {
                             onChange={(e) => updateMedicine(index, 'duration', e.target.value)}
                             className={errors[`medicine_${index}_duration`] ? 'border-red-500' : ''}
                           >
-                            <option value="">সময়কাল ন���র্বাচন করুন</option>
+                            <option value="">সময়কাল নির্বাচন করুন</option>
                             {durationOptions.map((duration) => (
                               <option key={duration} value={duration}>{duration}</option>
                             ))}
