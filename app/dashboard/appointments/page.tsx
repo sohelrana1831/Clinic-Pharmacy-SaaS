@@ -335,11 +335,11 @@ export default function AppointmentsPage() {
                   </table>
                 </div>
 
-                {filteredAppointments.length === 0 && (
+                {!loading && !error && (!appointments || appointments.length === 0) && (
                   <div className="text-center py-12">
                     <Calendar className="h-12 w-12 text-theme-muted mx-auto mb-4" />
                     <div className="text-theme-muted">
-                      {searchTerm || statusFilter ? 'কোনো অ্যাপয়েন্টমেন্ট পাওয়া যায়নি' : 'আজ কোনো অ্যাপয়েন্টমেন্ট নেই'}
+                      {statusFilter ? 'কোনো অ্যাপয়েন্টমেন্ট পাওয়া যায়নি' : 'আজ কোনো অ্যাপয়েন্টমেন্ট নেই'}
                     </div>
                   </div>
                 )}
