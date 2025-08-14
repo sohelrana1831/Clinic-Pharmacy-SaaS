@@ -1,11 +1,4 @@
-'use client'
-
 import Link from 'next/link'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Calendar, FileText, Pill, MessageSquare, Check, Star, Phone, Mail, Facebook, Twitter, Linkedin } from 'lucide-react'
-import { ariaPatterns, focusStyles } from '@/lib/accessibility-utils'
-import { ClientWrapper } from '@/components/client-wrapper'
 
 export default function Home() {
   return (
@@ -87,7 +80,7 @@ export default function Home() {
                     size="lg"
                     variant="outline"
                     className={`w-full sm:w-auto border-blue-600 text-blue-600 hover:bg-blue-50 focus:bg-blue-50 px-8 py-3 ${focusStyles.ring}`}
-                    aria-label="লাইভ ডেমো দেখুন, কোন রে��িস্ট্রেশন ��্রয়োজন নেই"
+                    aria-label="লাইভ ডেমো দেখুন, ���োন রে��িস্ট্রেশন ��্রয়োজন নেই"
                   >
                     ডেমো দেখুন
                   </Button>
@@ -412,7 +405,7 @@ export default function Home() {
                 ))}
               </div>
               <p className="text-gray-700 mb-6 italic">
-                "এই সফটওয়্য���র ব্যবহার করে আ���াদের ক্লিনিকের কাজের গতি অনেক বেড়েছে। রোগীদের তথ��য সংরক্ষণ এবং অ্যাপয়েন্টমেন্ট ব্যবস্থাপনা এখন অনেক সহজ।"
+                "এই সফটওয়্য���র ব্যবহার করে আ���াদের ক্লিনিক��র কাজের গতি অনেক বেড়েছে। রোগীদের তথ��য সংরক্ষণ এবং অ্যাপয়েন্টমেন্ট ব্যবস্থাপনা এখন অনেক সহজ।"
               </p>
               <div>
                 <p className="font-semibold text-gray-900">ডা. রহিম উদ্দিন</p>
@@ -466,7 +459,7 @@ export default function Home() {
 
               <Card className="p-6">
                 <h3 className="font-semibold text-lg text-gray-900 mb-3">সাপোর্ট কেমন পাবো?</h3>
-                <p className="text-gray-600">আমরা ২৪/৭ ফোন, ইমেইল এবং হ��য়াটসঅ্যাপ সাপোর্ট প্রদান করি। বাংলা ও ইংরেজি দুই ভাষাতেই সাহায্য পাবেন।</p>
+                <p className="text-gray-600">আমরা ২৪/৭ ফোন, ইমেইল এবং হ��য়াটসঅ্যাপ সাপোর্ট প্রদান ক���ি। বাংলা ও ইংরেজি দুই ভাষাতেই সাহায্য পাবেন।</p>
               </Card>
             </div>
           </div>
@@ -572,7 +565,7 @@ export default function Home() {
             </nav>
 
             <div>
-              <h4 className="font-semibold mb-4 text-white">সোশ্যাল মিডিয়া</h4>
+              <h4 className="font-semibold mb-4 text-white">সোশ্যা�� মিডিয়া</h4>
               <div className="flex space-x-4" role="list">
                 <a
                   href="https://facebook.com/clinicms"
