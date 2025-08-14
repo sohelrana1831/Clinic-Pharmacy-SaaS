@@ -186,9 +186,35 @@ function AppointmentsPageContent() {
       <div className="p-6 space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-theme-foreground">{t('navigation.appointments')}</h1>
-            <p className="text-theme-muted">অ্যাপয়েন্টমেন্ট পরিচালনা ও ক্যালেন্ডার দেখুন</p>
+          <div className="flex items-center space-x-4">
+            <div>
+              <h1 className="text-2xl font-bold text-theme-foreground">{t('navigation.appointments')}</h1>
+              <p className="text-theme-muted">অ্যাপয়েন্টমেন্ট পরিচালনা ও ক্যালেন্ডার দেখুন</p>
+            </div>
+
+            {/* Network Status Indicator */}
+            {!isOnline && (
+              <div className="flex items-center space-x-2 px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm">
+                <WifiOff className="h-4 w-4" />
+                <span>অফলাইন</span>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="h-6 w-6 p-0 text-red-600 hover:text-red-700"
+                  onClick={checkConnectivity}
+                  disabled={isReconnecting}
+                >
+                  <RefreshCw className={`h-3 w-3 ${isReconnecting ? 'animate-spin' : ''}`} />
+                </Button>
+              </div>
+            )}
+
+            {isReconnecting && (
+              <div className="flex items-center space-x-2 px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">
+                <RefreshCw className="h-4 w-4 animate-spin" />
+                <span>পুনঃসংযোগ...</span>
+              </div>
+            )}
           </div>
           <div className="flex items-center space-x-3">
             <div className="flex items-center bg-theme-card border border-theme-default rounded-lg p-1">
@@ -319,7 +345,7 @@ function AppointmentsPageContent() {
               >
                 <option value="">সব স্ট্যাটাস</option>
                 <option value="confirmed">নিশ্চিত</option>
-                <option value="pending">অপেক্ষমান</option>
+                <option value="pending">অ���েক্ষমান</option>
                 <option value="completed">সম্পন্ন</option>
                 <option value="cancelled">বাতি���</option>
               </select>
