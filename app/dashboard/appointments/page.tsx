@@ -442,19 +442,18 @@ export default function AppointmentsPage() {
         {/* Calendar View */}
         {viewMode === 'calendar' && (
           <Card className="card-theme border">
-            <CardHeader>
-              <CardTitle className="text-theme-foreground">ক্যালেন্ডার ভিউ</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center py-12">
-                <CalendarDays className="h-12 w-12 text-theme-muted mx-auto mb-4" />
-                <div className="text-theme-muted">
-                  ক্যালেন্ডার ভিউ শীঘ্রই আসছে
-                </div>
-              </div>
+            <CardContent className="p-6">
+              <CalendarView onRefresh={refetch} />
             </CardContent>
           </Card>
         )}
+
+        {/* Appointment Modal */}
+        <AppointmentModal
+          isOpen={isModalOpen}
+          onClose={handleModalClose}
+          appointment={editingAppointment}
+        />
       </div>
     </div>
   )
