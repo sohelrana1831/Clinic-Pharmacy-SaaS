@@ -140,7 +140,7 @@ export default function AppointmentsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-theme-muted">আজকের অ্যাপয়েন্টমেন্ট</p>
-                  <p className="text-2xl font-bold text-theme-foreground">{filteredAppointments.length}</p>
+                  <p className="text-2xl font-bold text-theme-foreground">{appointments?.length || 0}</p>
                 </div>
                 <Calendar className="h-8 w-8 text-blue-600" />
               </div>
