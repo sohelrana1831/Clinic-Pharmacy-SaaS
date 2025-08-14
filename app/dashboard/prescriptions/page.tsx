@@ -190,7 +190,7 @@ export default function DashboardPrescriptionsPage() {
     const newErrors: Record<string, string> = {}
 
     if (!prescriptionData.patientId) {
-      newErrors.patient = 'রোগী নির্বাচন করুন'
+      newErrors.patient = 'রোগী নির্বা���ন করুন'
     }
 
     if (!prescriptionData.doctorId) {
@@ -227,7 +227,7 @@ export default function DashboardPrescriptionsPage() {
 
   const handleSave = () => {
     if (!validateForm()) {
-      showToastMessage('দয়া করে সকল প্রয়োজনীয় তথ্য পূরণ করুন', 'error')
+      showToastMessage('দয়া ক���ে সকল প্রয়োজনীয় তথ্য পূরণ করুন', 'error')
       return
     }
 
@@ -471,7 +471,7 @@ export default function DashboardPrescriptionsPage() {
                                   <div>
                                     <p className="font-medium text-gray-900 dark:text-gray-100">{med.name}</p>
                                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                                      {med.strength} • {med.manufacturer} • স্টক: {med.stock}
+                                      {med.strength} • {med.manufacturer} • স্টক: {med.stockQty}
                                     </p>
                                   </div>
                                 </button>
