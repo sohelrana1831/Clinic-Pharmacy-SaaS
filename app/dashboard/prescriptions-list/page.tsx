@@ -403,6 +403,13 @@ export default function PrescriptionsListPage() {
             )}
           </CardContent>
         </Card>
+
+        {/* Prescription Modal */}
+        <PrescriptionModal
+          isOpen={isModalOpen}
+          onClose={handleModalClose}
+          prescription={editingPrescription}
+        />
       </div>
     </div>
   )
