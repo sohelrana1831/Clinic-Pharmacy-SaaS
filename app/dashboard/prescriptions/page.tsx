@@ -91,14 +91,14 @@ export default function DashboardPrescriptionsPage() {
   // Prescription options
   const doseOptions = [
     '১ টি', '২ টি', '৩ টি', '৪ টি', '৫ টি',
-    '১/২ টি', '১ চামচ', '২ চামচ', '১ টেবিল চামচ',
+    '১/২ টি', '১ চ���মচ', '২ চামচ', '১ টেবিল চামচ',
     '৫ মিলি', '১০ মিলি', '১৫ মিলি', '২০ মিলি'
   ]
 
   const frequencyOptions = [
     'দিনে ১ বার', 'দিনে ২ বার', 'দিনে ৩ বার', 'দিনে ৪ বার',
     'সকালে ১ বার', 'রাতে ১ বার', 'সকাল-রাত', 'সকাল-দুপুর-রাত',
-    'খাবারের আগে', 'খাব���রের পরে', 'প্রয়োজন অনুযায়ী'
+    'খাবারের আগে', 'খাবারের পরে', 'প্রয়োজন অনুযায়ী'
   ]
 
   const durationOptions = [
@@ -154,7 +154,7 @@ export default function DashboardPrescriptionsPage() {
   }
 
   const handleDoctorSelect = (doctorId: string) => {
-    const doctor = allDoctors?.data?.find((d: any) => d.id === doctorId)
+    const doctor = allDoctors?.find((d: any) => d.id === doctorId)
     if (doctor) {
       setPrescriptionData(prev => ({
         ...prev,
