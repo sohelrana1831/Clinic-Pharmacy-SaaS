@@ -100,9 +100,9 @@ export default function ReportsPage() {
                 value={selectedDoctor}
                 onChange={(e) => setSelectedDoctor(e.target.value)}
               >
-                {doctors.map(doctor => (
-                  <option key={doctor} value={doctor}>{doctor}</option>
-                ))}
+                <option value="সকল ডাক্তার">সকল ডাক্তার</option>
+                <option value="ডা. রহিম উদ্দিন">ডা. রহিম উদ্দিন</option>
+                <option value="ডা. ফাতেমা খাতুন">ডা. ফাতেমা খাতুন</option>
               </Select>
             </div>
             <div>
@@ -162,7 +162,7 @@ export default function ReportsPage() {
           <div>
             <CardTitle className="flex items-center gap-2">
               <DollarSign className="h-5 w-5 text-green-600" />
-              দৈনিক বিক্রয় রিপোর্��
+              দৈনিক বিক্রয় রিপোর্ট
             </CardTitle>
             <p className="text-sm text-theme-muted mt-1">গত ৭ দিনের বিক্রয় পরিসংখ্যান</p>
           </div>
@@ -265,7 +265,7 @@ export default function ReportsPage() {
             <ChartPlaceholder
               title="টপ মেডিসিন চার্ট"
               type="bar"
-              description="সর্বাধিক বিক্রিত ওষুধের ত���লিকা"
+              description="সর্বাধিক বিক্রিত ওষুধের তালিকা"
               data={topMedicinesData}
             />
             <div className="space-y-3">
@@ -348,7 +348,7 @@ export default function ReportsPage() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <FileText className="h-5 w-5 text-theme-muted" />
-            CSV রপ্তানি কলাম হ���ডার
+            CSV রপ্তানি কলাম হেডার
           </CardTitle>
         </CardHeader>
         <CardContent>
