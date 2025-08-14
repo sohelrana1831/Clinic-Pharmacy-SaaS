@@ -91,14 +91,14 @@ export default function DashboardPrescriptionsPage() {
   // Prescription options
   const doseOptions = [
     '১ টি', '২ টি', '৩ টি', '৪ টি', '৫ টি',
-    '১/২ টি', '১ চ���মচ', '২ চামচ', '১ টেবিল চামচ',
+    '১/২ টি', '১ চামচ', '২ চামচ', '১ টেবিল চামচ',
     '৫ মিলি', '১০ মিলি', '১৫ মিলি', '২০ মিলি'
   ]
 
   const frequencyOptions = [
     'দিনে ১ বার', 'দিনে ২ বার', 'দিনে ৩ বার', 'দিনে ৪ বার',
     'সকালে ১ বার', 'রাতে ১ বার', 'সকাল-রাত', 'সকাল-দুপুর-রাত',
-    'খাবারের আগে', 'খাবারের পরে', 'প্রয়োজন অনুযায়ী'
+    '��াবারের আগে', 'খাবারের পরে', 'প্রয়োজন অনুযায়ী'
   ]
 
   const durationOptions = [
@@ -323,7 +323,7 @@ export default function DashboardPrescriptionsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">প্রেসক্রিপশন লিখুন</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">প্রেসক্র��পশন লিখুন</h1>
           <p className="text-gray-600 dark:text-gray-400">নতুন প্রেসক্রিপশন তৈরি করুন</p>
         </div>
         <div className="flex items-center space-x-3">
@@ -421,7 +421,7 @@ export default function DashboardPrescriptionsPage() {
                   className={errors.doctor ? 'border-red-500' : ''}
                 >
                   <option value="">ডাক্তার নির্বাচন করুন</option>
-                  {allDoctors?.data?.map((doctor: any) => (
+                  {allDoctors?.map((doctor: any) => (
                     <option key={doctor.id} value={doctor.id}>
                       {doctor.name} - {doctor.role}
                     </option>
@@ -521,7 +521,7 @@ export default function DashboardPrescriptionsPage() {
                           {/* Medicine Dropdown */}
                           {medicineDropdowns[index] && medicineSearches[index] && (
                             <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg max-h-60 overflow-y-auto">
-                              {allMedicines?.data?.filter((med: any) =>
+                              {allMedicines?.filter((med: any) =>
                                 med.name.toLowerCase().includes(medicineSearches[index].toLowerCase())
                               ).slice(0, 5).map((med: any) => (
                                 <button
@@ -553,7 +553,7 @@ export default function DashboardPrescriptionsPage() {
                             onChange={(e) => updateMedicine(index, 'dose', e.target.value)}
                             className={errors[`medicine_${index}_dose`] ? 'border-red-500' : ''}
                           >
-                            <option value="">ডোজ নির্বা��ন করুন</option>
+                            <option value="">ডোজ ��ির্বা��ন করুন</option>
                             {doseOptions.map((dose) => (
                               <option key={dose} value={dose}>{dose}</option>
                             ))}
@@ -657,10 +657,10 @@ export default function DashboardPrescriptionsPage() {
                 <div className="text-center p-6 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">ডিজিটাল স্বাক্ষর</p>
                   <div className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                    {allDoctors?.data?.find((d: any) => d.id === prescriptionData.doctorId)?.name}
+                    {allDoctors?.find((d: any) => d.id === prescriptionData.doctorId)?.name}
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    রেজি: {allDoctors?.data?.find((d: any) => d.id === prescriptionData.doctorId)?.registrationNo || 'N/A'}
+                    রেজি: {allDoctors?.find((d: any) => d.id === prescriptionData.doctorId)?.registrationNo || 'N/A'}
                   </p>
                 </div>
               </CardContent>
