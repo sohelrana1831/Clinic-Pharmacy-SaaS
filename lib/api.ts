@@ -44,6 +44,13 @@ api.interceptors.response.use(
     // Handle network errors
     if (error.code === 'NETWORK_ERROR' || error.message === 'Failed to fetch') {
       console.error('Network error - possibly CORS or server issue')
+      error.isNetworkError = true
+    }
+
+    // Handle timeout errors
+    if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
+      console.error('Request timeout')
+      error.isTimeoutError = true
     }
 
     return Promise.reject(error)
