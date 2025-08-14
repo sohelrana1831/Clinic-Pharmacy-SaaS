@@ -132,7 +132,7 @@ export default function PrescriptionPrintPage() {
       instructions: med.instructions,
       quantity: med.quantity
     })) || [],
-    notes: prescription.data.notes
+    notes: prescription.notes
   }
 
   return (
