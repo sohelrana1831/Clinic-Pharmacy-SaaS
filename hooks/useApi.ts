@@ -117,9 +117,9 @@ export function usePaginatedApi<T>(
   // Handle params changes - only on client side
   useEffect(() => {
     if (typeof window !== 'undefined' && JSON.stringify(params) !== JSON.stringify(initialParams)) {
-      fetchData(params, 1, pagination.limit)
+      fetchData(params, 1, paginationRef.current.limit)
     }
-  }, [params, initialParams]) // Remove fetchData and pagination.limit dependencies
+  }, [params, fetchData]) // Use ref for pagination limit to avoid cycles
 
   // Handle page changes
   const goToPage = useCallback((page: number) => {
