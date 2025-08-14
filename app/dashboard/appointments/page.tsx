@@ -74,17 +74,27 @@ export default function AppointmentsPage() {
     }
   }
 
-  const filteredAppointments = mockAppointments.filter(appointment => {
-    const matchesSearch = 
-      appointment.patientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      appointment.patientPhone.includes(searchTerm) ||
-      appointment.id.toLowerCase().includes(searchTerm.toLowerCase())
-    
-    const matchesDate = appointment.date === selectedDate
-    const matchesStatus = !statusFilter || appointment.status === statusFilter
-    
-    return matchesSearch && matchesDate && matchesStatus
-  })
+  // Update API params when filters change
+  useEffect(() => {
+    if (selectedDate) {
+      updateParams({
+        date: selectedDate,
+        status: statusFilter || undefined,
+        page: 1
+      })
+    }
+  }, [selectedDate, statusFilter, updateParams])
+
+  const handleStatusUpdate = async (appointmentId: string, newStatus: string) => {
+    try {
+      await updateAppointment(() =>
+        appointmentsApi.updateAppointment(appointmentId, { status: newStatus })
+      )
+      refetch()
+    } catch (error) {
+      console.error('Error updating appointment:', error)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-theme-background theme-transition">
