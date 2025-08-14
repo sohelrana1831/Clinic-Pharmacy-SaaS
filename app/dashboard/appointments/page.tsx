@@ -67,6 +67,66 @@ export default function AppointmentsPage() {
   )
 
   const { mutate: updateAppointment } = useApiMutation()
+  const { mutate: deleteAppointment, loading: deleting } = useApiMutation()
+
+  const handleEdit = (appointment: Appointment) => {
+    setEditingAppointment(appointment)
+    setIsModalOpen(true)
+  }
+
+  const handleDelete = async (appointmentId: string) => {
+    if (confirm('আপনি কি নিশ্চিত যে এই অ্যাপয়েন্টমেন্ট মুছে ফেলতে চান?')) {
+      try {
+        await deleteAppointment(() => appointmentsApi.deleteAppointment(appointmentId))
+        refetch()
+      } catch (error) {
+        console.error('Error deleting appointment:', error)
+      }
+    }
+  }
+
+  const handleModalClose = () => {
+    setIsModalOpen(false)
+    setEditingAppointment(null)
+    refetch()
+  }
+
+  const handleExport = () => {
+    const csvContent = generateCSV(appointments || [])
+    downloadCSV(csvContent, `appointments-${new Date().toISOString().split('T')[0]}.csv`)
+  }
+
+  const generateCSV = (data: Appointment[]) => {
+    const headers = ['ID', 'Patient', 'Doctor', 'Date', 'Time', 'Type', 'Status', 'Notes']
+    const rows = data.map(appointment => [
+      appointment.id,
+      appointment.patient?.name || '',
+      appointment.doctor?.name || '',
+      new Date(appointment.date).toLocaleDateString('bn-BD'),
+      appointment.time,
+      appointment.type,
+      appointment.status,
+      appointment.notes || ''
+    ])
+
+    return [headers, ...rows].map(row =>
+      row.map(cell => `"${cell}"`).join(',')
+    ).join('\n')
+  }
+
+  const downloadCSV = (content: string, filename: string) => {
+    const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' })
+    const link = document.createElement('a')
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob)
+      link.setAttribute('href', url)
+      link.setAttribute('download', filename)
+      link.style.visibility = 'hidden'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    }
+  }
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -243,7 +303,7 @@ export default function AppointmentsPage() {
                 <option value="confirmed">নিশ্চিত</option>
                 <option value="pending">অপেক্ষমান</option>
                 <option value="completed">সম্পন্ন</option>
-                <option value="cancelled">বাতিল</option>
+                <option value="cancelled">বাতি���</option>
               </select>
             </div>
           </CardContent>
@@ -358,7 +418,7 @@ export default function AppointmentsPage() {
                   <div className="text-center py-12">
                     <Calendar className="h-12 w-12 text-theme-muted mx-auto mb-4" />
                     <div className="text-theme-muted">
-                      {statusFilter ? 'কোনো অ্যাপয়েন্টমেন্ট পাওয়া যায়নি' : 'আজ কোনো অ্যাপয়েন্টমেন্ট নেই'}
+                      {statusFilter ? 'কোনো অ্যাপয়েন্টমেন্ট পাওয়া যায়নি' : 'আজ কোনো অ্যাপয়েন্টমেন্ট নে��'}
                     </div>
                   </div>
                 )}
@@ -371,7 +431,7 @@ export default function AppointmentsPage() {
         {viewMode === 'calendar' && (
           <Card className="card-theme border">
             <CardHeader>
-              <CardTitle className="text-theme-foreground">ক্যালেন্ডার ��িউ</CardTitle>
+              <CardTitle className="text-theme-foreground">ক্যালেন্ডার ভিউ</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-center py-12">
