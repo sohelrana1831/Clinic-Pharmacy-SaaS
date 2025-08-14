@@ -300,7 +300,7 @@ export default function DashboardPrescriptionsPage() {
 
   const handlePrint = () => {
     if (!validateForm()) {
-      showToastMessage('প্রিন্ট করার আগে সকল তথ্য পূরণ করু��', 'error')
+      showToastMessage('প্রিন্ট করার আগে সকল তথ্য পূরণ করুন', 'error')
       return
     }
 
@@ -482,7 +482,7 @@ export default function DashboardPrescriptionsPage() {
               {prescriptionData.medicines.length === 0 ? (
                 <div className="text-center py-8">
                   <Pill className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-500 dark:text-gray-400">এখনো কোনো ওষুধ যোগ করা হয়নি</p>
+                  <p className="text-gray-500 dark:text-gray-400">এখনো কোনো ���ষুধ যোগ করা হয়নি</p>
                   <Button onClick={addMedicine} className="mt-4 bg-blue-600 hover:bg-blue-700">
                     প্রথম ওষুধ যোগ করুন
                   </Button>
@@ -565,7 +565,7 @@ export default function DashboardPrescriptionsPage() {
 
                         {/* Frequency */}
                         <div>
-                          <Label>সেবনের নিয়��� *</Label>
+                          <Label>সেবনের নিয়ম *</Label>
                           <Select
                             value={medicine.frequency}
                             onChange={(e) => updateMedicine(index, 'frequency', e.target.value)}
@@ -612,7 +612,7 @@ export default function DashboardPrescriptionsPage() {
 
                         {/* Instructions */}
                         <div className="md:col-span-2">
-                          <Label>বিশেষ নির্দেশ��া</Label>
+                          <Label>বিশেষ নির্দেশনা</Label>
                           <Input
                             value={medicine.instructions}
                             onChange={(e) => updateMedicine(index, 'instructions', e.target.value)}
@@ -660,7 +660,7 @@ export default function DashboardPrescriptionsPage() {
                     {allDoctors?.find((d: any) => d.id === prescriptionData.doctorId)?.name}
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    রেজি: {allDoctors?.find((d: any) => d.id === prescriptionData.doctorId)?.registrationNo || 'N/A'}
+                    রেজি: {(allDoctors?.find((d: any) => d.id === prescriptionData.doctorId) as any)?.registrationNo || 'N/A'}
                   </p>
                 </div>
               </CardContent>
