@@ -3,7 +3,18 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  console.log('🌱 Seeding database...')
+  console.log('🌱 Seeding database with comprehensive sample data...')
+
+  // Clear existing data (optional - comment out if you want to keep existing data)
+  // await prisma.stockMovement.deleteMany()
+  // await prisma.saleItem.deleteMany()
+  // await prisma.sale.deleteMany()
+  // await prisma.prescriptionMedicine.deleteMany()
+  // await prisma.prescription.deleteMany()
+  // await prisma.appointment.deleteMany()
+  // await prisma.medicine.deleteMany()
+  // await prisma.patient.deleteMany()
+  // await prisma.user.deleteMany()
 
   // Create users (doctors and staff)
   const doctor1 = await prisma.user.create({
@@ -150,7 +161,7 @@ async function main() {
     prisma.medicine.create({
       data: {
         sku: 'MED004',
-        name: 'এমোক্সিসিলিন',
+        name: 'এমোক���সিসিলিন',
         genericName: 'Amoxicillin',
         category: 'Capsule',
         manufacturer: 'Renata Limited',
@@ -245,7 +256,7 @@ async function main() {
         time: '14:00',
         type: 'consultation',
         status: 'confirmed',
-        notes: 'পেটের সমস্যা',
+        notes: 'পেটে�� সমস্যা',
       },
     }),
     prisma.appointment.create({
@@ -286,7 +297,7 @@ async function main() {
             medicineId: medicines[5].id,
             dosage: '1টি',
             frequency: 'দিনে ২ বার',
-            duration: '৩ দিন',
+            duration: '৩ দ���ন',
             instructions: 'খাবারের পর সেবন করুন',
             quantity: 6,
           },
