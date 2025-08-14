@@ -146,8 +146,17 @@ export default function PrescriptionsListPage() {
             <h1 className="text-2xl font-bold text-theme-foreground">প্রেসক্রিপশন তালিকা</h1>
             <p className="text-theme-muted">সকল প্রেসক্রিপশন দেখুন এবং পরিচালনা করুন</p>
           </div>
-          <Button 
-            onClick={() => window.location.href = '/prescriptions/editor'}
+          <Button
+            onClick={handleExport}
+            variant="outline"
+            size="sm"
+            className="h-9"
+          >
+            <Download className="h-4 w-4 mr-2" />
+            এক্সপোর্ট
+          </Button>
+          <Button
+            onClick={() => setIsModalOpen(true)}
             className="bg-blue-600 hover:bg-blue-700"
           >
             <Plus className="h-4 w-4 mr-2" />
@@ -197,7 +206,7 @@ export default function PrescriptionsListPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-theme-muted">প্রদ���ন করা</p>
+                  <p className="text-sm text-theme-muted">প্রদান করা</p>
                   <p className="text-2xl font-bold text-green-600">{dispensedCount}</p>
                 </div>
                 <User className="h-8 w-8 text-green-600" />
@@ -367,7 +376,7 @@ export default function PrescriptionsListPage() {
             {pagination.totalPages > 1 && (
               <div className="flex items-center justify-between mt-4">
                 <div className="text-sm text-theme-muted">
-                  মোট {pagination.total} এর ম��্যে {((pagination.page - 1) * pagination.limit) + 1}-{Math.min(pagination.page * pagination.limit, pagination.total)}
+                  মোট {pagination.total} এর মধ্যে {((pagination.page - 1) * pagination.limit) + 1}-{Math.min(pagination.page * pagination.limit, pagination.total)}
                 </div>
                 <div className="flex items-center space-x-2">
                   <Button
