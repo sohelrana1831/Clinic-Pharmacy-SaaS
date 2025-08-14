@@ -88,6 +88,26 @@ export default function DashboardPrescriptionsPage() {
   const { data: allDoctors } = useApi(() => usersApi.getUsers({ role: 'doctor', limit: 100 }), [])
   const { data: allMedicines } = useApi(() => medicinesApi.getMedicines({ limit: 1000 }), [])
 
+  // Prescription options
+  const doseOptions = [
+    '১ টি', '২ টি', '৩ টি', '৪ টি', '৫ টি',
+    '১/২ টি', '১ চামচ', '২ চামচ', '১ টেবিল চামচ',
+    '৫ মিলি', '১০ মিলি', '১৫ মিলি', '২০ মিলি'
+  ]
+
+  const frequencyOptions = [
+    'দিনে ১ বার', 'দিনে ২ বার', 'দিনে ৩ বার', 'দিনে ৪ বার',
+    'সকালে ১ বার', 'রাতে ১ বার', 'সকাল-রাত', 'সকাল-দুপুর-রাত',
+    'খাবারের আগে', 'খাবারের পরে', 'প্রয়োজন অনুযায়ী'
+  ]
+
+  const durationOptions = [
+    '৩ দিন', '৫ দিন', '৭ দিন', '১০ দিন', '১৪ দিন', '২১ দিন', '৩০ দিন',
+    '১ সপ্তাহ', '২ সপ্তাহ', '৩ সপ্তাহ', '৪ সপ্তাহ',
+    '১ মাস', '২ মাস', '৩ মাস', '৬ মাস',
+    'প্রয়োজন অনুযায়ী', 'সম্পূর্ণ না হওয়া পর্যন্ত'
+  ]
+
   // Filter patients based on search
   useEffect(() => {
     if (allPatients?.data && patientSearch) {
@@ -237,7 +257,7 @@ export default function DashboardPrescriptionsPage() {
         newErrors[`medicine_${index}_name`] = 'ওষুধ নির্বাচন করুন'
       }
       if (!med.dose) {
-        newErrors[`medicine_${index}_dose`] = 'ডোজ নির্ধারণ কর���ন'
+        newErrors[`medicine_${index}_dose`] = 'ডোজ নির্ধারণ করুন'
       }
       if (!med.frequency) {
         newErrors[`medicine_${index}_frequency`] = 'সেবনের নিয়ম নির্ধারণ করুন'
@@ -580,7 +600,7 @@ export default function DashboardPrescriptionsPage() {
                           <Input
                             value={medicine.instructions}
                             onChange={(e) => updateMedicine(index, 'instructions', e.target.value)}
-                            placeholder="যেমন: খ���বারের সাথে, ঘুমানোর আগে..."
+                            placeholder="যেমন: খাবারের সাথে, ঘুমানোর আগে..."
                           />
                         </div>
                       </div>
