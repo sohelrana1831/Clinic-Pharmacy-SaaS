@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -24,6 +24,31 @@ export function Topbar() {
   const [selectedClinic, setSelectedClinic] = useState('sr-pharma')
   const { theme, toggleTheme, colors, isTransitioning } = useTheme()
   const { t } = useTranslation()
+  const userMenuRef = useRef<HTMLDivElement>(null)
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+        setShowUserMenu(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  const handleLogout = () => {
+    // Clear any stored authentication
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
+      // Redirect to login
+      window.location.href = '/auth/login'
+    }
+  }
 
   const clinics = [
     { value: 'sr-pharma', label: t('clinics.srPharmaDhanmondi') },
@@ -104,7 +129,7 @@ export function Topbar() {
         </Button>
 
         {/* User Menu */}
-        <div className="relative">
+        <div className="relative" ref={userMenuRef}>
           <Button
             variant="outline"
             onClick={() => setShowUserMenu(!showUserMenu)}
@@ -139,7 +164,10 @@ export function Topbar() {
                   <span suppressHydrationWarning>{t('navigation.settings')}</span>
                 </button>
                 <hr className="my-2 border-theme-default" />
-                <button className="w-full flex items-center px-3 py-2 text-sm text-error-600 dark:text-error-400 hover:bg-error-50 dark:hover:bg-error-900/20 rounded-md theme-transition focus-ring">
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center px-3 py-2 text-sm text-error-600 dark:text-error-400 hover:bg-error-50 dark:hover:bg-error-900/20 rounded-md theme-transition focus-ring"
+                >
                   <LogOut className="h-4 w-4 mr-2" />
                   <span suppressHydrationWarning>{t('user.logout')}</span>
                 </button>
