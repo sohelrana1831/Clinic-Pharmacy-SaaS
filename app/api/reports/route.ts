@@ -266,7 +266,7 @@ async function getAppointmentsReport(startDate: Date, endDate: Date) {
         date: { gte: startDate, lte: endDate }
       },
       _count: { doctorId: true },
-      _orderBy: { _count: { doctorId: 'desc' } }
+      orderBy: { _count: { doctorId: 'desc' } }
     })
   ])
 
