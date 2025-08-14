@@ -44,7 +44,8 @@ export function useApi<T>(
 // Hook for paginated API calls
 export function usePaginatedApi<T>(
   apiCall: (params: any) => Promise<ApiResponse<T[]>>,
-  initialParams: any = {}
+  initialParams: any = {},
+  options: { enabled?: boolean } = {}
 ) {
   const [data, setData] = useState<T[]>([])
   const [loading, setLoading] = useState(false)
@@ -80,8 +81,8 @@ export function usePaginatedApi<T>(
       limit: customLimit !== undefined ? customLimit : paginationRef.current.limit,
     }
 
-    // Skip API call if date parameter is empty (for appointments)
-    if (requestParams.date === '') {
+    // Skip API call if disabled, or if date parameter is empty (for appointments)
+    if (options.enabled === false || requestParams.date === '') {
       return
     }
 
@@ -115,6 +116,9 @@ export function usePaginatedApi<T>(
         setError('Network error. Please check your connection and try again.')
       } else if (err.message.includes('timeout')) {
         setError('Request timeout. Please try again.')
+      } else if (err.name === 'AbortError') {
+        // Request was aborted, don't show error
+        return
       } else {
         setError(err.message || 'An unexpected error occurred')
       }
@@ -123,19 +127,19 @@ export function usePaginatedApi<T>(
     }
   }, []) // No dependencies to prevent recreation
 
-  // Initial load only - check if we're on the client side
+  // Initial load only - check if we're on the client side and enabled
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && options.enabled !== false) {
       fetchData(initialParams, 1, 10)
     }
-  }, [fetchData]) // Only depend on fetchData
+  }, [fetchData, options.enabled]) // Only depend on fetchData and enabled
 
-  // Handle params changes - only on client side
+  // Handle params changes - only on client side and when enabled
   useEffect(() => {
-    if (typeof window !== 'undefined' && JSON.stringify(params) !== JSON.stringify(initialParams)) {
+    if (typeof window !== 'undefined' && options.enabled !== false && JSON.stringify(params) !== JSON.stringify(initialParams)) {
       fetchData(params, 1, paginationRef.current.limit)
     }
-  }, [params, fetchData]) // Use ref for pagination limit to avoid cycles
+  }, [params, fetchData, options.enabled]) // Use ref for pagination limit to avoid cycles
 
   // Handle page changes
   const goToPage = useCallback((page: number) => {
