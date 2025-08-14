@@ -73,6 +73,18 @@ export function usePaginatedApi<T>(
       return
     }
 
+    // Check if we have essential parameters
+    const requestParams = {
+      ...(customParams !== undefined ? customParams : paramsRef.current),
+      page: customPage !== undefined ? customPage : paginationRef.current.page,
+      limit: customLimit !== undefined ? customLimit : paginationRef.current.limit,
+    }
+
+    // Skip API call if date parameter is empty (for appointments)
+    if (requestParams.date === '') {
+      return
+    }
+
     try {
       setLoading(true)
       setError(null)
