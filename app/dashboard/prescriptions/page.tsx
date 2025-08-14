@@ -6,19 +6,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select } from '@/components/ui/select'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { samplePatients } from '@/lib/patients-data'
-import { 
-  sampleMedicines, 
-  sampleDoctorsWithReg, 
-  searchMedicines,
-  calculateRefillDate,
-  calculateTotalQuantity,
-  doseOptions,
-  frequencyOptions,
-  durationOptions,
-  PrescriptionData,
-  PrescriptionMedicine
-} from '@/lib/prescriptions-data'
+import { usePaginatedApi, useApi, useApiMutation } from '@/hooks/useApi'
+import { prescriptionsApi, patientsApi, usersApi, medicinesApi, Prescription } from '@/lib/api'
 import { 
   Search, 
   Plus, 
