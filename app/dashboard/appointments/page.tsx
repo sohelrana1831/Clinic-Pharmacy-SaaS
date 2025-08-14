@@ -39,6 +39,8 @@ export default function AppointmentsPage() {
     return ''
   })
   const [statusFilter, setStatusFilter] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [editingAppointment, setEditingAppointment] = useState<Appointment | null>(null)
 
   // Set current date on client-side only if not already set
   useEffect(() => {
@@ -369,7 +371,7 @@ export default function AppointmentsPage() {
         {viewMode === 'calendar' && (
           <Card className="card-theme border">
             <CardHeader>
-              <CardTitle className="text-theme-foreground">ক্যাল���ন্ডার ভিউ</CardTitle>
+              <CardTitle className="text-theme-foreground">ক্যালেন্ডার ��িউ</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-center py-12">
