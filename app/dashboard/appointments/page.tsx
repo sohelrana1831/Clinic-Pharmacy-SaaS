@@ -28,7 +28,7 @@ import {
   FileText
 } from 'lucide-react'
 
-export default function AppointmentsPage() {
+function AppointmentsPageContent() {
   const { t } = useTranslation()
   const [viewMode, setViewMode] = useState<'table' | 'calendar'>('table')
   const [searchTerm, setSearchTerm] = useState('')
@@ -441,7 +441,7 @@ export default function AppointmentsPage() {
                   <div className="text-center py-12">
                     <Calendar className="h-12 w-12 text-theme-muted mx-auto mb-4" />
                     <div className="text-theme-muted">
-                      {statusFilter ? 'কোনো অ্যাপয়েন্টমেন্ট পাওয়��� যায়নি' : 'আজ কোনো অ্যাপয়েন্টমেন্ট নে��'}
+                      {statusFilter ? 'কোনো অ্যাপয়েন্টমেন্ট পাওয়া যায়নি' : 'আজ কোনো অ্যাপয়েন্টমেন্ট নে��'}
                     </div>
                   </div>
                 )}
