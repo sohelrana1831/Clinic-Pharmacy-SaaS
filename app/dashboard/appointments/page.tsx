@@ -345,7 +345,7 @@ function AppointmentsPageContent() {
               >
                 <option value="">সব স্ট্যাটাস</option>
                 <option value="confirmed">নিশ্চিত</option>
-                <option value="pending">অ���েক্ষমান</option>
+                <option value="pending">অপেক্ষমান</option>
                 <option value="completed">সম্পন্ন</option>
                 <option value="cancelled">বাতি���</option>
               </select>
@@ -399,8 +399,36 @@ function AppointmentsPageContent() {
                       ) : error ? (
                         <tr>
                           <td colSpan={7} className="px-4 py-12 text-center">
-                            <p className="text-red-600">{error}</p>
-                            <Button onClick={refetch} className="mt-4">পুনরায় চেষ্টা করুন</Button>
+                            <div className="space-y-4">
+                              {!isOnline ? (
+                                <div className="flex items-center justify-center space-x-2 text-yellow-600">
+                                  <WifiOff className="h-5 w-5" />
+                                  <span>ইন্টারনেট সংযোগ নেই</span>
+                                </div>
+                              ) : (
+                                <p className="text-red-600">{error}</p>
+                              )}
+                              <div className="flex space-x-2 justify-center">
+                                <Button onClick={refetch} disabled={!isOnline}>
+                                  পুনরায় চেষ্টা করুন
+                                </Button>
+                                {!isOnline && (
+                                  <Button onClick={checkConnectivity} variant="outline" disabled={isReconnecting}>
+                                    {isReconnecting ? (
+                                      <>
+                                        <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                                        সংযোগ পরীক্ষা করা হচ্ছে
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Wifi className="h-4 w-4 mr-2" />
+                                        সংযোগ পরীক্ষা করুন
+                                      </>
+                                    )}
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
                           </td>
                         </tr>
                       ) : appointments?.map((appointment) => (
