@@ -108,6 +108,22 @@ export default function DashboardPrescriptionsPage() {
     'প্রয়োজন অনুযায়ী', 'সম্পূর্ণ না হওয়া পর্যন্ত'
   ]
 
+  // Helper functions
+  const calculateTotalQuantity = (dose: string, frequency: string, duration: string): number => {
+    // Simple calculation - extract numbers and multiply
+    const doseNum = parseInt(dose.match(/\d+/)?.[0] || '1')
+    const freqNum = parseInt(frequency.match(/\d+/)?.[0] || '1')
+    const durNum = parseInt(duration.match(/\d+/)?.[0] || '1')
+    return doseNum * freqNum * durNum
+  }
+
+  const calculateRefillDate = (duration: string): string => {
+    const days = parseInt(duration.match(/\d+/)?.[0] || '0')
+    const date = new Date()
+    date.setDate(date.getDate() + days)
+    return date.toISOString().split('T')[0]
+  }
+
   // Filter patients based on search
   useEffect(() => {
     if (allPatients?.data && patientSearch) {
@@ -240,7 +256,7 @@ export default function DashboardPrescriptionsPage() {
     }
 
     if (!prescriptionData.doctorId) {
-      newErrors.doctor = 'ডাক্তার নির্বাচন করুন'
+      newErrors.doctor = 'ডাক্তার নির্বাচ�� করুন'
     }
 
     if (!prescriptionData.diagnosis.trim()) {
