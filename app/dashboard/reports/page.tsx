@@ -111,9 +111,10 @@ export default function ReportsPage() {
                 value={selectedBranch}
                 onChange={(e) => setSelectedBranch(e.target.value)}
               >
-                {branches.map(branch => (
-                  <option key={branch} value={branch}>{branch}</option>
-                ))}
+                <option value="সকল শাখা">সকল শাখা</option>
+                <option value="ধানমন্ডি শাখা">ধানমন্ডি শাখা</option>
+                <option value="উত্তরা শাখা">উত্তরা শাখা</option>
+                <option value="গুলশান শাখা">গুলশান শাখা</option>
               </Select>
             </div>
           </div>
@@ -176,7 +177,7 @@ export default function ReportsPage() {
             <ChartPlaceholder
               title="দৈনিক বিক্রয় চার্ট"
               type="bar"
-              description="গত ৭ দিনের বি��্রয় পরিমা���"
+              description="গত ৭ দি��ের বি��্রয় পরিমা���"
               data={dailySalesData}
             />
             <div className="space-y-3">
