@@ -124,33 +124,33 @@ export default function ReportsPage() {
       {/* Summary Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <MetricCard
-          title="মোট বিক্রয়"
-          value={totalSales}
-          change={12.5}
-          icon={<DollarSign className="h-5 w-5" />}
+          title="মোট অ্যাপয়েন্টমেন্ট"
+          value={overview.totalAppointments}
+          change={5.2}
+          icon={<Calendar className="h-5 w-5" />}
           color="green"
-          suffix=" টাকা"
+          suffix=" টি"
         />
         <MetricCard
-          title="মোট লেনদেন"
-          value={totalTransactions}
-          change={8.3}
+          title="আজকের অ্যাপয়েন্টমেন্ট"
+          value={overview.todayAppointments}
+          change={2.1}
           icon={<Activity className="h-5 w-5" />}
           color="blue"
           suffix=" টি"
         />
         <MetricCard
-          title="���ড় বৃদ্ধির হার"
-          value={avgSalesGrowth.toFixed(1)}
-          change={avgSalesGrowth}
+          title="মোট প্রেসক্রিপশন"
+          value={overview.totalPrescriptions}
+          change={avgGrowth.toFixed(1)}
           icon={<TrendingUp className="h-5 w-5" />}
           color="purple"
-          suffix="%"
+          suffix=" টি"
         />
         <MetricCard
           title="মোট রোগী"
-          value={currentMonthPatients}
-          change={15.2}
+          value={overview.totalPatients}
+          change={8.7}
           icon={<Users className="h-5 w-5" />}
           color="orange"
           suffix=" জন"
@@ -323,7 +323,7 @@ export default function ReportsPage() {
             </div>
             <div className="space-y-4">
               <div className="bg-gradient-to-r from-emerald-50 to-emerald-100 p-4 rounded-lg">
-                <h4 className="font-semibold text-emerald-800 mb-2">বর্তমান পরিসংখ্যান</h4>
+                <h4 className="font-semibold text-emerald-800 mb-2">বর্তম��ন পরিসংখ্যান</h4>
                 <div className="space-y-2">
                   <div>
                     <p className="text-sm text-emerald-600">মোট রোগী</p>
