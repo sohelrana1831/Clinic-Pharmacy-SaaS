@@ -89,12 +89,6 @@ export function usePaginatedApi<T>(
       setLoading(true)
       setError(null)
 
-      const requestParams = {
-        ...(customParams !== undefined ? customParams : paramsRef.current),
-        page: customPage !== undefined ? customPage : paginationRef.current.page,
-        limit: customLimit !== undefined ? customLimit : paginationRef.current.limit,
-      }
-
       // Add timeout handling
       const timeoutPromise = new Promise((_, reject) => {
         setTimeout(() => reject(new Error('Request timeout - please try again')), 3000)
