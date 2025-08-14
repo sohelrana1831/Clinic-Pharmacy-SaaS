@@ -402,8 +402,29 @@ export interface User {
 }
 
 export const usersApi = {
-  // Get all users (doctors/staff)
-  getUsers: (params?: { role?: string }) => apiService.get<User[]>('/users', params),
+  // Get all users with pagination and search
+  getUsers: (params?: {
+    page?: number
+    limit?: number
+    search?: string
+    role?: string
+    sortBy?: string
+    sortOrder?: 'asc' | 'desc'
+  }) => apiService.get<User[]>('/users', params),
+
+  // Get user by ID
+  getUser: (id: string) => apiService.get<User>(`/users/${id}`),
+
+  // Create new user
+  createUser: (data: Omit<User, 'id' | 'createdAt' | 'updatedAt'> & { password: string }) =>
+    apiService.post<User>('/users', data),
+
+  // Update user
+  updateUser: (id: string, data: Partial<User> & { password?: string }) =>
+    apiService.put<User>(`/users/${id}`, data),
+
+  // Delete user
+  deleteUser: (id: string) => apiService.delete(`/users/${id}`),
 
   // Get current user profile
   getProfile: () => apiService.get<User>('/users/profile'),
