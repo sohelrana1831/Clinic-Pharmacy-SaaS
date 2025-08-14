@@ -27,6 +27,8 @@ export default function PrescriptionsListPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('')
   const [doctorFilter, setDoctorFilter] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [editingPrescription, setEditingPrescription] = useState<Prescription | null>(null)
 
   // API hooks
   const {
@@ -93,7 +95,7 @@ export default function PrescriptionsListPage() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-theme-foreground">প্রেসক্রিপশন ত���লিকা</h1>
+            <h1 className="text-2xl font-bold text-theme-foreground">প্রেসক্রিপশন তালিকা</h1>
             <p className="text-theme-muted">সকল প্রেসক্রিপশন দেখুন এবং পরিচালনা করুন</p>
           </div>
           <Button 
