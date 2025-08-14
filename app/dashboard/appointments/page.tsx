@@ -26,7 +26,10 @@ import {
   XCircle,
   Trash2,
   Download,
-  FileText
+  FileText,
+  Wifi,
+  WifiOff,
+  RefreshCw
 } from 'lucide-react'
 
 function AppointmentsPageContent() {
