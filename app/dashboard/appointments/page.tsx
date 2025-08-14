@@ -26,13 +26,21 @@ export default function AppointmentsPage() {
   const { t } = useTranslation()
   const [viewMode, setViewMode] = useState<'table' | 'calendar'>('table')
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedDate, setSelectedDate] = useState('') // Will be set on client-side
+  const [selectedDate, setSelectedDate] = useState(() => {
+    // Initialize with current date immediately if on client-side
+    if (typeof window !== 'undefined') {
+      return new Date().toISOString().split('T')[0]
+    }
+    return ''
+  })
   const [statusFilter, setStatusFilter] = useState('')
 
-  // Set current date on client-side only
+  // Set current date on client-side only if not already set
   useEffect(() => {
-    setSelectedDate(new Date().toISOString().split('T')[0])
-  }, [])
+    if (!selectedDate && typeof window !== 'undefined') {
+      setSelectedDate(new Date().toISOString().split('T')[0])
+    }
+  }, [selectedDate])
 
   // API hooks - only initialize when selectedDate is available
   const {
@@ -107,7 +115,7 @@ export default function AppointmentsPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-theme-foreground">{t('navigation.appointments')}</h1>
-            <p className="text-theme-muted">অ্যাপয়েন্টমেন্ট পরিচালনা ও ক্যালেন্ডার দেখুন</p>
+            <p className="text-theme-muted">অ্যাপয়ে��্টমেন্ট পরিচালনা ও ক্যালেন্ডার দেখুন</p>
           </div>
           <div className="flex items-center space-x-3">
             <div className="flex items-center bg-theme-card border border-theme-default rounded-lg p-1">
@@ -225,7 +233,7 @@ export default function AppointmentsPage() {
                 className="px-3 py-2 border border-theme-default rounded-md bg-theme-card text-theme-foreground input-theme"
               >
                 <option value="">সব স্ট্যাটাস</option>
-                <option value="confirmed">নিশ্চিত</option>
+                <option value="confirmed">নিশ্���িত</option>
                 <option value="pending">অপেক্ষমান</option>
                 <option value="completed">সম্পন্ন</option>
                 <option value="cancelled">বাতিল</option>
