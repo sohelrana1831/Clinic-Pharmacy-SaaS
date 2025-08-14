@@ -31,6 +31,7 @@ import {
 
 function AppointmentsPageContent() {
   const { t } = useTranslation()
+  const { isOnline, isReconnecting, checkConnectivity } = useNetworkStatus()
   const [viewMode, setViewMode] = useState<'table' | 'calendar'>('table')
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedDate, setSelectedDate] = useState(() => {
@@ -147,7 +148,7 @@ function AppointmentsPageContent() {
 
   const getStatusLabel = (status: string) => {
     switch (status) {
-      case 'confirmed': return '��িশ্চিত'
+      case 'confirmed': return 'নিশ্চিত'
       case 'pending': return 'অপেক্ষমান'
       case 'cancelled': return 'বাতিল'
       case 'completed': return 'সম্পন্ন'
@@ -184,7 +185,7 @@ function AppointmentsPageContent() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-theme-foreground">{t('navigation.appointments')}</h1>
-            <p className="text-theme-muted">অ্যাপয়েন্টমেন্ট পরিচালনা ও ক্যালেন্ডার দেখ���ন</p>
+            <p className="text-theme-muted">অ্যাপয়েন্টমেন্ট পরিচালনা ও ক্যালেন্ডার দেখুন</p>
           </div>
           <div className="flex items-center space-x-3">
             <div className="flex items-center bg-theme-card border border-theme-default rounded-lg p-1">
