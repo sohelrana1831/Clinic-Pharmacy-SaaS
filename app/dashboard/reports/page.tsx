@@ -54,13 +54,22 @@ export default function ReportsPage() {
     ? monthlyStats.reduce((sum: number, month: any) => sum + (month.growth || 0), 0) / monthlyStats.length
     : 0
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <span className="ml-2">রিপোর্ট লোড হচ্ছে...</span>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-theme-foreground">রিপোর্ট ও বিশ্লেষণ</h1>
-          <p className="text-theme-muted mt-1">বিক্রয়, রোগী এবং ব্যবসায়িক পারফরম্যান্স রিপোর্ট</p>
+          <p className="text-theme-muted mt-1">বিক্রয়, রোগী এবং ব্যবসায়িক পারফরম্যান্স রি��োর্ট</p>
         </div>
         <div className="flex items-center gap-2">
           <Filter className="h-5 w-5 text-theme-muted" />
@@ -323,7 +332,7 @@ export default function ReportsPage() {
             </div>
             <div className="space-y-4">
               <div className="bg-gradient-to-r from-emerald-50 to-emerald-100 p-4 rounded-lg">
-                <h4 className="font-semibold text-emerald-800 mb-2">বর্তম��ন পরিসংখ্যান</h4>
+                <h4 className="font-semibold text-emerald-800 mb-2">বর্তমান পরিসংখ্যান</h4>
                 <div className="space-y-2">
                   <div>
                     <p className="text-sm text-emerald-600">মোট রোগী</p>
