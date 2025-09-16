@@ -6,19 +6,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select } from '@/components/ui/select'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { samplePatients } from '@/lib/patients-data'
-import { 
-  sampleMedicines, 
-  sampleDoctorsWithReg, 
-  searchMedicines,
-  calculateRefillDate,
-  calculateTotalQuantity,
-  doseOptions,
-  frequencyOptions,
-  durationOptions,
-  PrescriptionData,
-  PrescriptionMedicine
-} from '@/lib/prescriptions-data'
+import { usePaginatedApi, useApi, useApiMutation } from '@/hooks/useApi'
+import { prescriptionsApi, patientsApi, usersApi, medicinesApi, Prescription } from '@/lib/api'
 import { 
   Search, 
   Plus, 
@@ -32,6 +21,32 @@ import {
   FileText,
   CheckCircle
 } from 'lucide-react'
+
+// Prescription data types
+interface PrescriptionMedicine {
+  medicineId: string
+  medicineName: string
+  dose: string
+  frequency: string
+  duration: string
+  instructions: string
+  totalQuantity: number
+}
+
+interface PrescriptionData {
+  patientId: string
+  patientName: string
+  doctorId: string
+  doctorName: string
+  doctorRegistration: string
+  clinicId: string
+  date: string
+  diagnosis: string
+  medicines: PrescriptionMedicine[]
+  notes: string
+  status: string
+  nextRefillDate?: string
+}
 
 export default function DashboardPrescriptionsPage() {
   const [prescriptionData, setPrescriptionData] = useState<PrescriptionData>({
@@ -58,7 +73,7 @@ export default function DashboardPrescriptionsPage() {
 
   const [patientSearch, setPatientSearch] = useState('')
   const [showPatientDropdown, setShowPatientDropdown] = useState(false)
-  const [filteredPatients, setFilteredPatients] = useState(samplePatients)
+  const [filteredPatients, setFilteredPatients] = useState<any[]>([])
   const [medicineSearches, setMedicineSearches] = useState<{ [key: number]: string }>({})
   const [medicineDropdowns, setMedicineDropdowns] = useState<{ [key: number]: boolean }>({})
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -68,19 +83,60 @@ export default function DashboardPrescriptionsPage() {
     type: 'success'
   })
 
+  // Get patients and doctors from API
+  const { data: allPatients } = useApi(() => patientsApi.getPatients({ limit: 100 }), [])
+  const { data: allDoctors } = useApi(() => usersApi.getUsers({ role: 'doctor', limit: 100 }), [])
+  const { data: allMedicines } = useApi(() => medicinesApi.getMedicines({ limit: 1000 }), [])
+
+  // Prescription options
+  const doseOptions = [
+    '১ টি', '২ টি', '৩ টি', '৪ টি', '৫ টি',
+    '১/২ টি', '১ চামচ', '২ চামচ', '১ টেবিল চামচ',
+    '৫ মিলি', '১০ মিলি', '১৫ মিলি', '২০ মিলি'
+  ]
+
+  const frequencyOptions = [
+    'দিনে ১ বার', 'দিনে ২ বার', 'দিনে ৩ বার', 'দিনে ৪ বার',
+    'সকালে ১ বার', 'রাতে ১ বার', 'সকাল-রাত', 'সকাল-দুপুর-রাত',
+    'খাবারের আগে', 'খাবারের পরে', 'প্রয়োজন অনুযায়ী'
+  ]
+
+  const durationOptions = [
+    '৩ দিন', '৫ দিন', '৭ দিন', '১০ দিন', '১৪ দিন', '২১ দিন', '৩০ দিন',
+    '১ সপ্তাহ', '২ সপ্তাহ', '৩ সপ্তাহ', '৪ সপ্তাহ',
+    '১ মাস', '২ মাস', '৩ মাস', '৬ মাস',
+    'প্রয়োজন অনুযায়ী', 'সম্পূর্ণ না হওয়া পর্যন্ত'
+  ]
+
+  // Helper functions
+  const calculateTotalQuantity = (dose: string, frequency: string, duration: string): number => {
+    // Simple calculation - extract numbers and multiply
+    const doseNum = parseInt(dose.match(/\d+/)?.[0] || '1')
+    const freqNum = parseInt(frequency.match(/\d+/)?.[0] || '1')
+    const durNum = parseInt(duration.match(/\d+/)?.[0] || '1')
+    return doseNum * freqNum * durNum
+  }
+
+  const calculateRefillDate = (duration: string): string => {
+    const days = parseInt(duration.match(/\d+/)?.[0] || '0')
+    const date = new Date()
+    date.setDate(date.getDate() + days)
+    return date.toISOString().split('T')[0]
+  }
+
   // Filter patients based on search
   useEffect(() => {
-    if (patientSearch) {
-      const filtered = samplePatients.filter(patient =>
+    if (allPatients && patientSearch) {
+      const filtered = allPatients.filter((patient: any) =>
         patient.name.toLowerCase().includes(patientSearch.toLowerCase()) ||
         patient.phone.includes(patientSearch) ||
         patient.id.toLowerCase().includes(patientSearch.toLowerCase())
       )
       setFilteredPatients(filtered)
     } else {
-      setFilteredPatients(samplePatients)
+      setFilteredPatients(allPatients || [])
     }
-  }, [patientSearch])
+  }, [patientSearch, allPatients])
 
   const showToastMessage = (message: string, type: 'success' | 'error' = 'success') => {
     setShowToast({ show: true, message, type })
@@ -98,13 +154,13 @@ export default function DashboardPrescriptionsPage() {
   }
 
   const handleDoctorSelect = (doctorId: string) => {
-    const doctor = sampleDoctorsWithReg.find(d => d.id === doctorId)
+    const doctor = allDoctors?.find((d: any) => d.id === doctorId)
     if (doctor) {
       setPrescriptionData(prev => ({
         ...prev,
         doctorId: doctor.id,
         doctorName: doctor.name,
-        doctorRegistration: doctor.registrationNo
+        doctorRegistration: (doctor as any).registrationNo || 'N/A'
       }))
     }
   }
@@ -196,11 +252,11 @@ export default function DashboardPrescriptionsPage() {
     const newErrors: Record<string, string> = {}
 
     if (!prescriptionData.patientId) {
-      newErrors.patient = 'রোগী নির্বাচন করুন'
+      newErrors.patient = 'রোগী নির্বা���ন করুন'
     }
 
     if (!prescriptionData.doctorId) {
-      newErrors.doctor = 'ডাক্তার নির্বাচন করুন'
+      newErrors.doctor = 'ডাক্তার নির্বাচ�� করুন'
     }
 
     if (!prescriptionData.diagnosis.trim()) {
@@ -233,7 +289,7 @@ export default function DashboardPrescriptionsPage() {
 
   const handleSave = () => {
     if (!validateForm()) {
-      showToastMessage('দয়া করে সকল প্রয়োজনীয় তথ্য পূরণ করুন', 'error')
+      showToastMessage('দয়া ক���ে সকল প্রয়োজনীয় তথ্য পূরণ করুন', 'error')
       return
     }
 
@@ -365,9 +421,9 @@ export default function DashboardPrescriptionsPage() {
                   className={errors.doctor ? 'border-red-500' : ''}
                 >
                   <option value="">ডাক্তার নির্বাচন করুন</option>
-                  {sampleDoctorsWithReg.map((doctor) => (
+                  {allDoctors?.map((doctor: any) => (
                     <option key={doctor.id} value={doctor.id}>
-                      {doctor.name} - {doctor.specialization}
+                      {doctor.name} - {doctor.role}
                     </option>
                   ))}
                 </Select>
@@ -426,7 +482,7 @@ export default function DashboardPrescriptionsPage() {
               {prescriptionData.medicines.length === 0 ? (
                 <div className="text-center py-8">
                   <Pill className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-500 dark:text-gray-400">এখনো কোনো ওষুধ যোগ করা হয়নি</p>
+                  <p className="text-gray-500 dark:text-gray-400">এখনো কোনো ���ষুধ যোগ করা হয়নি</p>
                   <Button onClick={addMedicine} className="mt-4 bg-blue-600 hover:bg-blue-700">
                     প্রথম ওষুধ যোগ করুন
                   </Button>
@@ -465,7 +521,9 @@ export default function DashboardPrescriptionsPage() {
                           {/* Medicine Dropdown */}
                           {medicineDropdowns[index] && medicineSearches[index] && (
                             <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg max-h-60 overflow-y-auto">
-                              {searchMedicines(medicineSearches[index]).slice(0, 5).map((med) => (
+                              {allMedicines?.filter((med: any) =>
+                                med.name.toLowerCase().includes(medicineSearches[index].toLowerCase())
+                              ).slice(0, 5).map((med: any) => (
                                 <button
                                   key={med.id}
                                   type="button"
@@ -475,7 +533,7 @@ export default function DashboardPrescriptionsPage() {
                                   <div>
                                     <p className="font-medium text-gray-900 dark:text-gray-100">{med.name}</p>
                                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                                      {med.strength} • {med.manufacturer} • স্টক: {med.stock}
+                                      {med.strength} • {med.manufacturer} • স্টক: {med.stockQty}
                                     </p>
                                   </div>
                                 </button>
@@ -599,10 +657,10 @@ export default function DashboardPrescriptionsPage() {
                 <div className="text-center p-6 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">ডিজিটাল স্বাক্ষর</p>
                   <div className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                    {sampleDoctorsWithReg.find(d => d.id === prescriptionData.doctorId)?.name}
+                    {allDoctors?.find((d: any) => d.id === prescriptionData.doctorId)?.name}
                   </div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    রেজি: {sampleDoctorsWithReg.find(d => d.id === prescriptionData.doctorId)?.registrationNo}
+                    রেজি: {(allDoctors?.find((d: any) => d.id === prescriptionData.doctorId) as any)?.registrationNo || 'N/A'}
                   </p>
                 </div>
               </CardContent>

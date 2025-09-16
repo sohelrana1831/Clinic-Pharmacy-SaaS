@@ -2,528 +2,138 @@
 @tailwind components;
 @tailwind utilities;
 
-/* RTL Support */
-.rtl {
-  direction: rtl;
-}
-
-/* RTL-specific adjustments */
-.rtl .flex {
-  flex-direction: row-reverse;
-}
-
-.rtl .text-left {
-  text-align: right;
-}
-
-.rtl .text-right {
-  text-align: left;
-}
-
-.rtl .ml-3 {
-  margin-left: 0;
-  margin-right: 0.75rem;
-}
-
-.rtl .mr-3 {
-  margin-right: 0;
-  margin-left: 0.75rem;
-}
-
-.rtl .mr-2 {
-  margin-right: 0;
-  margin-left: 0.5rem;
-}
-
-.rtl .ml-2 {
-  margin-left: 0;
-  margin-right: 0.5rem;
-}
-
-.rtl .pl-10 {
-  padding-left: 0;
-  padding-right: 2.5rem;
-}
-
-.rtl .pr-10 {
-  padding-right: 0;
-  padding-left: 2.5rem;
-}
-
-.rtl .left-3 {
-  left: auto;
-  right: 0.75rem;
-}
-
-.rtl .right-3 {
-  right: auto;
-  left: 0.75rem;
-}
-
-.rtl .border-r {
-  border-right: none;
-  border-left: 1px solid;
-}
-
-.rtl .border-l {
-  border-left: none;
-  border-right: 1px solid;
-}
-
-.rtl .border-r-2 {
-  border-right: none;
-  border-left: 2px solid;
-}
-
-.rtl .rounded-l-lg {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-}
-
-.rtl .rounded-r-lg {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-}
-
-/* Sidebar adjustments for RTL */
-.rtl .w-64 {
-  transform: translateX(0);
-}
-
-/* User dropdown positioning for RTL */
-.rtl .absolute.right-0 {
-  right: auto;
-  left: 0;
-}
-
-.rtl .absolute.left-0 {
-  left: auto;
-  right: 0;
-}
-
-/* Language selector dropdown positioning for RTL */
-.rtl .animate-slide-up {
-  transform-origin: top right;
-}
-
-/* Custom animation for RTL language transitions */
-@keyframes rtl-slide-in {
-  from {
-    opacity: 0;
-    transform: translateX(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes ltr-slide-in {
-  from {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.rtl .animate-slide-in {
-  animation: rtl-slide-in 0.3s ease-out;
-}
-
-:not(.rtl) .animate-slide-in {
-  animation: ltr-slide-in 0.3s ease-out;
-}
-
-/* CSS Custom Properties for Theme Colors */
+/* Theme Variables */
 :root {
-  /* Light theme colors */
-  --bg-background: #F9FAFB;
-  --bg-card: #FFFFFF;
-  --bg-accent: #2563EB;
-  --bg-accent-secondary: #10B981;
-  --text-foreground: #111827;
-  --text-muted: #6B7280;
-  --border-default: #E5E7EB;
-  
-  /* Transition variables */
-  --transition-theme: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-colors: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-  --transition-transform: transform 0.2s ease-in-out;
-  --transition-opacity: opacity 0.2s ease-in-out;
+  --background: #F9FAFB;
+  --foreground: #111827;
+  --card: #FFFFFF;
+  --border: #E5E7EB;
+  --muted: #6B7280;
+  --accent: #2563EB;
+  --accent-secondary: #10B981;
+  --transition-theme: all 200ms ease-in-out;
 }
 
-/* Dark theme colors */
 .dark {
-  --bg-background: #111827;
-  --bg-card: #1F2937;
-  --bg-accent: #3B82F6;
-  --bg-accent-secondary: #34D399;
-  --text-foreground: #F9FAFB;
-  --text-muted: #9CA3AF;
-  --border-default: #374151;
-  
-  color-scheme: dark;
+  --background: #111827;
+  --foreground: #F9FAFB;
+  --card: #1F2937;
+  --border: #374151;
+  --muted: #9CA3AF;
+  --accent: #3B82F6;
+  --accent-secondary: #34D399;
 }
 
-/* Universal smooth transitions for theme switching */
-*,
-*::before,
-*::after {
-  transition: var(--transition-colors);
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Body styling with theme variables */
-body {
-  background-color: var(--bg-background);
-  color: var(--text-foreground);
+/* Theme Classes */
+.theme-transition {
   transition: var(--transition-theme);
-  font-feature-settings: "rlig" 1, "calt" 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Enhanced scrollbar styling with theme colors */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.bg-theme-background {
+  background-color: var(--background);
 }
 
-::-webkit-scrollbar-track {
-  background-color: var(--bg-background);
-  border-radius: 4px;
+.bg-theme-card {
+  background-color: var(--card);
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: var(--text-muted);
-  border-radius: 4px;
-  opacity: 0.6;
-  transition: var(--transition-colors);
+.text-theme-foreground {
+  color: var(--foreground);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  opacity: 0.8;
+.text-theme-muted {
+  color: var(--muted);
 }
 
-/* Firefox scrollbar support */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--text-muted) var(--bg-background);
+.text-theme-accent {
+  color: var(--accent);
 }
 
-/* Focus states for accessibility with WCAG AA compliance */
-.focus-visible:focus,
-*:focus-visible {
-  outline: 2px solid var(--bg-accent);
-  outline-offset: 2px;
-  border-radius: 4px;
+.border-theme-default {
+  border-color: var(--border);
 }
 
-/* Enhanced focus ring utilities */
+.card-theme {
+  background-color: var(--card);
+  color: var(--foreground);
+}
+
+.input-theme {
+  background-color: var(--card);
+  color: var(--foreground);
+  border-color: var(--border);
+}
+
+.table-theme {
+  background-color: var(--card);
+  color: var(--foreground);
+}
+
+.form-label-theme {
+  color: var(--muted);
+}
+
 .focus-ring {
-  transition: var(--transition-colors);
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
 }
 
-.focus-ring:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 2px var(--bg-accent), 0 0 0 4px rgba(59, 130, 246, 0.1);
+/* Modal and Dropdown Styles */
+.modal-theme {
+  background-color: var(--card);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-.dark .focus-ring:focus {
-  box-shadow: 0 0 0 2px var(--bg-accent), 0 0 0 4px rgba(59, 130, 246, 0.2);
+.hover-theme-bg:hover {
+  background-color: rgba(var(--accent-rgb), 0.1);
 }
 
-.focus-ring-error:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 2px #ef4444, 0 0 0 4px rgba(239, 68, 68, 0.1);
+/* Primary Color Classes */
+.bg-primary-100 {
+  background-color: #dbeafe;
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  :root {
-    --text-foreground: #000000;
-    --bg-background: #ffffff;
-    --border-default: #000000;
-  }
-  
-  .dark {
-    --text-foreground: #ffffff;
-    --bg-background: #000000;
-    --border-default: #ffffff;
-  }
-  
-  .contrast-high {
-    border-width: 2px;
-    border-color: currentColor;
-  }
+.bg-primary-900 {
+  background-color: #1e3a8a;
 }
 
-/* Selection styling */
-::selection {
-  background-color: var(--bg-accent);
-  color: white;
+.dark .bg-primary-100 {
+  background-color: #1e3a8a;
 }
 
-::-moz-selection {
-  background-color: var(--bg-accent);
-  color: white;
+.dark .bg-primary-900 {
+  background-color: #dbeafe;
 }
 
-@layer utilities {
-  /* Theme-aware background utilities */
-  .bg-theme-background {
-    background-color: var(--bg-background);
+.text-error-600 {
+  color: #dc2626;
+}
+
+.text-error-400 {
+  color: #f87171;
+}
+
+.hover\:bg-error-50:hover {
+  background-color: #fef2f2;
+}
+
+.dark .hover\:bg-error-900\/20:hover {
+  background-color: rgba(127, 29, 29, 0.2);
+}
+
+/* Animations */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  
-  .bg-theme-card {
-    background-color: var(--bg-card);
-  }
-  
-  .bg-theme-accent {
-    background-color: var(--bg-accent);
-  }
-  
-  .bg-theme-accent-secondary {
-    background-color: var(--bg-accent-secondary);
-  }
-  
-  /* Theme-aware text utilities */
-  .text-theme-foreground {
-    color: var(--text-foreground);
-  }
-  
-  .text-theme-muted {
-    color: var(--text-muted);
-  }
-  
-  /* Theme-aware border utilities */
-  .border-theme-default {
-    border-color: var(--border-default);
-  }
-  
-  /* Hover states with theme colors */
-  .hover-theme-accent:hover {
-    background-color: var(--bg-accent);
-    color: white;
-  }
-  
-  .hover-theme-bg:hover {
-    background-color: color-mix(in srgb, var(--bg-card) 80%, var(--text-muted) 10%);
-  }
-  
-  /* Theme transition utilities */
-  .theme-transition {
-    transition: var(--transition-theme);
-  }
-  
-  .theme-transition-fast {
-    transition: var(--transition-colors);
-  }
-  
-  .theme-transition-transform {
-    transition: var(--transition-transform);
-  }
-  
-  /* Enhanced component utilities */
-  .card-theme {
-    background-color: var(--bg-card);
-    border-color: var(--border-default);
-    color: var(--text-foreground);
-    transition: var(--transition-theme);
-  }
-  
-  .card-theme:hover {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  }
-  
-  .dark .card-theme:hover {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Button theme utilities */
-  .btn-theme-primary {
-    background-color: var(--bg-accent);
-    color: white;
-    border-color: var(--bg-accent);
-    transition: var(--transition-theme);
-  }
-  
-  .btn-theme-primary:hover {
-    background-color: color-mix(in srgb, var(--bg-accent) 90%, black 10%);
-    border-color: color-mix(in srgb, var(--bg-accent) 90%, black 10%);
-  }
-  
-  .btn-theme-secondary {
-    background-color: var(--bg-accent-secondary);
-    color: white;
-    border-color: var(--bg-accent-secondary);
-    transition: var(--transition-theme);
-  }
-  
-  .btn-theme-secondary:hover {
-    background-color: color-mix(in srgb, var(--bg-accent-secondary) 90%, black 10%);
-    border-color: color-mix(in srgb, var(--bg-accent-secondary) 90%, black 10%);
-  }
-  
-  .btn-theme-outline {
-    background-color: transparent;
-    color: var(--text-foreground);
-    border-color: var(--border-default);
-    transition: var(--transition-theme);
-  }
-  
-  .btn-theme-outline:hover {
-    background-color: var(--bg-card);
-    border-color: var(--bg-accent);
-    color: var(--bg-accent);
-  }
-  
-  /* Text utilities with balance */
-  .text-balance {
-    text-wrap: balance;
-  }
-  
-  /* Animation utilities */
-  .animate-theme-fade-in {
-    animation: themeTransition 0.3s ease-in-out;
-  }
-  
-  /* Glassmorphism effect for modals */
-  .backdrop-theme {
-    backdrop-filter: blur(8px);
-    background-color: color-mix(in srgb, var(--bg-background) 80%, transparent 20%);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Component-specific theme styles */
-@layer components {
-  /* Modal theme styling */
-  .modal-theme {
-    background-color: var(--bg-card);
-    border-color: var(--border-default);
-    color: var(--text-foreground);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    transition: var(--transition-theme);
-  }
-  
-  .dark .modal-theme {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  }
-  
-  /* Input theme styling */
-  .input-theme {
-    background-color: var(--bg-card);
-    border-color: var(--border-default);
-    color: var(--text-foreground);
-    transition: var(--transition-theme);
-  }
-  
-  .input-theme:focus {
-    border-color: var(--bg-accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--bg-accent) 20%, transparent 80%);
-  }
-  
-  .input-theme::placeholder {
-    color: var(--text-muted);
-  }
-  
-  /* Chart and graph theme colors */
-  .chart-theme {
-    --chart-primary: var(--bg-accent);
-    --chart-secondary: var(--bg-accent-secondary);
-    --chart-background: var(--bg-card);
-    --chart-grid: var(--border-default);
-    --chart-text: var(--text-foreground);
-    --chart-muted: var(--text-muted);
-  }
-
-  /* Table theme styling with proper dark mode colors */
-  .table-theme {
-    background-color: var(--bg-card);
-    border-color: var(--border-default);
-    color: var(--text-foreground);
-    transition: var(--transition-theme);
-  }
-
-  .table-theme th {
-    background-color: var(--bg-background);
-    color: var(--text-muted);
-    border-color: var(--border-default);
-  }
-
-  .table-theme td {
-    background-color: var(--bg-card);
-    color: var(--text-foreground);
-    border-color: var(--border-default);
-  }
-
-  .table-theme tbody tr:hover {
-    background-color: color-mix(in srgb, var(--bg-card) 85%, var(--text-muted) 5%);
-  }
-
-  .dark .table-theme {
-    background-color: #1F2937;
-    border-color: #374151;
-  }
-
-  .dark .table-theme th {
-    background-color: #1F2937;
-    color: #F9FAFB;
-    border-color: #374151;
-  }
-
-  .dark .table-theme td {
-    background-color: #1F2937;
-    color: #F9FAFB;
-    border-color: #374151;
-  }
-
-  .dark .table-theme tbody tr:hover {
-    background-color: #374151;
-  }
-
-  /* Form label theme styling */
-  .form-label-theme {
-    color: var(--text-foreground);
-    background-color: transparent;
-    transition: var(--transition-theme);
-  }
-
-  .dark .form-label-theme {
-    color: #F9FAFB;
-    background-color: transparent;
-  }
-
-  /* Stats card theme styling */
-  .stats-card-theme {
-    background-color: var(--bg-card);
-    border-color: var(--border-default);
-    color: var(--text-foreground);
-    transition: var(--transition-theme);
-  }
-
-  .dark .stats-card-theme {
-    background-color: #1F2937;
-    border-color: #374151;
-    color: #F9FAFB;
-  }
+.animate-slide-up {
+  animation: slide-up 0.2s ease-out;
 }

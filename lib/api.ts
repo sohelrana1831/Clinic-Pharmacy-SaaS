@@ -6,7 +6,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '/api'
 // Create axios instance
 const api: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 10000,
+  timeout: 5000, // Reduced from 10s to 5s
   headers: {
     'Content-Type': 'application/json',
   },
@@ -44,6 +44,13 @@ api.interceptors.response.use(
     // Handle network errors
     if (error.code === 'NETWORK_ERROR' || error.message === 'Failed to fetch') {
       console.error('Network error - possibly CORS or server issue')
+      error.isNetworkError = true
+    }
+
+    // Handle timeout errors
+    if (error.code === 'ECONNABORTED' || error.message.includes('timeout')) {
+      console.error('Request timeout')
+      error.isTimeoutError = true
     }
 
     return Promise.reject(error)
@@ -402,8 +409,29 @@ export interface User {
 }
 
 export const usersApi = {
-  // Get all users (doctors/staff)
-  getUsers: (params?: { role?: string }) => apiService.get<User[]>('/users', params),
+  // Get all users with pagination and search
+  getUsers: (params?: {
+    page?: number
+    limit?: number
+    search?: string
+    role?: string
+    sortBy?: string
+    sortOrder?: 'asc' | 'desc'
+  }) => apiService.get<User[]>('/users', params),
+
+  // Get user by ID
+  getUser: (id: string) => apiService.get<User>(`/users/${id}`),
+
+  // Create new user
+  createUser: (data: Omit<User, 'id' | 'createdAt' | 'updatedAt'> & { password: string }) =>
+    apiService.post<User>('/users', data),
+
+  // Update user
+  updateUser: (id: string, data: Partial<User> & { password?: string }) =>
+    apiService.put<User>(`/users/${id}`, data),
+
+  // Delete user
+  deleteUser: (id: string) => apiService.delete(`/users/${id}`),
 
   // Get current user profile
   getProfile: () => apiService.get<User>('/users/profile'),

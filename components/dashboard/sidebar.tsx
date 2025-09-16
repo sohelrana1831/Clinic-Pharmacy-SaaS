@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useUser } from '@/lib/user-context'
 import {
   LayoutDashboard,
   Users,
@@ -24,20 +25,23 @@ export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false)
   const pathname = usePathname()
   const { t } = useTranslation()
+  const { hasPermission, user } = useUser()
 
-  const menuItems = [
-    { icon: LayoutDashboard, label: t('navigation.dashboard'), href: '/dashboard' },
-    { icon: Users, label: t('navigation.patients'), href: '/dashboard/patients' },
-    { icon: Calendar, label: t('navigation.appointments'), href: '/dashboard/appointments' },
-    { icon: FileText, label: t('navigation.prescriptions'), href: '/dashboard/prescriptions' },
-    { icon: Package, label: t('navigation.inventory'), href: '/dashboard/inventory' },
-    { icon: Pill, label: t('navigation.pos'), href: '/dashboard/pos' },
-    { icon: BarChart3, label: t('navigation.reports'), href: '/dashboard/reports' },
-    { icon: CreditCard, label: t('navigation.billing'), href: '/dashboard/billing' },
-    { icon: UserCheck, label: t('navigation.subscriptions'), href: '/admin/subscriptions' },
-    { icon: DollarSign, label: t('navigation.pricing'), href: '/pricing' },
-    { icon: Settings, label: t('navigation.settings'), href: '/dashboard/settings' },
+  const allMenuItems = [
+    { icon: LayoutDashboard, label: t('navigation.dashboard'), href: '/dashboard', permission: 'view_dashboard' },
+    { icon: Users, label: t('navigation.patients'), href: '/dashboard/patients', permission: 'manage_patients' },
+    { icon: Calendar, label: t('navigation.appointments'), href: '/dashboard/appointments', permission: 'manage_appointments' },
+    { icon: FileText, label: t('navigation.prescriptions'), href: '/dashboard/prescriptions', permission: 'manage_prescriptions' },
+    { icon: Package, label: t('navigation.inventory'), href: '/dashboard/inventory', permission: 'manage_inventory' },
+    { icon: Pill, label: t('navigation.pos'), href: '/dashboard/pos', permission: 'manage_pos' },
+    { icon: BarChart3, label: t('navigation.reports'), href: '/dashboard/reports', permission: 'view_reports' },
+    { icon: CreditCard, label: t('navigation.billing'), href: '/dashboard/billing', permission: 'manage_billing' },
+    { icon: UserCheck, label: t('navigation.users'), href: '/dashboard/users', permission: 'manage_users' },
+    { icon: Settings, label: t('navigation.settings'), href: '/dashboard/settings', permission: 'manage_settings' },
   ]
+
+  // Filter menu items based on user permissions
+  const menuItems = allMenuItems.filter(item => hasPermission(item.permission))
 
   return (
     <div className={`

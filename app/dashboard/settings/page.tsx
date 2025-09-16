@@ -68,7 +68,7 @@ export default function DashboardSettingsPage() {
     setSettingsData(prev => ({
       ...prev,
       [section]: {
-        ...prev[section as keyof typeof prev],
+        ...(prev[section as keyof typeof prev] as any),
         [field]: value
       }
     }))

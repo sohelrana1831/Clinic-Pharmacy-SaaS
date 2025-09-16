@@ -44,7 +44,8 @@ export function useApi<T>(
 // Hook for paginated API calls
 export function usePaginatedApi<T>(
   apiCall: (params: any) => Promise<ApiResponse<T[]>>,
-  initialParams: any = {}
+  initialParams: any = {},
+  options: { enabled?: boolean } = {}
 ) {
   const [data, setData] = useState<T[]>([])
   const [loading, setLoading] = useState(false)
@@ -73,17 +74,31 @@ export function usePaginatedApi<T>(
       return
     }
 
+    // Check if we have essential parameters
+    const requestParams = {
+      ...(customParams !== undefined ? customParams : paramsRef.current),
+      page: customPage !== undefined ? customPage : paginationRef.current.page,
+      limit: customLimit !== undefined ? customLimit : paginationRef.current.limit,
+    }
+
+    // Skip API call if disabled, or if date parameter is empty (for appointments)
+    if (options.enabled === false || requestParams.date === '') {
+      return
+    }
+
     try {
       setLoading(true)
       setError(null)
 
-      const requestParams = {
-        ...(customParams !== undefined ? customParams : paramsRef.current),
-        page: customPage !== undefined ? customPage : paginationRef.current.page,
-        limit: customLimit !== undefined ? customLimit : paginationRef.current.limit,
-      }
+      // Add timeout handling
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Request timeout - please try again')), 3000)
+      })
 
-      const response = await apiCallRef.current(requestParams)
+      const response = await Promise.race([
+        apiCallRef.current(requestParams),
+        timeoutPromise
+      ]) as any
 
       if (response.success) {
         setData(response.data)
@@ -99,6 +114,11 @@ export function usePaginatedApi<T>(
       // Handle specific error types
       if (err.message === 'Failed to fetch' || err.code === 'NETWORK_ERROR') {
         setError('Network error. Please check your connection and try again.')
+      } else if (err.message.includes('timeout')) {
+        setError('Request timeout. Please try again.')
+      } else if (err.name === 'AbortError') {
+        // Request was aborted, don't show error
+        return
       } else {
         setError(err.message || 'An unexpected error occurred')
       }
@@ -107,19 +127,19 @@ export function usePaginatedApi<T>(
     }
   }, []) // No dependencies to prevent recreation
 
-  // Initial load only - check if we're on the client side
+  // Initial load only - check if we're on the client side and enabled
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && options.enabled !== false) {
       fetchData(initialParams, 1, 10)
     }
-  }, [fetchData]) // Only depend on fetchData
+  }, [fetchData, options.enabled]) // Only depend on fetchData and enabled
 
-  // Handle params changes - only on client side
+  // Handle params changes - only on client side and when enabled
   useEffect(() => {
-    if (typeof window !== 'undefined' && JSON.stringify(params) !== JSON.stringify(initialParams)) {
-      fetchData(params, 1, pagination.limit)
+    if (typeof window !== 'undefined' && options.enabled !== false && JSON.stringify(params) !== JSON.stringify(initialParams)) {
+      fetchData(params, 1, paginationRef.current.limit)
     }
-  }, [params, initialParams]) // Remove fetchData and pagination.limit dependencies
+  }, [params, fetchData, options.enabled]) // Use ref for pagination limit to avoid cycles
 
   // Handle page changes
   const goToPage = useCallback((page: number) => {

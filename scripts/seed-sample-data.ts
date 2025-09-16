@@ -2,11 +2,11 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-async function main() {
-  console.log('🌱 Creating comprehensive sample data for all APIs...')
+async function createSampleData() {
+  console.log('🌱 Creating comprehensive sample data...')
 
   try {
-    // 1. Create 6+ Users (Doctors, Staff, etc.)
+    // 1. Create 5+ Users (Doctors, Staff, etc.)
     console.log('👥 Creating users...')
     const users = await Promise.all([
       prisma.user.upsert({
@@ -72,7 +72,7 @@ async function main() {
     ])
     console.log(`✅ Created ${users.length} users`)
 
-    // 2. Create 6+ Patients
+    // 2. Create 5+ Patients
     console.log('🏥 Creating patients...')
     const patients = await Promise.all([
       prisma.patient.upsert({
@@ -156,7 +156,7 @@ async function main() {
     ])
     console.log(`✅ Created ${patients.length} patients`)
 
-    // 3. Create 6+ Medicines
+    // 3. Create 5+ Medicines
     console.log('💊 Creating medicines...')
     const medicines = await Promise.all([
       prisma.medicine.upsert({
@@ -279,12 +279,8 @@ async function main() {
     // Get doctors for appointments
     const doctors = users.filter(u => u.role === 'doctor')
 
-    // 4. Create 6+ Appointments
+    // 4. Create 5+ Appointments
     console.log('📅 Creating appointments...')
-    
-    // Delete existing appointments to avoid duplicates
-    await prisma.appointment.deleteMany()
-    
     const appointments = await Promise.all([
       prisma.appointment.create({
         data: {
@@ -305,7 +301,7 @@ async function main() {
           time: '11:30',
           type: 'followup',
           status: 'confirmed',
-          notes: 'ফলোআপ ভিজিট - জ্ব���ের জন্য',
+          notes: 'ফলোআপ ভিজিট - জ্বরের জন্য',
         },
       }),
       prisma.appointment.create({
@@ -349,7 +345,7 @@ async function main() {
           time: '10:30',
           type: 'consultation',
           status: 'pending',
-          notes: 'প্রাথমিক পরীক্ষা',
+          notes: 'প্রাথমিক প���ীক্ষা',
         },
       }),
     ])
@@ -357,11 +353,6 @@ async function main() {
 
     // 5. Create 5+ Prescriptions
     console.log('📝 Creating prescriptions...')
-    
-    // Delete existing prescriptions to avoid duplicates
-    await prisma.prescriptionMedicine.deleteMany()
-    await prisma.prescription.deleteMany()
-    
     const prescriptions = await Promise.all([
       prisma.prescription.create({
         data: {
@@ -457,7 +448,7 @@ async function main() {
               },
               {
                 medicineId: medicines[0].id,
-                dosage: '১��ি',
+                dosage: '১টি',
                 frequency: 'প্রয়োজনে',
                 duration: '৭ দিন',
                 instructions: 'ব্যথার সময় সেবন করুন',
@@ -500,26 +491,24 @@ async function main() {
     ])
     console.log(`✅ Created ${prescriptions.length} prescriptions`)
 
-    console.log('\n🎉 Comprehensive sample data creation completed successfully!')
-    console.log(`📊 Final Summary:`)
-    console.log(`   👥 Users: ${users.length} entries`)
-    console.log(`   🏥 Patients: ${patients.length} entries`)
-    console.log(`   💊 Medicines: ${medicines.length} entries`)
-    console.log(`   📅 Appointments: ${appointments.length} entries`)
-    console.log(`   📝 Prescriptions: ${prescriptions.length} entries`)
-    console.log(`\n✅ All APIs now have 5+ sample data entries for comprehensive testing!`)
+    console.log('\n🎉 Sample data creation completed successfully!')
+    console.log(`📊 Summary:`)
+    console.log(`   👥 Users: ${users.length}`)
+    console.log(`   🏥 Patients: ${patients.length}`)
+    console.log(`   💊 Medicines: ${medicines.length}`)
+    console.log(`   📅 Appointments: ${appointments.length}`)
+    console.log(`   📝 Prescriptions: ${prescriptions.length}`)
 
   } catch (error) {
     console.error('❌ Error creating sample data:', error)
-    throw error
+  } finally {
+    await prisma.$disconnect()
   }
 }
 
-main()
-  .catch((e) => {
-    console.error('❌ Error in main function:', e)
-    process.exit(1)
-  })
-  .finally(async () => {
-    await prisma.$disconnect()
-  })
+// Export for use in other files
+if (require.main === module) {
+  createSampleData()
+}
+
+export { createSampleData }

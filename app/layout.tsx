@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/lib/theme-context'
 import { I18nProvider } from '@/lib/i18n-provider'
+import { UserProvider } from '@/lib/user-context'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -36,7 +37,9 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <I18nProvider>
           <ThemeProvider>
-            {children}
+            <UserProvider>
+              {children}
+            </UserProvider>
           </ThemeProvider>
         </I18nProvider>
       </body>

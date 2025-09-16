@@ -5,7 +5,13 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { 
+import { usePaginatedApi, useApiMutation } from '@/hooks/useApi'
+import { useNetworkStatus } from '@/hooks/useNetworkStatus'
+import { appointmentsApi, Appointment } from '@/lib/api'
+import { AppointmentModal } from '@/components/appointments/appointment-modal'
+import { CalendarView } from '@/components/appointments/calendar-view'
+import { ErrorBoundary } from '@/components/error-boundary'
+import {
   Calendar,
   Clock,
   User,
@@ -17,67 +23,116 @@ import {
   List,
   Edit,
   CheckCircle,
-  XCircle
+  XCircle,
+  Trash2,
+  Download,
+  FileText,
+  Wifi,
+  WifiOff,
+  RefreshCw
 } from 'lucide-react'
 
-interface Appointment {
-  id: string
-  patientName: string
-  patientPhone: string
-  date: string
-  time: string
-  type: string
-  status: 'confirmed' | 'pending' | 'cancelled' | 'completed'
-  doctor: string
-  notes?: string
-}
-
-const mockAppointments: Appointment[] = [
-  {
-    id: 'A001',
-    patientName: 'রহিম উদ্দিন',
-    patientPhone: '01712345678',
-    date: '2024-01-15',
-    time: '10:00',
-    type: 'নিয়মিত চেকআপ',
-    status: 'confirmed',
-    doctor: 'ডা. রহিম উদ্দিন',
-    notes: 'নিয়মিত ফলোআপ'
-  },
-  {
-    id: 'A002',
-    patientName: 'ফাতেমা খাতুন',
-    patientPhone: '01812345678',
-    date: '2024-01-15',
-    time: '11:30',
-    type: 'ডায়াবেটিস চেকআপ',
-    status: 'pending',
-    doctor: 'ডা. রহিম উদ্দিন'
-  },
-  {
-    id: 'A003',
-    patientName: 'আবুল কাশেম',
-    patientPhone: '01912345678',
-    date: '2024-01-15',
-    time: '14:00',
-    type: 'হার্ট চেকআপ',
-    status: 'completed',
-    doctor: 'ডা. রহিম উদ্দিন',
-    notes: 'ECG এবং রক্ত পরীক্ষা সম্পন্ন'
-  }
-]
-
-export default function AppointmentsPage() {
+function AppointmentsPageContent() {
   const { t } = useTranslation()
+  const { isOnline, isReconnecting, checkConnectivity } = useNetworkStatus()
   const [viewMode, setViewMode] = useState<'table' | 'calendar'>('table')
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedDate, setSelectedDate] = useState('2024-01-15') // Static date to prevent hydration mismatch
+  const [selectedDate, setSelectedDate] = useState(() => {
+    // Initialize with current date immediately if on client-side
+    if (typeof window !== 'undefined') {
+      return new Date().toISOString().split('T')[0]
+    }
+    return ''
+  })
   const [statusFilter, setStatusFilter] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [editingAppointment, setEditingAppointment] = useState<Appointment | null>(null)
 
-  // Set current date on client-side only
+  // Set current date on client-side only if not already set
   useEffect(() => {
-    setSelectedDate(new Date().toISOString().split('T')[0])
-  }, [])
+    if (!selectedDate && typeof window !== 'undefined') {
+      setSelectedDate(new Date().toISOString().split('T')[0])
+    }
+  }, [selectedDate])
+
+  // API hooks - only initialize when selectedDate is available
+  const {
+    data: appointments,
+    loading,
+    error,
+    pagination,
+    updateParams,
+    refetch
+  } = usePaginatedApi(
+    appointmentsApi.getAppointments,
+    {
+      date: selectedDate || undefined,
+      status: statusFilter || undefined
+    },
+    { enabled: !!selectedDate && typeof window !== 'undefined' } // Only run when date is available and on client side
+  )
+
+  const { mutate: updateAppointment } = useApiMutation()
+  const { mutate: deleteAppointment, loading: deleting } = useApiMutation()
+
+  const handleEdit = (appointment: Appointment) => {
+    setEditingAppointment(appointment)
+    setIsModalOpen(true)
+  }
+
+  const handleDelete = async (appointmentId: string) => {
+    if (confirm('আপনি কি নিশ্চিত যে এই অ্যাপয়েন্টমেন্ট মুছে ফেলতে চান?')) {
+      try {
+        await deleteAppointment(() => appointmentsApi.deleteAppointment(appointmentId))
+        refetch()
+      } catch (error) {
+        console.error('Error deleting appointment:', error)
+      }
+    }
+  }
+
+  const handleModalClose = () => {
+    setIsModalOpen(false)
+    setEditingAppointment(null)
+    refetch()
+  }
+
+  const handleExport = () => {
+    const csvContent = generateCSV(appointments || [])
+    downloadCSV(csvContent, `appointments-${new Date().toISOString().split('T')[0]}.csv`)
+  }
+
+  const generateCSV = (data: Appointment[]) => {
+    const headers = ['ID', 'Patient', 'Doctor', 'Date', 'Time', 'Type', 'Status', 'Notes']
+    const rows = data.map(appointment => [
+      appointment.id,
+      appointment.patient?.name || '',
+      appointment.doctor?.name || '',
+      new Date(appointment.date).toLocaleDateString('bn-BD'),
+      appointment.time,
+      appointment.type,
+      appointment.status,
+      appointment.notes || ''
+    ])
+
+    return [headers, ...rows].map(row =>
+      row.map(cell => `"${cell}"`).join(',')
+    ).join('\n')
+  }
+
+  const downloadCSV = (content: string, filename: string) => {
+    const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' })
+    const link = document.createElement('a')
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob)
+      link.setAttribute('href', url)
+      link.setAttribute('download', filename)
+      link.style.visibility = 'hidden'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    }
+  }
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -104,26 +159,62 @@ export default function AppointmentsPage() {
     }
   }
 
-  const filteredAppointments = mockAppointments.filter(appointment => {
-    const matchesSearch = 
-      appointment.patientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      appointment.patientPhone.includes(searchTerm) ||
-      appointment.id.toLowerCase().includes(searchTerm.toLowerCase())
-    
-    const matchesDate = appointment.date === selectedDate
-    const matchesStatus = !statusFilter || appointment.status === statusFilter
-    
-    return matchesSearch && matchesDate && matchesStatus
-  })
+  // Update API params when filters change
+  useEffect(() => {
+    if (selectedDate) {
+      updateParams({
+        date: selectedDate,
+        status: statusFilter || undefined,
+        page: 1
+      })
+    }
+  }, [selectedDate, statusFilter, updateParams])
+
+  const handleStatusUpdate = async (appointmentId: string, newStatus: string) => {
+    try {
+      await updateAppointment(() =>
+        appointmentsApi.updateAppointment(appointmentId, { status: newStatus })
+      )
+      refetch()
+    } catch (error) {
+      console.error('Error updating appointment:', error)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-theme-background theme-transition">
       <div className="p-6 space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-theme-foreground">{t('navigation.appointments')}</h1>
-            <p className="text-theme-muted">অ্যাপয়েন্টমেন্ট পরিচালনা ও ক্যালেন্ডার দেখুন</p>
+          <div className="flex items-center space-x-4">
+            <div>
+              <h1 className="text-2xl font-bold text-theme-foreground">{t('navigation.appointments')}</h1>
+              <p className="text-theme-muted">অ্যাপয়েন্টমেন্ট পরিচালনা ও ক্যালেন্ডার দেখুন</p>
+            </div>
+
+            {/* Network Status Indicator */}
+            {!isOnline && (
+              <div className="flex items-center space-x-2 px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm">
+                <WifiOff className="h-4 w-4" />
+                <span>অফলাইন</span>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="h-6 w-6 p-0 text-red-600 hover:text-red-700"
+                  onClick={checkConnectivity}
+                  disabled={isReconnecting}
+                >
+                  <RefreshCw className={`h-3 w-3 ${isReconnecting ? 'animate-spin' : ''}`} />
+                </Button>
+              </div>
+            )}
+
+            {isReconnecting && (
+              <div className="flex items-center space-x-2 px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">
+                <RefreshCw className="h-4 w-4 animate-spin" />
+                <span>পুনঃসংযোগ...</span>
+              </div>
+            )}
           </div>
           <div className="flex items-center space-x-3">
             <div className="flex items-center bg-theme-card border border-theme-default rounded-lg p-1">
@@ -146,7 +237,19 @@ export default function AppointmentsPage() {
                 ক্যালেন্ডার
               </Button>
             </div>
-            <Button className="bg-blue-600 hover:bg-blue-700">
+            <Button
+              onClick={handleExport}
+              variant="outline"
+              size="sm"
+              className="h-8"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              এক���সপোর্ট
+            </Button>
+            <Button
+              onClick={() => setIsModalOpen(true)}
+              className="bg-blue-600 hover:bg-blue-700"
+            >
               <Plus className="h-4 w-4 mr-2" />
               নতুন অ্যাপয়েন্টমেন্ট
             </Button>
@@ -160,7 +263,7 @@ export default function AppointmentsPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-theme-muted">আজকের অ্যাপয়েন্টমেন্ট</p>
-                  <p className="text-2xl font-bold text-theme-foreground">{filteredAppointments.length}</p>
+                  <p className="text-2xl font-bold text-theme-foreground">{appointments?.length || 0}</p>
                 </div>
                 <Calendar className="h-8 w-8 text-blue-600" />
               </div>
@@ -173,7 +276,7 @@ export default function AppointmentsPage() {
                 <div>
                   <p className="text-sm text-theme-muted">নিশ্চিত</p>
                   <p className="text-2xl font-bold text-blue-600">
-                    {filteredAppointments.filter(a => a.status === 'confirmed').length}
+                    {appointments?.filter(a => a.status === 'confirmed').length || 0}
                   </p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-blue-600" />
@@ -187,7 +290,7 @@ export default function AppointmentsPage() {
                 <div>
                   <p className="text-sm text-theme-muted">অপেক্ষমান</p>
                   <p className="text-2xl font-bold text-yellow-600">
-                    {filteredAppointments.filter(a => a.status === 'pending').length}
+                    {appointments?.filter(a => a.status === 'pending').length || 0}
                   </p>
                 </div>
                 <Clock className="h-8 w-8 text-yellow-600" />
@@ -201,7 +304,7 @@ export default function AppointmentsPage() {
                 <div>
                   <p className="text-sm text-theme-muted">সম্পন্ন</p>
                   <p className="text-2xl font-bold text-green-600">
-                    {filteredAppointments.filter(a => a.status === 'completed').length}
+                    {appointments?.filter(a => a.status === 'completed').length || 0}
                   </p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-green-600" />
@@ -244,7 +347,7 @@ export default function AppointmentsPage() {
                 <option value="confirmed">নিশ্চিত</option>
                 <option value="pending">অপেক্ষমান</option>
                 <option value="completed">সম্পন্ন</option>
-                <option value="cancelled">বাতিল</option>
+                <option value="cancelled">বাতি���</option>
               </select>
             </div>
           </CardContent>
@@ -286,17 +389,59 @@ export default function AppointmentsPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y">
-                      {filteredAppointments.map((appointment) => (
+                      {loading ? (
+                        <tr>
+                          <td colSpan={7} className="px-4 py-12 text-center">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                            <p className="text-theme-muted mt-2">লোড হচ্ছে...</p>
+                          </td>
+                        </tr>
+                      ) : error ? (
+                        <tr>
+                          <td colSpan={7} className="px-4 py-12 text-center">
+                            <div className="space-y-4">
+                              {!isOnline ? (
+                                <div className="flex items-center justify-center space-x-2 text-yellow-600">
+                                  <WifiOff className="h-5 w-5" />
+                                  <span>ইন্টারনেট সংযোগ নেই</span>
+                                </div>
+                              ) : (
+                                <p className="text-red-600">{error}</p>
+                              )}
+                              <div className="flex space-x-2 justify-center">
+                                <Button onClick={refetch} disabled={!isOnline}>
+                                  পুনরায় চেষ্টা করুন
+                                </Button>
+                                {!isOnline && (
+                                  <Button onClick={checkConnectivity} variant="outline" disabled={isReconnecting}>
+                                    {isReconnecting ? (
+                                      <>
+                                        <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                                        সংযোগ পরীক্ষা করা হচ্ছে
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Wifi className="h-4 w-4 mr-2" />
+                                        সংযোগ পরীক্ষা করুন
+                                      </>
+                                    )}
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      ) : appointments?.map((appointment) => (
                         <tr key={appointment.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 theme-transition">
                           <td className="px-4 py-3 whitespace-nowrap">
                             <div className="text-sm font-medium text-blue-600">{appointment.id}</div>
                           </td>
                           <td className="px-4 py-3">
                             <div>
-                              <div className="text-sm font-medium text-theme-foreground">{appointment.patientName}</div>
+                              <div className="text-sm font-medium text-theme-foreground">{appointment.patient?.name}</div>
                               <div className="text-sm text-theme-muted flex items-center">
                                 <Phone className="h-3 w-3 mr-1" />
-                                {appointment.patientPhone}
+                                {appointment.patient?.phone}
                               </div>
                             </div>
                           </td>
@@ -308,7 +453,7 @@ export default function AppointmentsPage() {
                             <div className="text-sm text-theme-foreground">{appointment.type}</div>
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap">
-                            <div className="text-sm text-theme-foreground">{appointment.doctor}</div>
+                            <div className="text-sm text-theme-foreground">{appointment.doctor?.name}</div>
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap">
                             <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(appointment.status)}`}>
@@ -320,13 +465,24 @@ export default function AppointmentsPage() {
                               <Button
                                 size="sm"
                                 variant="outline"
+                                onClick={() => handleEdit(appointment)}
                                 className="h-8 w-8 p-0"
                               >
                                 <Edit className="h-4 w-4" />
                               </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => handleDelete(appointment.id)}
+                                disabled={deleting}
+                                className="h-8 w-8 p-0 text-red-600 hover:text-red-700"
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
                               {appointment.status === 'pending' && (
                                 <Button
                                   size="sm"
+                                  onClick={() => handleStatusUpdate(appointment.id, 'confirmed')}
                                   className="h-8 bg-green-600 hover:bg-green-700"
                                 >
                                   নিশ্চিত
@@ -340,11 +496,11 @@ export default function AppointmentsPage() {
                   </table>
                 </div>
 
-                {filteredAppointments.length === 0 && (
+                {!loading && !error && (!appointments || appointments.length === 0) && (
                   <div className="text-center py-12">
                     <Calendar className="h-12 w-12 text-theme-muted mx-auto mb-4" />
                     <div className="text-theme-muted">
-                      {searchTerm || statusFilter ? 'কোনো অ্যাপয়েন্টমেন্ট পাওয়া যায়নি' : 'আজ কোনো অ্যাপয়েন্টমেন্ট নেই'}
+                      {statusFilter ? 'কোনো অ্যাপয়েন্টমেন্ট পাওয়া যায়নি' : 'আজ কোনো অ্যাপয়েন্টমেন্ট নে��'}
                     </div>
                   </div>
                 )}
@@ -356,20 +512,27 @@ export default function AppointmentsPage() {
         {/* Calendar View */}
         {viewMode === 'calendar' && (
           <Card className="card-theme border">
-            <CardHeader>
-              <CardTitle className="text-theme-foreground">ক্যালেন্ডার ভিউ</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center py-12">
-                <CalendarDays className="h-12 w-12 text-theme-muted mx-auto mb-4" />
-                <div className="text-theme-muted">
-                  ক্যালেন্ডার ভিউ শীঘ্রই আসছে
-                </div>
-              </div>
+            <CardContent className="p-6">
+              <CalendarView onRefresh={refetch} />
             </CardContent>
           </Card>
         )}
+
+        {/* Appointment Modal */}
+        <AppointmentModal
+          isOpen={isModalOpen}
+          onClose={handleModalClose}
+          appointment={editingAppointment}
+        />
       </div>
     </div>
+  )
+}
+
+export default function AppointmentsPage() {
+  return (
+    <ErrorBoundary>
+      <AppointmentsPageContent />
+    </ErrorBoundary>
   )
 }
